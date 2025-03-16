@@ -19,8 +19,13 @@ import shutil
 from datetime import datetime
 import math
 
-from stability_reward import StabilityRewardCalculator
 from openai import OpenAI
+
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from stability_reward import StabilityRewardCalculator
+
 
 load_dotenv()
 
@@ -29,8 +34,8 @@ MAX_INPUT_LENGTH = 6000
 MAX_OUTPUT_LENGTH = 4096
 THINK_LENGTH = 3000
 DEVICE = "cuda"
-RUN_NAME = "creativity-lm-grpo-mega-run-continued"
-CHECKPOINT_PATH = "all-lm-grpo-mega-run/checkpoints/checkpoint-20250225-025056-step40"
+RUN_NAME = "" # FILL IN RUN NAME FOR wandb
+CHECKPOINT_PATH = "none" 
 
 FORMATTING_REWARD = 0.1
 STABILITY_REWARD = 1.5 
@@ -634,19 +639,6 @@ model = FastLanguageModel.get_peft_model(
     random_state=3407,
 )
 
-# Load LoRA weights from checkpoint
-checkpoint_path = Path(CHECKPOINT_PATH)
-if not checkpoint_path.exists():
-    raise ValueError(f"Checkpoint directory does not exist: {CHECKPOINT_PATH}")
-
-print(f"Loading LoRA weights from checkpoint: {CHECKPOINT_PATH}")
-try:
-    model.load_adapter(CHECKPOINT_PATH, "default")
-    print("Successfully loaded LoRA weights from checkpoint")
-except Exception as e:
-    print(f"Error loading LoRA weights: {e}")
-    raise  # Stop execution if loading fails
-
 # Modify training arguments for Unsloth compatibility
 training_args = GRPOConfig(
     use_vllm=False,
@@ -683,20 +675,6 @@ trainer = GRPOTrainer(
     )]
 )
 
-# Check if trainer state exists in checkpoint and load it
-trainer_state_path = Path(CHECKPOINT_PATH) / "trainer_state.pt"
-if trainer_state_path.exists():
-    try:
-        print(f"Loading trainer state from: {trainer_state_path}")
-        training_state = torch.load(trainer_state_path)
-        trainer.state.global_step = training_state.get("global_step", 0)
-        trainer.state.epoch = training_state.get("epoch", 0)
-        trainer.state.best_metric = training_state.get("best_metric", None)
-        print(f"Resuming training from step {trainer.state.global_step}, epoch {trainer.state.epoch}")
-    except Exception as e:
-        print(f"Error loading trainer state: {e}")
-        print("Starting training from scratch with loaded weights")
-
 # Train the model
 trainer.train()
 
@@ -705,3 +683,4 @@ model.save_pretrained(f"./{RUN_NAME}/final_model")
 
 if proc_state.is_main_process:
     wandb.finish()
+
