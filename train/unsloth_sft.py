@@ -1,5 +1,6 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, BitsAndBytesConfig, TrainerCallback
+from unsloth import FastLanguageModel, is_bfloat16_supported
 from trl import SFTTrainer, DataCollatorForCompletionOnlyLM
 from datasets import Dataset
 from peft import get_peft_model, LoraConfig, TaskType, prepare_model_for_kbit_training
@@ -10,8 +11,10 @@ import os
 from dotenv import load_dotenv
 import pynvml
 from torch.cuda import memory_summary
-from unsloth import FastLanguageModel, is_bfloat16_supported
 from accelerate import PartialState
+
+import os
+os.environ['UNSLOTH_RETURN_LOGITS'] = '1'
 
 # Load environment variables
 load_dotenv()
