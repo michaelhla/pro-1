@@ -22,6 +22,7 @@ pip install --force-reinstall --no-cache-dir --no-deps git+https://github.com/un
 
 # Install requirements, still need to add versions
 pip install -r requirements.txt
+echo " run kaggle competitions download -c cafa-5-protein-function-prediction"
 
 git config --global user.email michaelhla@college.harvard.edu
 git config --global user.name michaelhla

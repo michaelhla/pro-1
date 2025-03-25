@@ -1,0 +1,5 @@
+numpy>=1.21.0
+matplotlib>=3.4.0
+MDAnalysis>=2.0.0  # For additional analysis capabilities
+pandas>=1.3.0  # For data processing
+scipy>=1.7.0  # For scientific computations 

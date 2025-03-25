@@ -22,3 +22,4 @@ together
 tiktoken
 nvidia-ml-py3
 google-genai
+kaggle
