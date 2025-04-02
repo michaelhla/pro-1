@@ -41,9 +41,9 @@ GO_PREDICTION_REWARD = 1.0
 FORMATTED_OUTPUT_REWARD = 0.2
 
 # Configuration settings
-TRAIN_SEQUENCES_PATH = "data/go/train_sequences.fasta" 
-TRAIN_TERMS_PATH = "data/go/train_terms.tsv"
-GO_STRUCTURE_PATH = "data/go/go-basic.obo"
+TRAIN_SEQUENCES_PATH = "function/cafa/Train/train_sequences.fasta" 
+TRAIN_TERMS_PATH = "function/cafa/Train/train_terms.tsv"
+GO_STRUCTURE_PATH = "function/cafa/Train/go-basic.obo"
 MAX_EXAMPLES = 1000  # Limit number of examples to process
 
 # Print model size information
@@ -119,9 +119,12 @@ def load_protein_annotations(train_terms_path):
         protein_annotations = {}
         with open(train_terms_path, 'r') as f:
             reader = csv.reader(f, delimiter='\t')
+            next(reader)  # Skip header row
             for row in reader:
                 if len(row) >= 3:
-                    protein_id, term_id, aspect = row
+                    protein_id = row[0].strip()
+                    term_id = row[1].strip()
+                    aspect = row[2].strip()
                     if protein_id not in protein_annotations:
                         protein_annotations[protein_id] = {'MFO': [], 'BPO': [], 'CCO': []}
                     protein_annotations[protein_id][aspect].append(term_id)
@@ -130,6 +133,7 @@ def load_protein_annotations(train_terms_path):
         return protein_annotations
     except Exception as e:
         print(f"Error loading protein annotations: {e}")
+        print(f"Error details: row={row if 'row' in locals() else 'N/A'}")
         return {}
 
 def load_protein_sequences(train_sequences_path):
@@ -138,14 +142,22 @@ def load_protein_sequences(train_sequences_path):
         protein_sequences = {}
         for record in SeqIO.parse(train_sequences_path, "fasta"):
             # Extract UniProt ID from the header
-            header = record.id
-            uniprot_id = header.split('|')[1] if '|' in header else header
+            header = record.description  # Use description instead of id to get full header
+            # Try different patterns to extract UniProt ID
+            if 'sp|' in header:
+                uniprot_id = header.split('sp|')[1].split('|')[0]
+            elif 'tr|' in header:
+                uniprot_id = header.split('tr|')[1].split('|')[0]
+            else:
+                uniprot_id = header.split()[0]  # Fall back to first word
+                
             protein_sequences[uniprot_id] = str(record.seq)
         
         print(f"Loaded sequences for {len(protein_sequences)} proteins")
         return protein_sequences
     except Exception as e:
         print(f"Error loading protein sequences: {e}")
+        print(f"Error details: header={header if 'header' in locals() else 'N/A'}")
         return {}
 
 def construct_prompt(protein_id, sequence, mfo_terms, bpo_terms, cco_terms, go_terms):
@@ -160,7 +172,7 @@ def construct_prompt(protein_id, sequence, mfo_terms, bpo_terms, cco_terms, go_t
     cco_text = "\n".join([f"  - {term_id}: {go_terms.get(term_id, {}).get('name', 'Unknown term')}" for term_id in cco_terms[:3]]) if cco_terms else "  None"
     
     # Construct the prompt
-    go_prompt = f"""You are a protein function prediction expert. Given a protein sequence, predict its Gene Ontology (GO) terms.
+    go_prompt = f"""You have been studying protein functions for decades. Given a protein sequence, predict its Gene Ontology (GO) terms.
 
 PROTEIN INFORMATION:
 {protein_description}
@@ -487,7 +499,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     load_in_4bit=True,
     fast_inference=True,
     max_lora_rank=32,  # Adjust based on your needs
-    gpu_memory_utilization=0.4,
+    gpu_memory_utilization=0.8,
 )
 
 # Configure LoRA
@@ -515,7 +527,7 @@ training_args = GRPOConfig(
     optim="paged_adamw_8bit",
     logging_steps=1,
     bf16=True,
-    per_device_train_batch_size=4,
+    per_device_train_batch_size=8,
     gradient_accumulation_steps=4,
     num_generations=4,
     max_prompt_length=MAX_INPUT_LENGTH,
