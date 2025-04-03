@@ -20,6 +20,8 @@ from datetime import datetime
 import math
 import csv
 from Bio import SeqIO
+from typing import Dict, Set, List, Tuple
+import numpy as np
 
 from openai import OpenAI
 
@@ -44,7 +46,11 @@ FORMATTED_OUTPUT_REWARD = 0.2
 TRAIN_SEQUENCES_PATH = "function/cafa/Train/train_sequences.fasta" 
 TRAIN_TERMS_PATH = "function/cafa/Train/train_terms.tsv"
 GO_STRUCTURE_PATH = "function/cafa/Train/go-basic.obo"
+TERM_WEIGHTS_PATH = "function/cafa/IA.txt"  # Updated path to IA.txt
 MAX_EXAMPLES = 1000  # Limit number of examples to process
+
+# Evidence codes for experimental validation
+EXPERIMENTAL_EVIDENCE_CODES = {'EXP', 'IDA', 'IPI', 'IMP', 'IGI', 'IEP'}
 
 # Print model size information
 def get_model_size_info(model):
@@ -107,34 +113,87 @@ def load_go_structure(go_structure_path):
                     go_terms[current_term['id']] = current_term
                     current_term = None
         
-        print(f"Loaded {len(go_terms)} GO terms")
+        # print(f"Loaded {len(go_terms)} GO terms")
         return go_terms
     except Exception as e:
         print(f"Error loading GO structure: {e}")
         return {}
 
-def load_protein_annotations(train_terms_path):
-    """Load protein GO term annotations from tsv file"""
+def load_protein_annotations(train_terms_path: str) -> Dict[str, Dict[str, Dict[str, Set[str]]]]:
+    """
+    Load protein GO term annotations from tsv file, separating experimental and predicted annotations by aspect.
+    
+    Args:
+        train_terms_path (str): Path to the TSV file containing protein annotations
+        
+    Returns:
+        Dict with structure:
+        {
+            'MFO/BPO/CCO': {
+                'experimental': {protein_id: set(terms)},
+                'predicted': {protein_id: set(terms)}
+            }
+        }
+    """
     try:
-        protein_annotations = {}
+        protein_annotations = {
+            'MFO': {'experimental': {}, 'predicted': {}},
+            'BPO': {'experimental': {}, 'predicted': {}},
+            'CCO': {'experimental': {}, 'predicted': {}}
+        }
+        
         with open(train_terms_path, 'r') as f:
             reader = csv.reader(f, delimiter='\t')
-            next(reader)  # Skip header row
+            header = next(reader)  # Skip header row
+            
+            # Verify expected columns exist
+            expected_cols = ['protein_id', 'term_id', 'aspect', 'evidence']
+            if len(header) < len(expected_cols):
+                raise ValueError(f"Missing columns in annotation file. Expected: {expected_cols}")
+            
             for row in reader:
-                if len(row) >= 3:
-                    protein_id = row[0].strip()
-                    term_id = row[1].strip()
-                    aspect = row[2].strip()
-                    if protein_id not in protein_annotations:
-                        protein_annotations[protein_id] = {'MFO': [], 'BPO': [], 'CCO': []}
-                    protein_annotations[protein_id][aspect].append(term_id)
+                if len(row) < 4:
+                    print(f"Warning: Skipping malformed row: {row}")
+                    continue
+                    
+                protein_id, term_id, aspect, evidence = row[:4]
+                protein_id = protein_id.strip()
+                term_id = term_id.strip()
+                aspect = aspect.strip()
+                evidence = evidence.strip()
+                
+                # Skip if aspect is not one of the main three
+                if aspect not in protein_annotations:
+                    continue
+                
+                # Determine if evidence is experimental
+                is_experimental = evidence in EXPERIMENTAL_EVIDENCE_CODES
+                annotation_type = 'experimental' if is_experimental else 'predicted'
+                
+                # Initialize sets if needed
+                if protein_id not in protein_annotations[aspect][annotation_type]:
+                    protein_annotations[aspect][annotation_type][protein_id] = set()
+                
+                # Add the term
+                protein_annotations[aspect][annotation_type][protein_id].add(term_id)
         
-        print(f"Loaded annotations for {len(protein_annotations)} proteins")
+        # Print statistics
+        for aspect in protein_annotations:
+            exp_count = len(protein_annotations[aspect]['experimental'])
+            pred_count = len(protein_annotations[aspect]['predicted'])
+            print(f"{aspect} annotations:")
+            print(f"  Experimental: {exp_count} proteins")
+            print(f"  Predicted: {pred_count} proteins")
+        
         return protein_annotations
+        
     except Exception as e:
         print(f"Error loading protein annotations: {e}")
-        print(f"Error details: row={row if 'row' in locals() else 'N/A'}")
-        return {}
+        return {
+            'MFO': {'experimental': {}, 'predicted': {}},
+            'BPO': {'experimental': {}, 'predicted': {}},
+            'CCO': {'experimental': {}, 'predicted': {}}
+        }
 
 def load_protein_sequences(train_sequences_path):
     """Load protein sequences from FASTA file"""
@@ -160,19 +219,57 @@ def load_protein_sequences(train_sequences_path):
         print(f"Error details: header={header if 'header' in locals() else 'N/A'}")
         return {}
 
-def construct_prompt(protein_id, sequence, mfo_terms, bpo_terms, cco_terms, go_terms):
-    """Construct prompt for GO term prediction"""
+def construct_prompt(
+    protein_id: str,
+    sequence: str,
+    protein_annotations: Dict,
+    go_terms: Dict,
+    target_aspect: str
+) -> str:
+    """
+    Construct prompt for GO term prediction for a specific aspect.
     
-    # Get protein description from FASTA header if available
+    Args:
+        protein_id: Protein identifier
+        sequence: Amino acid sequence
+        protein_annotations: Dictionary containing protein annotations
+        go_terms: Dictionary containing GO term information
+        target_aspect: Target aspect to predict (MFO, BPO, or CCO)
+    """
+    # Get protein description
     protein_description = f"Protein ID: {protein_id}"
     
-    # Format the known GO terms for each aspect
-    mfo_text = "\n".join([f"  - {term_id}: {go_terms.get(term_id, {}).get('name', 'Unknown term')}" for term_id in mfo_terms[:3]]) if mfo_terms else "  None"
-    bpo_text = "\n".join([f"  - {term_id}: {go_terms.get(term_id, {}).get('name', 'Unknown term')}" for term_id in bpo_terms[:3]]) if bpo_terms else "  None"
-    cco_text = "\n".join([f"  - {term_id}: {go_terms.get(term_id, {}).get('name', 'Unknown term')}" for term_id in cco_terms[:3]]) if cco_terms else "  None"
+    # Format known annotations for each aspect
+    def format_terms(terms: Set[str], aspect_name: str) -> str:
+        if not terms:
+            return f"  No experimentally validated {aspect_name} terms known"
+        formatted = []
+        for term_id in sorted(terms)[:3]:  # Show up to 3 terms, sorted for consistency
+            term_info = go_terms.get(term_id, {})
+            name = term_info.get('name', 'Unknown term')
+            definition = term_info.get('def', '').split('"')[1] if 'def' in term_info else ''
+            formatted.append(f"  - {term_id}: {name}")
+            if definition:
+                formatted.append(f"    Definition: {definition}")
+        return "\n".join(formatted)
     
-    # Construct the prompt
-    go_prompt = f"""You have been studying protein functions for decades. Given a protein sequence, predict its Gene Ontology (GO) terms.
+    # Get experimental annotations for non-target aspects
+    other_aspects = [asp for asp in ['MFO', 'BPO', 'CCO'] if asp != target_aspect]
+    aspect_annotations = {}
+    for aspect in other_aspects:
+        terms = protein_annotations.get(aspect, {}).get('experimental', {}).get(protein_id, set())
+        aspect_annotations[aspect] = format_terms(terms, aspect)
+    
+    # Map aspect codes to full names
+    aspect_names = {
+        'MFO': 'Molecular Function',
+        'BPO': 'Biological Process',
+        'CCO': 'Cellular Component'
+    }
+    
+    go_prompt = f"""You are an expert in protein function prediction using the Gene Ontology (GO) framework. Your task is to predict {aspect_names[target_aspect]} terms for this protein based on its sequence and known annotations in other aspects.
+
+Target Aspect: {target_aspect}
 
 PROTEIN INFORMATION:
 {protein_description}
@@ -180,24 +277,36 @@ PROTEIN INFORMATION:
 PROTEIN SEQUENCE:
 {sequence}
 
-KNOWN GO TERMS (PARTIAL LIST):
-Molecular Function (MFO):
-{mfo_text}
-
-Biological Process (BPO):
-{bpo_text}
-
-Cellular Component (CCO):
-{cco_text}
-
-Based on the protein sequence and any known GO terms, predict additional GO terms for this protein. Focus on the most likely Molecular Function (MFO) terms. For each prediction, provide:
-1. The GO term ID
-2. The GO term name
-3. Your reasoning based on sequence analysis, known protein domains, and similar proteins
-
-Your final answer should include only the GO term IDs in a comma-separated list enclosed in \\boxed{{}} notation.
-Example: \\boxed{{GO:0003674,GO:0005515,GO:0046872}}
+KNOWN FUNCTIONAL ANNOTATIONS:
 """
+
+    # Add annotations for non-target aspects
+    for aspect in other_aspects:
+        go_prompt += f"\n{aspect_names[aspect]} ({aspect}) - describes {aspect_names[aspect].lower()}:\n"
+        go_prompt += f"{aspect_annotations[aspect]}\n"
+
+    go_prompt += f"""
+Based on:
+1. The protein's amino acid sequence
+2. Known annotations in other aspects
+3. Your knowledge of protein domains, motifs, and cellular organization
+
+Predict the most likely {aspect_names[target_aspect]} GO terms for this protein. Consider:
+- A protein can have multiple functions and participate in multiple processes
+- GO terms form a hierarchy (more specific terms are preferred over general ones)
+- Focus on specific, detailed predictions rather than just high-level terms
+- Only predict terms that you are confident are supported by the sequence or known annotations
+
+Your final answer should include only the predicted GO term IDs in a comma-separated list enclosed in \\boxed{{}} notation.
+Example: \\boxed{{GO:0003674,GO:0005515,GO:0046872}}
+
+First, think through your reasoning process considering:
+1. Sequence features (length, composition, motifs)
+2. Known annotations and their implications for {aspect_names[target_aspect]}
+3. Cellular context and biological roles
+4. Potential molecular mechanisms
+
+Then provide your predictions."""
 
     whole_prompt = f"""<|start_header_id|>system<|end_header_id|>
 You are a helpful assistant that helps users with protein function prediction. You first think about the reasoning process and then provide the answer. The reasoning process and answer should be enclosed within <think> </think> and <answer> </answer> tags respectively. Your thinking should be at least 3000 tokens. |eot_id|><|start_header_id|>user<|end_header_id|>
@@ -205,44 +314,55 @@ You are a helpful assistant that helps users with protein function prediction. Y
 
     return whole_prompt
 
-def create_dataset(protein_sequences, protein_annotations, go_terms, max_examples=1000):
-    """Create dataset for training"""
+def create_dataset(
+    protein_sequences: Dict[str, str],
+    protein_annotations: Dict[str, Dict[str, Dict[str, Set[str]]]],
+    go_terms: Dict[str, Dict],
+    max_examples: int = 1000
+) -> List[Dict]:
+    """
+    Create dataset for training, handling each aspect separately.
+    
+    Args:
+        protein_sequences: Dictionary mapping protein IDs to sequences
+        protein_annotations: Dictionary containing protein annotations by aspect
+        go_terms: Dictionary containing GO term information
+        max_examples: Maximum number of examples to include
+    """
     dataset_records = []
     
-    # Get proteins with both sequence and annotations
-    common_proteins = set(protein_sequences.keys()) & set(protein_annotations.keys())
-    print(f"Found {len(common_proteins)} proteins with both sequence and annotations")
+    # Get proteins with sequences
+    proteins_with_sequences = set(protein_sequences.keys())
+    print(f"Found {len(proteins_with_sequences)} proteins with sequences")
     
-    # Limit to max_examples
-    proteins_to_use = list(common_proteins)[:max_examples]
+    # Create examples for each aspect
+    for aspect in ['MFO', 'BPO', 'CCO']:
+        # Get proteins with experimental annotations for this aspect
+        proteins_with_exp = set(protein_annotations[aspect]['experimental'].keys())
+        proteins_without_exp = proteins_with_sequences - proteins_with_exp
+        
+        print(f"\n{aspect}:")
+        print(f"  Proteins with experimental annotations: {len(proteins_with_exp)}")
+        print(f"  Proteins without experimental annotations: {len(proteins_without_exp)}")
+        
+        # Create records for proteins without experimental annotations in this aspect
+        for protein_id in list(proteins_without_exp)[:max_examples // 3]:  # Limit per aspect
+            record = {
+                "prompt": construct_prompt(
+                    protein_id,
+                    protein_sequences[protein_id],
+                    protein_annotations,
+                    go_terms,
+                    target_aspect=aspect
+                ),
+                "protein_id": protein_id,
+                "aspect": aspect,
+                "sequence": protein_sequences[protein_id],
+                "ground_truth_terms": list(protein_annotations[aspect]['experimental'].get(protein_id, set()))
+            }
+            dataset_records.append(record)
     
-    for protein_id in proteins_to_use:
-        sequence = protein_sequences[protein_id]
-        annotations = protein_annotations[protein_id]
-        
-        # Sample some terms for the prompt and keep others as ground truth
-        mfo_terms = annotations.get('MFO', [])
-        bpo_terms = annotations.get('BPO', [])
-        cco_terms = annotations.get('CCO', [])
-        
-        # All MFO terms are the ground truth labels we want to predict
-        ground_truth_terms = mfo_terms
-        
-        # Skip proteins with no MFO terms
-        if not ground_truth_terms:
-            continue
-        
-        # Create the dataset record
-        record = {
-            "prompt": construct_prompt(protein_id, sequence, [], bpo_terms, cco_terms, go_terms),
-            "protein_id": protein_id,
-            "sequence": sequence,
-            "ground_truth_terms": ground_truth_terms
-        }
-        
-        dataset_records.append(record)
-    
-    print(f"Created {len(dataset_records)} dataset records")
+    print(f"\nCreated {len(dataset_records)} total dataset records")
     return dataset_records
 
 def extract_go_terms_from_response(response):
@@ -272,51 +392,123 @@ def extract_go_terms_from_response(response):
         print(f"Error extracting GO terms: {e}")
         return []
 
-def go_prediction_reward_func(prompts, completions, protein_ids, ground_truth_terms, **kwargs):
-    """Reward function for GO term prediction"""
+def calculate_weighted_fmeasure(
+    predicted_terms: Set[str],
+    true_terms: Set[str],
+    term_weights: Dict[str, float],
+    aspect: str
+) -> Tuple[float, float, float]:
+    """
+    Calculate the weighted F-measure for GO term predictions using information accretion weights.
+    
+    Args:
+        predicted_terms: Set of predicted GO terms
+        true_terms: Set of true (ground truth) GO terms
+        term_weights: Dictionary mapping GO terms to their information accretion weights
+        aspect: The GO aspect being evaluated (MFO, BPO, or CCO)
+        
+    Returns:
+        Tuple of (weighted F1, weighted precision, weighted recall)
+    """
+    # Convert inputs to sets if they aren't already
+    predicted_terms = set(predicted_terms)
+    true_terms = set(true_terms)
+    
+    # Calculate weighted true positives, false positives, and false negatives
+    weighted_tp = sum(term_weights.get(term, 0.0) for term in (predicted_terms & true_terms))
+    weighted_fp = sum(term_weights.get(term, 0.0) for term in (predicted_terms - true_terms))
+    weighted_fn = sum(term_weights.get(term, 0.0) for term in (true_terms - predicted_terms))
+    
+    # Calculate weighted precision and recall
+    weighted_precision = weighted_tp / (weighted_tp + weighted_fp) if (weighted_tp + weighted_fp) > 0 else 0.0
+    weighted_recall = weighted_tp / (weighted_tp + weighted_fn) if (weighted_tp + weighted_fn) > 0 else 0.0
+    
+    # Calculate weighted F1 score
+    if weighted_precision + weighted_recall > 0:
+        weighted_f1 = (2 * weighted_precision * weighted_recall) / (weighted_precision + weighted_recall)
+    else:
+        weighted_f1 = 0.0
+        
+    return weighted_f1, weighted_precision, weighted_recall
+
+def go_prediction_reward_func(prompts, completions, **kwargs):
+    """Reward function for GO term prediction using weighted F-measure"""
     rewards = []
     
-    for i, (prompt, completion, protein_id, terms) in enumerate(zip(prompts, completions, protein_ids, ground_truth_terms)):
+    # Load term weights if not already loaded
+    if not hasattr(go_prediction_reward_func, 'term_weights'):
+        print("\nLoading term weights...")
+        start_time = time.time()
+        go_prediction_reward_func.term_weights = load_term_weights(TERM_WEIGHTS_PATH)
+        print(f"Term weights loaded in {time.time() - start_time:.2f} seconds")
+    
+    for i, (prompt, completion) in enumerate(zip(prompts, completions)):
         try:
             reward = 0.0
-            print(f"COMPLETION {i}")
+            
+            # Print completion for analysis
+            print(f"\nCOMPLETION {i}")
+            print(completion)
+            print('-'*100)
             
             # Extract thinking for logging
             think_match = re.search(r'<think>(.*?)</think>', completion, re.DOTALL)
             thinking = think_match.group(1).strip() if think_match else "No thinking found"
             thinking_length = len(thinking.split())
             
-            # Check if thinking is of sufficient length
-            if thinking_length >= THINK_LENGTH:
-                reward += 0.1  # Small reward for sufficient thinking
-            
             # Extract predicted GO terms
-            predicted_terms = extract_go_terms_from_response(completion)
+            predicted_terms = set(extract_go_terms_from_response(completion))
             
-            # Calculate precision and recall
-            true_positives = len(set(predicted_terms) & set(terms))
-            precision = true_positives / len(predicted_terms) if predicted_terms else 0
-            recall = true_positives / len(terms) if terms else 0
-            f1_score = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+            # Extract aspect and ground truth terms from the prompt
+            aspect_match = re.search(r'Target Aspect: (MFO|BPO|CCO)', prompt)
+            aspect = aspect_match.group(1) if aspect_match else None
             
-            # Reward based on F1 score (higher reward for better predictions)
-            reward += GO_PREDICTION_REWARD * f1_score
+            ground_truth_match = re.search(r'ground_truth_terms: \[(.*?)\]', prompt)
+            true_terms = set()
+            if ground_truth_match:
+                terms_str = ground_truth_match.group(1)
+                true_terms = {term.strip(' "\'') for term in terms_str.split(',')}
             
-            # Additional reward for properly formatted output with \boxed{}
-            if re.search(r'\\boxed{([^}]+)}', completion):
-                reward += FORMATTED_OUTPUT_REWARD
-            
-            # Log metrics for this completion
-            wandb.log({
-                f"reward/completion_{i}/total_reward": reward,
-                f"reward/completion_{i}/precision": precision,
-                f"reward/completion_{i}/recall": recall,
-                f"reward/completion_{i}/f1_score": f1_score,
-                f"reward/completion_{i}/true_positives": true_positives,
-                f"reward/completion_{i}/predicted_count": len(predicted_terms),
-                f"reward/completion_{i}/ground_truth_count": len(terms),
-                f"reward/completion_{i}/thinking_length": thinking_length,
-            })
+            if aspect and true_terms:
+                # Calculate weighted F-measure
+                weighted_f1, weighted_precision, weighted_recall = calculate_weighted_fmeasure(
+                    predicted_terms,
+                    true_terms,
+                    go_prediction_reward_func.term_weights,
+                    aspect
+                )
+                
+                # Base reward on weighted F1 score
+                reward += GO_PREDICTION_REWARD * weighted_f1
+                
+                # Additional reward for properly formatted output
+                if re.search(r'\\boxed{([^}]+)}', completion):
+                    reward += FORMATTED_OUTPUT_REWARD
+                
+                # Print detailed comparison for every completion
+                print(f"\nCompletion {i} Analysis:")
+                print(f"Aspect: {aspect}")
+                print(f"Predicted Terms: {predicted_terms}")
+                print(f"True Terms: {true_terms}")
+                print(f"Weighted F1: {weighted_f1:.4f}")
+                print(f"Total Reward: {reward:.4f}")
+                print("\nThinking excerpt (first 200 chars):")
+                print(thinking[:200] + "...")
+                print("\nCompletion excerpt (first 200 chars):")
+                print(completion[:200] + "...")
+                print('-'*100)
+                
+                # Log detailed metrics
+                wandb.log({
+                    f"reward/completion_{i}/total_reward": reward,
+                    f"reward/completion_{i}/weighted_precision": weighted_precision,
+                    f"reward/completion_{i}/weighted_recall": weighted_recall,
+                    f"reward/completion_{i}/weighted_f1": weighted_f1,
+                    f"reward/completion_{i}/predicted_terms_count": len(predicted_terms),
+                    f"reward/completion_{i}/true_terms_count": len(true_terms),
+                    f"reward/completion_{i}/thinking_length": thinking_length,
+                    f"reward/completion_{i}/aspect": aspect
+                })
             
             rewards.append(reward)
                         
@@ -410,6 +602,48 @@ def load_from_checkpoint(checkpoint_path, model, trainer):
         print(f"Error loading checkpoint: {e}")
         return False
 
+def load_term_weights(weights_file: str) -> Dict[str, float]:
+    """
+    Load information accretion (IA) weights for GO terms.
+    
+    Args:
+        weights_file (str): Path to the IA.txt file containing term weights
+        
+    Returns:
+        Dict[str, float]: Dictionary mapping GO terms to their information accretion weights
+    """
+    term_weights = {}
+    try:
+        with open(weights_file, 'r') as f:
+            for line in f:
+                if line.strip():
+                    try:
+                        term, weight = line.strip().split('\t')
+                        # Convert weight to float, handle potential scientific notation
+                        weight = float(weight)
+                        term_weights[term] = weight
+                    except ValueError as ve:
+                        print(f"Warning: Could not parse weight from line: {line.strip()}")
+                        continue
+                    except Exception as e:
+                        print(f"Warning: Error processing line: {line.strip()}, Error: {e}")
+                        continue
+                        
+        print(f"Loaded {len(term_weights)} term weights")
+        # Print some statistics about the weights
+        # if term_weights:
+        #     weights = list(term_weights.values())
+        #     print(f"Weight statistics:")
+        #     print(f"  Min weight: {min(weights):.6f}")
+        #     print(f"  Max weight: {max(weights):.6f}")
+        #     print(f"  Mean weight: {sum(weights)/len(weights):.6f}")
+        #     print(f"  Zero weights: {sum(1 for w in weights if w == 0.0)}")
+            
+        return term_weights
+    except Exception as e:
+        print(f"Error loading term weights: {e}")
+        return {}
+
 # Data loading section
 data_load_start = time.time()
 
@@ -448,6 +682,17 @@ train_dataset = Dataset.from_list(valid_data_list)
 print(f"Dataset size: {len(train_dataset)}")
 print(f"Data loading completed in {time.time() - data_load_start:.2f} seconds")
 
+# Print an example dataset entry
+if len(train_dataset) > 0:
+    print("\nExample Dataset Entry:")
+    example_entry = train_dataset[0]
+    print(f"Protein ID: {example_entry['protein_id']}")
+    print(f"Sequence length: {len(example_entry['sequence'])}")
+    print(f"Number of ground truth terms: {len(example_entry['ground_truth_terms'])}")
+    print(f"Ground truth terms: {example_entry['ground_truth_terms']}")
+    print("\nPrompt excerpt (first 500 chars):")
+    print(example_entry['prompt'][:500] + "...")
+
 # Calculate and print dataset statistics for prompt lengths
 prompt_lengths = [len(example['prompt']) for example in valid_data_list]
 print("\nPrompt Length Statistics:")
@@ -464,7 +709,7 @@ if proc_state.is_main_process:
     try:
         wandb.login(key=os.getenv('WANDB_API_KEY'))
         wandb.init(
-            project="protein-rl",
+            project="function-rl",
             name=RUN_NAME,
             config={
                 "model_name": "unsloth/Meta-Llama-3.1-8B-Instruct",
@@ -499,7 +744,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     load_in_4bit=True,
     fast_inference=True,
     max_lora_rank=32,  # Adjust based on your needs
-    gpu_memory_utilization=0.8,
+    gpu_memory_utilization=0.6,
 )
 
 # Configure LoRA
@@ -527,9 +772,9 @@ training_args = GRPOConfig(
     optim="paged_adamw_8bit",
     logging_steps=1,
     bf16=True,
-    per_device_train_batch_size=8,
+    per_device_train_batch_size=2,
     gradient_accumulation_steps=4,
-    num_generations=4,
+    num_generations=2,
     max_prompt_length=MAX_INPUT_LENGTH,
     max_completion_length=MAX_OUTPUT_LENGTH,
     num_train_epochs=NUM_EPOCHS,
