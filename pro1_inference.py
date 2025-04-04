@@ -378,21 +378,26 @@ if __name__ == "__main__":
 
     # === USER CONFIGURATION ===
 
-    use_lm_applier = False # set to True if you want to use the LM sequence applier (highly recommended)
+    use_lm_applier = True # set to True if you want to use the LM sequence applier (highly recommended)
+    
+    # Load mutagenesis data
+    print("Loading mutagenesis data...")
+    mutagenesis_data = parse_mutagenesis_data("fgf-1/mutagenesis.json")
+    print(f"Loaded {len(mutagenesis_data)} mutations from mutagenesis.json")
     
     # Your protein sequence
-    PROTEIN_SEQUENCE = "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK" ## plain sequence here 
+    PROTEIN_SEQUENCE = "MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTDGLLYGSQTPNEECLFLERLEENHYNTYISKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPVSSD" ## plain sequence here 
     
     # Define your enzyme information
     PROTEIN_DATA = {
         # Basic protein information
-        "name": "Human Carbonic Anhydrase II",  # Name of your protein
-        "ec_number": "4.2.1.1",  # EC number if available
+        "name": "Fibroblast growth factor 1",  # Name of your protein
+        "ec_number": "None",  # EC number if available
             
         # Reaction details
         "reaction": [{
-            "substrates": ["Carbon dioxide", "Water"],  # List of substrates
-            "products": ["Bicarbonate", "H+"]  # List of products
+            "substrates": ["None"],  # List of substrates
+            "products": ["None"]  # List of products
         }],
         
         # Important residues and cofactors
@@ -401,24 +406,27 @@ if __name__ == "__main__":
         
         # Additional information (can be left empty)
         "general_information": """
-        """, ## replace this string with your general information about the protein
+        Plays an important role in the regulation of cell survival, cell division, angiogenesis, cell differentiation and cell migration. Functions as a potent mitogen in vitro. Acts as a ligand for FGFR1 and integrins. Binds to FGFR1 in the presence of heparin leading to FGFR1 dimerization and activation via sequential autophosphorylation on tyrosine residues which act as docking sites for interacting proteins, leading to the activation of several signaling cascades. Binds to integrin ITGAV:ITGB3. Its binding to integrin, subsequent ternary complex formation with integrin and FGFR1, and the recruitment of PTPN11 to the complex are essential for FGF1 signaling. Induces the phosphorylation and activation of FGFR1, FRS2, MAPK3/ERK1, MAPK1/ERK2 and AKT1 (PubMed:18441324, PubMed:20422052).
+Can induce angiogenesis (PubMed:23469107).
+
+Subunit
+Monomer. Homodimer. Interacts with FGFR1, FGFR2, FGFR3 and FGFR4. Affinity between fibroblast growth factors (FGFs) and their receptors is increased by heparan sulfate glycosaminoglycans that function as coreceptors. Found in a complex with FGFBP1, FGF1 and FGF2. Interacts with FGFBP1. Part of a Cu2+-dependent multiprotein aggregate containing FGF1, S100A13 and SYT1. Interacts with SYT1. Interacts with S100A13. Interacts with LRRC59. Interacts with CSNKA, CSNKB and FIBP. While binding with LRRC59, CSNKA and FIBP seem mutually exclusive, CSNKB and FIBP may cooperatively interact with FGF1. Forms a ternary complex with FGFR1 and ITGAV:ITGB3 and induces the recruitment of PTPN11 to the complex (PubMed:20422052).
+
+Q40P, S47I, H93G, K112N all together have been shown to increase stability.
+
+For the heterodimer of FGF1 and FGF2 contains two mutations within the FGF-1 portion of the dimer, R136E and K126N. These mutations were induced to negate the overwhelming positive charge present in the heparin binding pocket (HBP) of FGF-1 and were found to increase the overall stability of the protein, increase cell proliferation activity, and decrease heparin binding affinity.
+
+H21Y/L44F/H102Y/F108Y have each individually been shown to increase stability. 
+        """,
         
-        # Known mutations (optional)
-        "known_mutations": [
-            # takes list of dictionaries, each with mutation and effect
-            # Example mutation, must be in this format
-            # {
-            #     "mutation": "W19A",
-            #     "effect": "Description of the mutation's effect"
-            # },
-            # Add more mutations as needed
-        ]
+        # Known mutations loaded from mutagenesis.json
+        "known_mutations": mutagenesis_data
     }
 
     # Model configuration
     MODEL_CONFIG = {
         "checkpoint_path": "all-lm-grpo-mega-run/checkpoints/checkpoint-20250225-025056-step40", # change based on the checkpoint you want to use
-        "max_iterations": 10,  # Number of optimization iterations
+        "max_iterations": 100,  # Number of optimization iterations
         "max_length": 32768  # Maximum sequence length
     }
 
