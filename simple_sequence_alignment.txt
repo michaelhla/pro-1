@@ -1,0 +1,217 @@
+SIMPLIFIED SEQUENCE ALIGNMENT
+============================
+
+Sequence 1 (Iteration 39, RMSD: 0.1610):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : ......W...............E..............................S.....FG....V..G...........
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ................................................................................
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : ................................................................................
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ....................
+
+Mutations: Y7W, A23E, A54S, L60F, N61G, F66V, E69G
+================================================================================
+
+Sequence 2 (Iteration 67, RMSD: 0.0869):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : ................................................................................
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ................................................................................
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : ...................................................................S............
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ....................
+
+Mutations: L228S
+Insertion: Additional 1 residues after position 260
+================================================================================
+
+Sequence 3 (Iteration 122, RMSD: 0.1427):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : .............................................................L..................
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ..................................................................I.............
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : .......I........................................................................
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ....................
+
+Mutations: N62L, L147I, T168I
+================================================================================
+
+Sequence 4 (Iteration 132, RMSD: 0.5697):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : ............................................................AYL.................
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ................................................................................
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : ................................................................................
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ....................
+
+Mutations: N61A, N62Y, G63L
+================================================================================
+
+Sequence 5 (Iteration 27, RMSD: 5.7917):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : ...........................................V....................................
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ............................................D...PG.DFGKAVQQPDG.AVLGIFLKVGSAKPGLQ
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : K.V.VGDSIKTKGKSAD.TNFDPRGLLPESLD.WTYPGSRTTPPLLECVTWIVAKEPI.VSSEQVL.FRKLNFNGEG.PE
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ELMVDNWR.AQPLKNRQIKA
+
+Mutations: L44V, T125D, D129P, F130G, K132D, A133F, V134G, Q135K, Q136A, P137V, D138Q, G139Q, L140P, A141D, V142G, G144A, I145V, F146L, L147G, K148I, V149F, G150L, S151K, A152V, K153G, P154S, G155A, L156K, Q157P, K158G, V159L, V160Q, D161K, L163V, S165V, I166G, K167D, T168S, K169I, G170K, K171T, S172K, A173G, D174K, F175S, T176A, N177D, D179T, P180N, R181F, G182D, L183P, L184R, P185G, E186L, S187L, L188P, D189E, Y190S, W191L, T192D, P194W, G195T, S196Y, R197P, T198G, T199S, P200R, P201T, L202T, L203P, E204P, C205L, V206L, T207E, W208C, I209V, V210T, L211W, K212I, E213V, P214A, I215K, S216E, V217P, S218I, E220V, Q221S, V222S, L223E, K224Q, F225V, R226L, L228F, N229R, F230K, N231L, G232N, E233F, G234N, E235G, P236E, E237G, L239P, M240E, V241E, D242L, N243M, W244V, R245D, P246N, A247W, Q248R, L250A, K251Q, N252P, R253L, Q254K, I255N, K256R, A257Q, S258I, F259K, K260A
+Insertion: Additional 3 residues after position 260
+================================================================================
+
+Sequence 6 (Iteration 103, RMSD: 0.5110):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : ....L................L......................................L....L..............
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ................................................................................
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : ........E.......................................................................
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ....................
+
+Mutations: W5L, I22L, N61L, F66L, K169E
+================================================================================
+
+Sequence 7 (Iteration 17, RMSD: 2.5233):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : ................................................................................
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ..................................................................A.............
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : ..G.....P..GSADFTNFDPRG.LPESLDYWTYPGSR.T.P.LECVTWIVLKEPISV.SEQVLKFRKLNFNGEGEP.EL
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : MVDNWRPAQPLKNRQIKASF
+
+Mutations: L147A, L163G, K169P, S172G, A173S, D174A, F175D, T176F, N177T, F178N, D179F, P180D, R181P, G182R, L183G, P185L, E186P, S187E, L188S, D189L, Y190D, W191Y, T192W, Y193T, P194Y, G195P, S196G, R197S, T198R, P200T, L202P, E204L, C205E, V206C, T207V, W208T, I209W, V210I, L211V, K212L, E213K, P214E, I215P, S216I, V217S, S218V, E220S, Q221E, V222Q, L223V, K224L, F225K, R226F, K227R, L228K, N229L, F230N, N231F, G232N, E233G, G234E, E235G, P236E, E237P, L239E, M240L, V241M, D242V, N243D, W244N, R245W, P246R, A247P, Q248A, P249Q, L250P, K251L, N252K, R253N, Q254R, I255Q, K256I, A257K, S258A, F259S, K260F
+Insertion: Additional 1 residues after position 260
+================================================================================
+
+Sequence 8 (Iteration 25, RMSD: 0.8546):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : ......................G..............................G......EE..................
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ................................................................................
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : ..................................................................A.............
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ......GAQPLKNRQIKASF
+
+Mutations: A23G, A54G, N61E, N62E, K227A, A247G, Q248A, P249Q, L250P, K251L, N252K, R253N, Q254R, I255Q, K256I, A257K, S258A, F259S, K260F
+Insertion: Additional 1 residues after position 260
+================================================================================
+
+Sequence 9 (Iteration 43, RMSD: 3.3023):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : .....V......................................................EE..QAFNVAF.DSQDKAVL
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : K.GPLDGTYRLIQFHFHWGSLDGQGSAHTVD..KY.AELHLVHWNDKYGDFGKAV.QPDGLAVLGIFLKVGSAKPGLQK.
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : VDVLDSIKTKGKSADFTNFDPRG.LPESLDYWTYPGSR.T.P.LECVTWIVLKEPISV.SEQVLKFRKLNFNGEGEP.EL
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : MVDNWRPAQPLKNRQIKASF
+
+Mutations: G6V, N61E, N62E, A65Q, F66A, N67F, V68N, E69V, F70A, D71F, S73D, Q74S, D75Q, K76D, A77K, V78A, L79V, K80L, G81K, P83G, L84P, D85L, G86D, T87G, Y88T, R89Y, L90R, I91L, Q92I, F93Q, H94F, F95H, H96F, W97H, G98W, S99G, L100S, D101L, G102D, Q103G, G104Q, S105G, E106S, H107A, T108H, V109T, D110V, K111D, Y114K, A115Y, E117A, L118E, H119L, L120H, V121L, H122V, W123H, N124W, T125N, K126D, Y127K, G128Y, D129G, F130D, G131F, K132G, A133K, V134A, Q135V, P137Q, D138P, G139D, L140G, A141L, V142A, L143V, G144L, I145G, F146I, L147F, K148L, V149K, G150V, S151G, A152S, K153A, P154K, G155P, L156G, Q157L, K158Q, V159K, D161V, V162D, L163V, D164L, S165D, I166S, K167I, T168K, K169T, G170K, K171G, S172K, A173S, D174A, F175D, T176F, N177T, F178N, D179F, P180D, R181P, G182R, L183G, P185L, E186P, S187E, L188S, D189L, Y190D, W191Y, T192W, Y193T, P194Y, G195P, S196G, R197S, T198R, P200T, L202P, E204L, C205E, V206C, T207V, W208T, I209W, V210I, L211V, K212L, E213K, P214E, I215P, S216I, V217S, S218V, E220S, Q221E, V222Q, L223V, K224L, F225K, R226F, K227R, L228K, N229L, F230N, N231F, G232N, E233G, G234E, E235G, P236E, E237P, L239E, M240L, V241M, D242V, N243D, W244N, R245W, P246R, A247P, Q248A, P249Q, L250P, K251L, N252K, R253N, Q254R, I255Q, K256I, A257K, S258A, F259S, K260F
+Insertion: Additional 1 residues after position 260
+================================================================================
+
+Sequence 10 (Iteration 77, RMSD: 0.1229):
+--------------------------------------------------------------------------------
+Pos :   1                            11                            21                            31                            41                            51                            61                            71                           
+Ref : MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+New : .............................................................R..................
+
+Pos :  81                            91                           101                           111                           121                           131                           141                           151                           
+Ref : GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+New : ................................................................................
+
+Pos : 161                           171                           181                           191                           201                           211                           221                           231                           
+Ref : DVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSRTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELM
+New : ................................................................................
+
+Pos : 241                           251                           
+Ref : VDNWRPAQPLKNRQIKASFK
+New : ....................
+
+Mutations: N62R
+================================================================================

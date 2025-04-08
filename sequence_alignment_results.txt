@@ -1,0 +1,313 @@
+SEQUENCE ALIGNMENT REPORT
+=======================
+
+Reference sequence:
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSI
+
+
+Sequence 1 (Iteration 39, RMSD: 0.1610):
+--------------------------------------------------
+MSHHWGWGKHNGPEHWHKDFPIEKGERQSPVDIDTHTAKYDPSLKPLSVSYDQSTSLRIFGNGHAVNVGFDDSQDKAVLK
+      *               *                              *     **    *  *           
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+                                                                                
+
+DVLDSI
+      
+
+Differences at positions:
+Position 7: Y → W
+Position 23: A → E
+Position 54: A → S
+Position 60: L → F
+Position 61: N → G
+Position 66: F → V
+Position 69: E → G
+
+==================================================
+
+Sequence 2 (Iteration 67, RMSD: 0.0869):
+--------------------------------------------------
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+                                                                                
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+                                                                                
+
+DVLDSI
+      
+
+No differences found within the compared region.
+
+==================================================
+
+Sequence 3 (Iteration 122, RMSD: 0.1427):
+--------------------------------------------------
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNLGHAFNVEFDDSQDKAVLK
+                                                             *                  
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFIKVGSAKPGLQKVV
+                                                                  *             
+
+DVLDSI
+      
+
+Differences at positions:
+Position 62: N → L
+Position 147: L → I
+
+==================================================
+
+Sequence 4 (Iteration 132, RMSD: 0.5697):
+--------------------------------------------------
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILAYLHAFNVEFDDSQDKAVLK
+                                                            ***                 
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+                                                                                
+
+DVLDSI
+      
+
+Differences at positions:
+Position 61: N → A
+Position 62: N → Y
+Position 63: G → L
+
+==================================================
+
+Sequence 5 (Iteration 27, RMSD: 5.7917):
+--------------------------------------------------
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSVKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+                                           *                                    
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNDKYGPGGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQ
+                                            *   ** *********** *****************
+
+KVVDVG
+* * **
+
+Differences at positions:
+Position 44: L → V
+Position 125: T → D
+Position 129: D → P
+Position 130: F → G
+Position 132: K → D
+Position 133: A → F
+Position 134: V → G
+Position 135: Q → K
+Position 136: Q → A
+Position 137: P → V
+Position 138: D → Q
+Position 139: G → Q
+Position 140: L → P
+Position 141: A → D
+Position 142: V → G
+Position 144: G → A
+Position 145: I → V
+Position 146: F → L
+Position 147: L → G
+Position 148: K → I
+Position 149: V → F
+Position 150: G → L
+Position 151: S → K
+Position 152: A → V
+Position 153: K → G
+Position 154: P → S
+Position 155: G → A
+Position 156: L → K
+Position 157: Q → P
+Position 158: K → G
+Position 159: V → L
+Position 160: V → Q
+Position 161: D → K
+Position 163: L → V
+Position 165: S → V
+Position 166: I → G
+
+==================================================
+
+Sequence 6 (Iteration 103, RMSD: 0.5110):
+--------------------------------------------------
+MSHHLGYGKHNGPEHWHKDFPLAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILLNGHALNVEFDDSQDKAVLK
+    *                *                                      *    *              
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+                                                                                
+
+DVLDSI
+      
+
+Differences at positions:
+Position 5: W → L
+Position 22: I → L
+Position 61: N → L
+Position 66: F → L
+
+==================================================
+
+Sequence 7 (Iteration 17, RMSD: 2.5233):
+--------------------------------------------------
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLK
+                                                                                
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFAKVGSAKPGLQKVV
+                                                                  *             
+
+DVGDSI
+  *   
+
+Differences at positions:
+Position 147: L → A
+Position 163: L → G
+
+==================================================
+
+Sequence 8 (Iteration 25, RMSD: 0.8546):
+--------------------------------------------------
+MSHHWGYGKHNGPEHWHKDFPIGKGERQSPVDIDTHTAKYDPSLKPLSVSYDQGTSLRILEEGHAFNVEFDDSQDKAVLK
+                      *                              *      **                  
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+                                                                                
+
+DVLDSI
+      
+
+Differences at positions:
+Position 23: A → G
+Position 54: A → G
+Position 61: N → E
+Position 62: N → E
+
+==================================================
+
+Sequence 9 (Iteration 43, RMSD: 3.3023):
+--------------------------------------------------
+MSHHWVYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILEEGHQAFNVAFDDSQDKAVL
+     *                                                      **  ******* ********
+
+KGGPLDGTYRLIQFHFHWGSLDGQGSAHTVDKKKYAAELHLVHWNDKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKV
+* *****************************  ** ******************* *********************** 
+
+VDVLDS
+******
+
+Differences at positions:
+Position 6: G → V
+Position 61: N → E
+Position 62: N → E
+Position 65: A → Q
+Position 66: F → A
+Position 67: N → F
+Position 68: V → N
+Position 69: E → V
+Position 70: F → A
+Position 71: D → F
+Position 73: S → D
+Position 74: Q → S
+Position 75: D → Q
+Position 76: K → D
+Position 77: A → K
+Position 78: V → A
+Position 79: L → V
+Position 80: K → L
+Position 81: G → K
+Position 83: P → G
+Position 84: L → P
+Position 85: D → L
+Position 86: G → D
+Position 87: T → G
+Position 88: Y → T
+Position 89: R → Y
+Position 90: L → R
+Position 91: I → L
+Position 92: Q → I
+Position 93: F → Q
+Position 94: H → F
+Position 95: F → H
+Position 96: H → F
+Position 97: W → H
+Position 98: G → W
+Position 99: S → G
+Position 100: L → S
+Position 101: D → L
+Position 102: G → D
+Position 103: Q → G
+Position 104: G → Q
+Position 105: S → G
+Position 106: E → S
+Position 107: H → A
+Position 108: T → H
+Position 109: V → T
+Position 110: D → V
+Position 111: K → D
+Position 114: Y → K
+Position 115: A → Y
+Position 117: E → A
+Position 118: L → E
+Position 119: H → L
+Position 120: L → H
+Position 121: V → L
+Position 122: H → V
+Position 123: W → H
+Position 124: N → W
+Position 125: T → N
+Position 126: K → D
+Position 127: Y → K
+Position 128: G → Y
+Position 129: D → G
+Position 130: F → D
+Position 131: G → F
+Position 132: K → G
+Position 133: A → K
+Position 134: V → A
+Position 135: Q → V
+Position 137: P → Q
+Position 138: D → P
+Position 139: G → D
+Position 140: L → G
+Position 141: A → L
+Position 142: V → A
+Position 143: L → V
+Position 144: G → L
+Position 145: I → G
+Position 146: F → I
+Position 147: L → F
+Position 148: K → L
+Position 149: V → K
+Position 150: G → V
+Position 151: S → G
+Position 152: A → S
+Position 153: K → A
+Position 154: P → K
+Position 155: G → P
+Position 156: L → G
+Position 157: Q → L
+Position 158: K → Q
+Position 159: V → K
+Position 161: D → V
+Position 162: V → D
+Position 163: L → V
+Position 164: D → L
+Position 165: S → D
+Position 166: I → S
+
+==================================================
+
+Sequence 10 (Iteration 77, RMSD: 0.1229):
+--------------------------------------------------
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNRGHAFNVEFDDSQDKAVLK
+                                                             *                  
+
+GGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVV
+                                                                                
+
+DVLDSI
+      
+
+Differences at positions:
+Position 62: N → R
+
+==================================================

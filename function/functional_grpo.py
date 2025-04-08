@@ -274,10 +274,6 @@ def go_prediction_reward_func(prompts, completions, protein_ids, ground_truth_te
             thinking = think_match.group(1).strip() if think_match else "No thinking found"
             thinking_length = len(thinking.split())
             
-            # Check if thinking is of sufficient length
-            if thinking_length >= THINK_LENGTH:
-                reward += 0.1  # Small reward for sufficient thinking
-            
             # Extract predicted GO terms
             predicted_terms = extract_go_terms_from_response(completion)
             
