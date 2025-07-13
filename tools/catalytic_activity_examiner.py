@@ -8,9 +8,17 @@ the enzyme's catalytic ability.
 
 Key Features:
 - Structural alignment using Kabsch algorithm for rotation/translation invariant RMSD
-- Visualization of active site and zinc binding residues
+- Enhanced PyMOL visualizations with transparency controls and optimal viewing angles
 - Comprehensive catalytic integrity assessment
 - Reference coordinates from high-resolution hCA II structure (PDB 2ILI)
+
+Visualization Improvements:
+- Transparent protein backbone to prevent obstruction of key residues
+- Strategic hiding of distant regions to focus on catalytic sites
+- Zinc coordination bonds visualization for better understanding
+- Combined catalytic site view showing both active site and zinc binding
+- Optimized viewing angles and zoom levels for each visualization type
+- High-quality rendering with proper transparency settings
 """
 
 import os
@@ -104,6 +112,11 @@ class CatalyticActivityExaminer:
                 structure_name, zinc_binding_adjusted, output_dir
             )
             
+            # Generate combined visualization
+            combined_image = self._visualize_combined_catalytic_site(
+                structure_name, active_site_adjusted, zinc_binding_adjusted, output_dir
+            )
+            
             # Analyze structural integrity
             analysis = self._analyze_structural_integrity(
                 structure_name, active_site_adjusted, zinc_binding_adjusted
@@ -115,6 +128,7 @@ class CatalyticActivityExaminer:
                 'residue_offsets': residue_offsets,
                 'active_site_image': active_site_image,
                 'zinc_binding_image': zinc_binding_image,
+                'combined_catalytic_image': combined_image,
                 'active_site_residues': active_site_adjusted,
                 'zinc_binding_residues': zinc_binding_adjusted,
                 'active_site_status': active_site_status,
@@ -212,16 +226,38 @@ class CatalyticActivityExaminer:
     def _visualize_active_site(self, structure_name: str, residues: Dict[str, Dict], 
                               output_dir: str) -> str:
         """
-        Generate visualization of the active site residues.
+        Generate enhanced visualization of the active site residues with transparency and optimal viewing.
         """
         # Hide everything first
         cmd.hide('everything')
         
-        # Show cartoon representation
+        # Create selections for key residues
+        active_site_residues = []
+        for res_key, res_info in residues.items():
+            res_num = res_info['adjusted_number']
+            selection = f"chain {self.chain_id} and resi {res_num}"
+            if cmd.count_atoms(f"{structure_name} and {selection}") > 0:
+                active_site_residues.append(res_num)
+        
+        # Create selection for active site vicinity (within 8Å of active site residues)
+        if active_site_residues:
+            vicinity_selection = f"chain {self.chain_id} and (byres (chain {self.chain_id} and resi {'+'.join(map(str, active_site_residues))} around 8))"
+        else:
+            vicinity_selection = f"chain {self.chain_id}"
+        
+        # Show cartoon representation with transparency for non-active site regions
         cmd.show('cartoon', f'{structure_name} and chain {self.chain_id}')
         cmd.color('blue', f'{structure_name} and chain {self.chain_id}')
         
-        # Show active site residues
+        # Make the entire protein semi-transparent so active site residues stand out
+        cmd.set('cartoon_transparency', 0.7, f'{structure_name} and chain {self.chain_id}')
+        
+        # Show surface around active site for context (semi-transparent)
+        cmd.show('surface', f'{structure_name} and {vicinity_selection}')
+        cmd.color('gray', f'{structure_name} and {vicinity_selection}')
+        cmd.set('transparency', 0.8, f'{structure_name} and {vicinity_selection}')
+        
+        # Show active site residues prominently
         colors = ['red', 'orange', 'yellow', 'green', 'cyan']
         
         for i, (res_key, res_info) in enumerate(residues.items()):
@@ -229,17 +265,40 @@ class CatalyticActivityExaminer:
             selection = f"chain {self.chain_id} and resi {res_num}"
             
             if cmd.count_atoms(f"{structure_name} and {selection}") > 0:
-                # Show side chain
+                # Show full residue (backbone + side chain) as sticks
                 cmd.show('sticks', f'{structure_name} and {selection}')
                 cmd.color(colors[i % len(colors)], f'{structure_name} and {selection}')
                 
-                # Add label
+                # Make active site residues completely opaque
+                cmd.set('stick_transparency', 0.0, f'{structure_name} and {selection}')
+                
+                # Add labels with background for visibility
                 cmd.label(f'{structure_name} and {selection} and name CA', 
                          f'"{res_key} ({res_info["name"]})"')
         
-        # Set view
-        cmd.orient(f'{structure_name} and chain {self.chain_id}')
-        cmd.zoom(f'{structure_name} and chain {self.chain_id}')
+        # Hide parts of the protein that might obstruct the view
+        # Hide distant regions to reduce clutter
+        if active_site_residues:
+            far_regions = f"chain {self.chain_id} and not (byres (chain {self.chain_id} and resi {'+'.join(map(str, active_site_residues))} around 12))"
+            cmd.hide('cartoon', f'{structure_name} and {far_regions}')
+        
+        # Set optimal viewing angle for active site
+        if active_site_residues:
+            # Focus on the active site center
+            active_site_center = f"chain {self.chain_id} and resi {'+'.join(map(str, active_site_residues))}"
+            cmd.orient(f'{structure_name} and {active_site_center}')
+            cmd.zoom(f'{structure_name} and {active_site_center}', buffer=5)
+        else:
+            cmd.orient(f'{structure_name} and chain {self.chain_id}')
+            cmd.zoom(f'{structure_name} and chain {self.chain_id}')
+        
+        # Optimize label settings for better visibility
+        cmd.set('label_color', 'black')
+        cmd.set('label_size', 12)
+        cmd.set('label_outline_color', 'white')
+        
+        # Set background to white for better contrast
+        cmd.bg_color('white')
         
         # Ensure output directory exists
         os.makedirs(output_dir, exist_ok=True)
@@ -251,6 +310,7 @@ class CatalyticActivityExaminer:
         cmd.set('ray_trace_mode', 1)
         cmd.set('ray_shadows', 0)
         cmd.set('antialias', 2)
+        cmd.set('ray_opaque_background', 0)  # Transparent background
         
         try:
             # Capture the image
@@ -265,41 +325,102 @@ class CatalyticActivityExaminer:
     def _visualize_zinc_binding(self, structure_name: str, residues: Dict[str, Dict], 
                                output_dir: str) -> str:
         """
-        Generate visualization of the zinc binding residues.
+        Generate enhanced visualization of the zinc binding residues with optimal viewing and transparency.
         """
         # Hide everything first
         cmd.hide('everything')
         
-        # Show cartoon representation
+        # Create selections for zinc binding residues
+        zinc_binding_residues = []
+        for res_key, res_info in residues.items():
+            res_num = res_info['adjusted_number']
+            selection = f"chain {self.chain_id} and resi {res_num}"
+            if cmd.count_atoms(f"{structure_name} and {selection}") > 0:
+                zinc_binding_residues.append(res_num)
+        
+        # Create selection for zinc binding vicinity (within 6Å of zinc binding residues)
+        if zinc_binding_residues:
+            vicinity_selection = f"chain {self.chain_id} and (byres (chain {self.chain_id} and resi {'+'.join(map(str, zinc_binding_residues))} around 6))"
+        else:
+            vicinity_selection = f"chain {self.chain_id}"
+        
+        # Show cartoon representation with transparency for non-zinc binding regions
         cmd.show('cartoon', f'{structure_name} and chain {self.chain_id}')
         cmd.color('green', f'{structure_name} and chain {self.chain_id}')
         
-        # Show zinc binding residues
-        colors = ['purple', 'magenta', 'cyan']
+        # Make the entire protein semi-transparent so zinc binding residues stand out
+        cmd.set('cartoon_transparency', 0.7, f'{structure_name} and chain {self.chain_id}')
+        
+        # Show surface around zinc binding site for context (semi-transparent)
+        cmd.show('surface', f'{structure_name} and {vicinity_selection}')
+        cmd.color('gray', f'{structure_name} and {vicinity_selection}')
+        cmd.set('transparency', 0.8, f'{structure_name} and {vicinity_selection}')
+        
+        # Show zinc binding residues prominently
+        colors = ['purple', 'magenta', 'pink']
         
         for i, (res_key, res_info) in enumerate(residues.items()):
             res_num = res_info['adjusted_number']
             selection = f"chain {self.chain_id} and resi {res_num}"
             
             if cmd.count_atoms(f"{structure_name} and {selection}") > 0:
-                # Show side chain
+                # Show full residue (backbone + side chain) as sticks
                 cmd.show('sticks', f'{structure_name} and {selection}')
                 cmd.color(colors[i % len(colors)], f'{structure_name} and {selection}')
                 
-                # Add label
+                # Make zinc binding residues completely opaque
+                cmd.set('stick_transparency', 0.0, f'{structure_name} and {selection}')
+                
+                # Add labels with background for visibility
                 cmd.label(f'{structure_name} and {selection} and name CA', 
                          f'"{res_key} ({res_info["name"]})"')
         
-        # Try to show zinc if present
+        # Try to show zinc if present - make it very prominent
         zinc_selection = f"{structure_name} and chain {self.chain_id} and resn ZN"
         if cmd.count_atoms(zinc_selection) > 0:
             cmd.show('spheres', zinc_selection)
-            cmd.color('white', zinc_selection)
-            cmd.label(zinc_selection, '"Zn2+"')
+            cmd.color('gray', zinc_selection)  # Use gray color for zinc
+            cmd.set('sphere_scale', 1.2, zinc_selection)  # Make zinc larger
+            cmd.set('sphere_transparency', 0.0, zinc_selection)  # Completely opaque
+            cmd.label(zinc_selection, '"Zn²⁺"')
+            
+            # Show coordination bonds between zinc and histidines
+            for res_key, res_info in residues.items():
+                if res_info['name'] == 'HIS':
+                    res_num = res_info['adjusted_number']
+                    his_selection = f"chain {self.chain_id} and resi {res_num} and (name NE2 or name ND1)"
+                    if cmd.count_atoms(f"{structure_name} and {his_selection}") > 0:
+                        # Create distance measurement for coordination bonds
+                        cmd.distance(f"coord_{res_key}", 
+                                   f"{structure_name} and {zinc_selection}",
+                                   f"{structure_name} and {his_selection}")
+                        cmd.color('yellow', f"coord_{res_key}")
+                        cmd.set('dash_color', 'yellow', f"coord_{res_key}")
+                        cmd.set('dash_width', 3, f"coord_{res_key}")
         
-        # Set view
-        cmd.orient(f'{structure_name} and chain {self.chain_id}')
-        cmd.zoom(f'{structure_name} and chain {self.chain_id}')
+        # Hide parts of the protein that might obstruct the view
+        # Hide distant regions to reduce clutter
+        if zinc_binding_residues:
+            far_regions = f"chain {self.chain_id} and not (byres (chain {self.chain_id} and resi {'+'.join(map(str, zinc_binding_residues))} around 10))"
+            cmd.hide('cartoon', f'{structure_name} and {far_regions}')
+        
+        # Set optimal viewing angle for zinc binding site
+        if zinc_binding_residues:
+            # Focus on the zinc binding site center
+            zinc_center = f"chain {self.chain_id} and resi {'+'.join(map(str, zinc_binding_residues))}"
+            cmd.orient(f'{structure_name} and {zinc_center}')
+            cmd.zoom(f'{structure_name} and {zinc_center}', buffer=3)
+        else:
+            cmd.orient(f'{structure_name} and chain {self.chain_id}')
+            cmd.zoom(f'{structure_name} and chain {self.chain_id}')
+        
+        # Optimize label settings for better visibility
+        cmd.set('label_color', 'black')
+        cmd.set('label_size', 12)
+        cmd.set('label_outline_color', 'white')
+        
+        # Set background to white for better contrast
+        cmd.bg_color('white')
         
         # Ensure output directory exists
         os.makedirs(output_dir, exist_ok=True)
@@ -311,6 +432,7 @@ class CatalyticActivityExaminer:
         cmd.set('ray_trace_mode', 1)
         cmd.set('ray_shadows', 0)
         cmd.set('antialias', 2)
+        cmd.set('ray_opaque_background', 0)  # Transparent background
         
         try:
             # Capture the image
@@ -320,6 +442,138 @@ class CatalyticActivityExaminer:
             # Return a placeholder path if image generation fails
             output_path = os.path.join(output_dir, 'zinc_binding_residues_failed.png')
         
+        return output_path
+    
+    def _visualize_combined_catalytic_site(self, structure_name: str, 
+                                         active_site_residues: Dict[str, Dict],
+                                         zinc_binding_residues: Dict[str, Dict],
+                                         output_dir: str) -> str:
+        """
+        Generate combined visualization showing both active site and zinc binding residues
+        with optimal transparency and viewing for understanding the complete catalytic mechanism.
+        """
+        # Hide everything first
+        cmd.hide('everything')
+        
+        # Collect all catalytic residues
+        all_catalytic_residues = []
+        for res_key, res_info in {**active_site_residues, **zinc_binding_residues}.items():
+            res_num = res_info['adjusted_number']
+            selection = f"chain {self.chain_id} and resi {res_num}"
+            if cmd.count_atoms(f"{structure_name} and {selection}") > 0:
+                all_catalytic_residues.append(res_num)
+        
+        # Create selection for catalytic vicinity (within 10Å of all catalytic residues)
+        if all_catalytic_residues:
+            vicinity_selection = f"chain {self.chain_id} and (byres (chain {self.chain_id} and resi {'+'.join(map(str, all_catalytic_residues))} around 10))"
+        else:
+            vicinity_selection = f"chain {self.chain_id}"
+        
+        # Show cartoon representation with transparency
+        cmd.show('cartoon', f'{structure_name} and chain {self.chain_id}')
+        cmd.color('gray', f'{structure_name} and chain {self.chain_id}')
+        cmd.set('cartoon_transparency', 0.8, f'{structure_name} and chain {self.chain_id}')
+        
+        # Show surface around catalytic site for context (very transparent)
+        cmd.show('surface', f'{structure_name} and {vicinity_selection}')
+        cmd.color('gray', f'{structure_name} and {vicinity_selection}')
+        cmd.set('transparency', 0.9, f'{structure_name} and {vicinity_selection}')
+        
+        # Show active site residues
+        active_colors = ['red', 'orange', 'yellow', 'green', 'cyan']
+        for i, (res_key, res_info) in enumerate(active_site_residues.items()):
+            res_num = res_info['adjusted_number']
+            selection = f"chain {self.chain_id} and resi {res_num}"
+            
+            if cmd.count_atoms(f"{structure_name} and {selection}") > 0:
+                cmd.show('sticks', f'{structure_name} and {selection}')
+                cmd.color(active_colors[i % len(active_colors)], f'{structure_name} and {selection}')
+                cmd.set('stick_transparency', 0.0, f'{structure_name} and {selection}')
+                
+                # Add labels with function annotation
+                cmd.label(f'{structure_name} and {selection} and name CA', 
+                         f'"{res_key} - {res_info["function"][:15]}..."')
+        
+        # Show zinc binding residues
+        zinc_colors = ['purple', 'magenta', 'pink']
+        for i, (res_key, res_info) in enumerate(zinc_binding_residues.items()):
+            res_num = res_info['adjusted_number']
+            selection = f"chain {self.chain_id} and resi {res_num}"
+            
+            if cmd.count_atoms(f"{structure_name} and {selection}") > 0:
+                cmd.show('sticks', f'{structure_name} and {selection}')
+                cmd.color(zinc_colors[i % len(zinc_colors)], f'{structure_name} and {selection}')
+                cmd.set('stick_transparency', 0.0, f'{structure_name} and {selection}')
+                
+                # Add labels with function annotation
+                cmd.label(f'{structure_name} and {selection} and name CA', 
+                         f'"{res_key} - {res_info["function"][:15]}..."')
+        
+        # Show zinc if present with coordination bonds
+        zinc_selection = f"{structure_name} and chain {self.chain_id} and resn ZN"
+        if cmd.count_atoms(zinc_selection) > 0:
+            cmd.show('spheres', zinc_selection)
+            cmd.color('gray', zinc_selection)
+            cmd.set('sphere_scale', 1.3, zinc_selection)
+            cmd.set('sphere_transparency', 0.0, zinc_selection)
+            cmd.label(zinc_selection, '"Zn²⁺ Ion"')
+            
+            # Show coordination bonds
+            for res_key, res_info in zinc_binding_residues.items():
+                if res_info['name'] == 'HIS':
+                    res_num = res_info['adjusted_number']
+                    his_selection = f"chain {self.chain_id} and resi {res_num} and (name NE2 or name ND1)"
+                    if cmd.count_atoms(f"{structure_name} and {his_selection}") > 0:
+                        cmd.distance(f"coord_{res_key}", 
+                                   f"{structure_name} and {zinc_selection}",
+                                   f"{structure_name} and {his_selection}")
+                        cmd.color('yellow', f"coord_{res_key}")
+                        cmd.set('dash_color', 'yellow', f"coord_{res_key}")
+                        cmd.set('dash_width', 4, f"coord_{res_key}")
+        
+        # Hide distant regions to focus on catalytic site
+        if all_catalytic_residues:
+            far_regions = f"chain {self.chain_id} and not (byres (chain {self.chain_id} and resi {'+'.join(map(str, all_catalytic_residues))} around 15))"
+            cmd.hide('cartoon', f'{structure_name} and {far_regions}')
+        
+        # Set optimal viewing angle for the complete catalytic site
+        if all_catalytic_residues:
+            catalytic_center = f"chain {self.chain_id} and resi {'+'.join(map(str, all_catalytic_residues))}"
+            cmd.orient(f'{structure_name} and {catalytic_center}')
+            cmd.zoom(f'{structure_name} and {catalytic_center}', buffer=8)
+        else:
+            cmd.orient(f'{structure_name} and chain {self.chain_id}')
+            cmd.zoom(f'{structure_name} and chain {self.chain_id}')
+        
+        # Optimize visualization settings
+        cmd.set('label_color', 'black')
+        cmd.set('label_size', 10)
+        cmd.set('label_outline_color', 'white')
+        cmd.bg_color('white')
+        
+        # Create a legend by positioning text
+        cmd.pseudoatom('legend_active', pos=[0, 0, 0], color='red')
+        cmd.pseudoatom('legend_zinc', pos=[0, 0, 0], color='purple')
+        cmd.hide('everything', 'legend_active or legend_zinc')
+        
+        # Ensure output directory exists
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Save image
+        output_path = os.path.join(output_dir, 'combined_catalytic_site.png')
+        
+        # Set rendering options
+        cmd.set('ray_trace_mode', 1)
+        cmd.set('ray_shadows', 0)
+        cmd.set('antialias', 2)
+        cmd.set('ray_opaque_background', 0)
+        
+        try:
+            cmd.png(output_path, width=1400, height=1000, dpi=300, ray=1)
+            print(f"Combined catalytic site image saved to: {output_path}")
+        except Exception as e:
+            output_path = os.path.join(output_dir, 'combined_catalytic_site_failed.png')
+            
         return output_path
     
     def _analyze_structural_integrity(self, structure_name: str, 
@@ -627,6 +881,7 @@ def examine_catalytic_activity(pdb_file_path: str,
             'residue_offsets': results['residue_offsets'],
             'active_site_image': results['active_site_image'],
             'zinc_binding_image': results['zinc_binding_image'],
+            'combined_catalytic_image': results['combined_catalytic_image'],
             'catalytic_integrity': results['catalytic_integrity'],
             'summary': f"Catalytic integrity: {results['catalytic_integrity']['integrity_level']} "
                       f"(Risk: {results['catalytic_integrity']['risk_level']})"
