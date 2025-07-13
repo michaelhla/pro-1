@@ -1,0 +1,10 @@
+openai>=1.0.0
+torch>=1.9.0
+transformers>=4.20.0
+python-dotenv>=0.19.0
+fair-esm>=2.0.0
+biotite>=0.31.0
+pyrosetta-installer>=0.1.1
+biopython>=1.78
+requests>=2.25.0
+pymol-open-source>=2.5.0 
