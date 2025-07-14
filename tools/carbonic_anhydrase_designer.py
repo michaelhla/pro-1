@@ -496,12 +496,11 @@ class CarbonicAnhydraseDesigner:
         6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
 
         Please approach this systematically:
-        1. If given a PDB ID, first provide the corresponding amino acid sequence so you can fold it
-        2. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot.
-        3. Using the findings from your research, propose specific amino acid mutations that could improve stability. These can be simple point mutations, or larger insertions/deletions.
-        4. Then modify the original sequence using the mutations you proposed. Make sure you have applied your mutations correctly. 
-        5. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
-        6. Use calculate_rosetta_score to get the stability score of your modified sequence.
+        1. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS.
+        2. Using the findings from your research, propose specific amino acid mutations that could improve stability. These can be simple point mutations, or larger insertions/deletions.
+        3. Then modify the original sequence using the mutations you proposed. Make sure you have applied your mutations correctly. 
+        4. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
+        5. Use calculate_rosetta_score to get the stability score of your modified sequence.
         7. Use examine_secondary_structure to analyze the new structure's fold, SASA, and structural quality
         8. Use examine_catalytic_activity to verify the new structure's catalytic sites are intact. You need to specify the exact residue numbers and types in the active_site_residues and zinc_binding_residues dictionaries based on your mutant sequence. This includes the ZINC BINDING RESIDUES.
         CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved. You must provide the correct residue dictionaries with exact numbers and amino acid types for your specific mutant sequence. This includes the ZINC BINDING RESIDUES.
@@ -549,7 +548,7 @@ class CarbonicAnhydraseDesigner:
         - Use format: {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}, ...}
         - Integrity levels: EXCELLENT (no issues), GOOD (minor issues), ACCEPTABLE (some concerns), POOR (major problems)
         - Be very cautious when recommending a design that shows POOR catalytic integrity. 
-        
+
         Secondary structure examination guidelines:
         - Use examine_secondary_structure to assess overall fold quality and stability
         - Key metrics: SASA (lower suggests more compact), radius of gyration (compactness measure), secondary structure content
