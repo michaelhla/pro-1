@@ -58,7 +58,10 @@ class SecondaryStructureExaminer:
             raise FileNotFoundError(f"PDB file not found: {pdb_file_path}")
         
         if output_dir is None:
-            output_dir = self.temp_dir
+            # Create images folder in the same directory as this script
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            output_dir = os.path.join(script_dir, 'images')
+            os.makedirs(output_dir, exist_ok=True)
         
         # Initialize PyMOL
         pymol.finish_launching()

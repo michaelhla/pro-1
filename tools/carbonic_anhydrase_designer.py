@@ -17,11 +17,13 @@ load_dotenv()
 # Import the tools
 from protein_folder import fold_protein
 from rosetta_scorer import calculate_rosetta_score
-from rmsd_calculator import calculate_rmsd, calculate_rmsd_with_sequences
+from rmsd_calculator import calculate_rmsd_with_alignment
 from websearch_tool import websearch
 from catalytic_activity_examiner import examine_catalytic_activity
 from secondary_structure_examiner import examine_secondary_structure
 
+
+REFERENCE_SEQUENCE="MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK"
 
 class CarbonicAnhydraseDesigner:
     """
@@ -99,68 +101,25 @@ class CarbonicAnhydraseDesigner:
             },
             {
                 "type": "function",
-                "name": "calculate_rmsd",
-                "description": "Calculate the Root Mean Square Deviation (RMSD) between two protein structures from PDB files. Returns the structural similarity score in Angstroms - lower values indicate more similar structures. Handles proteins of different lengths through structural alignment.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "pdb_file1": {
-                            "type": "string",
-                            "description": "Path to the first PDB file (e.g., 'predicted_structures/original.pdb')"
-                        },
-                        "pdb_file2": {
-                            "type": "string",
-                            "description": "Path to the second PDB file (e.g., 'predicted_structures/mutant.pdb')"
-                        },
-                        "chain_id1": {
-                            "type": "string",
-                            "description": "Chain ID for first structure (optional, auto-detected if not provided)"
-                        },
-                        "chain_id2": {
-                            "type": "string",
-                            "description": "Chain ID for second structure (optional, auto-detected if not provided)"
-                        },
-                        "alignment_method": {
-                            "type": "string",
-                            "description": "Method for handling different lengths: 'structural' (default) or 'sequence'",
-                            "enum": ["structural", "sequence"]
-                        }
-                    },
-                    "required": ["pdb_file1", "pdb_file2"],
-                    "additionalProperties": False
-                },
-                "strict": True
-            },
-            {
-                "type": "function",
                 "name": "calculate_rmsd_with_sequences",
-                "description": "Calculate RMSD between two PDB structures with detailed sequence alignment information. Returns the RMSD score plus the actual amino acid subsequences that were aligned, alignment positions, and coverage statistics. This helps interpret the RMSD score by showing exactly which parts of the proteins were compared.",
+                "description": "Calculate RMSD between the hardcoded reference structure (hCA2_folded.pdb) and a newly folded protein structure using sliding window sequence alignment. Finds the region of maximum sequence overlap, then calculates RMSD over the aligned core region. Returns RMSD value plus overlap percentage, sequence identity, and detailed alignment information.",
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "pdb_file1": {
-                            "type": "string",
-                            "description": "Path to the first PDB file (e.g., 'predicted_structures/original.pdb')"
-                        },
                         "pdb_file2": {
                             "type": "string",
-                            "description": "Path to the second PDB file (e.g., 'predicted_structures/mutant.pdb')"
+                            "description": "Path to the newly folded PDB file to compare against reference (e.g., 'predicted_structures/mutant.pdb')"
                         },
                         "chain_id1": {
                             "type": "string",
-                            "description": "Chain ID for first structure (optional, auto-detected if not provided)"
+                            "description": "Chain ID for reference structure (optional, auto-detected if not provided)"
                         },
                         "chain_id2": {
                             "type": "string",
-                            "description": "Chain ID for second structure (optional, auto-detected if not provided)"
-                        },
-                        "alignment_method": {
-                            "type": "string",
-                            "description": "Method for handling different lengths: 'structural' (default) or 'sequence'",
-                            "enum": ["structural", "sequence"]
+                            "description": "Chain ID for new structure (optional, auto-detected if not provided)"
                         }
                     },
-                    "required": ["pdb_file1", "pdb_file2"],
+                    "required": ["pdb_file2"],
                     "additionalProperties": False
                 },
                 "strict": True
@@ -259,8 +218,7 @@ class CarbonicAnhydraseDesigner:
         return {
             "fold_protein": fold_protein,  # Real implementation from protein_folder.py
             "calculate_rosetta_score": calculate_rosetta_score,  # Real implementation from rosetta_scorer.py
-            "calculate_rmsd": calculate_rmsd,  # Real implementation from rmsd_calculator.py
-            "calculate_rmsd_with_sequences": calculate_rmsd_with_sequences,  # Detailed RMSD with sequence alignment info
+            "calculate_rmsd_with_sequences": calculate_rmsd_with_alignment,  # Detailed RMSD with sequence alignment info
             "websearch": websearch,  # Real implementation from websearch_tool.py
             "examine_catalytic_activity": examine_catalytic_activity,  # Real implementation from catalytic_activity_examiner.py
             "examine_secondary_structure": examine_secondary_structure  # Real implementation from secondary_structure_examiner.py
@@ -353,32 +311,31 @@ class CarbonicAnhydraseDesigner:
         design_prompt = f"""
         You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase.
 
-        Target protein: {target_pdb}
+        ORIGINAL SEQUENCE: {REFERENCE_SEQUENCE}
         Stability goals: {', '.join(stability_goals)}
+        CATALYTIC RESIDUES: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
+        ZINC BINDING RESIDUES: H94, H96, H119 (essential for catalytic activity)
 
-        You have access to seven computational tools:
+        You have access to six computational tools:
         1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
         2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower = more stable)
-        3. calculate_rmsd: Calculates structural similarity between two PDB files (lower = more similar)
-        4. calculate_rmsd_with_sequences: Like calculate_rmsd but also returns the actual amino acid subsequences that were aligned and detailed alignment statistics
-        5. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
-        6. examine_catalytic_activity: Visualizes and examines catalytic sites (active site and zinc binding residues) to ensure modifications haven't affected enzyme activity
-        7. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment
+        3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
+        4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
+        5. examine_catalytic_activity: Visualizes and examines catalytic sites (active site and zinc binding residues) to ensure modifications haven't affected enzyme activity
+        6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment
 
         Please approach this systematically:
         1. If given a PDB ID, first provide the corresponding amino acid sequence so you can fold it
-        2. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches
-        3. Use the fold_protein tool to predict the structure of the original sequence
-        4. Use calculate_rosetta_score to get the baseline stability score
-        5. Use examine_secondary_structure to analyze the original structure's fold, SASA, and structural quality
-        6. Use examine_catalytic_activity to verify the original structure's catalytic sites are intact
-        7. Based on your analysis and current research, propose specific amino acid mutations that could improve stability
-        8. For promising mutations, modify the sequence and fold the new variants
-        9. Score the new variants with calculate_rosetta_score to quantify stability improvements
-        10. Use examine_secondary_structure on each mutant to assess structural changes and compactness
-        11. Use calculate_rmsd_with_sequences to compare structural similarity and see exactly which subsequences were aligned
-        12. CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved (account for any sequence length changes with residue_offsets)
-        13. Compare scores and provide final recommendations with quantitative rationale
+        2. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot.
+        3. Using the findings from your research, propose specific amino acid mutations that could improve stability. These can be simple point mutations, or larger insertions/deletions.
+        4. Then modify the original sequence using the mutations you proposed. Make sure you have applied your mutations correctly. 
+        5. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
+        6. Use calculate_rosetta_score to get the stability score of your modified sequence.
+        7. Use examine_secondary_structure to analyze the new structure's fold, SASA, and structural quality
+        8. Use examine_catalytic_activity to verify the new structure's catalytic sites are intact. You will have to make sure to account for any sequence length changes with residue_offsets.This includes the ZINC BINDING RESIDUES.
+        CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved (account for any sequence length changes with residue_offsets). This includes the ZINC BINDING RESIDUES.
+        9. Compare scores and provide recommendations with quantitative rationale. 
+        10. REPEAT THE PROCESS UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS.
 
         Focus on common protein stabilization strategies:
         - Reducing surface loops and increasing rigidity
@@ -391,15 +348,18 @@ class CarbonicAnhydraseDesigner:
         Use the Rosetta scores to validate your design decisions quantitatively.
         
         RMSD interpretation guidelines:
-        - RMSD < 2.0 Å: Very similar structures (conservative mutations)
-        - RMSD 2.0-5.0 Å: Moderate structural changes (acceptable for stability improvements)
-        - RMSD > 5.0 Å: Significant structural changes (may affect function, use with caution)
+        - RMSD < 2.0 Å: Very similar structures in aligned region (conservative mutations)
+        - RMSD 2.0-5.0 Å: Moderate structural changes in aligned region (acceptable for stability improvements)
+        - RMSD > 5.0 Å: Significant structural changes in aligned region (may affect function, use with caution)
         
         Sequence alignment interpretation:
-        - High coverage (>80%): Most of the protein structure was aligned - RMSD represents global similarity
-        - Medium coverage (50-80%): Partial alignment - RMSD represents similarity of the aligned region only
-        - Low coverage (<50%): Limited alignment - RMSD may not be representative of overall structural similarity
-        - Always examine the aligned_sequence1 and aligned_sequence2 to understand what was actually compared
+        - Overlap percentage: Shows how much of the shorter sequence was aligned (higher = better coverage)
+        - Sequence identity: Percentage of identical amino acids in aligned region (higher = more conservative changes)
+        - High overlap (>80%) + High identity (>80%): Conservative design with good coverage
+        - High overlap (>80%) + Medium identity (60-80%): Moderate mutations with good coverage
+        - Low overlap (<60%): Limited alignment - RMSD may not represent overall similarity
+        - Always examine aligned_ref_sequence and aligned_new_sequence to understand what was compared
+        - The alignment uses sliding window to find the region of maximum sequence similarity
         
         Web search usage guidelines:
         - Use websearch to find current research on specific stability engineering strategies
@@ -465,70 +425,6 @@ class CarbonicAnhydraseDesigner:
                 )
         
         return "ERROR: Maximum iterations reached. Design process incomplete."
-    
-    def interactive_design_session(self):
-        """
-        Start an interactive design session where users can ask questions
-        and get real-time assistance with carbonic anhydrase design.
-        """
-        print("Interactive Carbonic Anhydrase Design Session")
-        print("Type 'quit' to exit, 'help' for commands")
-        print("-" * 50)
-        
-        conversation_history = []
-        
-        while True:
-            user_input = input("\nUser: ").strip()
-            
-            if user_input.lower() == 'quit':
-                break
-            elif user_input.lower() == 'help':
-                print("\nAvailable commands:")
-                print("- design <PDB_ID>: Start automated design for a specific protein")
-                print("- quit: Exit the session")
-                print("- Or ask any question about carbonic anhydrase design")
-                print("- Available tools:")
-                print("  * fold_protein (predicts 3D structure from sequence)")
-                print("  * calculate_rosetta_score (scores PDB structures for stability)")
-                print("  * calculate_rmsd (compares structural similarity between PDB files)")
-                print("  * calculate_rmsd_with_sequences (detailed RMSD with sequence alignment info)")
-                print("  * websearch (searches for current research and methodologies)")
-                print("  * examine_catalytic_activity (visualizes catalytic sites to ensure activity is preserved)")
-                print("  * examine_secondary_structure (analyzes fold, SASA, and structural properties)")
-                continue
-            elif user_input.lower().startswith('design '):
-                pdb_id = user_input.split()[1]
-                result = self.design_stable_carbonic_anhydrase(pdb_id)
-                print(f"\nDesign completed for {pdb_id}")
-                continue
-            
-            # Regular conversation
-            conversation_history.append({"role": "user", "content": user_input})
-            
-            response = self.client.responses.create(
-                input=conversation_history,
-                **self.model_config
-            )
-            
-            # Process response with function calls
-            iteration = 0
-            max_iterations = 10
-            
-            while iteration < max_iterations:
-                iteration += 1
-                is_complete, function_responses = self._process_response(response)
-                
-                if is_complete:
-                    assistant_response = response.output_text
-                    print(f"\nAssistant: {assistant_response}")
-                    conversation_history.append({"role": "assistant", "content": assistant_response})
-                    break
-                else:
-                    response = self.client.responses.create(
-                        input=function_responses,
-                        previous_response_id=response.id,
-                        **self.model_config
-                    )
 
 
 def main():
@@ -570,9 +466,7 @@ def main():
             "Maintain >80% catalytic activity"
         ]
     )
-    
-    # Option 2: Interactive session (uncomment to use)
-    # designer.interactive_design_session()
+
 
 
 if __name__ == "__main__":

@@ -2,296 +2,147 @@
 """
 RMSD Calculator for comparing protein structures.
 
-This module provides functions to calculate Root Mean Square Deviation (RMSD)
-between two protein structures from PDB files, with support for structures
-of different lengths through structural alignment.
+This module provides a single function to calculate Root Mean Square Deviation (RMSD)
+between a hardcoded reference structure (hCA2_folded.pdb) and a newly folded protein structure.
+Uses sliding window sequence alignment to find maximum overlap, then calculates RMSD over 
+the aligned core region along with overlap percentage.
 """
 
 import os
 import warnings
-from typing import Tuple, Optional, List, Dict, Any
+from typing import Tuple, Dict, Any, List
 from Bio import PDB
-from Bio.PDB import PDBParser, Superimposer, Selection
+from Bio.PDB import PDBParser, Superimposer
 from Bio.PDB.Structure import Structure
 from Bio.PDB.Chain import Chain
-from Bio.PDB.Residue import Residue
 import numpy as np
 
 # Suppress PDB parsing warnings
-# warnings.filterwarnings("ignore", category=PDB.PDBConstructionWarning)
+warnings.filterwarnings("ignore", category=PDB.PDBConstructionWarning)
+
+# Hardcoded reference structure path and sequence
+REFERENCE_PDB = "predicted_structures/hCA2_folded.pdb"
+REFERENCE_SEQUENCE = "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK"
 
 
-def calculate_rmsd(pdb_file1: str, pdb_file2: str, 
-                  chain_id1: str = None, chain_id2: str = None,
-                  alignment_method: str = "structural") -> float:
+def calculate_rmsd_with_alignment(pdb_file2: str, 
+                                chain_id1: str = None, chain_id2: str = None) -> Tuple[float, Dict[str, Any]]:
     """
-    Calculate RMSD between two protein structures from PDB files.
+    Calculate RMSD between the hardcoded reference structure and a newly folded protein structure.
     
-    Handles structures of different lengths by performing structural alignment
-    to find the best matching residues.
+    Uses sliding window sequence alignment to find the region of maximum overlap between
+    the two protein sequences, then calculates RMSD over the aligned core region.
+    
+    Algorithm:
+    1. Extract sequences from both PDB structures
+    2. If sequences are same length, align directly
+    3. Otherwise, use sliding window to find best sequence overlap
+    4. Calculate RMSD over the aligned CA atoms in the overlapping region
+    5. Return RMSD value and detailed alignment information including overlap percentage
     
     Args:
-        pdb_file1: Path to first PDB file
-        pdb_file2: Path to second PDB file  
-        chain_id1: Chain ID for first structure (auto-detect if None)
-        chain_id2: Chain ID for second structure (auto-detect if None)
-        alignment_method: Method for handling different lengths ("structural" or "sequence")
+        pdb_file2: Path to the newly folded PDB file to compare against reference
+        chain_id1: Chain ID for reference structure (auto-detect if None)
+        chain_id2: Chain ID for new structure (auto-detect if None)
         
     Returns:
-        RMSD value in Angstroms as a float
+        Tuple of (rmsd_value, alignment_info) where alignment_info contains:
+        - rmsd: RMSD value in Angstroms
+        - overlap_percentage: Percentage of shorter sequence that overlaps
+        - alignment_length: Number of residues in aligned region
+        - ref_sequence: Full reference sequence
+        - new_sequence: Full new structure sequence
+        - aligned_ref_sequence: Reference sequence in aligned region
+        - aligned_new_sequence: New sequence in aligned region
+        - ref_start, ref_end: Start/end positions in reference sequence
+        - new_start, new_end: Start/end positions in new sequence
+        - sequence_identity: Percentage of identical residues in aligned region
         
     Raises:
         FileNotFoundError: If PDB files don't exist
         ValueError: If structures can't be aligned or have no common residues
     """
+    pdb_file1 = REFERENCE_PDB
+    
     # Check if files exist
     if not os.path.exists(pdb_file1):
-        raise FileNotFoundError(f"PDB file not found: {pdb_file1}")
+        raise FileNotFoundError(f"Reference PDB file not found: {pdb_file1}")
     if not os.path.exists(pdb_file2):
         raise FileNotFoundError(f"PDB file not found: {pdb_file2}")
     
     try:
         # Parse PDB structures
         parser = PDBParser(QUIET=True)
-        structure1 = parser.get_structure("struct1", pdb_file1)
-        structure2 = parser.get_structure("struct2", pdb_file2)
+        structure1 = parser.get_structure("reference", pdb_file1)
+        structure2 = parser.get_structure("new_struct", pdb_file2)
         
         # Get chains
         chain1 = _get_chain(structure1, chain_id1)
         chain2 = _get_chain(structure2, chain_id2)
         
-        if alignment_method == "structural":
-            rmsd = _calculate_structural_rmsd(chain1, chain2)
-        else:
-            rmsd = _calculate_sequence_rmsd(chain1, chain2)
-            
-        return round(rmsd, 3)
+        # Extract sequences and CA atoms
+        ref_sequence, ref_atoms = _extract_sequence_and_atoms(chain1)
+        new_sequence, new_atoms = _extract_sequence_and_atoms(chain2)
+        
+        if len(ref_atoms) == 0 or len(new_atoms) == 0:
+            raise ValueError("No CA atoms found in one or both structures")
+        
+        # Find best sequence alignment
+        alignment_info = _find_best_sequence_alignment(ref_sequence, new_sequence, ref_atoms, new_atoms)
+        
+        # Calculate RMSD over aligned region
+        rmsd = _calculate_rmsd_for_atoms(alignment_info['aligned_ref_atoms'], alignment_info['aligned_new_atoms'])
+        
+        # Prepare final result
+        result = {
+            'rmsd': round(rmsd, 3),
+            'overlap_percentage': alignment_info['overlap_percentage'],
+            'alignment_length': alignment_info['alignment_length'],
+            'ref_sequence': ref_sequence,
+            'new_sequence': new_sequence,
+            'aligned_ref_sequence': alignment_info['aligned_ref_sequence'],
+            'aligned_new_sequence': alignment_info['aligned_new_sequence'],
+            'ref_start': alignment_info['ref_start'],
+            'ref_end': alignment_info['ref_end'],
+            'new_start': alignment_info['new_start'],
+            'new_end': alignment_info['new_end'],
+            'sequence_identity': alignment_info['sequence_identity'],
+            'pdb_file1': pdb_file1,
+            'pdb_file2': pdb_file2,
+            'chain_id1': chain1.get_id(),
+            'chain_id2': chain2.get_id()
+        }
+        
+        return round(rmsd, 3), result
         
     except Exception as e:
-        raise ValueError(f"Error calculating RMSD: {str(e)}")
+        raise ValueError(f"Error calculating RMSD with alignment: {str(e)}")
 
 
-def _get_chain(structure: Structure, chain_id: Optional[str] = None) -> Chain:
-    """
-    Get a chain from a structure, auto-detecting if chain_id is None.
-    """
+def _get_chain(structure: Structure, chain_id: str = None) -> Chain:
+    """Get a chain from a structure, auto-detecting if chain_id is None."""
     chains = list(structure.get_chains())
     
     if not chains:
         raise ValueError("No chains found in structure")
     
     if chain_id is None:
-        # Auto-detect: use first chain
-        return chains[0]
+        return chains[0]  # Use first chain
     else:
-        # Find specified chain
         for chain in chains:
             if chain.id == chain_id:
                 return chain
         raise ValueError(f"Chain {chain_id} not found in structure")
 
 
-def _calculate_structural_rmsd(chain1: Chain, chain2: Chain) -> float:
+def _extract_sequence_and_atoms(chain: Chain) -> Tuple[str, List]:
     """
-    Calculate RMSD using structural alignment to handle different lengths.
-    
-    Uses a sliding window approach to find the best matching segment
-    between the two structures.
-    """
-    # Get CA atoms from both chains
-    ca_atoms1 = _get_ca_atoms(chain1)
-    ca_atoms2 = _get_ca_atoms(chain2)
-    
-    if len(ca_atoms1) == 0 or len(ca_atoms2) == 0:
-        raise ValueError("No CA atoms found in one or both structures")
-    
-    # If structures are the same length, do direct alignment
-    if len(ca_atoms1) == len(ca_atoms2):
-        return _direct_rmsd(ca_atoms1, ca_atoms2)
-    
-    # For different lengths, find best matching segment
-    min_rmsd = float('inf')
-    shorter_atoms = ca_atoms1 if len(ca_atoms1) <= len(ca_atoms2) else ca_atoms2
-    longer_atoms = ca_atoms2 if len(ca_atoms1) <= len(ca_atoms2) else ca_atoms1
-    
-    # Try all possible alignments of the shorter structure within the longer one
-    window_size = len(shorter_atoms)
-    
-    for i in range(len(longer_atoms) - window_size + 1):
-        segment = longer_atoms[i:i + window_size]
-        try:
-            if len(ca_atoms1) <= len(ca_atoms2):
-                rmsd = _direct_rmsd(shorter_atoms, segment)
-            else:
-                rmsd = _direct_rmsd(segment, shorter_atoms)
-            min_rmsd = min(min_rmsd, rmsd)
-        except:
-            continue
-    
-    if min_rmsd == float('inf'):
-        raise ValueError("Could not align structures")
-    
-    return min_rmsd
-
-
-def _calculate_structural_rmsd_with_alignment(chain1: Chain, chain2: Chain) -> Tuple[float, Dict[str, Any]]:
-    """
-    Calculate RMSD using structural alignment and return detailed alignment information.
+    Extract amino acid sequence and corresponding CA atoms from a chain.
     
     Returns:
-        Tuple of (rmsd, alignment_info) where alignment_info contains:
-        - aligned_sequences: subsequences that were aligned
-        - alignment_indices: indices of aligned residues
-        - alignment_method: method used for alignment
+        Tuple of (sequence_string, ca_atoms_list)
     """
-    # Get CA atoms and sequences from both chains
-    ca_atoms1 = _get_ca_atoms(chain1)
-    ca_atoms2 = _get_ca_atoms(chain2)
-    sequence1 = _get_sequence_from_chain(chain1)
-    sequence2 = _get_sequence_from_chain(chain2)
-    residue_info1 = _get_residue_info(chain1)
-    residue_info2 = _get_residue_info(chain2)
-    
-    if len(ca_atoms1) == 0 or len(ca_atoms2) == 0:
-        raise ValueError("No CA atoms found in one or both structures")
-    
-    # If structures are the same length, do direct alignment
-    if len(ca_atoms1) == len(ca_atoms2):
-        rmsd = _direct_rmsd(ca_atoms1, ca_atoms2)
-        alignment_info = {
-            'aligned_sequence1': sequence1,
-            'aligned_sequence2': sequence2,
-            'alignment_start1': 0,
-            'alignment_end1': len(sequence1),
-            'alignment_start2': 0,
-            'alignment_end2': len(sequence2),
-            'alignment_length': len(sequence1),
-            'alignment_method': 'direct',
-            'coverage1': 100.0,
-            'coverage2': 100.0,
-            'residue_info1': residue_info1,
-            'residue_info2': residue_info2
-        }
-        return rmsd, alignment_info
-    
-    # For different lengths, find best matching segment
-    min_rmsd = float('inf')
-    best_alignment_info = None
-    
-    if len(ca_atoms1) <= len(ca_atoms2):
-        # Structure 1 is shorter, slide it along structure 2
-        shorter_atoms = ca_atoms1
-        longer_atoms = ca_atoms2
-        shorter_seq = sequence1
-        longer_seq = sequence2
-        shorter_residues = residue_info1
-        longer_residues = residue_info2
-        struct1_is_shorter = True
-    else:
-        # Structure 2 is shorter, slide it along structure 1
-        shorter_atoms = ca_atoms2
-        longer_atoms = ca_atoms1
-        shorter_seq = sequence2
-        longer_seq = sequence1
-        shorter_residues = residue_info2
-        longer_residues = residue_info1
-        struct1_is_shorter = False
-    
-    window_size = len(shorter_atoms)
-    
-    for i in range(len(longer_atoms) - window_size + 1):
-        segment = longer_atoms[i:i + window_size]
-        try:
-            if struct1_is_shorter:
-                rmsd = _direct_rmsd(shorter_atoms, segment)
-            else:
-                rmsd = _direct_rmsd(segment, shorter_atoms)
-            
-            if rmsd < min_rmsd:
-                min_rmsd = rmsd
-                
-                # Calculate alignment info for this best match
-                if struct1_is_shorter:
-                    alignment_info = {
-                        'aligned_sequence1': shorter_seq,
-                        'aligned_sequence2': longer_seq[i:i + window_size],
-                        'alignment_start1': 0,
-                        'alignment_end1': len(shorter_seq),
-                        'alignment_start2': i,
-                        'alignment_end2': i + window_size,
-                        'alignment_length': window_size,
-                        'alignment_method': 'structural_sliding',
-                        'coverage1': 100.0,
-                        'coverage2': (window_size / len(longer_seq)) * 100.0,
-                        'residue_info1': shorter_residues,
-                        'residue_info2': longer_residues[i:i + window_size]
-                    }
-                else:
-                    alignment_info = {
-                        'aligned_sequence1': longer_seq[i:i + window_size],
-                        'aligned_sequence2': shorter_seq,
-                        'alignment_start1': i,
-                        'alignment_end1': i + window_size,
-                        'alignment_start2': 0,
-                        'alignment_end2': len(shorter_seq),
-                        'alignment_length': window_size,
-                        'alignment_method': 'structural_sliding',
-                        'coverage1': (window_size / len(longer_seq)) * 100.0,
-                        'coverage2': 100.0,
-                        'residue_info1': longer_residues[i:i + window_size],
-                        'residue_info2': shorter_residues
-                    }
-                
-                best_alignment_info = alignment_info
-        except:
-            continue
-    
-    if min_rmsd == float('inf'):
-        raise ValueError("Could not align structures")
-    
-    return min_rmsd, best_alignment_info
-
-
-def _calculate_sequence_rmsd(chain1: Chain, chain2: Chain) -> float:
-    """
-    Calculate RMSD based on sequence alignment (simpler approach).
-    Only uses residues that exist in both structures at the same positions.
-    """
-    ca_atoms1 = _get_ca_atoms(chain1)
-    ca_atoms2 = _get_ca_atoms(chain2)
-    
-    if len(ca_atoms1) == 0 or len(ca_atoms2) == 0:
-        raise ValueError("No CA atoms found in one or both structures")
-    
-    # Use the minimum length
-    min_length = min(len(ca_atoms1), len(ca_atoms2))
-    
-    if min_length == 0:
-        raise ValueError("No common residues found")
-    
-    # Calculate RMSD for the overlapping region
-    return _direct_rmsd(ca_atoms1[:min_length], ca_atoms2[:min_length])
-
-
-def _get_ca_atoms(chain: Chain) -> List:
-    """
-    Extract CA atoms from a chain, maintaining order.
-    """
-    ca_atoms = []
-    for residue in chain:
-        if residue.has_id('CA'):
-            ca_atoms.append(residue['CA'])
-    return ca_atoms
-
-
-def _get_sequence_from_chain(chain: Chain) -> str:
-    """
-    Extract amino acid sequence from a chain.
-    
-    Returns:
-        String of single-letter amino acid codes
-    """
-    # Standard amino acid three-letter to one-letter mapping
+    # Standard amino acid mapping
     aa_dict = {
         'ALA': 'A', 'ARG': 'R', 'ASN': 'N', 'ASP': 'D', 'CYS': 'C',
         'GLU': 'E', 'GLN': 'Q', 'GLY': 'G', 'HIS': 'H', 'ILE': 'I',
@@ -300,39 +151,121 @@ def _get_sequence_from_chain(chain: Chain) -> str:
     }
     
     sequence = []
+    ca_atoms = []
+    
     for residue in chain:
         if residue.has_id('CA'):  # Only consider residues with CA atoms
             res_name = residue.get_resname()
             if res_name in aa_dict:
                 sequence.append(aa_dict[res_name])
+                ca_atoms.append(residue['CA'])
             else:
                 sequence.append('X')  # Unknown amino acid
+                ca_atoms.append(residue['CA'])
     
-    return ''.join(sequence)
+    return ''.join(sequence), ca_atoms
 
 
-def _get_residue_info(chain: Chain) -> List[Dict[str, Any]]:
+def _find_best_sequence_alignment(ref_seq: str, new_seq: str, ref_atoms: List, new_atoms: List) -> Dict[str, Any]:
     """
-    Extract residue information from a chain.
+    Find the best sequence alignment using sliding window approach.
     
-    Returns:
-        List of dictionaries containing residue info
+    Returns alignment information including the best overlapping region.
     """
-    residue_info = []
-    for residue in chain:
-        if residue.has_id('CA'):
-            residue_info.append({
-                'residue_id': residue.get_id()[1],  # Residue number
-                'residue_name': residue.get_resname(),
-                'chain_id': residue.get_parent().get_id()
-            })
-    return residue_info
+    ref_len = len(ref_seq)
+    new_len = len(new_seq)
+    
+    # If sequences are the same length, align directly
+    if ref_len == new_len:
+        # Calculate sequence identity
+        identical = sum(1 for a, b in zip(ref_seq, new_seq) if a == b)
+        sequence_identity = (identical / ref_len) * 100.0
+        
+        return {
+            'alignment_length': ref_len,
+            'overlap_percentage': 100.0,
+            'aligned_ref_sequence': ref_seq,
+            'aligned_new_sequence': new_seq,
+            'aligned_ref_atoms': ref_atoms,
+            'aligned_new_atoms': new_atoms,
+            'ref_start': 0,
+            'ref_end': ref_len,
+            'new_start': 0,
+            'new_end': new_len,
+            'sequence_identity': sequence_identity
+        }
+    
+    # Find the shorter and longer sequences
+    if ref_len <= new_len:
+        shorter_seq, longer_seq = ref_seq, new_seq
+        shorter_atoms, longer_atoms = ref_atoms, new_atoms
+        ref_is_shorter = True
+    else:
+        shorter_seq, longer_seq = new_seq, ref_seq
+        shorter_atoms, longer_atoms = new_atoms, ref_atoms
+        ref_is_shorter = False
+    
+    shorter_len = len(shorter_seq)
+    longer_len = len(longer_seq)
+    
+    # Sliding window to find best alignment
+    best_identity = -1
+    best_start = 0
+    
+    for start in range(longer_len - shorter_len + 1):
+        segment = longer_seq[start:start + shorter_len]
+        
+        # Calculate sequence identity for this alignment
+        identical = sum(1 for a, b in zip(shorter_seq, segment) if a == b)
+        identity = (identical / shorter_len) * 100.0
+        
+        if identity > best_identity:
+            best_identity = identity
+            best_start = start
+    
+    # Extract the best alignment
+    best_end = best_start + shorter_len
+    aligned_longer_seq = longer_seq[best_start:best_end]
+    aligned_longer_atoms = longer_atoms[best_start:best_end]
+    
+    # Calculate overlap percentage (relative to shorter sequence)
+    overlap_percentage = (shorter_len / min(ref_len, new_len)) * 100.0
+    
+    # Prepare results based on which sequence was shorter
+    if ref_is_shorter:
+        result = {
+            'alignment_length': shorter_len,
+            'overlap_percentage': overlap_percentage,
+            'aligned_ref_sequence': shorter_seq,
+            'aligned_new_sequence': aligned_longer_seq,
+            'aligned_ref_atoms': shorter_atoms,
+            'aligned_new_atoms': aligned_longer_atoms,
+            'ref_start': 0,
+            'ref_end': shorter_len,
+            'new_start': best_start,
+            'new_end': best_end,
+            'sequence_identity': best_identity
+        }
+    else:
+        result = {
+            'alignment_length': shorter_len,
+            'overlap_percentage': overlap_percentage,
+            'aligned_ref_sequence': aligned_longer_seq,
+            'aligned_new_sequence': shorter_seq,
+            'aligned_ref_atoms': aligned_longer_atoms,
+            'aligned_new_atoms': shorter_atoms,
+            'ref_start': best_start,
+            'ref_end': best_end,
+            'new_start': 0,
+            'new_end': shorter_len,
+            'sequence_identity': best_identity
+        }
+    
+    return result
 
 
-def _direct_rmsd(atoms1: List, atoms2: List) -> float:
-    """
-    Calculate RMSD between two lists of atoms of the same length.
-    """
+def _calculate_rmsd_for_atoms(atoms1: List, atoms2: List) -> float:
+    """Calculate RMSD between two lists of atoms using optimal superposition."""
     if len(atoms1) != len(atoms2):
         raise ValueError("Atom lists must have the same length")
     
@@ -346,192 +279,43 @@ def _direct_rmsd(atoms1: List, atoms2: List) -> float:
     return superimposer.rms
 
 
-def calculate_rmsd_with_alignment_info(pdb_file1: str, pdb_file2: str,
-                                     chain_id1: str = None, chain_id2: str = None) -> Tuple[float, dict]:
-    """
-    Calculate RMSD with additional alignment information.
-    
-    Returns:
-        Tuple of (rmsd_value, alignment_info_dict)
-    """
-    # Check if files exist
-    if not os.path.exists(pdb_file1):
-        raise FileNotFoundError(f"PDB file not found: {pdb_file1}")
-    if not os.path.exists(pdb_file2):
-        raise FileNotFoundError(f"PDB file not found: {pdb_file2}")
-    
-    try:
-        # Parse structures
-        parser = PDBParser(QUIET=True)
-        structure1 = parser.get_structure("struct1", pdb_file1)
-        structure2 = parser.get_structure("struct2", pdb_file2)
-        
-        # Get chains
-        chain1 = _get_chain(structure1, chain_id1)
-        chain2 = _get_chain(structure2, chain_id2)
-        
-        # Get CA atoms
-        ca_atoms1 = _get_ca_atoms(chain1)
-        ca_atoms2 = _get_ca_atoms(chain2)
-        
-        # Calculate RMSD
-        rmsd = calculate_rmsd(pdb_file1, pdb_file2, chain_id1, chain_id2)
-        
-        # Collect alignment info
-        alignment_info = {
-            "rmsd": rmsd,
-            "structure1_residues": len(ca_atoms1),
-            "structure2_residues": len(ca_atoms2),
-            "aligned_residues": min(len(ca_atoms1), len(ca_atoms2)),
-            "alignment_method": "structural" if len(ca_atoms1) != len(ca_atoms2) else "direct"
-        }
-        
-        return rmsd, alignment_info
-        
-    except Exception as e:
-        raise ValueError(f"Error calculating RMSD with alignment info: {str(e)}")
-
-
-def calculate_rmsd_with_sequences(pdb_file1: str, pdb_file2: str,
-                                chain_id1: str = None, chain_id2: str = None,
-                                alignment_method: str = "structural") -> Tuple[float, Dict[str, Any]]:
-    """
-    Calculate RMSD with detailed sequence alignment information.
-    
-    This function returns the RMSD score along with the actual amino acid
-    subsequences that were aligned and detailed alignment statistics.
-    
-    Args:
-        pdb_file1: Path to first PDB file
-        pdb_file2: Path to second PDB file  
-        chain_id1: Chain ID for first structure (auto-detect if None)
-        chain_id2: Chain ID for second structure (auto-detect if None)
-        alignment_method: Method for handling different lengths ("structural" or "sequence")
-        
-    Returns:
-        Tuple of (rmsd_value, detailed_alignment_info) where detailed_alignment_info contains:
-        - aligned_sequence1: Amino acid sequence from structure 1 that was aligned
-        - aligned_sequence2: Amino acid sequence from structure 2 that was aligned
-        - alignment_start1, alignment_end1: Start and end positions in sequence 1
-        - alignment_start2, alignment_end2: Start and end positions in sequence 2
-        - alignment_length: Number of residues aligned
-        - coverage1, coverage2: Percentage of each structure covered by alignment
-        - full_sequence1, full_sequence2: Complete sequences of both structures
-        - alignment_method: Method used for alignment
-        
-    Raises:
-        FileNotFoundError: If PDB files don't exist
-        ValueError: If structures can't be aligned or have no common residues
-    """
-    # Check if files exist
-    if not os.path.exists(pdb_file1):
-        raise FileNotFoundError(f"PDB file not found: {pdb_file1}")
-    if not os.path.exists(pdb_file2):
-        raise FileNotFoundError(f"PDB file not found: {pdb_file2}")
-    
-    try:
-        # Parse PDB structures
-        parser = PDBParser(QUIET=True)
-        structure1 = parser.get_structure("struct1", pdb_file1)
-        structure2 = parser.get_structure("struct2", pdb_file2)
-        
-        # Get chains
-        chain1 = _get_chain(structure1, chain_id1)
-        chain2 = _get_chain(structure2, chain_id2)
-        
-        # Get full sequences
-        full_sequence1 = _get_sequence_from_chain(chain1)
-        full_sequence2 = _get_sequence_from_chain(chain2)
-        
-        if alignment_method == "structural":
-            rmsd, alignment_info = _calculate_structural_rmsd_with_alignment(chain1, chain2)
-        else:
-            # For sequence alignment, use simpler approach
-            ca_atoms1 = _get_ca_atoms(chain1)
-            ca_atoms2 = _get_ca_atoms(chain2)
-            
-            if len(ca_atoms1) == 0 or len(ca_atoms2) == 0:
-                raise ValueError("No CA atoms found in one or both structures")
-            
-            # Use the minimum length
-            min_length = min(len(ca_atoms1), len(ca_atoms2))
-            
-            if min_length == 0:
-                raise ValueError("No common residues found")
-            
-            rmsd = _direct_rmsd(ca_atoms1[:min_length], ca_atoms2[:min_length])
-            
-            alignment_info = {
-                'aligned_sequence1': full_sequence1[:min_length],
-                'aligned_sequence2': full_sequence2[:min_length],
-                'alignment_start1': 0,
-                'alignment_end1': min_length,
-                'alignment_start2': 0,
-                'alignment_end2': min_length,
-                'alignment_length': min_length,
-                'alignment_method': 'sequence',
-                'coverage1': (min_length / len(full_sequence1)) * 100.0 if len(full_sequence1) > 0 else 0.0,
-                'coverage2': (min_length / len(full_sequence2)) * 100.0 if len(full_sequence2) > 0 else 0.0,
-                'residue_info1': _get_residue_info(chain1)[:min_length],
-                'residue_info2': _get_residue_info(chain2)[:min_length]
-            }
-        
-        # Add full sequences and additional info
-        alignment_info.update({
-            'full_sequence1': full_sequence1,
-            'full_sequence2': full_sequence2,
-            'full_length1': len(full_sequence1),
-            'full_length2': len(full_sequence2),
-            'rmsd': round(rmsd, 3),
-            'pdb_file1': pdb_file1,
-            'pdb_file2': pdb_file2,
-            'chain_id1': chain1.get_id(),
-            'chain_id2': chain2.get_id()
-        })
-        
-        return round(rmsd, 3), alignment_info
-        
-    except Exception as e:
-        raise ValueError(f"Error calculating RMSD with sequences: {str(e)}")
-
-
 if __name__ == "__main__":
     # Test the RMSD calculator
     import sys
     
-    if len(sys.argv) != 3:
-        print("Usage: python rmsd_calculator.py <pdb_file1> <pdb_file2>")
+    if len(sys.argv) != 2:
+        print("Usage: python rmsd_calculator.py <newly_folded_pdb_file>")
+        print(f"Reference structure: {REFERENCE_PDB}")
+        print(f"Reference sequence: {REFERENCE_SEQUENCE}")
         sys.exit(1)
     
-    pdb1, pdb2 = sys.argv[1], sys.argv[2]
+    pdb2 = sys.argv[1]
     
     try:
-        rmsd = calculate_rmsd(pdb1, pdb2)
-        print(f"RMSD between {pdb1} and {pdb2}: {rmsd:.3f} Å")
+        rmsd, alignment_info = calculate_rmsd_with_alignment(pdb2)
         
-        # Also show detailed info
-        rmsd_detailed, info = calculate_rmsd_with_alignment_info(pdb1, pdb2)
-        print(f"Basic alignment info: {info}")
+        print(f"RMSD between reference ({REFERENCE_PDB}) and {pdb2}: {rmsd:.3f} Å")
+        print(f"Alignment length: {alignment_info['alignment_length']} residues")
+        print(f"Overlap percentage: {alignment_info['overlap_percentage']:.1f}%")
+        print(f"Sequence identity: {alignment_info['sequence_identity']:.1f}%")
         
-        # Show sequence alignment info
-        print("\n" + "="*50)
-        print("DETAILED SEQUENCE ALIGNMENT INFO")
-        print("="*50)
+        print(f"\nReference sequence ({len(alignment_info['ref_sequence'])} residues):")
+        print(f"{alignment_info['ref_sequence']}")
+        print(f"\nNew structure sequence ({len(alignment_info['new_sequence'])} residues):")
+        print(f"{alignment_info['new_sequence']}")
         
-        rmsd_seq, seq_info = calculate_rmsd_with_sequences(pdb1, pdb2)
-        print(f"RMSD: {rmsd_seq:.3f} Å")
-        print(f"Alignment method: {seq_info['alignment_method']}")
-        print(f"Alignment length: {seq_info['alignment_length']} residues")
-        print(f"Coverage: {seq_info['coverage1']:.1f}% (struct1), {seq_info['coverage2']:.1f}% (struct2)")
-        print(f"\nFull sequence 1 ({seq_info['full_length1']} residues): {seq_info['full_sequence1']}")
-        print(f"Full sequence 2 ({seq_info['full_length2']} residues): {seq_info['full_sequence2']}")
-        print(f"\nAligned sequence 1: {seq_info['aligned_sequence1']}")
-        print(f"Aligned sequence 2: {seq_info['aligned_sequence2']}")
+        print(f"\nAligned reference sequence (positions {alignment_info['ref_start']}-{alignment_info['ref_end']}):")
+        print(f"{alignment_info['aligned_ref_sequence']}")
+        print(f"\nAligned new structure sequence (positions {alignment_info['new_start']}-{alignment_info['new_end']}):")
+        print(f"{alignment_info['aligned_new_sequence']}")
         
-        if seq_info['alignment_method'] == 'structural_sliding':
-            print(f"\nAlignment positions:")
-            print(f"  Structure 1: residues {seq_info['alignment_start1']}-{seq_info['alignment_end1']}")
-            print(f"  Structure 2: residues {seq_info['alignment_start2']}-{seq_info['alignment_end2']}")
+        # Verify reference sequence matches
+        if alignment_info['ref_sequence'] == REFERENCE_SEQUENCE:
+            print(f"\n✓ Reference sequence matches hardcoded sequence")
+        else:
+            print(f"\n⚠ Warning: Reference sequence doesn't match hardcoded sequence")
+            print(f"Expected: {REFERENCE_SEQUENCE}")
+            print(f"Found:    {alignment_info['ref_sequence']}")
         
     except Exception as e:
         print(f"Error: {e}")

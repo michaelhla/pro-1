@@ -81,12 +81,17 @@ class CatalyticActivityExaminer:
             raise FileNotFoundError(f"PDB file not found: {pdb_file_path}")
         
         if output_dir is None:
-            output_dir = self.temp_dir
+            # Create images folder in the same directory as this script
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            output_dir = os.path.join(script_dir, 'images')
+            os.makedirs(output_dir, exist_ok=True)
         
         if residue_offsets is None:
             residue_offsets = {}
         
-        # Initialize PyMOL
+        # Initialize PyMOL in headless mode to prevent hanging
+        import __main__
+        __main__.pymol_argv = ['pymol', '-c']  # Run in command line mode (headless)
         pymol.finish_launching()
         cmd.reinitialize()
         
@@ -313,8 +318,8 @@ class CatalyticActivityExaminer:
         cmd.set('ray_opaque_background', 0)  # Transparent background
         
         try:
-            # Capture the image
-            cmd.png(output_path, width=1200, height=900, dpi=300, ray=1)
+            # Capture the image (ray tracing disabled to prevent hanging)
+            cmd.png(output_path, width=1200, height=900, dpi=300, ray=0)
             print(f"Active site residues image saved to: {output_path}")
         except Exception as e:
             # Return a placeholder path if image generation fails
@@ -435,8 +440,8 @@ class CatalyticActivityExaminer:
         cmd.set('ray_opaque_background', 0)  # Transparent background
         
         try:
-            # Capture the image
-            cmd.png(output_path, width=1200, height=900, dpi=300, ray=1)
+            # Capture the image (ray tracing disabled to prevent hanging)
+            cmd.png(output_path, width=1200, height=900, dpi=300, ray=0)
             print(f"Zinc binding residues image saved to: {output_path}")
         except Exception as e:
             # Return a placeholder path if image generation fails
@@ -569,7 +574,8 @@ class CatalyticActivityExaminer:
         cmd.set('ray_opaque_background', 0)
         
         try:
-            cmd.png(output_path, width=1400, height=1000, dpi=300, ray=1)
+            # Capture the image (ray tracing disabled to prevent hanging)
+            cmd.png(output_path, width=1400, height=1000, dpi=300, ray=0)
             print(f"Combined catalytic site image saved to: {output_path}")
         except Exception as e:
             output_path = os.path.join(output_dir, 'combined_catalytic_site_failed.png')
@@ -932,7 +938,7 @@ if __name__ == "__main__":
         if PYMOL_AVAILABLE:
             try:
                 from pymol import cmd
-                cmd.quit()
+                cmd.reinitialize()  # Use reinitialize instead of quit to avoid hanging
                 print("✓ PyMOL cleanup completed")
             except:
                 pass 
