@@ -149,7 +149,7 @@ class CarbonicAnhydraseDesigner:
             {
                 "type": "function",
                 "name": "examine_catalytic_activity",
-                "description": "Examine the catalytic activity sites of carbonic anhydrase II using PyMOL visualization. Checks active site residues (Y7, N62, H64, N67, Q92) and zinc binding residues (H94, H96, H119). Generates labeled images (returned as base64-encoded data) and assesses catalytic integrity to ensure modifications haven't affected enzyme activity.",
+                "description": "Examine the catalytic activity sites of carbonic anhydrase using PyMOL visualization. Takes exact residue dictionaries specifying which residues to examine and their positions. Generates labeled images (returned as base64-encoded data) and assesses catalytic integrity to ensure modifications haven't affected enzyme activity.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -157,11 +157,30 @@ class CarbonicAnhydraseDesigner:
                             "type": "string",
                             "description": "Path to the PDB file to examine (e.g., 'predicted_structures/mutant.pdb')"
                         },
-                        "residue_offsets": {
+                        "active_site_residues": {
                             "type": "object",
-                            "description": "Dictionary mapping residue names to offset values to account for insertions/deletions (e.g., {'H94': 2, 'H96': 2} if 2 residues were inserted before these positions)",
+                            "description": "Dictionary of active site residues with format {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}, ...}. For standard hCA II: Y7, N62, H64, N67, Q92",
                             "additionalProperties": {
-                                "type": "integer"
+                                "type": "object",
+                                "properties": {
+                                    "name": {"type": "string"},
+                                    "function": {"type": "string"},
+                                    "number": {"type": "integer"}
+                                },
+                                "required": ["name", "function", "number"]
+                            }
+                        },
+                        "zinc_binding_residues": {
+                            "type": "object",
+                            "description": "Dictionary of zinc binding residues with format {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, ...}. For standard hCA II: H94, H96, H119",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {"type": "string"},
+                                    "function": {"type": "string"},
+                                    "number": {"type": "integer"}
+                                },
+                                "required": ["name", "function", "number"]
                             }
                         },
                         "chain_id": {
@@ -173,7 +192,7 @@ class CarbonicAnhydraseDesigner:
                             "description": "Directory to save visualization images (optional)"
                         }
                     },
-                    "required": ["pdb_file_path"],
+                    "required": ["pdb_file_path", "active_site_residues", "zinc_binding_residues"],
                     "additionalProperties": False
                 },
                 "strict": True
@@ -473,7 +492,7 @@ class CarbonicAnhydraseDesigner:
         2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower = more stable)
         3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
         4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
-        5. examine_catalytic_activity: Visualizes and examines catalytic sites (active site and zinc binding residues) with base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity
+        5. examine_catalytic_activity: Visualizes and examines catalytic sites by taking exact residue dictionaries specifying which residues to examine. Generates base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity
         6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
 
         Please approach this systematically:
@@ -484,8 +503,8 @@ class CarbonicAnhydraseDesigner:
         5. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
         6. Use calculate_rosetta_score to get the stability score of your modified sequence.
         7. Use examine_secondary_structure to analyze the new structure's fold, SASA, and structural quality
-        8. Use examine_catalytic_activity to verify the new structure's catalytic sites are intact. You will have to make sure to account for any sequence length changes with residue_offsets.This includes the ZINC BINDING RESIDUES.
-        CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved (account for any sequence length changes with residue_offsets). This includes the ZINC BINDING RESIDUES.
+        8. Use examine_catalytic_activity to verify the new structure's catalytic sites are intact. You need to specify the exact residue numbers and types in the active_site_residues and zinc_binding_residues dictionaries based on your mutant sequence. This includes the ZINC BINDING RESIDUES.
+        CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved. You must provide the correct residue dictionaries with exact numbers and amino acid types for your specific mutant sequence. This includes the ZINC BINDING RESIDUES.
         9. Compare scores and provide recommendations with quantitative rationale. 
         10. REPEAT THE PROCESS UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS.
 
@@ -522,11 +541,14 @@ class CarbonicAnhydraseDesigner:
         
         Catalytic activity examination guidelines:
         - Always use examine_catalytic_activity to verify catalytic integrity before and after mutations
-        - Active site residues monitored: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
-        - Zinc binding residues monitored: H94, H96, H119 (essential for catalytic activity)
-        - Use residue_offsets parameter if you've made insertions/deletions that shift residue numbering
+        - For standard hCA II, specify these residues in your dictionaries:
+          * Active site residues: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
+          * Zinc binding residues: H94, H96, H119 (essential for catalytic activity)
+        - You MUST provide exact residue dictionaries with the correct residue numbers for your specific sequence
+        - If you've made insertions/deletions, calculate the new positions FOR ALL OF THE CATALYTIC RESIDUES AND ZINC BINDING RESIDUES and update the residue numbers accordingly
+        - Use format: {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}, ...}
         - Integrity levels: EXCELLENT (no issues), GOOD (minor issues), ACCEPTABLE (some concerns), POOR (major problems)
-        - NEVER recommend a design that shows POOR catalytic integrity
+        - Be very cautious when recommending a design that shows POOR catalytic integrity. 
         
         Secondary structure examination guidelines:
         - Use examine_secondary_structure to assess overall fold quality and stability

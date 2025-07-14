@@ -27,6 +27,21 @@ except ImportError:
 class TestCatalyticActivityExaminer(unittest.TestCase):
     """Test cases for the catalytic activity examiner."""
     
+    # Standard hCA II residues for testing
+    ACTIVE_SITE_RESIDUES = {
+        'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7},
+        'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62},
+        'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64},
+        'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67},
+        'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}
+    }
+    
+    ZINC_BINDING_RESIDUES = {
+        'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94},
+        'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96},
+        'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}
+    }
+    
     def setUp(self):
         """Set up test fixtures."""
         self.test_dir = tempfile.mkdtemp()
@@ -101,7 +116,7 @@ END
         if not EXAMINER_AVAILABLE:
             self.skipTest("Catalytic activity examiner not available")
         
-        result = examine_catalytic_activity("nonexistent.pdb")
+        result = examine_catalytic_activity("nonexistent.pdb", self.ACTIVE_SITE_RESIDUES, self.ZINC_BINDING_RESIDUES)
         result_dict = json.loads(result)
         
         self.assertIn('error', result_dict)
@@ -120,7 +135,7 @@ END
             cmd.load(self.mock_pdb_file, "test_structure")
             
             # Run examination
-            result = examine_catalytic_activity(self.mock_pdb_file)
+            result = examine_catalytic_activity(self.mock_pdb_file, self.ACTIVE_SITE_RESIDUES, self.ZINC_BINDING_RESIDUES)
             result_dict = json.loads(result)
             
             # Check that result contains expected keys
@@ -147,18 +162,27 @@ END
             except:
                 pass
     
-    def test_examine_catalytic_activity_with_offsets(self):
-        """Test catalytic activity examination with residue offsets."""
+    def test_examine_catalytic_activity_with_modified_residues(self):
+        """Test catalytic activity examination with modified residue numbers."""
         if not EXAMINER_AVAILABLE or not PYMOL_AVAILABLE:
             self.skipTest("PyMOL or examiner not available")
         
         try:
-            # Test with some residue offsets
-            offsets = {'H94': 2, 'H96': 2}  # Simulate insertions
-            result = examine_catalytic_activity(self.mock_pdb_file, residue_offsets=offsets)
+            # Test with modified residue numbers (simulating insertions)
+            modified_active_site = self.ACTIVE_SITE_RESIDUES.copy()
+            modified_zinc_binding = self.ZINC_BINDING_RESIDUES.copy()
+            
+            # Simulate 2 residue insertions affecting zinc binding residues
+            modified_zinc_binding['H94']['number'] = 96  # H94 -> H96
+            modified_zinc_binding['H96']['number'] = 98  # H96 -> H98
+            modified_zinc_binding['H119']['number'] = 121  # H119 -> H121
+            
+            result = examine_catalytic_activity(self.mock_pdb_file, modified_active_site, modified_zinc_binding)
             result_dict = json.loads(result)
             
-            self.assertEqual(result_dict['residue_offsets'], offsets)
+            # Should contain the residue dictionaries we provided
+            self.assertEqual(result_dict['active_site_residues'], modified_active_site)
+            self.assertEqual(result_dict['zinc_binding_residues'], modified_zinc_binding)
             
         except Exception as e:
             self.skipTest(f"PyMOL test failed with mock data: {e}")
@@ -185,7 +209,7 @@ END
             
             # Run examination on the folded structure
             print("Running catalytic activity examination on folded structure...")
-            result = examine_catalytic_activity(folded_pdb_path)
+            result = examine_catalytic_activity(folded_pdb_path, self.ACTIVE_SITE_RESIDUES, self.ZINC_BINDING_RESIDUES)
             result_dict = json.loads(result)
             
             # Check that result contains expected keys
@@ -323,9 +347,9 @@ def test_examiner_integration():
 
 def test_catalytic_residues():
     """
-    Test that the catalytic residues are correctly defined.
+    Test that the catalytic activity examiner can be initialized and accepts residue dictionaries.
     """
-    print("\nTesting catalytic residue definitions...")
+    print("\nTesting catalytic activity examiner initialization...")
     
     if not EXAMINER_AVAILABLE:
         print("⚠ Examiner not available, skipping catalytic residues test")
@@ -336,29 +360,13 @@ def test_catalytic_residues():
     # Test initialization
     examiner = CatalyticActivityExaminer()
     
-    # Test active site residues
-    expected_active_site = ['Y7', 'N62', 'H64', 'N67', 'Q92']
-    actual_active_site = list(examiner.ACTIVE_SITE_RESIDUES.keys())
+    # Test that the examiner no longer has hardcoded residues (simplified interface)
+    assert not hasattr(examiner, 'ACTIVE_SITE_RESIDUES'), "Examiner should not have hardcoded active site residues"
+    assert not hasattr(examiner, 'ZINC_BINDING_RESIDUES'), "Examiner should not have hardcoded zinc binding residues"
     
-    for res in expected_active_site:
-        assert res in actual_active_site, f"Active site residue {res} not found"
-    
-    print("✓ Active site residues correctly defined:")
-    for res, info in examiner.ACTIVE_SITE_RESIDUES.items():
-        print(f"   {res} ({info['name']}): {info['function']}")
-    
-    # Test zinc binding residues
-    expected_zinc_binding = ['H94', 'H96', 'H119']
-    actual_zinc_binding = list(examiner.ZINC_BINDING_RESIDUES.keys())
-    
-    for res in expected_zinc_binding:
-        assert res in actual_zinc_binding, f"Zinc binding residue {res} not found"
-    
-    print("✓ Zinc binding residues correctly defined:")
-    for res, info in examiner.ZINC_BINDING_RESIDUES.items():
-        print(f"   {res} ({info['name']}): {info['function']}")
-    
-    print("✓ All catalytic residues are properly defined")
+    print("✓ Catalytic activity examiner correctly uses flexible residue specification")
+    print("✓ The examiner now requires caller to provide exact residue dictionaries")
+    print("✓ This eliminates the need for complex offset calculations")
 
 
 if __name__ == "__main__":
