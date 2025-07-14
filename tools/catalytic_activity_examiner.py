@@ -27,6 +27,7 @@ import tempfile
 from typing import Dict, List, Optional, Tuple, Any
 import json
 import numpy as np
+import base64
 
 # Try to import PyMOL
 try:
@@ -858,6 +859,27 @@ class CatalyticActivityExaminer:
         return np.sqrt(np.mean(squared_distances))
 
 
+def encode_image_to_base64(image_path: str) -> Optional[str]:
+    """
+    Encode an image file to base64 string.
+    
+    Args:
+        image_path: Path to the image file
+        
+    Returns:
+        Base64-encoded string of the image, or None if encoding fails
+    """
+    try:
+        if os.path.exists(image_path):
+            with open(image_path, "rb") as image_file:
+                return base64.b64encode(image_file.read()).decode("utf-8")
+        else:
+            return None
+    except Exception as e:
+        print(f"Error encoding image {image_path}: {e}")
+        return None
+
+
 def examine_catalytic_activity(pdb_file_path: str, 
                              residue_offsets: Dict[str, int] = None,
                              chain_id: str = 'A',
@@ -872,7 +894,7 @@ def examine_catalytic_activity(pdb_file_path: str,
         output_dir: Directory to save images (default: temp directory)
         
     Returns:
-        JSON string containing analysis results
+        JSON string containing analysis results with base64-encoded images
     """
     try:
         examiner = CatalyticActivityExaminer(chain_id=chain_id)
@@ -880,14 +902,31 @@ def examine_catalytic_activity(pdb_file_path: str,
             pdb_file_path, residue_offsets, output_dir
         )
         
-        # Convert to JSON-serializable format
+        # Encode all images as base64
+        active_site_image_base64 = None
+        zinc_binding_image_base64 = None
+        combined_image_base64 = None
+        
+        if results['active_site_image'] and os.path.exists(results['active_site_image']):
+            active_site_image_base64 = encode_image_to_base64(results['active_site_image'])
+            
+        if results['zinc_binding_image'] and os.path.exists(results['zinc_binding_image']):
+            zinc_binding_image_base64 = encode_image_to_base64(results['zinc_binding_image'])
+            
+        if results['combined_catalytic_image'] and os.path.exists(results['combined_catalytic_image']):
+            combined_image_base64 = encode_image_to_base64(results['combined_catalytic_image'])
+        
+        # Convert to JSON-serializable format with base64 images
         serializable_results = {
             'pdb_file': results['pdb_file'],
             'chain_id': results['chain_id'],
             'residue_offsets': results['residue_offsets'],
-            'active_site_image': results['active_site_image'],
-            'zinc_binding_image': results['zinc_binding_image'],
-            'combined_catalytic_image': results['combined_catalytic_image'],
+            'active_site_image_path': results['active_site_image'],
+            'active_site_image_base64': active_site_image_base64,
+            'zinc_binding_image_path': results['zinc_binding_image'],
+            'zinc_binding_image_base64': zinc_binding_image_base64,
+            'combined_catalytic_image_path': results['combined_catalytic_image'],
+            'combined_catalytic_image_base64': combined_image_base64,
             'catalytic_integrity': results['catalytic_integrity'],
             'summary': f"Catalytic integrity: {results['catalytic_integrity']['integrity_level']} "
                       f"(Risk: {results['catalytic_integrity']['risk_level']})"
@@ -899,7 +938,10 @@ def examine_catalytic_activity(pdb_file_path: str,
         error_result = {
             'error': str(e),
             'pdb_file': pdb_file_path,
-            'success': False
+            'success': False,
+            'active_site_image_base64': None,
+            'zinc_binding_image_base64': None,
+            'combined_catalytic_image_base64': None
         }
         return json.dumps(error_result, indent=2)
 

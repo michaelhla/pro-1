@@ -149,7 +149,7 @@ class CarbonicAnhydraseDesigner:
             {
                 "type": "function",
                 "name": "examine_catalytic_activity",
-                "description": "Examine the catalytic activity sites of carbonic anhydrase II using PyMOL visualization. Checks active site residues (Y7, N62, H64, N67, Q92) and zinc binding residues (H94, H96, H119). Generates labeled images and assesses catalytic integrity to ensure modifications haven't affected enzyme activity.",
+                "description": "Examine the catalytic activity sites of carbonic anhydrase II using PyMOL visualization. Checks active site residues (Y7, N62, H64, N67, Q92) and zinc binding residues (H94, H96, H119). Generates labeled images (returned as base64-encoded data) and assesses catalytic integrity to ensure modifications haven't affected enzyme activity.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -181,7 +181,7 @@ class CarbonicAnhydraseDesigner:
             {
                 "type": "function",
                 "name": "examine_secondary_structure",
-                "description": "Examine secondary structure and calculate structural properties using PyMOL. Analyzes helix/sheet/loop content, calculates SASA (Solvent Accessible Surface Area), radius of gyration, and generates a colored secondary structure visualization. Provides quality assessment and compactness analysis.",
+                "description": "Examine secondary structure and calculate structural properties using PyMOL. Analyzes helix/sheet/loop content, calculates SASA (Solvent Accessible Surface Area), radius of gyration, and generates a colored secondary structure visualization (returned as base64-encoded data). Provides quality assessment and compactness analysis.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -234,7 +234,7 @@ class CarbonicAnhydraseDesigner:
             function_call: Function call object from the API response
             
         Returns:
-            String result from the function execution
+            String result from the function execution, with enhanced formatting for base64 images
         """
         function_name = function_call.name
         
@@ -249,7 +249,47 @@ class CarbonicAnhydraseDesigner:
             # Execute the function
             result = self.tool_mapping[function_name](**arguments)
             
-            print(f"Executed {function_name}({arguments}) -> {result}")
+            print(f"Executed {function_name}({arguments})")
+            
+            # Check if result contains base64 images (for examination functions)
+            if function_name in ['examine_catalytic_activity', 'examine_secondary_structure']:
+                try:
+                    result_data = json.loads(str(result))
+                    
+                    # Check for base64 images and provide enhanced feedback
+                    image_summary = []
+                    
+                    if function_name == 'examine_catalytic_activity':
+                        if result_data.get('active_site_image_base64'):
+                            image_summary.append("✓ Active site visualization generated")
+                        if result_data.get('zinc_binding_image_base64'):
+                            image_summary.append("✓ Zinc binding site visualization generated")
+                        if result_data.get('combined_catalytic_image_base64'):
+                            image_summary.append("✓ Combined catalytic site visualization generated")
+                    
+                    elif function_name == 'examine_secondary_structure':
+                        if result_data.get('secondary_structure_image_base64'):
+                            image_summary.append("✓ Secondary structure visualization generated")
+                    
+                    if image_summary:
+                        print(f"Generated visualizations: {', '.join(image_summary)}")
+                        
+                        # Add a summary to the result for the model
+                        result_data['visualization_summary'] = {
+                            'images_generated': len(image_summary),
+                            'image_descriptions': image_summary,
+                            'note': 'Base64-encoded images are included in the response for visual analysis'
+                        }
+                        
+                        # Return the enhanced result
+                        enhanced_result = json.dumps(result_data, indent=2)
+                        print(f"Enhanced result with {len(image_summary)} base64 images prepared for model analysis")
+                        return enhanced_result
+                        
+                except (json.JSONDecodeError, KeyError):
+                    # If parsing fails, return original result
+                    pass
+            
             return str(result)
             
         except Exception as e:
@@ -273,11 +313,25 @@ class CarbonicAnhydraseDesigner:
             if item.type == 'function_call':
                 has_function_calls = True
                 result = self._execute_function_call(item)
-                function_responses.append({
-                    "type": "function_call_output",
-                    "call_id": item.call_id,
-                    "output": result
-                })
+                
+                # Check if result contains base64 images and format them properly
+                visual_content = self._extract_and_format_images(result, item.name)
+                
+                if visual_content:
+                    # If we have images, format the response with visual content
+                    function_responses.append({
+                        "type": "function_call_output",
+                        "call_id": item.call_id,
+                        "output": visual_content
+                    })
+                else:
+                    # Standard text response
+                    function_responses.append({
+                        "type": "function_call_output",
+                        "call_id": item.call_id,
+                        "output": result
+                    })
+                    
             elif item.type == 'reasoning':
                 # Print reasoning summary if available
                 if hasattr(item, 'summary') and item.summary:
@@ -286,6 +340,104 @@ class CarbonicAnhydraseDesigner:
                             print(f"Reasoning: {summary.text}")
         
         return not has_function_calls, function_responses
+    
+    def _extract_and_format_images(self, result: str, function_name: str) -> Optional[List[Dict[str, Any]]]:
+        """
+        Extract base64 images from function results and format them for visual analysis.
+        
+        Uses the OpenAI API format for visual inputs:
+        [
+            {"type": "input_text", "text": "description..."},
+            {"type": "input_image", "image_url": "data:image/png;base64,..."}, 
+            ...
+        ]
+        
+        Note: The o3 model's visual analysis capabilities may be different from GPT-4V.
+        This implementation provides base64 images in the standard format but includes
+        fallback handling if the o3 API doesn't support visual inputs in continuation requests.
+        
+        Args:
+            result: JSON string result from function execution
+            function_name: Name of the function that was executed
+            
+        Returns:
+            List of content items for visual analysis, or None if no images
+        """
+        if function_name not in ['examine_catalytic_activity', 'examine_secondary_structure']:
+            return None
+            
+        try:
+            result_data = json.loads(str(result))
+            content_items = []
+            
+            # Start with text summary
+            summary_text = "Function execution results:\n\n"
+            
+            if function_name == 'examine_catalytic_activity':
+                integrity = result_data.get('catalytic_integrity', {})
+                summary_text += f"Catalytic Integrity: {integrity.get('integrity_level', 'UNKNOWN')}\n"
+                summary_text += f"Risk Level: {integrity.get('risk_level', 'UNKNOWN')}\n"
+                
+                if 'active_site_rmsd' in integrity and integrity['active_site_rmsd']:
+                    summary_text += f"Active Site RMSD: {integrity['active_site_rmsd']:.2f} Å\n"
+                if 'zinc_binding_rmsd' in integrity and integrity['zinc_binding_rmsd']:
+                    summary_text += f"Zinc Binding RMSD: {integrity['zinc_binding_rmsd']:.2f} Å\n"
+                
+                summary_text += "\nGenerated visualizations for analysis:\n"
+                
+                # Add images
+                if result_data.get('active_site_image_base64'):
+                    summary_text += "- Active site residues visualization\n"
+                    content_items.append({
+                        "type": "input_image",
+                        "image_url": f"data:image/png;base64,{result_data['active_site_image_base64']}"
+                    })
+                
+                if result_data.get('zinc_binding_image_base64'):
+                    summary_text += "- Zinc binding site visualization\n"
+                    content_items.append({
+                        "type": "input_image", 
+                        "image_url": f"data:image/png;base64,{result_data['zinc_binding_image_base64']}"
+                    })
+                
+                if result_data.get('combined_catalytic_image_base64'):
+                    summary_text += "- Combined catalytic site visualization\n"
+                    content_items.append({
+                        "type": "input_image",
+                        "image_url": f"data:image/png;base64,{result_data['combined_catalytic_image_base64']}"
+                    })
+            
+            elif function_name == 'examine_secondary_structure':
+                ss_content = result_data.get('secondary_structure_content', {})
+                quality = result_data.get('quality_assessment', {})
+                
+                summary_text += f"Secondary Structure Analysis:\n"
+                summary_text += f"Total Residues: {ss_content.get('total_residues', 'N/A')}\n"
+                summary_text += f"Helix: {ss_content.get('helix_percentage', 0):.1f}%\n"
+                summary_text += f"Sheet: {ss_content.get('sheet_percentage', 0):.1f}%\n"
+                summary_text += f"Loop: {ss_content.get('loop_percentage', 0):.1f}%\n"
+                summary_text += f"Overall Quality: {quality.get('overall_quality', 'UNKNOWN')}\n"
+                summary_text += f"Compactness: {quality.get('compactness', 'UNKNOWN')}\n"
+                
+                if result_data.get('secondary_structure_image_base64'):
+                    summary_text += "\nGenerated secondary structure visualization for analysis:\n"
+                    content_items.append({
+                        "type": "input_image",
+                        "image_url": f"data:image/png;base64,{result_data['secondary_structure_image_base64']}"
+                    })
+            
+            # If we have images, return formatted content
+            if content_items:
+                # Insert text summary at the beginning
+                formatted_content = [{"type": "input_text", "text": summary_text}] + content_items
+                print(f"Formatted {len(content_items)} images for visual analysis by the model")
+                return formatted_content
+            
+            return None
+            
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"Error formatting images: {e}")
+            return None
     
     def design_stable_carbonic_anhydrase(self, target_pdb: str = "1CA2", 
                                        stability_goals: List[str] = None) -> str:
@@ -321,8 +473,8 @@ class CarbonicAnhydraseDesigner:
         2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower = more stable)
         3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
         4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
-        5. examine_catalytic_activity: Visualizes and examines catalytic sites (active site and zinc binding residues) to ensure modifications haven't affected enzyme activity
-        6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment
+        5. examine_catalytic_activity: Visualizes and examines catalytic sites (active site and zinc binding residues) with base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity
+        6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
 
         Please approach this systematically:
         1. If given a PDB ID, first provide the corresponding amino acid sequence so you can fold it
@@ -383,6 +535,13 @@ class CarbonicAnhydraseDesigner:
         - Compactness levels: VERY_COMPACT (excellent), COMPACT (good), NORMAL (acceptable), LOOSE/VERY_LOOSE (concerning)
         - Monitor surface hydrophobicity - too high may cause aggregation, appropriate levels improve stability
         - Use structural quality assessment to guide mutation strategies
+        
+        Visual analysis guidelines:
+        - The examination functions return base64-encoded images that you can analyze visually
+        - Look for structural deformations, missing secondary structures, or catalytic site disruptions
+        - Compare visualizations between wild-type and mutant structures to assess structural preservation
+        - Use the visual information to guide further optimization decisions
+        - Images show: secondary structure coloring, catalytic residues, zinc coordination, surface representations
         """
         
         print("=" * 80)
@@ -418,11 +577,52 @@ class CarbonicAnhydraseDesigner:
             else:
                 # More reasoning needed, send function results back
                 print(f"Continuing reasoning with {len(function_responses)} function results...")
-                response = self.client.responses.create(
-                    input=function_responses,
-                    previous_response_id=response.id,
-                    **self.model_config
+                
+                # Check if any responses contain visual content
+                has_visual_content = any(
+                    isinstance(resp.get('output'), list) and 
+                    any(item.get('type') == 'input_image' for item in resp.get('output', []))
+                    for resp in function_responses
                 )
+                
+                if has_visual_content:
+                    print("⚠️  Visual content detected - o3 model visual analysis may be limited")
+                    print("   The model will receive visual data but may have limited image analysis capabilities")
+                
+                try:
+                    response = self.client.responses.create(
+                        input=function_responses,
+                        previous_response_id=response.id,
+                        **self.model_config
+                    )
+                except Exception as e:
+                    print(f"Error sending continuation request: {e}")
+                    if has_visual_content:
+                        print("This may be due to visual content formatting. Falling back to text-only mode...")
+                        # Fallback: send text-only versions
+                        fallback_responses = []
+                        for resp in function_responses:
+                            if isinstance(resp.get('output'), list):
+                                # Extract just the text content
+                                text_content = ""
+                                for item in resp.get('output', []):
+                                    if item.get('type') == 'input_text':
+                                        text_content += item.get('text', '')
+                                fallback_responses.append({
+                                    "type": "function_call_output",
+                                    "call_id": resp['call_id'],
+                                    "output": text_content or "Visual analysis completed (images not displayed)"
+                                })
+                            else:
+                                fallback_responses.append(resp)
+                        
+                        response = self.client.responses.create(
+                            input=fallback_responses,
+                            previous_response_id=response.id,
+                            **self.model_config
+                        )
+                    else:
+                        raise
         
         return "ERROR: Maximum iterations reached. Design process incomplete."
 

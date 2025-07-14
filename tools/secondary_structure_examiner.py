@@ -12,6 +12,7 @@ import sys
 import tempfile
 import json
 import math
+import base64
 from typing import Dict, List, Optional, Tuple, Any
 
 # Try to import PyMOL
@@ -442,6 +443,27 @@ class SecondaryStructureExaminer:
         return ". ".join(summary_parts) + "."
 
 
+def encode_image_to_base64(image_path: str) -> Optional[str]:
+    """
+    Encode an image file to base64 string.
+    
+    Args:
+        image_path: Path to the image file
+        
+    Returns:
+        Base64-encoded string of the image, or None if encoding fails
+    """
+    try:
+        if os.path.exists(image_path):
+            with open(image_path, "rb") as image_file:
+                return base64.b64encode(image_file.read()).decode("utf-8")
+        else:
+            return None
+    except Exception as e:
+        print(f"Error encoding image {image_path}: {e}")
+        return None
+
+
 def examine_secondary_structure(pdb_file_path: str, 
                                chain_id: str = 'A',
                                output_dir: str = None) -> str:
@@ -454,17 +476,23 @@ def examine_secondary_structure(pdb_file_path: str,
         output_dir: Directory to save images (default: temp directory)
         
     Returns:
-        JSON string containing structural analysis results
+        JSON string containing structural analysis results with base64-encoded images
     """
     try:
         examiner = SecondaryStructureExaminer(chain_id=chain_id)
         results = examiner.examine_secondary_structure(pdb_file_path, output_dir)
         
-        # Convert to JSON-serializable format
+        # Encode the image as base64
+        image_base64 = None
+        if results['secondary_structure_image'] and os.path.exists(results['secondary_structure_image']):
+            image_base64 = encode_image_to_base64(results['secondary_structure_image'])
+        
+        # Convert to JSON-serializable format with base64 image
         serializable_results = {
             'pdb_file': results['pdb_file'],
             'chain_id': results['chain_id'],
-            'secondary_structure_image': results['secondary_structure_image'],
+            'secondary_structure_image_path': results['secondary_structure_image'],
+            'secondary_structure_image_base64': image_base64,
             'structural_properties': results['structural_properties'],
             'secondary_structure_content': results['secondary_structure_content'],
             'surface_properties': results['surface_properties'],
@@ -478,7 +506,8 @@ def examine_secondary_structure(pdb_file_path: str,
         error_result = {
             'error': str(e),
             'pdb_file': pdb_file_path,
-            'success': False
+            'success': False,
+            'secondary_structure_image_base64': None
         }
         return json.dumps(error_result, indent=2)
 
