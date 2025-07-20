@@ -44,13 +44,13 @@ class SecondaryStructureExaminer:
         self.temp_dir = tempfile.mkdtemp()
         
     def examine_secondary_structure(self, pdb_file_path: str, 
-                                  output_dir: str = None) -> Dict[str, Any]:
+                                  image_subdir: str = "default") -> Dict[str, Any]:
         """
         Examine secondary structure and calculate structural properties.
         
         Args:
             pdb_file_path: Path to the PDB file to examine
-            output_dir: Directory to save images (default: temp directory)
+            image_subdir: Subdirectory name within tools/images/ to save images
             
         Returns:
             Dictionary containing structural analysis and image path
@@ -58,11 +58,10 @@ class SecondaryStructureExaminer:
         if not os.path.exists(pdb_file_path):
             raise FileNotFoundError(f"PDB file not found: {pdb_file_path}")
         
-        if output_dir is None:
-            # Create images folder in the same directory as this script
-            script_dir = os.path.dirname(os.path.abspath(__file__))
-            output_dir = os.path.join(script_dir, 'images')
-            os.makedirs(output_dir, exist_ok=True)
+        # Always save to tools/images/{image_subdir}
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        output_dir = os.path.join(script_dir, 'images', image_subdir)
+        os.makedirs(output_dir, exist_ok=True)
         
         # Initialize PyMOL
         pymol.finish_launching()
@@ -466,21 +465,21 @@ def encode_image_to_base64(image_path: str) -> Optional[str]:
 
 def examine_secondary_structure(pdb_file_path: str, 
                                chain_id: str = 'A',
-                               output_dir: str = None) -> str:
+                               image_subdir: str = "default") -> str:
     """
     Simplified interface for examining secondary structure.
     
     Args:
         pdb_file_path: Path to the PDB file to examine
         chain_id: Chain identifier (default: 'A')
-        output_dir: Directory to save images (default: temp directory)
+        image_subdir: Subdirectory name within tools/images/ to save images (default: "default")
         
     Returns:
         JSON string containing structural analysis results with base64-encoded images
     """
     try:
         examiner = SecondaryStructureExaminer(chain_id=chain_id)
-        results = examiner.examine_secondary_structure(pdb_file_path, output_dir)
+        results = examiner.examine_secondary_structure(pdb_file_path, image_subdir)
         
         # Encode the image as base64
         image_base64 = None

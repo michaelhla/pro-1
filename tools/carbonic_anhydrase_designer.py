@@ -9,6 +9,8 @@ tools and databases.
 
 import json
 import os
+from datetime import datetime
+from pathlib import Path
 from typing import Dict, List, Callable, Any, Optional
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -31,29 +33,51 @@ class CarbonicAnhydraseDesigner:
     more stable carbonic anhydrase variants.
     """
     
-    def __init__(self, api_key: Optional[str] = None, reasoning_effort: str = "medium"):
+    def __init__(self, api_key: Optional[str] = None, reasoning_effort: str = "high", 
+                 output_dir: str = None):
         """
         Initialize the designer with OpenAI client and model configuration.
         
         Args:
             api_key: OpenAI API key (if None, will use OPENAI_API_KEY env var)
             reasoning_effort: Level of reasoning effort ("low", "medium", "high")
+            output_dir: Directory to save outputs (if None, creates timestamped dir)
         """
         self.client = OpenAI(api_key=api_key)
         self.model_config = {
             "model": "o3",
             "reasoning": {
                 "effort": reasoning_effort,
-                "summary": "auto"
+                "summary": "detailed"
             },
             "store": False,
-            "include": ["reasoning.encrypted_content"]  # Preserve reasoning between calls
+            "include": ["reasoning.encrypted_content"],  # Preserve reasoning between calls
+            "stream": True,  # Enable streaming
+            "text": {
+                "format": {
+                    "type": "text"
+                }
+            },
+            "max_output_tokens": 4096  # Ensure we get enough output tokens
         }
+        
+        # Set up output directory
+        if output_dir is None:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_dir = f"carbonic_anhydrase_design_{timestamp}"
+        
+        self.output_dir = Path(output_dir)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         
         # Initialize tools from the rest of the folder
         self.tools = self._initialize_tools()
         self.tool_mapping = self._create_tool_mapping()
         
+        # Track session state
+        self.iteration_count = 0
+        
+        print(f"🚀 Starting design session - outputs will be saved to: {self.output_dir}")
+    
     def _initialize_tools(self) -> List[Dict[str, Any]]:
         """
         Initialize and return the available tools for carbonic anhydrase design.
@@ -71,10 +95,6 @@ class CarbonicAnhydraseDesigner:
                         "sequence": {
                             "type": "string",
                             "description": "Amino acid sequence to fold (single letter code, e.g., 'MKILVS...')"
-                        },
-                        "protein_id": {
-                            "type": "string",
-                            "description": "Optional identifier for the protein (will be auto-generated if not provided)"
                         }
                     },
                     "required": ["sequence"],
@@ -109,14 +129,6 @@ class CarbonicAnhydraseDesigner:
                         "pdb_file2": {
                             "type": "string",
                             "description": "Path to the newly folded PDB file to compare against reference (e.g., 'predicted_structures/mutant.pdb')"
-                        },
-                        "chain_id1": {
-                            "type": "string",
-                            "description": "Chain ID for reference structure (optional, auto-detected if not provided)"
-                        },
-                        "chain_id2": {
-                            "type": "string",
-                            "description": "Chain ID for new structure (optional, auto-detected if not provided)"
                         }
                     },
                     "required": ["pdb_file2"],
@@ -134,11 +146,6 @@ class CarbonicAnhydraseDesigner:
                         "query": {
                             "type": "string",
                             "description": "The search query to execute (e.g., 'latest carbonic anhydrase stability research 2024', 'protein thermostability engineering methods')"
-                        },
-                        "model": {
-                            "type": "string",
-                            "description": "The Perplexity model to use (default: 'sonar-pro')",
-                            "enum": ["sonar-pro", "sonar"]
                         }
                     },
                     "required": ["query"],
@@ -149,7 +156,7 @@ class CarbonicAnhydraseDesigner:
             {
                 "type": "function",
                 "name": "examine_catalytic_activity",
-                "description": "Examine the catalytic activity sites of carbonic anhydrase using PyMOL visualization. Takes exact residue dictionaries specifying which residues to examine and their positions. Generates labeled images (returned as base64-encoded data) and assesses catalytic integrity to ensure modifications haven't affected enzyme activity.",
+                "description": "Examine the catalytic activity sites of carbonic anhydrase using PyMOL visualization. Takes exact residue dictionaries specifying which residues to examine and their positions. Generates labeled images (returned as base64-encoded data) and assesses catalytic integrity to ensure modifications haven't affected enzyme activity. Images are saved to tools/images/{image_subdir}/.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -160,47 +167,25 @@ class CarbonicAnhydraseDesigner:
                         "active_site_residues": {
                             "type": "object",
                             "description": "Dictionary of active site residues with format {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}, ...}. For standard hCA II: Y7, N62, H64, N67, Q92",
-                            "additionalProperties": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {"type": "string"},
-                                    "function": {"type": "string"},
-                                    "number": {"type": "integer"}
-                                },
-                                "required": ["name", "function", "number"]
-                            }
+                            "additionalProperties": True
                         },
                         "zinc_binding_residues": {
                             "type": "object",
                             "description": "Dictionary of zinc binding residues with format {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, ...}. For standard hCA II: H94, H96, H119",
-                            "additionalProperties": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {"type": "string"},
-                                    "function": {"type": "string"},
-                                    "number": {"type": "integer"}
-                                },
-                                "required": ["name", "function", "number"]
-                            }
+                            "additionalProperties": True
                         },
-                        "chain_id": {
+                        "image_subdir": {
                             "type": "string",
-                            "description": "Chain identifier for the protein (default: 'A')"
-                        },
-                        "output_dir": {
-                            "type": "string",
-                            "description": "Directory to save visualization images (optional)"
+                            "description": "Subdirectory name within tools/images/ to save visualization images. Choose a descriptive name like 'wildtype_analysis', 'mutant_v1', 'final_design', etc."
                         }
                     },
-                    "required": ["pdb_file_path", "active_site_residues", "zinc_binding_residues"],
-                    "additionalProperties": False
-                },
-                "strict": True
+                    "required": ["pdb_file_path", "active_site_residues", "zinc_binding_residues", "image_subdir"]
+                }
             },
             {
                 "type": "function",
                 "name": "examine_secondary_structure",
-                "description": "Examine secondary structure and calculate structural properties using PyMOL. Analyzes helix/sheet/loop content, calculates SASA (Solvent Accessible Surface Area), radius of gyration, and generates a colored secondary structure visualization (returned as base64-encoded data). Provides quality assessment and compactness analysis.",
+                "description": "Examine secondary structure and calculate structural properties using PyMOL. Analyzes helix/sheet/loop content, calculates SASA (Solvent Accessible Surface Area), radius of gyration, and generates a colored secondary structure visualization (returned as base64-encoded data). Provides quality assessment and compactness analysis. Images are saved to tools/images/{image_subdir}/.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -208,16 +193,12 @@ class CarbonicAnhydraseDesigner:
                             "type": "string",
                             "description": "Path to the PDB file to examine (e.g., 'predicted_structures/mutant.pdb')"
                         },
-                        "chain_id": {
+                        "image_subdir": {
                             "type": "string",
-                            "description": "Chain identifier for the protein (default: 'A')"
-                        },
-                        "output_dir": {
-                            "type": "string",
-                            "description": "Directory to save visualization images (optional)"
+                            "description": "Subdirectory name within tools/images/ to save visualization images. Choose a descriptive name like 'wildtype_structure', 'mutant_v1_structure', 'final_design_structure', etc."
                         }
                     },
-                    "required": ["pdb_file_path"],
+                    "required": ["pdb_file_path", "image_subdir"],
                     "additionalProperties": False
                 },
                 "strict": True
@@ -243,8 +224,6 @@ class CarbonicAnhydraseDesigner:
             "examine_secondary_structure": examine_secondary_structure  # Real implementation from secondary_structure_examiner.py
         }
     
-
-    
     def _execute_function_call(self, function_call) -> str:
         """
         Execute a function call and return the result.
@@ -259,16 +238,33 @@ class CarbonicAnhydraseDesigner:
         
         # Get the function from our mapping
         if function_name not in self.tool_mapping:
-            return f"ERROR: Unknown function '{function_name}'"
+            error_msg = f"ERROR: Unknown function '{function_name}'"
+            print(f"❌ {error_msg}")
+            return error_msg
         
         try:
             # Parse arguments
             arguments = json.loads(function_call.arguments)
             
+            print(f"🔧 Executing tool: {function_name}")
+            
             # Execute the function
             result = self.tool_mapping[function_name](**arguments)
             
-            print(f"Executed {function_name}({arguments})")
+            print(f"✅ Tool {function_name} completed")
+            
+            # Log tool execution to file
+            tool_log = {
+                "timestamp": datetime.now().isoformat(),
+                "iteration": self.iteration_count,
+                "function_name": function_name,
+                "arguments": arguments,
+                "status": "success",
+                "result_length": len(str(result))
+            }
+            
+            with open(self.output_dir / "tool_calls.jsonl", "a") as f:
+                f.write(json.dumps(tool_log) + "\n")
             
             # Check if result contains base64 images (for examination functions)
             if function_name in ['examine_catalytic_activity', 'examine_secondary_structure']:
@@ -291,7 +287,7 @@ class CarbonicAnhydraseDesigner:
                             image_summary.append("✓ Secondary structure visualization generated")
                     
                     if image_summary:
-                        print(f"Generated visualizations: {', '.join(image_summary)}")
+                        print(f"🖼️  Generated visualizations: {', '.join(image_summary)}")
                         
                         # Add a summary to the result for the model
                         result_data['visualization_summary'] = {
@@ -302,7 +298,6 @@ class CarbonicAnhydraseDesigner:
                         
                         # Return the enhanced result
                         enhanced_result = json.dumps(result_data, indent=2)
-                        print(f"Enhanced result with {len(image_summary)} base64 images prepared for model analysis")
                         return enhanced_result
                         
                 except (json.JSONDecodeError, KeyError):
@@ -313,52 +308,141 @@ class CarbonicAnhydraseDesigner:
             
         except Exception as e:
             error_msg = f"ERROR executing {function_name}: {str(e)}"
-            print(error_msg)
+            print(f"❌ {error_msg}")
+            
+            # Log error to file
+            error_log = {
+                "timestamp": datetime.now().isoformat(),
+                "iteration": self.iteration_count,
+                "function_name": function_name,
+                "arguments": arguments if 'arguments' in locals() else None,
+                "status": "error",
+                "error": str(e)
+            }
+            
+            with open(self.output_dir / "tool_calls.jsonl", "a") as f:
+                f.write(json.dumps(error_log) + "\n")
+            
             return error_msg
     
-    def _process_response(self, response) -> tuple[bool, List[Dict[str, Any]]]:
+    def _process_streaming_response(self, stream) -> tuple[bool, List[Dict[str, Any]], str]:
         """
-        Process API response and execute any function calls.
+        Process streaming API response and execute any function calls.
         
+        Args:
+            stream: Streaming response from OpenAI API
+            
         Returns:
-            (is_complete, function_responses): 
+            (is_complete, function_responses, accumulated_text): 
                 - is_complete: True if reasoning is complete, False if more calls needed
                 - function_responses: List of function call responses to send back
+                - accumulated_text: All text content from the stream
         """
         function_responses = []
         has_function_calls = False
+        accumulated_text = ""
         
-        for item in response.output:
-            if item.type == 'function_call':
-                has_function_calls = True
-                result = self._execute_function_call(item)
-                
-                # Check if result contains base64 images and format them properly
-                visual_content = self._extract_and_format_images(result, item.name)
-                
-                if visual_content:
-                    # If we have images, format the response with visual content
-                    function_responses.append({
-                        "type": "function_call_output",
-                        "call_id": item.call_id,
-                        "output": visual_content
-                    })
-                else:
-                    # Standard text response
-                    function_responses.append({
-                        "type": "function_call_output",
-                        "call_id": item.call_id,
-                        "output": result
-                    })
+        try:
+            print("\nProcessing model response...")
+            current_iteration_text = ""
+            
+            for chunk in stream:
+                # Handle different types of streaming events
+                if hasattr(chunk, 'type'):
+                    # Handle reasoning summary deltas
+                    if 'reasoning_summary_text.delta' in chunk.type and hasattr(chunk, 'delta'):
+                        text_content = chunk.delta
+                        if text_content:
+                            print(text_content, end='', flush=True)
+                            current_iteration_text += text_content
+                            accumulated_text += text_content
                     
-            elif item.type == 'reasoning':
-                # Print reasoning summary if available
-                if hasattr(item, 'summary') and item.summary:
-                    for summary in item.summary:
-                        if hasattr(summary, 'text'):
-                            print(f"Reasoning: {summary.text}")
+                    # Handle regular text deltas
+                    elif 'text.delta' in chunk.type and hasattr(chunk, 'delta'):
+                        text_content = chunk.delta
+                        if text_content:
+                            print(text_content, end='', flush=True)
+                            current_iteration_text += text_content
+                            accumulated_text += text_content
+                
+                # Process output items (reasoning, function calls, messages)
+                if hasattr(chunk, 'output') and chunk.output:
+                    for item in chunk.output:
+                        if item.type == 'reasoning':
+                            print(f"\n\n💭 Reasoning Summary:")
+                            current_iteration_text += f"\n\n[REASONING_SUMMARY]\n"
+                            accumulated_text += f"\n\n[REASONING_SUMMARY]\n"
+                            
+                            if hasattr(item, 'summary') and item.summary:
+                                for summary in item.summary:
+                                    if hasattr(summary, 'text'):
+                                        reasoning_text = summary.text
+                                        print(reasoning_text)
+                                        current_iteration_text += reasoning_text + "\n"
+                                        accumulated_text += reasoning_text + "\n"
+                        
+                        elif item.type == 'function_call':
+                            print(f"\n🔧 Tool Call: {item.name}")
+                            current_iteration_text += f"\n[TOOL_CALL] {item.name}\n"
+                            accumulated_text += f"\n[TOOL_CALL] {item.name}\n"
+                            
+                            if hasattr(item, 'arguments'):
+                                print(f"Arguments: {item.arguments}")
+                                current_iteration_text += f"Arguments: {item.arguments}\n"
+                                accumulated_text += f"Arguments: {item.arguments}\n"
+                                
+                            has_function_calls = True
+                            result = self._execute_function_call(item)
+                            
+                            # Check if result contains base64 images and format them properly
+                            visual_content = self._extract_and_format_images(result, item.name)
+                            
+                            if visual_content:
+                                # If we have images, format the response with visual content
+                                function_responses.append({
+                                    "type": "function_call_output",
+                                    "call_id": item.call_id,
+                                    "output": visual_content
+                                })
+                            else:
+                                # Standard text response
+                                function_responses.append({
+                                    "type": "function_call_output",
+                                    "call_id": item.call_id,
+                                    "output": result
+                                })
+                        
+                        elif item.type == 'message':
+                            print(f"\n📝 Message:")
+                            current_iteration_text += f"\n[MESSAGE]\n"
+                            accumulated_text += f"\n[MESSAGE]\n"
+                            
+                            if hasattr(item, 'content') and item.content:
+                                for content_item in item.content:
+                                    if hasattr(content_item, 'text'):
+                                        text_content = content_item.text
+                                        print(text_content)
+                                        current_iteration_text += text_content + "\n"
+                                        accumulated_text += text_content + "\n"
+            
+            # Save this iteration's text to a separate file
+            if current_iteration_text.strip():
+                iteration_file = self.output_dir / f"iteration_{self.iteration_count}_output.txt"
+                with open(iteration_file, "w") as f:
+                    f.write(current_iteration_text)
+
+
         
-        return not has_function_calls, function_responses
+        except Exception as e:
+            print(f"❌ Error processing streaming response: {e}")
+        
+        # Save accumulated text to file if we have any
+        if accumulated_text.strip():
+            text_file = self.output_dir / f"response_iteration_{self.iteration_count}.txt"
+            with open(text_file, "w") as f:
+                f.write(accumulated_text)
+        
+        return not has_function_calls, function_responses, accumulated_text
     
     def _extract_and_format_images(self, result: str, function_name: str) -> Optional[List[Dict[str, Any]]]:
         """
@@ -478,6 +562,13 @@ class CarbonicAnhydraseDesigner:
                 "Maintain catalytic activity"
             ]
         
+        print("=" * 80)
+        print("CARBONIC ANHYDRASE STABILITY DESIGN SESSION")
+        print("=" * 80)
+        print(f"Target: {target_pdb}")
+        print(f"Goals: {', '.join(stability_goals)}")
+        print("=" * 80)
+        
         # Create the initial prompt for o3
         design_prompt = f"""
         You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase.
@@ -492,11 +583,11 @@ class CarbonicAnhydraseDesigner:
         2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower = more stable)
         3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
         4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
-        5. examine_catalytic_activity: Visualizes and examines catalytic sites by taking exact residue dictionaries specifying which residues to examine. Generates base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity
+        5. examine_catalytic_activity: Visualizes and examines catalytic sites by taking exact residue dictionaries specifying which residues to examine. Generates base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity. (do not be alarmed if the tool returns poor catalytic integrity, make your own judgement based on the images and the key residues)
         6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
 
         Please approach this systematically:
-        1. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS.
+        1. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS. THIS IS A FUNDAMENTALLY IMPORTANT STEP.
         2. Using the findings from your research, propose specific amino acid mutations that could improve stability. These can be simple point mutations, or larger insertions/deletions.
         3. Then modify the original sequence using the mutations you proposed. Make sure you have applied your mutations correctly. 
         4. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
@@ -505,7 +596,7 @@ class CarbonicAnhydraseDesigner:
         8. Use examine_catalytic_activity to verify the new structure's catalytic sites are intact. You need to specify the exact residue numbers and types in the active_site_residues and zinc_binding_residues dictionaries based on your mutant sequence. This includes the ZINC BINDING RESIDUES.
         CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved. You must provide the correct residue dictionaries with exact numbers and amino acid types for your specific mutant sequence. This includes the ZINC BINDING RESIDUES.
         9. Compare scores and provide recommendations with quantitative rationale. 
-        10. REPEAT THE PROCESS UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS.
+        10. REPEAT THE PROCESS UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS. DO NOT STOP UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS.
 
         Focus on common protein stabilization strategies:
         - Reducing surface loops and increasing rigidity
@@ -545,7 +636,8 @@ class CarbonicAnhydraseDesigner:
           * Zinc binding residues: H94, H96, H119 (essential for catalytic activity)
         - You MUST provide exact residue dictionaries with the correct residue numbers for your specific sequence
         - If you've made insertions/deletions, calculate the new positions FOR ALL OF THE CATALYTIC RESIDUES AND ZINC BINDING RESIDUES and update the residue numbers accordingly
-        - Use format: {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}, ...}
+        - Use format: {{'Y7': {{'name': 'TYR', 'function': 'Proton transfer', 'number': 7}}, ...}}
+        - Choose descriptive image_subdir names like 'wildtype_analysis', 'mutant_v1', 'mutant_v2', 'final_design' to organize images
         - Integrity levels: EXCELLENT (no issues), GOOD (minor issues), ACCEPTABLE (some concerns), POOR (major problems)
         - Be very cautious when recommending a design that shows POOR catalytic integrity. 
 
@@ -556,6 +648,7 @@ class CarbonicAnhydraseDesigner:
         - Compactness levels: VERY_COMPACT (excellent), COMPACT (good), NORMAL (acceptable), LOOSE/VERY_LOOSE (concerning)
         - Monitor surface hydrophobicity - too high may cause aggregation, appropriate levels improve stability
         - Use structural quality assessment to guide mutation strategies
+        - Choose descriptive image_subdir names like 'wildtype_structure', 'mutant_v1_structure', 'final_design_structure' to organize images
         
         Visual analysis guidelines:
         - The examination functions return base64-encoded images that you can analyze visually
@@ -565,86 +658,111 @@ class CarbonicAnhydraseDesigner:
         - Images show: secondary structure coloring, catalytic residues, zinc coordination, surface representations
         """
         
-        print("=" * 80)
-        print("CARBONIC ANHYDRASE STABILITY DESIGN SESSION")
-        print("=" * 80)
-        print(f"Target: {target_pdb}")
-        print(f"Goals: {', '.join(stability_goals)}")
-        print("=" * 80)
+        # Save initial prompt to file
+        with open(self.output_dir / "initial_prompt.txt", "w") as f:
+            f.write(design_prompt)
         
-        # Start the reasoning loop
-        response = self.client.responses.create(
-            input=design_prompt,
-            **self.model_config
-        )
+        print("🚀 Starting reasoning loop with streaming responses...")
         
-        iteration = 0
+        # Start the reasoning loop with streaming
+        try:
+            stream = self.client.responses.create(
+                input=design_prompt,
+                **self.model_config
+            )
+        except Exception as e:
+            print(f"❌ Failed to create initial stream: {e}")
+            return f"ERROR: Failed to start design session: {e}"
+        
+        self.iteration_count = 1
         max_iterations = 20  # Prevent infinite loops
+        all_accumulated_text = ""
         
-        while iteration < max_iterations:
-            iteration += 1
-            print(f"\n--- Iteration {iteration} ---")
+        while self.iteration_count <= max_iterations:
+            print(f"\n--- Iteration {self.iteration_count} ---")
             
-            is_complete, function_responses = self._process_response(response)
-            
-            if is_complete:
-                # Final response ready
-                final_result = response.output_text
-                print("\n" + "=" * 80)
-                print("FINAL DESIGN RECOMMENDATIONS")
-                print("=" * 80)
-                print(final_result)
-                return final_result
-            else:
-                # More reasoning needed, send function results back
-                print(f"Continuing reasoning with {len(function_responses)} function results...")
+            try:
+                is_complete, function_responses, accumulated_text = self._process_streaming_response(stream)
+                all_accumulated_text += accumulated_text
                 
-                # Check if any responses contain visual content
-                has_visual_content = any(
-                    isinstance(resp.get('output'), list) and 
-                    any(item.get('type') == 'input_image' for item in resp.get('output', []))
-                    for resp in function_responses
-                )
-                
-                if has_visual_content:
-                    print("⚠️  Visual content detected - o3 model visual analysis may be limited")
-                    print("   The model will receive visual data but may have limited image analysis capabilities")
-                
-                try:
-                    response = self.client.responses.create(
-                        input=function_responses,
-                        previous_response_id=response.id,
-                        **self.model_config
+                if is_complete:
+                    # Final response ready
+                    print("\n" + "=" * 80)
+                    print("🎯 FINAL DESIGN RECOMMENDATIONS COMPLETE")
+                    print("=" * 80)
+                    
+                    # Save final results
+                    with open(self.output_dir / "final_design_recommendations.txt", "w") as f:
+                        f.write(all_accumulated_text)
+                    
+                    print(f"📁 Final results saved to: {self.output_dir}/final_design_recommendations.txt")
+                    
+                    return all_accumulated_text
+                else:
+                    # More reasoning needed, send function results back
+                    print(f"🔄 Continuing reasoning with {len(function_responses)} function results...")
+                    
+                    # Check if any responses contain visual content
+                    has_visual_content = any(
+                        isinstance(resp.get('output'), list) and 
+                        any(item.get('type') == 'input_image' for item in resp.get('output', []))
+                        for resp in function_responses
                     )
-                except Exception as e:
-                    print(f"Error sending continuation request: {e}")
+                    
                     if has_visual_content:
-                        print("This may be due to visual content formatting. Falling back to text-only mode...")
-                        # Fallback: send text-only versions
-                        fallback_responses = []
-                        for resp in function_responses:
-                            if isinstance(resp.get('output'), list):
-                                # Extract just the text content
-                                text_content = ""
-                                for item in resp.get('output', []):
-                                    if item.get('type') == 'input_text':
-                                        text_content += item.get('text', '')
-                                fallback_responses.append({
-                                    "type": "function_call_output",
-                                    "call_id": resp['call_id'],
-                                    "output": text_content or "Visual analysis completed (images not displayed)"
-                                })
-                            else:
-                                fallback_responses.append(resp)
-                        
-                        response = self.client.responses.create(
-                            input=fallback_responses,
-                            previous_response_id=response.id,
+                        print("⚠️  Visual content detected - o3 model visual analysis may be limited")
+                    
+                    try:
+                        stream = self.client.responses.create(
+                            input=function_responses,
+                            previous_response_id=stream.response_id if hasattr(stream, 'response_id') else None,
                             **self.model_config
                         )
-                    else:
-                        raise
+                        
+                        self.iteration_count += 1
+                        
+                    except Exception as e:
+                        print(f"❌ Error sending continuation request: {e}")
+                        if has_visual_content:
+                            print("Attempting fallback to text-only mode...")
+                            # Fallback: send text-only versions
+                            fallback_responses = []
+                            for resp in function_responses:
+                                if isinstance(resp.get('output'), list):
+                                    # Extract just the text content
+                                    text_content = ""
+                                    for item in resp.get('output', []):
+                                        if item.get('type') == 'input_text':
+                                            text_content += item.get('text', '')
+                                    fallback_responses.append({
+                                        "type": "function_call_output",
+                                        "call_id": resp['call_id'],
+                                        "output": text_content or "Visual analysis completed (images not displayed)"
+                                    })
+                                else:
+                                    fallback_responses.append(resp)
+                            
+                            stream = self.client.responses.create(
+                                input=fallback_responses,
+                                previous_response_id=stream.response_id if hasattr(stream, 'response_id') else None,
+                                **self.model_config
+                            )
+                            print("stream", stream)
+                            
+                            self.iteration_count += 1
+                        else:
+                            raise
+            
+            except Exception as e:
+                print(f"❌ Error in iteration {self.iteration_count}: {e}")
+                
+                # Save error to file
+                with open(self.output_dir / "errors.txt", "a") as f:
+                    f.write(f"Iteration {self.iteration_count}: {e}\n")
+                
+                return f"ERROR: Design process failed at iteration {self.iteration_count}: {e}"
         
+        print("⚠️  Maximum iterations reached")
         return "ERROR: Maximum iterations reached. Design process incomplete."
 
 
@@ -675,18 +793,23 @@ def main():
     designer = CarbonicAnhydraseDesigner(reasoning_effort="medium")
     
     # Example usage
-    print("Starting carbonic anhydrase design session...")
+    print(f"Starting carbonic anhydrase design session...")
+    print("=" * 80)
     
     # Option 1: Automated design
     result = designer.design_stable_carbonic_anhydrase(
-        target_pdb="1CA2",
+        target_pdb="1HEA",
         stability_goals=[
-            "Increase thermal stability by 25°C",
-            "Improve stability at pH 6-8",
-            "Reduce aggregation",
-            "Maintain >80% catalytic activity"
+            "Increase thermal stability",
+            "Improve stability at pH 6-8", 
+            "Maintain catalytic activity"
         ]
     )
+    
+    print("\n" + "=" * 80)
+    print("🎯 DESIGN SESSION COMPLETE")
+    print(f"📁 All outputs saved to: {designer.output_dir}")
+    print("=" * 80)
 
 
 

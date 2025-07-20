@@ -18,7 +18,12 @@ from Bio.PDB.Chain import Chain
 import numpy as np
 
 # Suppress PDB parsing warnings
-warnings.filterwarnings("ignore", category=PDB.PDBConstructionWarning)
+try:
+    from Bio.PDB import PDBConstructionWarning
+    warnings.filterwarnings("ignore", category=PDBConstructionWarning)
+except ImportError:
+    # Handle older BioPython versions
+    warnings.filterwarnings("ignore")
 
 # Hardcoded reference structure path and sequence
 REFERENCE_PDB = "predicted_structures/hCA2_folded.pdb"

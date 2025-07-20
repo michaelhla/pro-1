@@ -60,7 +60,7 @@ class CatalyticActivityExaminer:
     def examine_catalytic_activity(self, pdb_file_path: str, 
                                  active_site_residues: Dict[str, Dict],
                                  zinc_binding_residues: Dict[str, Dict],
-                                 output_dir: str = None) -> Dict[str, Any]:
+                                 image_subdir: str = "default") -> Dict[str, Any]:
         """
         Examine the catalytic activity sites and generate visualization images.
         
@@ -68,7 +68,7 @@ class CatalyticActivityExaminer:
             pdb_file_path: Path to the PDB file
             active_site_residues: Dict with format {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}}
             zinc_binding_residues: Dict with format {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}}
-            output_dir: Directory to save images
+            image_subdir: Subdirectory name within tools/images/ to save images
             
         Returns:
             Dictionary containing analysis results
@@ -76,11 +76,10 @@ class CatalyticActivityExaminer:
         if not os.path.exists(pdb_file_path):
             raise FileNotFoundError(f"PDB file not found: {pdb_file_path}")
         
-        if output_dir is None:
-            # Create images folder in the same directory as this script
-            script_dir = os.path.dirname(os.path.abspath(__file__))
-            output_dir = os.path.join(script_dir, 'images')
-            os.makedirs(output_dir, exist_ok=True)
+        # Always save to tools/images/{image_subdir}
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        output_dir = os.path.join(script_dir, 'images', image_subdir)
+        os.makedirs(output_dir, exist_ok=True)
         
         # Initialize PyMOL in headless mode to prevent hanging
         import __main__
@@ -749,7 +748,7 @@ def examine_catalytic_activity(pdb_file_path: str,
                              active_site_residues: Dict[str, Dict],
                              zinc_binding_residues: Dict[str, Dict],
                              chain_id: str = 'A',
-                             output_dir: str = None) -> str:
+                             image_subdir: str = "default") -> str:
     """
     Simplified interface for examining catalytic activity.
     
@@ -758,7 +757,7 @@ def examine_catalytic_activity(pdb_file_path: str,
         active_site_residues: Dict with format {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}}
         zinc_binding_residues: Dict with format {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}}
         chain_id: Chain identifier (default: 'A')
-        output_dir: Directory to save images (default: temp directory)
+        image_subdir: Subdirectory name within tools/images/ to save images (default: "default")
         
     Returns:
         JSON string containing analysis results with base64-encoded images
@@ -766,7 +765,7 @@ def examine_catalytic_activity(pdb_file_path: str,
     try:
         examiner = CatalyticActivityExaminer(chain_id=chain_id)
         results = examiner.examine_catalytic_activity(
-            pdb_file_path, active_site_residues, zinc_binding_residues, output_dir
+            pdb_file_path, active_site_residues, zinc_binding_residues, image_subdir
         )
         
         # Encode all images as base64
