@@ -50,15 +50,8 @@ class CarbonicAnhydraseDesigner:
                 "effort": reasoning_effort,
                 "summary": "detailed"
             },
-            "store": False,
-            "include": ["reasoning.encrypted_content"],  # Preserve reasoning between calls
-            "stream": True,  # Enable streaming
-            "text": {
-                "format": {
-                    "type": "text"
-                }
-            },
-            "max_output_tokens": 4096  # Ensure we get enough output tokens
+            "store": True,  # Required for reasoning items to persist between calls
+            "max_output_tokens": 100000
         }
         
         # Set up output directory
@@ -95,9 +88,13 @@ class CarbonicAnhydraseDesigner:
                         "sequence": {
                             "type": "string",
                             "description": "Amino acid sequence to fold (single letter code, e.g., 'MKILVS...')"
+                        },
+                        "filename": {
+                            "type": "string",
+                            "description": "Filename to save the folded structure (e.g., 'mutant.pdb')"
                         }
                     },
-                    "required": ["sequence"],
+                    "required": ["sequence", "filename"],
                     "additionalProperties": False
                 },
                 "strict": True
@@ -176,7 +173,7 @@ class CarbonicAnhydraseDesigner:
                         },
                         "image_subdir": {
                             "type": "string",
-                            "description": "Subdirectory name within tools/images/ to save visualization images. Choose a descriptive name like 'wildtype_analysis', 'mutant_v1', 'final_design', etc."
+                            "description": "Subdirectory name within tools/images/ to save visualization images. Choose a descriptive name."
                         }
                     },
                     "required": ["pdb_file_path", "active_site_residues", "zinc_binding_residues", "image_subdir"]
@@ -195,7 +192,7 @@ class CarbonicAnhydraseDesigner:
                         },
                         "image_subdir": {
                             "type": "string",
-                            "description": "Subdirectory name within tools/images/ to save visualization images. Choose a descriptive name like 'wildtype_structure', 'mutant_v1_structure', 'final_design_structure', etc."
+                            "description": "Subdirectory name within tools/images/ to save visualization images. Choose a descriptive name."
                         }
                     },
                     "required": ["pdb_file_path", "image_subdir"],
@@ -266,43 +263,9 @@ class CarbonicAnhydraseDesigner:
             with open(self.output_dir / "tool_calls.jsonl", "a") as f:
                 f.write(json.dumps(tool_log) + "\n")
             
-            # Check if result contains base64 images (for examination functions)
+            # Simple feedback for visualization functions
             if function_name in ['examine_catalytic_activity', 'examine_secondary_structure']:
-                try:
-                    result_data = json.loads(str(result))
-                    
-                    # Check for base64 images and provide enhanced feedback
-                    image_summary = []
-                    
-                    if function_name == 'examine_catalytic_activity':
-                        if result_data.get('active_site_image_base64'):
-                            image_summary.append("✓ Active site visualization generated")
-                        if result_data.get('zinc_binding_image_base64'):
-                            image_summary.append("✓ Zinc binding site visualization generated")
-                        if result_data.get('combined_catalytic_image_base64'):
-                            image_summary.append("✓ Combined catalytic site visualization generated")
-                    
-                    elif function_name == 'examine_secondary_structure':
-                        if result_data.get('secondary_structure_image_base64'):
-                            image_summary.append("✓ Secondary structure visualization generated")
-                    
-                    if image_summary:
-                        print(f"🖼️  Generated visualizations: {', '.join(image_summary)}")
-                        
-                        # Add a summary to the result for the model
-                        result_data['visualization_summary'] = {
-                            'images_generated': len(image_summary),
-                            'image_descriptions': image_summary,
-                            'note': 'Base64-encoded images are included in the response for visual analysis'
-                        }
-                        
-                        # Return the enhanced result
-                        enhanced_result = json.dumps(result_data, indent=2)
-                        return enhanced_result
-                        
-                except (json.JSONDecodeError, KeyError):
-                    # If parsing fails, return original result
-                    pass
+                print(f"🖼️  Generated visualizations for {function_name}")
             
             return str(result)
             
@@ -325,222 +288,257 @@ class CarbonicAnhydraseDesigner:
             
             return error_msg
     
-    def _process_streaming_response(self, stream) -> tuple[bool, List[Dict[str, Any]], str]:
+    def _save_reasoning_data(self, response, iteration: int) -> None:
         """
-        Process streaming API response and execute any function calls.
+        Save reasoning summaries and items to files.
         
         Args:
-            stream: Streaming response from OpenAI API
+            response: Response from OpenAI API
+            iteration: Current iteration number
+        """
+        # Create a data structure to hold all reasoning information
+        reasoning_data = {
+            "timestamp": datetime.now().isoformat(),
+            "iteration": iteration,
+            "summaries": [],
+            "items": [],
+            "messages": []
+        }
+        
+        # Collect reasoning summaries
+        if hasattr(response, 'reasoning') and response.reasoning and response.reasoning.summary:
+            for summary in response.reasoning.summary:
+                if hasattr(summary, 'text'):
+                    reasoning_data["summaries"].append(summary.text)
+        
+        # Collect reasoning items
+        reasoning_items = [item for item in response.output if item.type == 'reasoning']
+        for item in reasoning_items:
+            item_data = {
+                "id": item.id,
+                "summaries": []
+            }
+            if hasattr(item, 'summary') and item.summary:
+                for summary in item.summary:
+                    if hasattr(summary, 'text'):
+                        item_data["summaries"].append(summary.text)
+            reasoning_data["items"].append(item_data)
+        
+        # Collect message content
+        message_items = [item for item in response.output if item.type == 'message']
+        for item in message_items:
+            if hasattr(item, 'content') and item.content:
+                for content_item in item.content:
+                    if hasattr(content_item, 'text'):
+                        reasoning_data["messages"].append(content_item.text)
+        
+        # Save to JSONL file
+        with open(self.output_dir / "reasoning_data.jsonl", "a") as f:
+            f.write(json.dumps(reasoning_data) + "\n")
+
+    def _invoke_functions_from_response(self, response) -> List[Dict[str, Any]]:
+        """
+        Extract all function calls from the response and execute them.
+        This follows the pattern from the OpenAI cookbook.
+        
+        Args:
+            response: Response from OpenAI API
             
         Returns:
-            (is_complete, function_responses, accumulated_text): 
-                - is_complete: True if reasoning is complete, False if more calls needed
-                - function_responses: List of function call responses to send back
-                - accumulated_text: All text content from the stream
+            List of function call output messages to send back to the API
         """
         function_responses = []
-        has_function_calls = False
-        accumulated_text = ""
         
-        try:
-            print("\nProcessing model response...")
-            current_iteration_text = ""
+        # Save reasoning data
+        self._save_reasoning_data(response, self.iteration_count)
+        
+        # First, let's show any reasoning summaries
+        if hasattr(response, 'reasoning') and response.reasoning and response.reasoning.summary:
+            print("🧠 REASONING SUMMARY:")
+            for summary in response.reasoning.summary:
+                if hasattr(summary, 'text'):
+                    print(f"   {summary.text}")
+            print()
+        
+        # Show reasoning items from output if available
+        reasoning_items = [item for item in response.output if item.type == 'reasoning']
+        if reasoning_items:
+            print("🔍 REASONING ITEMS:")
+            for i, item in enumerate(reasoning_items):
+                print(f"   Reasoning {i+1}: {item.id}")
+                if hasattr(item, 'summary') and item.summary:
+                    for summary in item.summary:
+                        if hasattr(summary, 'text'):
+                            print(f"      Summary: {summary.text}")
+            print()
+        
+        # Show any message content before function calls
+        message_items = [item for item in response.output if item.type == 'message']
+        if message_items:
+            print("💬 MODEL MESSAGES:")
+            for i, item in enumerate(message_items):
+                if hasattr(item, 'content') and item.content:
+                    for content_item in item.content:
+                        if hasattr(content_item, 'text'):
+                            print(f"   Message {i+1}: {content_item.text}")
+            print()
+        
+        # Process function calls
+        function_calls = [item for item in response.output if item.type == 'function_call']
+        if function_calls:
+            print(f"🔧 FUNCTION CALLS ({len(function_calls)} total):")
+            print("=" * 80)
+        
+        for i, response_item in enumerate(function_calls):
+            try:
+                print(f"📞 FUNCTION CALL #{i+1}")
+                print(f"   Function: {response_item.name}")
+                print(f"   Call ID: {response_item.call_id}")
+                
+                # Parse and display arguments
+                import json
+                try:
+                    arguments = json.loads(response_item.arguments)
+                    print(f"   Arguments:")
+                    for key, value in arguments.items():
+                        # Truncate very long values for readability
+                        if isinstance(value, str) and len(value) > 200:
+                            display_value = value[:200] + "..."
+                        else:
+                            display_value = value
+                        print(f"      {key}: {display_value}")
+                except json.JSONDecodeError:
+                    print(f"   Arguments (raw): {response_item.arguments}")
+                
+                print(f"   ⚡ Executing function...")
+                
+                # Execute the function and time it
+                import time
+                start_time = time.time()
+                result = self._execute_function_call(response_item)
+                execution_time = time.time() - start_time
+                
+                print(f"   ✅ Function completed in {execution_time:.2f}s")
+                
+                print(f"   Result: {result}")
+
+                
+                function_responses.append({
+                    "type": "function_call_output",
+                    "call_id": response_item.call_id,
+                    "output": str(result)
+                })
+                
+                print("   " + "─" * 60)
+                
+            except Exception as e:
+                error_msg = f"Error executing {response_item.name}: {str(e)}"
+                print(f"   ❌ ERROR: {error_msg}")
+                
+                function_responses.append({
+                    "type": "function_call_output",
+                    "call_id": response_item.call_id,
+                    "output": error_msg
+                })
+                
+                print("   " + "─" * 60)
+        
+        if function_calls:
+            print("=" * 80)
+            print(f"📤 Returning {len(function_responses)} function responses to model")
+            print()
+        
+        return function_responses
+
+    # def _process_response(self, response) -> tuple[bool, List[Dict[str, Any]], str]:
+    #     """
+    #     DEPRECATED: Use _invoke_functions_from_response instead.
+        
+    #     Process API response and execute any function calls.
+        
+    #     Args:
+    #         response: Response from OpenAI API
             
-            for chunk in stream:
-                # Handle different types of streaming events
-                if hasattr(chunk, 'type'):
-                    # Handle reasoning summary deltas
-                    if 'reasoning_summary_text.delta' in chunk.type and hasattr(chunk, 'delta'):
-                        text_content = chunk.delta
-                        if text_content:
-                            print(text_content, end='', flush=True)
-                            current_iteration_text += text_content
-                            accumulated_text += text_content
+    #     Returns:
+    #         (is_complete, function_responses, accumulated_text): 
+    #             - is_complete: True if reasoning is complete, False if more calls needed
+    #             - function_responses: List of function call responses to send back
+    #             - accumulated_text: All text content from the response
+    #     """
+    #     function_responses = []
+    #     has_function_calls = False
+    #     accumulated_text = ""
+        
+    #     try:
+    #         print("\nProcessing model response...")
+            
+    #         # Print everything that's NOT tools
+    #         print("=" * 60)
+    #         print("📋 FULL RESPONSE (non-tool content):")
+    #         print("=" * 60)
+            
+    #         # Check if response has reasoning summary
+    #         if hasattr(response, 'reasoning') and response.reasoning:
+    #             print(f"\n💭 Reasoning Summary:")
+    #             for summary in response.reasoning.summary:
+    #                 if hasattr(summary, 'text'):
+    #                     reasoning_text = summary.text
+    #                     print(reasoning_text)
+    #                     accumulated_text += f"[REASONING_SUMMARY]\n{reasoning_text}\n\n"
+            
+    #         # Check if response has output
+    #         if hasattr(response, 'output') and response.output:
+    #             print(f"\n📤 Output Items:")
+    #             for i, item in enumerate(response.output):
+    #                 if item.type == 'function_call':
+    #                     print(f"  Item {i}: [TOOL CALL - {item.name}]")
+                        
+    #                     has_function_calls = True
+    #                     result = self._execute_function_call(item)
+                        
+    #                     # Use the correct format from OpenAI cookbook
+    #                     function_response = {
+    #                         "type": "function_call_output",
+    #                         "call_id": item.call_id,
+    #                         "output": result
+    #                     }
+                        
+    #                     print(f"    📤 Function response: call_id={item.call_id}, output_length={len(str(result))}")
+    #                     function_responses.append(function_response)
                     
-                    # Handle regular text deltas
-                    elif 'text.delta' in chunk.type and hasattr(chunk, 'delta'):
-                        text_content = chunk.delta
-                        if text_content:
-                            print(text_content, end='', flush=True)
-                            current_iteration_text += text_content
-                            accumulated_text += text_content
-                
-                # Process output items (reasoning, function calls, messages)
-                if hasattr(chunk, 'output') and chunk.output:
-                    for item in chunk.output:
-                        if item.type == 'reasoning':
-                            print(f"\n\n💭 Reasoning Summary:")
-                            current_iteration_text += f"\n\n[REASONING_SUMMARY]\n"
-                            accumulated_text += f"\n\n[REASONING_SUMMARY]\n"
-                            
-                            if hasattr(item, 'summary') and item.summary:
-                                for summary in item.summary:
-                                    if hasattr(summary, 'text'):
-                                        reasoning_text = summary.text
-                                        print(reasoning_text)
-                                        current_iteration_text += reasoning_text + "\n"
-                                        accumulated_text += reasoning_text + "\n"
+    #                 elif item.type == 'message':
+    #                     print(f"  Item {i}: MESSAGE")
+    #                     accumulated_text += f"[MESSAGE]\n"
                         
-                        elif item.type == 'function_call':
-                            print(f"\n🔧 Tool Call: {item.name}")
-                            current_iteration_text += f"\n[TOOL_CALL] {item.name}\n"
-                            accumulated_text += f"\n[TOOL_CALL] {item.name}\n"
-                            
-                            if hasattr(item, 'arguments'):
-                                print(f"Arguments: {item.arguments}")
-                                current_iteration_text += f"Arguments: {item.arguments}\n"
-                                accumulated_text += f"Arguments: {item.arguments}\n"
-                                
-                            has_function_calls = True
-                            result = self._execute_function_call(item)
-                            
-                            # Check if result contains base64 images and format them properly
-                            visual_content = self._extract_and_format_images(result, item.name)
-                            
-                            if visual_content:
-                                # If we have images, format the response with visual content
-                                function_responses.append({
-                                    "type": "function_call_output",
-                                    "call_id": item.call_id,
-                                    "output": visual_content
-                                })
-                            else:
-                                # Standard text response
-                                function_responses.append({
-                                    "type": "function_call_output",
-                                    "call_id": item.call_id,
-                                    "output": result
-                                })
+    #                     if hasattr(item, 'content') and item.content:
+    #                         for content_item in item.content:
+    #                             if hasattr(content_item, 'text'):
+    #                                 text_content = content_item.text
+    #                                 print(f"    Text: {text_content}")
+    #                                 accumulated_text += text_content + "\n"
+                    
+    #                 elif item.type == 'reasoning':
+    #                     print(f"  Item {i}: REASONING")
+    #                     # Reasoning items are handled automatically by previous_response_id
                         
-                        elif item.type == 'message':
-                            print(f"\n📝 Message:")
-                            current_iteration_text += f"\n[MESSAGE]\n"
-                            accumulated_text += f"\n[MESSAGE]\n"
-                            
-                            if hasattr(item, 'content') and item.content:
-                                for content_item in item.content:
-                                    if hasattr(content_item, 'text'):
-                                        text_content = content_item.text
-                                        print(text_content)
-                                        current_iteration_text += text_content + "\n"
-                                        accumulated_text += text_content + "\n"
+    #                 else:
+    #                     # Print any other types of output items
+    #                     print(f"  Item {i}: {item.type}")
             
-            # Save this iteration's text to a separate file
-            if current_iteration_text.strip():
-                iteration_file = self.output_dir / f"iteration_{self.iteration_count}_output.txt"
-                with open(iteration_file, "w") as f:
-                    f.write(current_iteration_text)
-
-
+    #         print("=" * 60)
+            
+    #         # Save this iteration's text to a separate file
+    #         if accumulated_text.strip():
+    #             iteration_file = self.output_dir / f"iteration_{self.iteration_count}_output.txt"
+    #             with open(iteration_file, "w") as f:
+    #                 f.write(accumulated_text)
         
-        except Exception as e:
-            print(f"❌ Error processing streaming response: {e}")
+    #     except Exception as e:
+    #         print(f"❌ Error processing response: {e}")
         
-        # Save accumulated text to file if we have any
-        if accumulated_text.strip():
-            text_file = self.output_dir / f"response_iteration_{self.iteration_count}.txt"
-            with open(text_file, "w") as f:
-                f.write(accumulated_text)
-        
-        return not has_function_calls, function_responses, accumulated_text
+    #     return not has_function_calls, function_responses, accumulated_text
     
-    def _extract_and_format_images(self, result: str, function_name: str) -> Optional[List[Dict[str, Any]]]:
-        """
-        Extract base64 images from function results and format them for visual analysis.
-        
-        Uses the OpenAI API format for visual inputs:
-        [
-            {"type": "input_text", "text": "description..."},
-            {"type": "input_image", "image_url": "data:image/png;base64,..."}, 
-            ...
-        ]
-        
-        Note: The o3 model's visual analysis capabilities may be different from GPT-4V.
-        This implementation provides base64 images in the standard format but includes
-        fallback handling if the o3 API doesn't support visual inputs in continuation requests.
-        
-        Args:
-            result: JSON string result from function execution
-            function_name: Name of the function that was executed
-            
-        Returns:
-            List of content items for visual analysis, or None if no images
-        """
-        if function_name not in ['examine_catalytic_activity', 'examine_secondary_structure']:
-            return None
-            
-        try:
-            result_data = json.loads(str(result))
-            content_items = []
-            
-            # Start with text summary
-            summary_text = "Function execution results:\n\n"
-            
-            if function_name == 'examine_catalytic_activity':
-                integrity = result_data.get('catalytic_integrity', {})
-                summary_text += f"Catalytic Integrity: {integrity.get('integrity_level', 'UNKNOWN')}\n"
-                summary_text += f"Risk Level: {integrity.get('risk_level', 'UNKNOWN')}\n"
-                
-                if 'active_site_rmsd' in integrity and integrity['active_site_rmsd']:
-                    summary_text += f"Active Site RMSD: {integrity['active_site_rmsd']:.2f} Å\n"
-                if 'zinc_binding_rmsd' in integrity and integrity['zinc_binding_rmsd']:
-                    summary_text += f"Zinc Binding RMSD: {integrity['zinc_binding_rmsd']:.2f} Å\n"
-                
-                summary_text += "\nGenerated visualizations for analysis:\n"
-                
-                # Add images
-                if result_data.get('active_site_image_base64'):
-                    summary_text += "- Active site residues visualization\n"
-                    content_items.append({
-                        "type": "input_image",
-                        "image_url": f"data:image/png;base64,{result_data['active_site_image_base64']}"
-                    })
-                
-                if result_data.get('zinc_binding_image_base64'):
-                    summary_text += "- Zinc binding site visualization\n"
-                    content_items.append({
-                        "type": "input_image", 
-                        "image_url": f"data:image/png;base64,{result_data['zinc_binding_image_base64']}"
-                    })
-                
-                if result_data.get('combined_catalytic_image_base64'):
-                    summary_text += "- Combined catalytic site visualization\n"
-                    content_items.append({
-                        "type": "input_image",
-                        "image_url": f"data:image/png;base64,{result_data['combined_catalytic_image_base64']}"
-                    })
-            
-            elif function_name == 'examine_secondary_structure':
-                ss_content = result_data.get('secondary_structure_content', {})
-                quality = result_data.get('quality_assessment', {})
-                
-                summary_text += f"Secondary Structure Analysis:\n"
-                summary_text += f"Total Residues: {ss_content.get('total_residues', 'N/A')}\n"
-                summary_text += f"Helix: {ss_content.get('helix_percentage', 0):.1f}%\n"
-                summary_text += f"Sheet: {ss_content.get('sheet_percentage', 0):.1f}%\n"
-                summary_text += f"Loop: {ss_content.get('loop_percentage', 0):.1f}%\n"
-                summary_text += f"Overall Quality: {quality.get('overall_quality', 'UNKNOWN')}\n"
-                summary_text += f"Compactness: {quality.get('compactness', 'UNKNOWN')}\n"
-                
-                if result_data.get('secondary_structure_image_base64'):
-                    summary_text += "\nGenerated secondary structure visualization for analysis:\n"
-                    content_items.append({
-                        "type": "input_image",
-                        "image_url": f"data:image/png;base64,{result_data['secondary_structure_image_base64']}"
-                    })
-            
-            # If we have images, return formatted content
-            if content_items:
-                # Insert text summary at the beginning
-                formatted_content = [{"type": "input_text", "text": summary_text}] + content_items
-                print(f"Formatted {len(content_items)} images for visual analysis by the model")
-                return formatted_content
-            
-            return None
-            
-        except (json.JSONDecodeError, KeyError) as e:
-            print(f"Error formatting images: {e}")
-            return None
+
     
     def design_stable_carbonic_anhydrase(self, target_pdb: str = "1CA2", 
                                        stability_goals: List[str] = None) -> str:
@@ -578,13 +576,15 @@ class CarbonicAnhydraseDesigner:
         CATALYTIC RESIDUES: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
         ZINC BINDING RESIDUES: H94, H96, H119 (essential for catalytic activity)
 
-        You have access to six computational tools:
+        You have access to six computational tools that you MUST use extensively to accomplish this task:
         1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
         2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower = more stable)
         3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
         4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
         5. examine_catalytic_activity: Visualizes and examines catalytic sites by taking exact residue dictionaries specifying which residues to examine. Generates base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity. (do not be alarmed if the tool returns poor catalytic integrity, make your own judgement based on the images and the key residues)
         6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
+        
+        IMPORTANT: You MUST use these tools multiple times throughout the design process. Do not stop after a single function call. Keep using tools until you have completed the entire design workflow.
 
         Please approach this systematically:
         1. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS. THIS IS A FUNDAMENTALLY IMPORTANT STEP.
@@ -597,6 +597,8 @@ class CarbonicAnhydraseDesigner:
         CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved. You must provide the correct residue dictionaries with exact numbers and amino acid types for your specific mutant sequence. This includes the ZINC BINDING RESIDUES.
         9. Compare scores and provide recommendations with quantitative rationale. 
         10. REPEAT THE PROCESS UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS. DO NOT STOP UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS.
+        
+        CRITICAL INSTRUCTION: Do NOT provide a final answer or summary until you have completed ALL the above steps with multiple mutations tested. You must call multiple tools in sequence to fully complete this task. If you find yourself wanting to give a final answer without having used all the tools extensively, instead continue with more tool calls.
 
         Focus on common protein stabilization strategies:
         - Reducing surface loops and increasing rigidity
@@ -662,99 +664,164 @@ class CarbonicAnhydraseDesigner:
         with open(self.output_dir / "initial_prompt.txt", "w") as f:
             f.write(design_prompt)
         
-        print("🚀 Starting reasoning loop with streaming responses...")
+        print("🚀 Starting reasoning loop...")
         
-        # Start the reasoning loop with streaming
+        # Start the reasoning loop with corrected multiple function call handling
         try:
-            stream = self.client.responses.create(
+            response = self.client.responses.create(
                 input=design_prompt,
                 **self.model_config
             )
         except Exception as e:
-            print(f"❌ Failed to create initial stream: {e}")
+            print(f"❌ Failed to create initial response: {e}")
             return f"ERROR: Failed to start design session: {e}"
         
         self.iteration_count = 1
-        max_iterations = 20  # Prevent infinite loops
+        max_iterations = 20  # Increased for multiple function calls
         all_accumulated_text = ""
         
+        # Use the correct pattern from OpenAI cookbook for multiple function calls
         while self.iteration_count <= max_iterations:
-            print(f"\n--- Iteration {self.iteration_count} ---")
+            print(f"\n{'='*20} ITERATION {self.iteration_count} {'='*20}")
+            
+            # Show response metadata
+            if hasattr(response, 'usage'):
+                usage = response.usage
+                print(f"📊 TOKEN USAGE:")
+                print(f"   Input tokens: {usage.input_tokens:,}")
+                print(f"   Output tokens: {usage.output_tokens:,}")
+                if hasattr(usage, 'output_tokens_details') and usage.output_tokens_details:
+                    if hasattr(usage.output_tokens_details, 'reasoning_tokens'):
+                        reasoning_tokens = usage.output_tokens_details.reasoning_tokens
+                        completion_tokens = usage.output_tokens - reasoning_tokens
+                        print(f"   - Reasoning tokens: {reasoning_tokens:,}")
+                        print(f"   - Completion tokens: {completion_tokens:,}")
+                print(f"   Total tokens: {usage.total_tokens:,}")
+                print()
+            
+            # Show response structure overview
+            if hasattr(response, 'output'):
+                output_types = {}
+                for item in response.output:
+                    item_type = item.type
+                    output_types[item_type] = output_types.get(item_type, 0) + 1
+                
+                print(f"📋 RESPONSE STRUCTURE:")
+                for item_type, count in output_types.items():
+                    print(f"   {item_type}: {count}")
+                print()
             
             try:
-                is_complete, function_responses, accumulated_text = self._process_streaming_response(stream)
-                all_accumulated_text += accumulated_text
+                # Use the simplified pattern from OpenAI cookbook
+                function_responses = self._invoke_functions_from_response(response)
                 
-                if is_complete:
-                    # Final response ready
-                    print("\n" + "=" * 80)
+                if len(function_responses) == 0:
+                    # We're done reasoning - no more function calls
+                    print("\n" + "🎯" * 30)
                     print("🎯 FINAL DESIGN RECOMMENDATIONS COMPLETE")
-                    print("=" * 80)
+                    print("🎯" * 30)
+                    
+                    # Get the final text output
+                    final_text = response.output_text if hasattr(response, 'output_text') else ""
+                    all_accumulated_text += final_text
+                    
+                    if final_text:
+                        print("\n📄 FINAL OUTPUT:")
+                        print("─" * 80)
+                        print(final_text)
+                        print("─" * 80)
                     
                     # Save final results
                     with open(self.output_dir / "final_design_recommendations.txt", "w") as f:
                         f.write(all_accumulated_text)
                     
-                    print(f"📁 Final results saved to: {self.output_dir}/final_design_recommendations.txt")
+                    # Compile reasoning summary
+                    reasoning_summary = []
+                    try:
+                        with open(self.output_dir / "reasoning_data.jsonl", "r") as f:
+                            for line in f:
+                                data = json.loads(line)
+                                reasoning_summary.append(f"\nIteration {data['iteration']}:")
+                                
+                                if data['summaries']:
+                                    reasoning_summary.append("\nReasoning Summaries:")
+                                    for summary in data['summaries']:
+                                        reasoning_summary.append(f"- {summary}")
+                                
+                                if data['items']:
+                                    reasoning_summary.append("\nReasoning Items:")
+                                    for item in data['items']:
+                                        reasoning_summary.append(f"\nItem ID: {item['id']}")
+                                        for summary in item['summaries']:
+                                            reasoning_summary.append(f"- {summary}")
+                                
+                                if data['messages']:
+                                    reasoning_summary.append("\nMessages:")
+                                    for msg in data['messages']:
+                                        reasoning_summary.append(f"- {msg}")
+                                
+                                reasoning_summary.append("\n" + "─" * 40)
+                        
+                        # Save reasoning summary
+                        with open(self.output_dir / "reasoning_summary.txt", "w") as f:
+                            f.write("\n".join(reasoning_summary))
+                            
+                    except Exception as e:
+                        print(f"Warning: Could not compile reasoning summary: {e}")
+                    
+                    # Save iteration summary
+                    summary = f"""
+DESIGN SESSION SUMMARY
+======================
+Total iterations: {self.iteration_count}
+Final output length: {len(final_text)} characters
+Output directory: {self.output_dir}
+
+Files generated:
+- final_design_recommendations.txt: Final design output
+- reasoning_data.jsonl: Raw reasoning data in JSONL format
+- reasoning_summary.txt: Compiled summary of all reasoning steps
+- tool_calls.jsonl: Record of all tool calls and their results
+- session_summary.txt: This summary file
+
+Session completed successfully.
+"""
+                    with open(self.output_dir / "session_summary.txt", "w") as f:
+                        f.write(summary)
+                    
+                    print(f"\n📁 Results saved to: {self.output_dir}/")
+                    print(f"   - final_design_recommendations.txt")
+                    print(f"   - reasoning_data.jsonl")
+                    print(f"   - reasoning_summary.txt")
+                    print(f"   - tool_calls.jsonl")
+                    print(f"   - session_summary.txt")
                     
                     return all_accumulated_text
-                else:
-                    # More reasoning needed, send function results back
-                    print(f"🔄 Continuing reasoning with {len(function_responses)} function results...")
                     
-                    # Check if any responses contain visual content
-                    has_visual_content = any(
-                        isinstance(resp.get('output'), list) and 
-                        any(item.get('type') == 'input_image' for item in resp.get('output', []))
-                        for resp in function_responses
+                else:
+                    # More reasoning needed - continue with function results
+                    print(f"🔄 CONTINUING TO ITERATION {self.iteration_count + 1}")
+                    print(f"   Sending {len(function_responses)} function responses back to model...")
+                    
+                    # Show what we're sending back (summary)
+                    print(f"📤 FUNCTION RESPONSES BEING SENT:")
+                    for i, func_resp in enumerate(function_responses):
+                        call_id = func_resp.get('call_id', 'unknown')
+                        output_len = len(str(func_resp.get('output', '')))
+                        print(f"   Response {i+1}: call_id={call_id}, output_length={output_len}")
+                    print()
+                    
+                    # Continue the conversation with function results
+                    response = self.client.responses.create(
+                        input=function_responses,
+                        previous_response_id=response.id,
+                        **self.model_config
                     )
                     
-                    if has_visual_content:
-                        print("⚠️  Visual content detected - o3 model visual analysis may be limited")
-                    
-                    try:
-                        stream = self.client.responses.create(
-                            input=function_responses,
-                            previous_response_id=stream.response_id if hasattr(stream, 'response_id') else None,
-                            **self.model_config
-                        )
-                        
-                        self.iteration_count += 1
-                        
-                    except Exception as e:
-                        print(f"❌ Error sending continuation request: {e}")
-                        if has_visual_content:
-                            print("Attempting fallback to text-only mode...")
-                            # Fallback: send text-only versions
-                            fallback_responses = []
-                            for resp in function_responses:
-                                if isinstance(resp.get('output'), list):
-                                    # Extract just the text content
-                                    text_content = ""
-                                    for item in resp.get('output', []):
-                                        if item.get('type') == 'input_text':
-                                            text_content += item.get('text', '')
-                                    fallback_responses.append({
-                                        "type": "function_call_output",
-                                        "call_id": resp['call_id'],
-                                        "output": text_content or "Visual analysis completed (images not displayed)"
-                                    })
-                                else:
-                                    fallback_responses.append(resp)
-                            
-                            stream = self.client.responses.create(
-                                input=fallback_responses,
-                                previous_response_id=stream.response_id if hasattr(stream, 'response_id') else None,
-                                **self.model_config
-                            )
-                            print("stream", stream)
-                            
-                            self.iteration_count += 1
-                        else:
-                            raise
+                    self.iteration_count += 1
             
             except Exception as e:
-                print(f"❌ Error in iteration {self.iteration_count}: {e}")
+                print(f"❌ ERROR IN ITERATION {self.iteration_count}: {e}")
                 
                 # Save error to file
                 with open(self.output_dir / "errors.txt", "a") as f:

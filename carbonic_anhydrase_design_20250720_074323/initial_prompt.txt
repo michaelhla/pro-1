@@ -6,13 +6,15 @@
         CATALYTIC RESIDUES: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
         ZINC BINDING RESIDUES: H94, H96, H119 (essential for catalytic activity)
 
-        You have access to six computational tools:
+        You have access to six computational tools that you MUST use extensively to accomplish this task:
         1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
         2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower = more stable)
         3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
         4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
         5. examine_catalytic_activity: Visualizes and examines catalytic sites by taking exact residue dictionaries specifying which residues to examine. Generates base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity. (do not be alarmed if the tool returns poor catalytic integrity, make your own judgement based on the images and the key residues)
         6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
+        
+        IMPORTANT: You MUST use these tools multiple times throughout the design process. Do not stop after a single function call. Keep using tools until you have completed the entire design workflow.
 
         Please approach this systematically:
         1. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS. THIS IS A FUNDAMENTALLY IMPORTANT STEP.
@@ -25,6 +27,8 @@
         CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved. You must provide the correct residue dictionaries with exact numbers and amino acid types for your specific mutant sequence. This includes the ZINC BINDING RESIDUES.
         9. Compare scores and provide recommendations with quantitative rationale. 
         10. REPEAT THE PROCESS UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS. DO NOT STOP UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS.
+        
+        CRITICAL INSTRUCTION: Do NOT provide a final answer or summary until you have completed ALL the above steps with multiple mutations tested. You must call multiple tools in sequence to fully complete this task. If you find yourself wanting to give a final answer without having used all the tools extensively, instead continue with more tool calls.
 
         Focus on common protein stabilization strategies:
         - Reducing surface loops and increasing rigidity

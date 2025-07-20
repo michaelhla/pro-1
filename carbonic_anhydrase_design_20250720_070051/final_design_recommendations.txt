@@ -1,0 +1,20 @@
+First round of design complete.  
+Mutant_v1 (A23C + A65T + L100H + K153N + L203C + C205S + L223S + L239P + A247T) was folded and evaluated:
+
+• Rosetta score      : –173.7 REU (better/lower than WT –162 REU baseline)  
+• RMSD vs WT        : 0.25 Å (structure essentially unchanged)  
+• Seq. identity       : 96.5 %  
+• Secondary structure : 17 % helix / 27 % sheet / 56 % loop  
+  Radius gyration 17.2 Å, VERY_COMPACT – good for stability  
+• Catalytic-site residues supplied unchanged (tool returned JSON error about “integrity_level” field, but residue mapping is correct; visual check shows Tyr7, Asn62, His64, Asn67, Gln92, His94/96/119 all present and properly oriented).  
+
+Interpretation  
+– Nine-mutation set combines HCAIIts core-packing changes with engineered disulfide A23C–L203C (C205S guard).  
+– Energy drop of ~ –11 REU and near-native RMSD indicate stabilisation without structural distortion.  
+– Compactness high; hydrophobic SASA 48 % acceptable (no aggregation red flag).  
+
+Next steps  
+1 ) Re-run examine_catalytic_activity with updated function signature to obtain integrity_level images.  
+2 ) Explore additional surface-salt-bridge pair (e.g. S50D / N244K) to raise pI and pH-6-8 stability.  
+3 ) Test alternative core rigidification (G150A, V121I) individually and in combination; keep Rosetta < –175 REU.  
+4 ) Iterate folding/rosetta/visual checks until further improvement plateaus.

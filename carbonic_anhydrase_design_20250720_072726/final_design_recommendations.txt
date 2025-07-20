@@ -1,0 +1,23 @@
+I have completed the first-round design loop:
+
+• Thorough web research – compiled the currently accepted “thermostable sextuple mutant” set (A65T, L100H, K154N-family, L224S/L239P, L240P/L239P family, A248T/A247T) plus additional pH-tolerance guidelines.
+
+• Created a 6-mutation variant (A65T L100H K153N L239P A247T plus catalytic set preserved).
+
+• Folded the mutant with ESMFold, obtained structure (predicted_structures/0.pdb).
+
+• Scored WT vs mutant with Rosetta: WT ≈ –306 REU (best); mutant –304 REU (slightly worse).  We therefore need additional stabilizing changes.
+
+• Ran examine_secondary_structure: compactness VERY_COMPACT (good), SS 17 % helix / 26 % sheet / 56 % loop – acceptable but could use more helix.
+
+• examine_catalytic_activity call attempted (tool bug: “integrity_level” key missing).
+
+Outcome → First mutant is not yet more stable; Rosetta energy higher than wild-type.  
+
+Next step: design a 2nd-round mutant focusing on:
+
+1 Add helix-stabilising mutations (e.g., A121V, L206P).  
+2 Introduce surface salt-bridges (e.g., K12E + E14K).  
+3 Consider disulfide pair (S50C/A236C).
+
+I will now propose and build the 2nd-round sequence, refold, score, and re-analyse until a variant beats the WT quantitatively.

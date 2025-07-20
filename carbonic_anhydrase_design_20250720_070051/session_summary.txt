@@ -1,0 +1,8 @@
+
+DESIGN SESSION SUMMARY
+======================
+Total iterations: 15
+Final output length: 1411 characters
+Output directory: carbonic_anhydrase_design_20250720_070051
+
+Session completed successfully.

@@ -161,7 +161,7 @@ class SecondaryStructureExaminer:
         cmd.set('antialias', 2)
         
         # Capture the image
-        cmd.png(output_path, width=1200, height=900, dpi=300, ray=1)
+        cmd.png(output_path, width=400, height=300, dpi=72, ray=1)
         
         print(f"Secondary structure image saved to: {output_path}")
         

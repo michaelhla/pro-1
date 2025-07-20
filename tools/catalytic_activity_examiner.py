@@ -282,7 +282,7 @@ class CatalyticActivityExaminer:
         
         try:
             # Capture the image (ray tracing disabled to prevent hanging)
-            cmd.png(output_path, width=1200, height=900, dpi=300, ray=0)
+            cmd.png(output_path, width=400, height=300, dpi=150, ray=0)
             print(f"Active site residues image saved to: {output_path}")
         except Exception as e:
             # Return a placeholder path if image generation fails
@@ -404,7 +404,7 @@ class CatalyticActivityExaminer:
         
         try:
             # Capture the image (ray tracing disabled to prevent hanging)
-            cmd.png(output_path, width=1200, height=900, dpi=300, ray=0)
+            cmd.png(output_path, width=400, height=300, dpi=150, ray=0)
             print(f"Zinc binding residues image saved to: {output_path}")
         except Exception as e:
             # Return a placeholder path if image generation fails
@@ -538,7 +538,7 @@ class CatalyticActivityExaminer:
         
         try:
             # Capture the image (ray tracing disabled to prevent hanging)
-            cmd.png(output_path, width=1400, height=1000, dpi=300, ray=0)
+            cmd.png(output_path, width=400, height=300, dpi=72, ray=0)
             print(f"Combined catalytic site image saved to: {output_path}")
         except Exception as e:
             output_path = os.path.join(output_dir, 'combined_catalytic_site_failed.png')
@@ -659,19 +659,19 @@ class CatalyticActivityExaminer:
             recommendations.append("RMSD calculation not available with flexible residue specification")
         
         return {
-            'integrity_level': integrity_level,
-            'risk_level': risk_level,
+            # 'integrity_level': integrity_level,
+            # 'risk_level': risk_level,
             'active_site_rmsd': rmsd_results['active_site_rmsd'],
             'zinc_binding_rmsd': rmsd_results['zinc_binding_rmsd'],
             'overall_rmsd': rmsd_results['overall_rmsd'],
-            'active_site_integrity_percent': active_site_integrity,
-            'zinc_binding_integrity_percent': zinc_binding_integrity,
-            'overall_integrity_percent': overall_integrity,
-            'active_site_missing': active_site_missing,
-            'zinc_binding_missing': zinc_binding_missing,
-            'active_site_wrong_type': active_site_wrong_type,
-            'zinc_binding_wrong_type': zinc_binding_wrong_type,
-            'recommendations': recommendations
+            # 'active_site_integrity_percent': active_site_integrity,
+            # 'zinc_binding_integrity_percent': zinc_binding_integrity,
+            # 'overall_integrity_percent': overall_integrity,
+            # 'active_site_missing': active_site_missing,
+            # 'zinc_binding_missing': zinc_binding_missing,
+            # 'active_site_wrong_type': active_site_wrong_type,
+            # 'zinc_binding_wrong_type': zinc_binding_wrong_type,
+            # 'recommendations': recommendations
         }
     
     def _calculate_aligned_rmsd(self, active_site_status: Dict[str, Dict], 

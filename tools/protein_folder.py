@@ -112,19 +112,19 @@ def get_protein_folder():
     return _protein_folder
 
 
-def fold_protein(sequence: str, protein_id: Optional[str] = None) -> str:
+def fold_protein(sequence: str, filename: str) -> str:
     """
     Fold a protein sequence and return the path to the PDB file.
     
     Args:
         sequence: Amino acid sequence to fold
-        protein_id: Optional identifier for the protein
+        filename: Filename to save the folded structure
         
     Returns:
         Path to the saved PDB file
     """
     folder = get_protein_folder()
-    return folder.predict_structure(sequence, protein_id)
+    return folder.predict_structure(sequence, filename)
 
 
 if __name__ == "__main__":
