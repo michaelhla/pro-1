@@ -822,6 +822,8 @@ class CatalyticActivityExaminer:
         # Calculate RMSD
         diff = coords1_centered - coords2_rotated
         rmsd = np.sqrt(np.mean(np.sum(diff**2, axis=1)))
+
+        print(f"CATALYTIC RMSD: {rmsd}")
         
         return rmsd
 
@@ -898,10 +900,11 @@ def examine_catalytic_activity(pdb_file_path: str,
             # 'zinc_binding_image_path': results['zinc_binding_image'],
             # 'zinc_binding_image_base64': zinc_binding_image_base64,
             'combined_catalytic_image_path': results['combined_catalytic_image'],
-            'combined_catalytic_image_base64': combined_image_base64,
+            # 'combined_catalytic_image_base64': combined_image_base64,
             'catalytic_integrity': results['catalytic_integrity'],
             'summary': f"Catalytic integrity analysis completed"
         }
+
         
         return json.dumps(serializable_results, indent=2)
         

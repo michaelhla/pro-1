@@ -40,7 +40,8 @@ class CarbonicAnhydraseDesignerClaude:
     """
     
     def __init__(self, api_key: Optional[str] = None, model: str = "claude-3-5-sonnet-20241022", 
-                 output_dir: str = None, max_tokens: int = 8192, context_limit: int = 180000):
+                 output_dir: str = None, max_tokens: int = 8192, context_limit: int = 40000,
+                 enable_thinking: bool = False, thinking_budget: int = 2048):
         """
         Initialize the designer with Anthropic client and model configuration.
         
@@ -50,11 +51,15 @@ class CarbonicAnhydraseDesignerClaude:
             output_dir: Directory to save outputs (if None, creates timestamped dir)
             max_tokens: Maximum tokens for responses
             context_limit: Token limit before triggering summarization (default: 180k to stay under 200k)
+            enable_thinking: Whether to enable Claude's extended thinking (requires supported model)
+            thinking_budget: Number of tokens allocated for thinking (minimum 1024, must be < max_tokens)
         """
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model
         self.max_tokens = max_tokens
         self.context_limit = context_limit
+        self.enable_thinking = enable_thinking
+        self.thinking_budget = thinking_budget
         
         # Set up output directory
         if output_dir is None:
@@ -75,6 +80,13 @@ class CarbonicAnhydraseDesignerClaude:
         
         print(f"🚀 Starting Claude design session - outputs will be saved to: {self.output_dir}")
         print(f"📊 Context limit set to {self.context_limit:,} tokens")
+        if self.enable_thinking:
+            if self.thinking_budget >= 1024 and self.thinking_budget < self.max_tokens:
+                print(f"🧠 Extended thinking enabled with {self.thinking_budget:,} token budget")
+            else:
+                print(f"⚠️  Extended thinking disabled: invalid budget ({self.thinking_budget}) - must be ≥1024 and <{self.max_tokens}")
+        else:
+            print("💭 Extended thinking disabled")
 
     def _estimate_tokens(self, text: str) -> int:
         """
@@ -503,6 +515,7 @@ Continue using the computational tools extensively and keep iterating on the des
             result = self.tool_mapping[tool_name](**arguments)
             
             print(f"✅ Tool {tool_name} completed")
+            print(result)
             
             # Log tool execution to file
             tool_log = {
@@ -564,6 +577,12 @@ Continue using the computational tools extensively and keep iterating on the des
             if content_block.type == "text":
                 print(content_block.text)
                 print()
+            elif content_block.type == "thinking":
+                print("🧠 CLAUDE'S THINKING:")
+                print("─" * 40)
+                print(content_block.thinking)
+                print("─" * 40)
+                print()
             elif content_block.type == "tool_use":
                 print(f"🔧 TOOL CALL: {content_block.name}")
                 print(f"   Tool ID: {content_block.id}")
@@ -582,6 +601,12 @@ Continue using the computational tools extensively and keep iterating on the des
                 
                 print(f"   Result length: {len(str(result))} characters")
                 print("   " + "─" * 50)
+            else:
+                # Handle any other content types that might be added in the future
+                print(f"⚠️  Unknown content block type: {content_block.type}")
+                if hasattr(content_block, '__dict__'):
+                    print(f"   Content: {content_block.__dict__}")
+                print()
         
         print("=" * 60)
         
@@ -590,6 +615,10 @@ Continue using the computational tools extensively and keep iterating on the des
         for content_block in response.content:
             if content_block.type == "text":
                 iteration_content += content_block.text + "\n"
+            elif content_block.type == "thinking":
+                iteration_content += "=== CLAUDE'S THINKING ===\n"
+                iteration_content += content_block.thinking + "\n"
+                iteration_content += "=== END THINKING ===\n\n"
         
         if iteration_content.strip():
             iteration_file = self.output_dir / f"iteration_{self.iteration_count}_output.txt"
@@ -652,7 +681,7 @@ Continue using the computational tools extensively and keep iterating on the des
         IMPORTANT: You MUST use these tools multiple times throughout the design process. Do not stop after a single tool call. Keep using tools until you have completed the entire design workflow.
 
         Please approach this systematically:
-        1. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS. THIS IS A FUNDAMENTALLY IMPORTANT STEP.
+        1. Use websearch to find current research on general enzyme stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS. THIS IS A FUNDAMENTALLY IMPORTANT STEP.
         2. Using the findings from your research, propose specific amino acid mutations that could improve stability. These can be simple point mutations, or larger insertions/deletions.
         3. Then modify the original sequence using the mutations you proposed. Make sure you have applied your mutations correctly. 
         4. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
@@ -684,7 +713,9 @@ Continue using the computational tools extensively and keep iterating on the des
         
         Start by conducting a thorough web search to understand the current state of carbonic anhydrase engineering. The rosetta score of your design must be lower than the wildtype score of ~ -305.
        
-        The modifications you propose MUST BE NOVEL!!!!
+        You are not restricted to point mutations. You can propose larger insertions/deletions, or even entire domains. Feel free to fetch other sequences from uniprot and use them in your designs + modifications. 
+
+        The modifications you propose MUST BE NOVEL!!!! 
         """
         
         # Save initial prompt to file
@@ -713,12 +744,21 @@ Continue using the computational tools extensively and keep iterating on the des
                 self._check_and_manage_context()
 
                 # Make API call to Claude with retry logic
-                response = self._api_call_with_retry(
-                    model=self.model,
-                    max_tokens=self.max_tokens,
-                    tools=self.tools,
-                    messages=self.messages
-                )
+                api_params = {
+                    "model": self.model,
+                    "max_tokens": self.max_tokens,
+                    "tools": self.tools,
+                    "messages": self.messages
+                }
+                
+                # Add thinking parameter if enabled and budget is valid
+                if self.enable_thinking and self.thinking_budget >= 1024 and self.thinking_budget < self.max_tokens:
+                    api_params["thinking"] = {
+                        "type": "enabled",
+                        "budget_tokens": self.thinking_budget
+                    }
+                
+                response = self._api_call_with_retry(**api_params)
                 
                 # Process the response
                 is_complete, tool_results = self._process_response(response)
@@ -764,7 +804,7 @@ Continue with the next design iteration. Please proceed with:
 
 Remember to use the tools extensively and keep iterating until you have a design that meets all the stability goals.
 
-HINT: You can search for modifications that have made other, similar proteins more stable.
+HINT: You can search for modifications that have made other, similar proteins more stable. THIS IS WHAT YOU SHOULD DO IF THE PREVIOUS MODIFICATIONS DID NOT WORK.
 """
                         
                     self.messages.append({
@@ -791,8 +831,16 @@ HINT: You can search for modifications that have made other, similar proteins mo
                 for content in message["content"]:
                     if hasattr(content, 'text'):
                         all_accumulated_text += content.text + "\n\n"
+                    elif hasattr(content, 'thinking'):
+                        all_accumulated_text += "=== CLAUDE'S THINKING ===\n"
+                        all_accumulated_text += content.thinking + "\n"
+                        all_accumulated_text += "=== END THINKING ===\n\n"
                     elif isinstance(content, dict) and content.get("type") == "text":
                         all_accumulated_text += content.get("text", "") + "\n\n"
+                    elif isinstance(content, dict) and content.get("type") == "thinking":
+                        all_accumulated_text += "=== CLAUDE'S THINKING ===\n"
+                        all_accumulated_text += content.get("thinking", "") + "\n"
+                        all_accumulated_text += "=== END THINKING ===\n\n"
         
         # Save final conversation to file
         final_output_file = self.output_dir / "final_output.txt"
@@ -812,6 +860,12 @@ HINT: You can search for modifications that have made other, similar proteins mo
                         if hasattr(content, 'type'):
                             if content.type == "text":
                                 content_list.append({"type": "text", "text": content.text})
+                            elif content.type == "thinking":
+                                content_list.append({
+                                    "type": "thinking", 
+                                    "thinking": content.thinking,
+                                    "signature": getattr(content, 'signature', None)
+                                })
                             elif content.type == "tool_use":
                                 content_list.append({
                                     "type": "tool_use",
@@ -920,11 +974,13 @@ def main():
         print("Catalytic activity and secondary structure examination will not be available")
         print("Install with: conda install -c conda-forge pymol-open-source")
     
-    # Create designer instance with Claude 4 Sonnet
+    # Create designer instance with Claude 3.7 (thinking model)
     designer = CarbonicAnhydraseDesignerClaude(
-        model="claude-3-5-sonnet-20241022",  # Latest Claude 3.5 Sonnet
-        max_tokens=8192,
-        context_limit=180000  # 180k tokens to stay under 200k limit
+        model="claude-3-7-sonnet-20250219",  # Claude 3.7 with extended thinking support
+        max_tokens=16384,  # Increased to accommodate thinking + response
+        context_limit=40000,  # 180k tokens to stay under 200k limit
+        enable_thinking=True,  # Enable extended reasoning display
+        thinking_budget=4096  # Generous budget for deep protein engineering reasoning
     )
     
     # Example usage
