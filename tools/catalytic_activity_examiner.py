@@ -822,8 +822,6 @@ class CatalyticActivityExaminer:
         # Calculate RMSD
         diff = coords1_centered - coords2_rotated
         rmsd = np.sqrt(np.mean(np.sum(diff**2, axis=1)))
-
-        print(f"CATALYTIC RMSD: {rmsd}")
         
         return rmsd
 

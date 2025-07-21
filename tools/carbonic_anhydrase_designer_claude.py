@@ -813,7 +813,7 @@ HINT: You can search for modifications that have made other, similar proteins mo
                     })
                     
                     self.iteration_count += 1
-                    time.sleep(2)  # Reduced from 5 seconds since we now have retry logic
+                    time.sleep(5)  # Reduced from 5 seconds since we now have retry logic
                     continue
 
                         
