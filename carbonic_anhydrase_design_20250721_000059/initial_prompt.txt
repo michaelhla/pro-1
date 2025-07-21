@@ -1,0 +1,93 @@
+
+        You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase.
+
+        ORIGINAL SEQUENCE: MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK
+        Stability goals: Increase thermal stability, Improve stability in more acidic conditions, Maintain catalytic activity
+        CATALYTIC RESIDUES: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
+        ZINC BINDING RESIDUES: H94, H96, H119 (essential for catalytic activity)
+
+        You have access to six computational tools that you MUST use extensively to accomplish this task:
+        1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
+        2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower or more negative = more stable)
+        3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
+        4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
+        5. examine_catalytic_activity: Visualizes and examines catalytic sites by taking exact residue dictionaries specifying which residues to examine. Generates base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity. (do not be alarmed if the tool returns poor catalytic integrity, make your own judgement based on the images and the key residues)
+        6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
+        
+        IMPORTANT: You MUST use these tools multiple times throughout the design process. Do not stop after a single function call. Keep using tools until you have completed the entire design workflow.
+
+        Please approach this systematically:
+        1. Use websearch to find current research on carbonic anhydrase stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS. THIS IS A FUNDAMENTALLY IMPORTANT STEP.
+        2. Using the findings from your research, propose specific amino acid mutations that could improve stability. These can be simple point mutations, or larger insertions/deletions.
+        3. Then modify the original sequence using the mutations you proposed. Make sure you have applied your mutations correctly. 
+        4. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
+        5. Use calculate_rosetta_score to get the stability score of your modified sequence.
+        7. Use examine_secondary_structure to analyze the new structure's fold, SASA, and structural quality
+        8. Use examine_catalytic_activity to verify the new structure's catalytic sites are intact. You need to specify the exact residue numbers and types in the active_site_residues and zinc_binding_residues dictionaries based on your mutant sequence. This includes the ZINC BINDING RESIDUES.
+        CRITICAL: Use examine_catalytic_activity on each mutant to ensure catalytic residues are preserved. You must provide the correct residue dictionaries with exact numbers and amino acid types for your specific mutant sequence. This includes the ZINC BINDING RESIDUES.
+        9. Compare scores and provide recommendations with quantitative rationale. 
+        10. REPEAT THE PROCESS UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS. DO NOT STOP UNTIL YOU HAVE A DESIGN THAT YOU BELIEVE MEETS THE GOALS.
+        
+        CRITICAL INSTRUCTION: Do NOT provide a final answer or summary until you have completed ALL the above steps with multiple mutations tested. You must call multiple tools in sequence to fully complete this task. If you find yourself wanting to give a final answer without having used all the tools extensively, instead continue with more tool calls.
+
+        Focus on common protein stabilization strategies:
+        - Reducing surface loops and increasing rigidity
+        - Improving hydrophobic core packing
+        - Adding favorable electrostatic interactions
+        - Removing destabilizing residues
+        - Increasing secondary structure propensity
+
+        Always preserve the catalytic activity of the enzyme while improving stability.
+        Use the Rosetta scores to validate your design decisions quantitatively (more negative = more stable).
+        
+        RMSD interpretation guidelines:
+        - RMSD < 2.0 Å: Very similar structures in aligned region (conservative mutations)
+        - RMSD 2.0-5.0 Å: Moderate structural changes in aligned region (acceptable for stability improvements)
+        - RMSD > 5.0 Å: Significant structural changes in aligned region (may affect function, use with caution)
+        
+        Sequence alignment interpretation:
+        - Overlap percentage: Shows how much of the shorter sequence was aligned (higher = better coverage)
+        - Sequence identity: Percentage of identical amino acids in aligned region (higher = more conservative changes)
+        - High overlap (>80%) + High identity (>80%): Conservative design with good coverage
+        - High overlap (>80%) + Medium identity (60-80%): Moderate mutations with good coverage
+        - Low overlap (<60%): Limited alignment - RMSD may not represent overall similarity
+        - Always examine aligned_ref_sequence and aligned_new_sequence to understand what was compared
+        - The alignment uses sliding window to find the region of maximum sequence similarity
+        
+        Web search usage guidelines:
+        - Use websearch to find current research on specific stability engineering strategies
+        - Search for recent papers on carbonic anhydrase modifications and their effects
+        - Look up proven mutation strategies for thermostability improvements
+        - Find information about specific amino acid substitutions and their structural effects
+        - Search for validation methods and experimental approaches used in similar studies
+        
+        Catalytic activity examination guidelines:
+        - Always use examine_catalytic_activity to verify catalytic integrity before and after mutations
+        - For standard hCA II, specify these residues in your dictionaries:
+          * Active site residues: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
+          * Zinc binding residues: H94, H96, H119 (essential for catalytic activity)
+        - You MUST provide exact residue dictionaries with the correct residue numbers for your specific sequence
+        - If you've made insertions/deletions, calculate the new positions FOR ALL OF THE CATALYTIC RESIDUES AND ZINC BINDING RESIDUES and update the residue numbers accordingly
+        - Use format: {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}, ...}
+        - Choose descriptive image_subdir names like 'wildtype_analysis', 'mutant_v1', 'mutant_v2', 'final_design' to organize images
+        - Integrity levels: EXCELLENT (no issues), GOOD (minor issues), ACCEPTABLE (some concerns), POOR (major problems)
+        - Be very cautious when recommending a design that shows POOR catalytic integrity. 
+
+        Secondary structure examination guidelines:
+        - Use examine_secondary_structure to assess overall fold quality and stability
+        - Key metrics: SASA (lower suggests more compact), radius of gyration (compactness measure), secondary structure content
+        - Typical stable proteins: 20-50% helix, 10-30% sheet, 30-60% loop
+        - Compactness levels: VERY_COMPACT (excellent), COMPACT (good), NORMAL (acceptable), LOOSE/VERY_LOOSE (concerning)
+        - Monitor surface hydrophobicity - too high may cause aggregation, appropriate levels improve stability
+        - Use structural quality assessment to guide mutation strategies
+        - Choose descriptive image_subdir names like 'wildtype_structure', 'mutant_v1_structure', 'final_design_structure' to organize images
+        
+        Visual analysis guidelines:
+        - The examination functions return base64-encoded images that you can analyze visually
+        - Look for structural deformations, missing secondary structures, or catalytic site disruptions
+        - Compare visualizations between wild-type and mutant structures to assess structural preservation
+        - Use the visual information to guide further optimization decisions
+        - Images show: secondary structure coloring, catalytic residues, zinc coordination, surface representations
+
+        Remember, protein sequences are 1-indexed, not 0-indexed.
+        

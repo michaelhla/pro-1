@@ -282,7 +282,7 @@ class CatalyticActivityExaminer:
         
         try:
             # Capture the image (ray tracing disabled to prevent hanging)
-            cmd.png(output_path, width=400, height=300, dpi=150, ray=0)
+            cmd.png(output_path, width=400, height=300, dpi=72, ray=0)
             print(f"Active site residues image saved to: {output_path}")
         except Exception as e:
             # Return a placeholder path if image generation fails
@@ -404,7 +404,7 @@ class CatalyticActivityExaminer:
         
         try:
             # Capture the image (ray tracing disabled to prevent hanging)
-            cmd.png(output_path, width=400, height=300, dpi=150, ray=0)
+            cmd.png(output_path, width=400, height=300, dpi=72, ray=0)
             print(f"Zinc binding residues image saved to: {output_path}")
         except Exception as e:
             # Return a placeholder path if image generation fails
@@ -708,18 +708,123 @@ class CatalyticActivityExaminer:
             'H119': [-1.588, 0.345, -0.294]     # Histidine 119 - zinc coordination
         }
         
-        # Since we now have flexible residue specification, RMSD calculation is only meaningful
-        # if we have reference coordinates for the specific residues. For now, return None values
-        # to indicate that RMSD calculation is not available with flexible residue specification.
-        # In future versions, reference coordinates could be provided by the caller or determined
-        # from a reference structure.
+        def calculate_rmsd_for_residue_set(residue_status: Dict[str, Dict]) -> Optional[float]:
+            """Calculate RMSD for a set of residues if reference coordinates are available."""
+            current_coords = []
+            ref_coords = []
+            
+            for res_key, status in residue_status.items():
+                if status['exists'] and res_key in reference_coords:
+                    # Get current coordinates from PyMOL
+                    res_num = None
+                    for res_info_key, res_info in {**active_site_status, **zinc_binding_status}.items():
+                        if res_info_key == res_key:
+                            res_num = res_info.get('number')
+                            break
+                    
+                    if res_num is not None:
+                        selection = f"chain {self.chain_id} and resi {res_num} and name CA"
+                        try:
+                            # Get coordinates from PyMOL
+                            coords = cmd.get_coords(f"hca_structure and {selection}")
+                            if coords is not None and len(coords) > 0:
+                                current_coords.append(coords[0])
+                                ref_coords.append(reference_coords[res_key])
+                        except:
+                            continue
+            
+            if len(current_coords) >= 3:  # Need at least 3 points for meaningful RMSD
+                current_coords = np.array(current_coords)
+                ref_coords = np.array(ref_coords)
+                
+                # Use Kabsch algorithm for optimal alignment
+                return self._kabsch_rmsd(ref_coords, current_coords)
+            
+            return None
+        
+        # Calculate RMSD for each residue set
+        active_site_rmsd = calculate_rmsd_for_residue_set(active_site_status)
+        zinc_binding_rmsd = calculate_rmsd_for_residue_set(zinc_binding_status)
+        
+        # Calculate overall RMSD using all available residues
+        all_current_coords = []
+        all_ref_coords = []
+        
+        for res_key, status in {**active_site_status, **zinc_binding_status}.items():
+            if status['exists'] and res_key in reference_coords:
+                # Find the residue number
+                res_num = None
+                for res_info_key, res_info in {**active_site_status, **zinc_binding_status}.items():
+                    if res_info_key == res_key:
+                        res_num = res_info.get('number')
+                        break
+                
+                if res_num is not None:
+                    selection = f"chain {self.chain_id} and resi {res_num} and name CA"
+                    try:
+                        coords = cmd.get_coords(f"hca_structure and {selection}")
+                        if coords is not None and len(coords) > 0:
+                            all_current_coords.append(coords[0])
+                            all_ref_coords.append(reference_coords[res_key])
+                    except:
+                        continue
+        
+        overall_rmsd = None
+        if len(all_current_coords) >= 3:
+            all_current_coords = np.array(all_current_coords)
+            all_ref_coords = np.array(all_ref_coords)
+            overall_rmsd = self._kabsch_rmsd(all_ref_coords, all_current_coords)
         
         return {
-            'active_site_rmsd': None,
-            'zinc_binding_rmsd': None,
-            'overall_rmsd': None
+            'active_site_rmsd': active_site_rmsd,
+            'zinc_binding_rmsd': zinc_binding_rmsd,
+            'overall_rmsd': overall_rmsd
         }
-    
+
+    def _kabsch_rmsd(self, coords1: np.ndarray, coords2: np.ndarray) -> float:
+        """
+        Calculate RMSD between two sets of coordinates using the Kabsch algorithm
+        for optimal superposition.
+        
+        Args:
+            coords1: Reference coordinates (N x 3)
+            coords2: Current coordinates (N x 3)
+            
+        Returns:
+            RMSD value in Angstroms
+        """
+        assert coords1.shape == coords2.shape
+        
+        # Center the coordinates
+        centroid1 = np.mean(coords1, axis=0)
+        centroid2 = np.mean(coords2, axis=0)
+        
+        coords1_centered = coords1 - centroid1
+        coords2_centered = coords2 - centroid2
+        
+        # Calculate the cross-covariance matrix
+        H = coords2_centered.T @ coords1_centered
+        
+        # SVD decomposition
+        U, S, Vt = np.linalg.svd(H)
+        
+        # Calculate rotation matrix
+        R = Vt.T @ U.T
+        
+        # Ensure proper rotation (not reflection)
+        if np.linalg.det(R) < 0:
+            Vt[-1, :] *= -1
+            R = Vt.T @ U.T
+        
+        # Apply rotation to coords2
+        coords2_rotated = coords2_centered @ R.T
+        
+        # Calculate RMSD
+        diff = coords1_centered - coords2_rotated
+        rmsd = np.sqrt(np.mean(np.sum(diff**2, axis=1)))
+        
+        return rmsd
+
 
 
 

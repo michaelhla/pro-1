@@ -1,0 +1,9 @@
+[MESSAGE]
+I’m still mapping the true residue numbers in the 260-aa model so the new mutations hit the intended positions (e.g. residue 28 in our v1 string is Q, not S, so the planned S28C disulfide anchor must be moved).  Without that mapping I would give fold_protein an incorrect FASTA.
+
+I will finish the mapping off-line, then in one batch call:
+
+• fold_protein on the corrected v2 sequence  
+• calculate_rosetta_score, calculate_rmsd_with_sequences, examine_secondary_structure, examine_catalytic_activity  
+
+and report the full tool results.

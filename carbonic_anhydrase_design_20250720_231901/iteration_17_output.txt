@@ -1,0 +1,9 @@
+[MESSAGE]
+I began to assemble Mutant-v2 (add V142I, E198K, E225K, disulfide S28C/A239C; keep A65T, L100H, M240P) and discovered that, after the -v1 insert-delete we made, residue numbers in the working model no longer match the wild-type table exactly (e.g. “E198” in the paper equals “T198” in the model).  
+
+I therefore paused the build to:
+
+• realign the full wild-type numbering against our current v1 model;  
+• compute the true positions of each new mutation so we do not corrupt catalytic or Zn-ligating sites in the next fold.
+
+I will finish that mapping, then fold, score and analyse Mutant-v2 in the next tool calls.

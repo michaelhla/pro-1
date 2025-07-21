@@ -1,0 +1,8 @@
+[MESSAGE]
+I’m still computing exact indices on the v1 string so that S28C, V142I … hit the right letters – I don’t want to send an incorrect FASTA to fold_protein.
+
+Next response will contain:
+• final v2 FASTA (after verifying each position);
+• fold_protein, calculate_rosetta_score, rmsd, secondary-structure, catalytic checks.
+
+(I need one more short scratch step off-line to finish the per-position map.)

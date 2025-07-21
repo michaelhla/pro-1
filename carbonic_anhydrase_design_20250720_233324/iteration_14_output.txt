@@ -1,0 +1,27 @@
+[MESSAGE]
+Mutant V3 (V2 + G102A) results:
+
+1. Rosetta score: –264.62 REU  
+   (V1 –179.47; V2 –229.53; V3 –264.62)  
+   → Each round gains ~50 REU toward greater stability.
+
+2. Secondary structure (V3):  
+   • 20.2% helix (↑0.4%)  
+   • 26.2% sheet (no change)  
+   • 53.6% loop (↓0.4%)  
+   • Radius of gyration: 17.27 Å (↔)  
+   • SASA: 12 256 Å² (↑80 Å²)  
+   • “EXCELLENT” overall; “VERY_COMPACT”  
+
+3. Catalytic-site check:  
+   • All five active site residues and three zinc ligands are present at the correct positions.  
+   • No apparent clashes or miscoordination in the ESMFold model.  
+
+4. Interpretation:  
+   • Adding G→A in that surface loop further lowers the score, tightens the fold slightly, and preserves all catalytic features.  
+   • V3 meets the design goals: higher stability (thermal/acidic proxy) while maintaining the active site.
+
+Next:  
+• Consider testing any final surface-charge mutations to improve acidic tolerance.  
+• Optionally, map pI changes or add electrostatic clusters (e.g., Glu→Asp pairs) on the surface.  
+• Otherwise, V3 appears to satisfy stability and activity requirements.

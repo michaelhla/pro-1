@@ -1,0 +1,17 @@
+
+
+=== ITERATION 12 ===
+
+[MESSAGE]
+Initial computational assessment:
+
+1. Wild-type Rosetta energy (baseline): −305.6 REU  
+2. Mutant v1 (A65T + L100H) Rosetta: −293.3 REU → destabilised relative to WT.  
+3. Secondary-structure analysis (WT): compact fold, 17 % helix / 27 % sheet; quality GOOD.
+
+The conservative two-mutation “v1” design was not sufficient—energy is higher (worse) than WT.  
+Next steps (still required before any final design):
+
+• Build the full thermostable sextuple variant (A65T, L100H, K153N, L223S, L239P, A247T) with a correctly edited sequence.  
+• Fold, score (Rosetta), evaluate catalytic integrity, RMSD, etc.  
+• Iterate additional designs (e.g. disulfide pair, surface charge optimisation) until Rosetta score < WT and catalytic residues remain EXCELLENT.

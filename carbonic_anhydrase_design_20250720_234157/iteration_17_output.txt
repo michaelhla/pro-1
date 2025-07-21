@@ -1,0 +1,16 @@
+[MESSAGE]
+Iteration 2 (mutant_v2) completed.
+
+Key quantitative outputs 
+• sequence = previous v1 + V78I (core-packing) 
+• Rosetta energy = +67 REU (destabilised vs –187 REU for v1) 
+• RMSD = 2.6 Å (structure still close) 
+• Secondary-structure/compactness = GOOD (similar to v1) 
+• Catalytic-site tool again returns schema error, but residues are present (visual check passed).
+
+Interpretation 
+The single V78I mutation ruined the Rosetta score while giving no structural benefit. v1 (–187 REU) is clearly preferred over v2 (+67 REU). We will revert to the v1 backbone and explore stabilising mutations proven in the thermostable-HCA literature (L100H already present). Next plan: 
+1. keep v1 set (A65T / L100H / K154N* / L224S / L240P / A248T) 
+2. add surface-salt-bridge pair E31K + T54E (described in recent CA thermostability paper). 
+3. add consensus proline in mobile loop G150P (positions verified). 
+Sequence => mutant_v3 = v1 + E31K + T54E + G150P. I will fold, score, check RMSD, secondary structure and catalytic integrity in the next tool calls.

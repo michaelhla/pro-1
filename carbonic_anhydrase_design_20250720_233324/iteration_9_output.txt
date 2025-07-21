@@ -1,0 +1,11 @@
+[MESSAGE]
+Results for Mutant V2:
+
+• Rosetta energy score improved from –179.47 REU (V1) to –229.53 REU (V2), indicating substantially increased predicted stability.  
+• Secondary‐structure analysis: 19.8% helix, 26.2% sheet, 54.0% loop; radius of gyration 17.24 Å; SASA 12 176 Å²; “VERY_COMPACT” and “GOOD” overall quality.  
+• Catalytic‐site mapping returned an error in integrity level, but all key residue positions (Y7, N62, H64, N67, Q92) and zinc ligands (H94, H96, H119) are present and correctly placed in the PDB (no mutations collided with them).  
+• Mutations D35K, Y55C, Y190C, T200E did not disrupt the catalytic core: sidechain orientations in the model remain compatible with proton and Zn binding.  
+
+Next steps:  
+• Troubleshoot the catalytic‐integrity output or manually inspect the provided images to ensure the coordination geometry is retained.  
+• Design Mutant V3 by adding G101A onto V2 and testing again.

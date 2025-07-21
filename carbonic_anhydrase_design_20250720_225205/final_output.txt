@@ -1,0 +1,28 @@
+
+
+=== ITERATION 17 ===
+
+[MESSAGE]
+The first round of mutations (A23C + L203C + C205S to introduce the canonical 23–203 disulphide and eliminate C205) has been built and fully analysed:
+
+Quantitative snapshot (WT → Mutant v1)
+• Rosetta energy: –305.5 → –281.4  (Δ +24 REU; less stable)  
+• Secondary structure: essentially unchanged (17 % helix, 26 % sheet, 56 % loop).  
+• Radius of gyration, SASA and hydrophobic ratio virtually identical.  
+• RMSD vs. reference not yet run (will do after catalytic check).  
+• Catalytic-site build check attempted – the wrapper returned an internal error; will retry in next step.
+
+Interpretation
+– Disulphide alone slightly worsens the global Rosetta score (likely clash/strain with C205 → S patch still imperfect).  
+– Fold compactness and secondary structure are fine (VERY_COMPACT, GOOD overall).  
+– No secondary-structure loss, so geometry is preserved.
+
+Next actions (second iteration)
+1. Fix catalytic-site check (retry with tool-expected format).  
+2. Roll in salt-bridge mutations shown experimentally to boost CA stability (S44R, S139E, K168R equivalents after mapping to our numbering).  
+3. Re-fold, rescore and re-analyse; iterate until Rosetta score improves beyond WT and catalytic integrity is EXCELLENT.
+
+Proceeding to:
+• map exact indices of S→R/E/K positions in our sequence,  
+• create Mutant v2 (disulphide + salt-bridge triad),  
+• rerun fold_protein, calculate_rosetta_score, examine_secondary_structure, examine_catalytic_activity and calculate_rmsd_with_sequences in the next tool round.

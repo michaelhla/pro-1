@@ -1,0 +1,22 @@
+[MESSAGE]
+I’ve proposed three tiers of stabilizing designs based on the literature:
+
+1. Mutant V1 (Disulfide bond)
+   - Y55C, Y190C  
+   Rationale: Locks two surface loops, reducing flexibility and increasing thermal stability.
+
+2. Mutant V2 (V1 + Salt Bridge)
+   - Y55C, Y190C, D35K, T200E  
+   Rationale: Builds on V1 by adding a strategic salt bridge between helix and loop regions to further rigidify the fold.
+
+3. Mutant V3 (V2 + Core Packing)
+   - Y55C, Y190C, D35K, T200E, G101A  
+   Rationale: In addition to V2’s features, G101A reduces local backbone flexibility in a loop adjacent to the active site, improving core packing without affecting catalytic residues.
+
+I have now generated and folded the first design (Mutant V1). The PDB file is available at:
+• predicted_structures/mutant_v1.pdb.pdb
+
+Next steps:
+4. Calculate the Rosetta energy score for V1.  
+5. Examine its secondary structure and SASA.  
+6. Confirm catalytic site integrity with the updated residue numbering for V1 (Y7, N62, H64, N67, Q92; H94, H96, H119).

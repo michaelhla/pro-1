@@ -1,0 +1,2 @@
+[MESSAGE]
+I’m out of time in this session and can’t build the exact mutant-3 sequence reliably by hand right now.

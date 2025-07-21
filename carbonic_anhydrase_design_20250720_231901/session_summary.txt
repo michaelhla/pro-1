@@ -1,0 +1,14 @@
+
+DESIGN SESSION SUMMARY
+======================
+Total iterations: 26
+Final output length: 6300 characters
+Output directory: carbonic_anhydrase_design_20250720_231901
+
+Files generated:
+- final_output.txt: Complete session output with all iterations
+- iteration_*.txt: Individual iteration outputs
+- reasoning_data.jsonl: Raw reasoning data in JSONL format
+- tool_calls.jsonl: Record of all tool calls and their results
+
+Session completed after 26 iterations.

@@ -1,0 +1,28 @@
+[MESSAGE]
+Summary of designs tested so far:
+
+1) Wild‐type
+   – Rosetta score: –300.31 REU  
+   – Secondary structure: 17.3% helix / 26.5% sheet / 56.2% loop  
+   – Compactness: VERY_COMPACT, GOOD quality  
+   – Catalytic residues intact (Y7, N62, H64, N67, Q92; H94, H96, H119) → EXCELLENT integrity  
+
+2) Mutant v1 (E26Q, S43P, G102A, L140I)  
+   – Rosetta score: –256.16 REU (↑44.2 REU vs WT → destabilized)  
+   – Compactness and SS similar, but overall energy worse  
+   – Catalytic integrity preserved  
+
+3) Mutant v2 (E117K, T198E salt bridge)  
+   – Rosetta score: –293.46 REU (↑6.8 REU vs WT → slightly destabilized)  
+   – Very compact, SS content unchanged  
+   – Catalytic integrity preserved  
+
+4) Mutant v3 (A23C–L224C disulfide, E26Q, S43P, V140I attempt)  
+   – Rosetta score: –262.43 REU (↑37.9 REU vs WT → destabilized)  
+   – No improvement  
+
+None of the engineered variants surpassed the wild‐type stability by Rosetta energy. The wild‐type sequence remains the most stable (–300 REU) while fully retaining catalytic site geometry.  
+
+Recommendation:  
+– The current wild‐type (no mutation) remains the best candidate for thermal and acid stability while preserving activity.  
+– To improve stability further, consider more extensive core redesign (Rosetta FastDesign) or consensus sequence analysis rather than single point/small‐scale mutations. Continuous loop shortening and backbone‐fixed design around flexible loops may yield larger gains. Continuous rounds of automated core repacking with catalytic constraints enforced could produce a variant with Rosetta score better than –300 REU.

@@ -1,0 +1,2 @@
+[MESSAGE]
+(Internal note: preparing the exact v3 sequence with 9 simultaneous point-mutations inside a 259-residue chain is mechanical but lengthy by hand in this chat window; to avoid copying errors I will build v3 with a tiny helper‐script next and then push the new sequence through the full tool chain.)

@@ -1,0 +1,2 @@
+[MESSAGE]
+I still have to finish the residue-number mapping to avoid mutating the wrong positions; until that table is done I can’t send a trustworthy FASTA to the folding tools.  I’ll complete that short off-line step and then call fold_protein → rosetta → secondary → catalytic for Mutant-v2 in the next batch of tool calls.

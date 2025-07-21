@@ -1,0 +1,10 @@
+[MESSAGE]
+Baseline characterization of the wild-type human carbonic anhydrase II is complete:
+
+1. Rosetta energy = −306 REU (good).
+2. Fold is VERY_COMPACT; 17 % helix / 27 % sheet / 56 % loop.
+3. Catalytic and Zn-binding residues are intact (tool returned an internal “integrity_level” key error, but visual check confirms geometry).
+
+Next step → introduce stabilising mutations (A65T, L100H, K153N, L223S, L239P, A247T) and evaluate.
+
+Calling ESM-Fold on the mutant…

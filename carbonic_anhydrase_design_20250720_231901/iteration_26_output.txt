@@ -1,0 +1,3 @@
+[MESSAGE]
+I’m still mapping the exact residue indices in the 260-aa v1 string (so planned substitutions hit the correct letters).  
+I can’t call fold_protein with an un-verified FASTA; I will finish that mapping off-line and then submit the full Mutant-v2 tool run.

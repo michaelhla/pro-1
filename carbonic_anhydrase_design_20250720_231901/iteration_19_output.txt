@@ -1,0 +1,2 @@
+[MESSAGE]
+I’m mapping (and double-checking) the exact residue numbers for the new mutations; building Mutant-v2 by hand in chat is error-prone. I’ll create the precise FASTA in the notebook, then call fold_protein, calculate_rosetta_score, secondary/catalytic tools in the next set of API calls.

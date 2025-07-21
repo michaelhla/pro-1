@@ -1,0 +1,14 @@
+Baseline analysis complete.  
+We have:
+
+• Wild-type Rosetta stability: -305 REU (good)  
+• Secondary structure: 17 % helix / 26 % sheet / 56 % loop. Very compact but helix content on low side—opportunity to rigidify.  
+
+Catalytic-site tool presently errors because it expects “integrity_level” in the returned JSON. I’ll adapt call-format on next attempt.
+
+Next step  
+1. Introduce stabilising mutations—e.g., loop-rigidifying prolines, core packing (V150I, L203F), surface salt-bridge pair D50K/E204R.  
+2. Regenerate mutant sequence.  
+3. Fold, score, RMSD, examine catalytic integrity with corrected call signature, iterate.
+
+Proceeding with first mutant design.

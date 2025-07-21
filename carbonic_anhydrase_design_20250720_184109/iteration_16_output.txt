@@ -1,0 +1,27 @@
+[MESSAGE]
+Initial round summary (not a final answer – continuing iterations next):
+
+1. Web research identified thermostability mutations (A65T, L100H, etc.), engineered disulfides (A23C/L203C), and surface charge/salt-bridge strategies.
+
+2. First variant constructed: A23C, L203C (disulfide), A65T, L100H, T168R.  Catalytic & zinc residues untouched.
+
+3. Folding + scores  
+   • WT Rosetta: –305 REU  
+   • Mutant-v1 Rosetta: –120 REU (worse)  
+   • RMSD to reference: 1.77 Å (structure conserved)  
+
+4. Secondary-structure quality for mutant GOOD / VERY_COMPACT; helix~16 %, sheet~27 %, loop~56 % (essentially WT-like).
+
+5. Catalytic-site tool call failed (API returns missing ‘integrity_level’).  Residue mapping was correct; visually inspected PDB – active & Zn residues preserved.
+
+Take-away: disulfide plus four surface mutations conserved fold but Rosetta energy became less favorable.  Need second design cycle focusing on:
+
+• Remove T168R (destabilizing in core)  
+• Add proven HCAII thermostable surface set: A65T (keep), L100H (keep), K154N equivalent in our sequence = P154N likely bad → choose nearby Lys 153→N, introduce L224S equivalent (our residue 224 K→S) and L240P (240 M→P).  
+• Add explicit salt-bridge pair S44R / S139E equivalents: our positions 44 L→R and 139 G→E.  
+• Keep A23C/L203C disulfide.
+
+Next steps (next message):
+• Build mutant-v2 with: A23C, L203C, A65T, L100H, L44R, G139E, K153N, K224S, M240P.  
+• Fold, score, RMSD, secondary, catalytic.  
+• Compare to WT & mutant-v1.

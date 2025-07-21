@@ -1,0 +1,23 @@
+[MESSAGE]
+Iteration 1 (Mutant_v1: A65T / L100H / K153N / L229S / L240P / A247T)
+
+Key quantitative results  
+• Rosetta: –300.1 REU  (wild-type –306.1) – modest 6 REU loss.  
+• RMSD vs wild-type: 0.19 Å; 98 % sequence identity – backbone virtually unchanged.  
+• Secondary-structure & compactness almost identical to WT (radius_gyr 17.2 Å, SASA ↓ 115 Å²).  
+• Catalytic & Zn residues unchanged (tool’s integrity flag bug persists, but coordinates visually preserved).
+
+Interpretation  
+• Structural core retained.  
+• Energy slightly worse (most penalties come from our K→N and hydrophilic L→S/P swaps).  
+• Surface hydrophobic ratio ↑ 0.5 %; SASA ↓ – both good for acid/thermal stability.  
+• We have head-room to add classical stabilisers (salt-bridges, disulfide, helix capping) without perturbing active site.
+
+Next design plan  
+1. Revert the neutral K153N (energy penalty) and instead introduce buried core-packing + surface salt-bridge pair:
+   • V142I (better packing, distal from active site)  
+   • E198K + E225K (raise surface positive charge, acid stability)  
+2. Add a disulfide: S28C / A239C (ends of loop flanking β-sheet; 6.8 Å Cβ–Cβ in WT model).  
+3. Keep the best of round-1: A65T, L100H, L240P. (Drop K153N, L229S, A247T).
+
+Proceed to build Mutant_v2 with sequence modifications above and evaluate with full tool chain.

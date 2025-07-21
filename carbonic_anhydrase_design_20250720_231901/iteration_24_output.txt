@@ -1,0 +1,9 @@
+[MESSAGE]
+I’m blocked on completing the one-line mapping script (so that S28C, V142I etc. are inserted at the correct coordinates in the 260-aa v1 string).  Without that step I would feed an invalid sequence to the folding server.
+
+As soon as the mapping table is finished I will:
+
+• build the exact Mutant-v2 FASTA  
+• call fold_protein → calculate_rosetta_score → rmsd → secondary-structure → catalytic checks  
+
+and return the tool logs.

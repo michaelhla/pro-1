@@ -1,0 +1,2 @@
+[MESSAGE]
+I’m unable to finish crafting the new mutant sequence in this message. Let me re-submit with the full v3 sequence and tool calls so we can keep the iteration moving.

@@ -1,0 +1,20 @@
+
+
+=== ITERATION 10 ===
+
+[MESSAGE]
+We’ve completed our first round and seen that Mutant_v1 (L47C/S73P/G128A/N243C) actually destabilized the protein (Rosetta score –104 vs –306 REU wild‐type) despite preserving the overall fold and catalytic residues.  
+
+Next we’ll try a more conservative, loop‐rigidifying and charge‐network design:
+
+Mutant_v2 proposed mutations:
+ • S73P  (loop rigidification)  
+ • D32K  (introduce surface salt‐bridge potential)  
+ • A141V (increase helix‐core hydrophobic packing)  
+ • N146I (increase helix‐core hydrophobic packing)  
+
+No catalytic or zinc‐binding positions are touched, so numbering remains the same:
+ Active‐site: Y7, N62, H64, N67, Q92  
+ Zinc‐binders: H94, H96, H119  
+
+Let me build and fold this second mutant.

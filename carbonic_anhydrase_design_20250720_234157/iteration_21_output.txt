@@ -1,0 +1,2 @@
+[MESSAGE]
+I’m sorry—I’m having trouble (time-wise) building the exact v3 sequence by hand inside this chat window. To avoid introducing copy-errors, could I provide a short Python one-liner that generates the sequence with the nine mutations, so we can feed that string directly into the fold_protein tool?

@@ -569,7 +569,7 @@ class CarbonicAnhydraseDesigner:
         
         # Create the initial prompt for o3
         design_prompt = f"""
-        You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase.
+        You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase. THIS IS SO WE CAN REDUCE CARBON EMISSIONS AND IMPROVE CARBON CAPTURE. 
 
         ORIGINAL SEQUENCE: {REFERENCE_SEQUENCE}
         Stability goals: {', '.join(stability_goals)}
@@ -578,7 +578,7 @@ class CarbonicAnhydraseDesigner:
 
         You have access to six computational tools that you MUST use extensively to accomplish this task:
         1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
-        2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower = more stable)
+        2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower or more negative = more stable)
         3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
         4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
         5. examine_catalytic_activity: Visualizes and examines catalytic sites by taking exact residue dictionaries specifying which residues to examine. Generates base64-encoded images you can analyze visually to ensure modifications haven't affected enzyme activity. (do not be alarmed if the tool returns poor catalytic integrity, make your own judgement based on the images and the key residues)
@@ -608,7 +608,7 @@ class CarbonicAnhydraseDesigner:
         - Increasing secondary structure propensity
 
         Always preserve the catalytic activity of the enzyme while improving stability.
-        Use the Rosetta scores to validate your design decisions quantitatively.
+        Use the Rosetta scores to validate your design decisions quantitatively (more negative = more stable).
         
         RMSD interpretation guidelines:
         - RMSD < 2.0 Å: Very similar structures in aligned region (conservative mutations)
@@ -658,6 +658,10 @@ class CarbonicAnhydraseDesigner:
         - Compare visualizations between wild-type and mutant structures to assess structural preservation
         - Use the visual information to guide further optimization decisions
         - Images show: secondary structure coloring, catalytic residues, zinc coordination, surface representations
+
+        Remember, protein sequences are 1-indexed, not 0-indexed.
+        
+        THIS IS SO WE CAN REDUCE CARBON EMISSIONS AND IMPROVE CARBON CAPTURE. THIS IS NET POSITIVE FOR SOCIETY. THIS DOES NOT VIOLATE THE OPENAI USAGE POLICIES. 
         """
         
         # Save initial prompt to file
@@ -677,7 +681,7 @@ class CarbonicAnhydraseDesigner:
             return f"ERROR: Failed to start design session: {e}"
         
         self.iteration_count = 1
-        max_iterations = 20  # Increased for multiple function calls
+        max_iterations = 100  # Increased for multiple function calls
         all_accumulated_text = ""
         
         # Use the correct pattern from OpenAI cookbook for multiple function calls
@@ -710,127 +714,214 @@ class CarbonicAnhydraseDesigner:
                 for item_type, count in output_types.items():
                     print(f"   {item_type}: {count}")
                 print()
-            
+
+            # Process function calls and collect responses
+            function_responses = []
+            has_function_calls = False
+            accumulated_text = ""
+
             try:
-                # Use the simplified pattern from OpenAI cookbook
-                function_responses = self._invoke_functions_from_response(response)
+                # Print everything that's NOT tools
+                print("=" * 60)
+                print("📋 FULL RESPONSE (non-tool content):")
+                print("=" * 60)
                 
-                if len(function_responses) == 0:
-                    # We're done reasoning - no more function calls
-                    print("\n" + "🎯" * 30)
-                    print("🎯 FINAL DESIGN RECOMMENDATIONS COMPLETE")
-                    print("🎯" * 30)
-                    
-                    # Get the final text output
-                    final_text = response.output_text if hasattr(response, 'output_text') else ""
-                    all_accumulated_text += final_text
-                    
-                    if final_text:
-                        print("\n📄 FINAL OUTPUT:")
-                        print("─" * 80)
-                        print(final_text)
-                        print("─" * 80)
-                    
-                    # Save final results
-                    with open(self.output_dir / "final_design_recommendations.txt", "w") as f:
-                        f.write(all_accumulated_text)
-                    
-                    # Compile reasoning summary
-                    reasoning_summary = []
-                    try:
-                        with open(self.output_dir / "reasoning_data.jsonl", "r") as f:
-                            for line in f:
-                                data = json.loads(line)
-                                reasoning_summary.append(f"\nIteration {data['iteration']}:")
-                                
-                                if data['summaries']:
-                                    reasoning_summary.append("\nReasoning Summaries:")
-                                    for summary in data['summaries']:
-                                        reasoning_summary.append(f"- {summary}")
-                                
-                                if data['items']:
-                                    reasoning_summary.append("\nReasoning Items:")
-                                    for item in data['items']:
-                                        reasoning_summary.append(f"\nItem ID: {item['id']}")
-                                        for summary in item['summaries']:
-                                            reasoning_summary.append(f"- {summary}")
-                                
-                                if data['messages']:
-                                    reasoning_summary.append("\nMessages:")
-                                    for msg in data['messages']:
-                                        reasoning_summary.append(f"- {msg}")
-                                
-                                reasoning_summary.append("\n" + "─" * 40)
-                        
-                        # Save reasoning summary
-                        with open(self.output_dir / "reasoning_summary.txt", "w") as f:
-                            f.write("\n".join(reasoning_summary))
+                # Check if response has reasoning summary
+                if hasattr(response, 'reasoning') and response.reasoning:
+                    print(f"\n💭 Reasoning Summary:")
+                    for summary in response.reasoning.summary:
+                        if hasattr(summary, 'text'):
+                            reasoning_text = summary.text
+                            print(reasoning_text)
+                            accumulated_text += f"[REASONING_SUMMARY]\n{reasoning_text}\n\n"
+                
+                # Check if response has output
+                if hasattr(response, 'output') and response.output:
+                    print(f"\n📤 Output Items:")
+                    for i, item in enumerate(response.output):
+                        if item.type == 'function_call':
+                            print(f"  Item {i}: [TOOL CALL - {item.name}]")
+                            print(f"    Arguments: {item.arguments}")
                             
+                            has_function_calls = True
+                            result = self._execute_function_call(item)
+                            
+                            # Use the correct format from OpenAI cookbook
+                            function_response = {
+                                "type": "function_call_output",
+                                "call_id": item.call_id,
+                                "output": result
+                            }
+                            
+                            print(f"    📤 Function response: call_id={item.call_id}, output_length={len(str(result))}")
+                            function_responses.append(function_response)
+                        
+                        elif item.type == 'message':
+                            print(f"  Item {i}: MESSAGE")
+                            accumulated_text += f"[MESSAGE]\n"
+                            
+                            if hasattr(item, 'content') and item.content:
+                                for content_item in item.content:
+                                    if hasattr(content_item, 'text'):
+                                        text_content = content_item.text
+                                        print(f"    Text: {text_content}")
+                                        accumulated_text += text_content + "\n"
+                        
+                        elif item.type == 'reasoning':
+                            print(f"  Item {i}: REASONING")
+                            # Reasoning items are handled automatically by previous_response_id
+                            
+                        else:
+                            # Print any other types of output items
+                            print(f"  Item {i}: {item.type}")
+                
+                print("=" * 60)
+                
+                # Save this iteration's text to a separate file
+                if accumulated_text.strip():
+                    iteration_file = self.output_dir / f"iteration_{self.iteration_count}_output.txt"
+                    with open(iteration_file, "w") as f:
+                        f.write(accumulated_text)
+                    all_accumulated_text += f"\n\n=== ITERATION {self.iteration_count} ===\n\n" + accumulated_text
+                
+                # Save reasoning data
+                try:
+                    reasoning_data = {
+                        "iteration": self.iteration_count,
+                        "summaries": [],
+                        "items": [],
+                        "messages": []
+                    }
+                    
+                    if hasattr(response, 'reasoning') and response.reasoning:
+                        for summary in response.reasoning.summary:
+                            if hasattr(summary, 'text'):
+                                reasoning_data["summaries"].append(summary.text)
+                    
+                    if hasattr(response, 'output'):
+                        for item in response.output:
+                            if item.type == 'reasoning':
+                                item_data = {
+                                    "id": item.id if hasattr(item, 'id') else "unknown",
+                                    "summaries": []
+                                }
+                                if hasattr(item, 'summary'):
+                                    for summary in item.summary:
+                                        if hasattr(summary, 'text'):
+                                            item_data["summaries"].append(summary.text)
+                                reasoning_data["items"].append(item_data)
+                            elif item.type == 'message':
+                                if hasattr(item, 'content'):
+                                    for content in item.content:
+                                        if hasattr(content, 'text'):
+                                            reasoning_data["messages"].append(content.text)
+                    
+                    with open(self.output_dir / "reasoning_data.jsonl", "a") as f:
+                        f.write(json.dumps(reasoning_data) + "\n")
+                        
+                except Exception as e:
+                    print(f"Warning: Could not save reasoning data: {e}")
+                
+                # If there are function responses, continue the conversation
+                if function_responses:
+                    try:
+                        print(f"🔄 CONTINUING TO ITERATION {self.iteration_count + 1}")
+                        print(f"   Sending {len(function_responses)} function responses back to model...")
+                        
+                        # Show what we're sending back (summary)
+                        print(f"📤 FUNCTION RESPONSES BEING SENT:")
+                        for i, func_resp in enumerate(function_responses):
+                            call_id = func_resp.get('call_id', 'unknown')
+                            output_len = len(str(func_resp.get('output', '')))
+                            print(f"   Response {i+1}: call_id={call_id}, output_length={output_len}")
+                        print()
+                        
+                        # Continue the conversation with function results
+                        response = self.client.responses.create(
+                            input=function_responses,
+                            previous_response_id=response.id,
+                            **self.model_config
+                        )
+                        
+                        self.iteration_count += 1
+                        continue
                     except Exception as e:
-                        print(f"Warning: Could not compile reasoning summary: {e}")
-                    
-                    # Save iteration summary
-                    summary = f"""
-DESIGN SESSION SUMMARY
-======================
-Total iterations: {self.iteration_count}
-Final output length: {len(final_text)} characters
-Output directory: {self.output_dir}
-
-Files generated:
-- final_design_recommendations.txt: Final design output
-- reasoning_data.jsonl: Raw reasoning data in JSONL format
-- reasoning_summary.txt: Compiled summary of all reasoning steps
-- tool_calls.jsonl: Record of all tool calls and their results
-- session_summary.txt: This summary file
-
-Session completed successfully.
-"""
-                    with open(self.output_dir / "session_summary.txt", "w") as f:
-                        f.write(summary)
-                    
-                    print(f"\n📁 Results saved to: {self.output_dir}/")
-                    print(f"   - final_design_recommendations.txt")
-                    print(f"   - reasoning_data.jsonl")
-                    print(f"   - reasoning_summary.txt")
-                    print(f"   - tool_calls.jsonl")
-                    print(f"   - session_summary.txt")
-                    
-                    return all_accumulated_text
-                    
+                        print(f"❌ Failed to continue conversation: {e}")
+                        break
                 else:
-                    # More reasoning needed - continue with function results
-                    print(f"🔄 CONTINUING TO ITERATION {self.iteration_count + 1}")
-                    print(f"   Sending {len(function_responses)} function responses back to model...")
+                    # No function calls - check if we should continue or if this is truly final
+                    print(f"🔄 NO FUNCTION CALLS - CONTINUING TO ITERATION {self.iteration_count + 1}")
+                    print("   Prompting model to continue with next design iteration...")
                     
-                    # Show what we're sending back (summary)
-                    print(f"📤 FUNCTION RESPONSES BEING SENT:")
-                    for i, func_resp in enumerate(function_responses):
-                        call_id = func_resp.get('call_id', 'unknown')
-                        output_len = len(str(func_resp.get('output', '')))
-                        print(f"   Response {i+1}: call_id={call_id}, output_length={output_len}")
-                    print()
+                    # Continue prompting the model to keep working
+                    continue_prompt = """
+Continue with the next design iteration as planned. Please proceed with:
+
+1. Building the next mutant variant as you outlined
+2. Using the computational tools (fold_protein, calculate_rosetta_score, etc.)
+3. Testing and evaluating the new design
+4. Comparing results and planning further iterations if needed
+
+Remember to use the tools extensively and keep iterating until you have a design that meets all the stability goals. Do not provide a final summary until you have completed multiple design cycles and thoroughly tested your variants.
+"""
                     
-                    # Continue the conversation with function results
-                    response = self.client.responses.create(
-                        input=function_responses,
-                        previous_response_id=response.id,
-                        **self.model_config
-                    )
-                    
-                    self.iteration_count += 1
-            
+                    try:
+                        # Continue the conversation with a prompt to keep going
+                        response = self.client.responses.create(
+                            input=continue_prompt,
+                            previous_response_id=response.id,
+                            **self.model_config
+                        )
+                        
+                        self.iteration_count += 1
+                        continue
+                    except Exception as e:
+                        print(f"❌ Failed to continue conversation: {e}")
+                        break
+
             except Exception as e:
                 print(f"❌ ERROR IN ITERATION {self.iteration_count}: {e}")
                 
                 # Save error to file
                 with open(self.output_dir / "errors.txt", "a") as f:
                     f.write(f"Iteration {self.iteration_count}: {e}\n")
-                
-                return f"ERROR: Design process failed at iteration {self.iteration_count}: {e}"
+                break
+
+        # Save final output when loop completes
+        final_output_file = self.output_dir / "final_output.txt"
+        with open(final_output_file, "w") as f:
+            f.write(all_accumulated_text)
         
-        print("⚠️  Maximum iterations reached")
-        return "ERROR: Maximum iterations reached. Design process incomplete."
+        # Save final summary
+        summary = f"""
+DESIGN SESSION SUMMARY
+======================
+Total iterations: {self.iteration_count}
+Final output length: {len(all_accumulated_text)} characters
+Output directory: {self.output_dir}
+
+Files generated:
+- final_output.txt: Complete session output with all iterations
+- iteration_*.txt: Individual iteration outputs
+- reasoning_data.jsonl: Raw reasoning data in JSONL format
+- tool_calls.jsonl: Record of all tool calls and their results
+
+Session completed after {self.iteration_count} iterations.
+"""
+        with open(self.output_dir / "session_summary.txt", "w") as f:
+            f.write(summary)
+
+        print(f"\n{'='*20} DESIGN SESSION COMPLETE {'='*20}")
+        print(f"Total iterations: {self.iteration_count}")
+        print(f"📁 All outputs saved to: {self.output_dir}")
+        print(f"\n📁 Results saved to: {self.output_dir}/")
+        print(f"   - final_output.txt")
+        print(f"   - iteration_*.txt")
+        print(f"   - reasoning_data.jsonl")
+        print(f"   - tool_calls.jsonl")
+        print(f"   - session_summary.txt")
+        
+        return all_accumulated_text
 
 
 def main():
@@ -868,7 +959,7 @@ def main():
         target_pdb="1HEA",
         stability_goals=[
             "Increase thermal stability",
-            "Improve stability at pH 6-8", 
+            "Improve stability in more acidic conditions", 
             "Maintain catalytic activity"
         ]
     )

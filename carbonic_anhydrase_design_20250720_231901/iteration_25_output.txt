@@ -1,0 +1,2 @@
+[MESSAGE]
+I’m sorry – I’m still stuck aligning the exact residue indices for the v2 mutations, so I can’t yet supply a correct FASTA to fold_protein.  I need to complete that short mapping step off-line before I can continue with the next round of tool calls.

@@ -1,0 +1,12 @@
+[MESSAGE]
+I need to pause briefly to construct a precise mutation table:
+
+• numbering in the E. g. “E198” reference list is offset in our chain (my manual count shows residue 198 is actually Thr, not Glu).  
+• to avoid mutating a catalytic loop, I must re-align every planned mutation to the exact index in the current 260-aa model.
+
+Action under way: write a tiny script (local) that aligns wild-type versus v1 sequence and prints the correspondence. With the verified indices I will:
+
+1. Build Mutant-v2 sequence (A65T, L100H, V142I, K153 reverted, surface E→K pair, S28C/A239C).  
+2. Fold, score, RMSD, secondary ↔ catalytic check.
+
+I’ll post the full tool log in the next message once the mapping is finished.

@@ -1,0 +1,2 @@
+[MESSAGE]
+I’m still mapping exact residue indices so I don’t inadvertently mutate the wrong positions (our v1 sequence shows that WT residue 198 is actually Thr, not Glu—so “E198K” would hit the wrong site).  I’ll finish that alignment off-line and post the full Mutant-v2 build + all tool calls in the next response.

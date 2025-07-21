@@ -1,0 +1,81 @@
+
+
+=== ITERATION 10 ===
+
+[MESSAGE]
+Initial baseline (wild-type carbonic anhydrase)
+• Rosetta score –304.7 REU  
+• RMSD v reference <2 Å (as expected)  
+• Very compact fold, 17 % helix / 26 % sheet  
+• All catalytic & Zn residues present (examine_catalytic_activity call returns but the integrity flag is not coming back – images were nevertheless generated).
+
+First stabilising design (mutant-v1)  
+Applied point replacements outside the catalytic/Zn triad  
+ D72 → N G82 → P K112 → E G150 → A E235 → C  
+ (+ native C206 gives a designed C206–C235 disulphide)
+
+ESM-Fold → “mutant_v1.pdb”  
+• Rosetta energy –259.1 REU  (≈ 45 REU worse than WT – the disulphide is not compensated)  
+• RMSD to WT 3.5 Å (moderate change; 59 % seq-ID because of 5 mutations)  
+• Very-compact, SASA / Rg essentially unchanged; secondary content 16 % helix / 24 % sheet  
+• Catalytic and Zn residues still present (tool call returns images – integrity flag missing but coordinates look correct).
+
+Interpretation  
+– Point-mutations alone did not improve the computed energy.  
+– Structural core is retained (RMSD 3.5 Å); catalysis geometry intact.  
+– Energy penalty arises from K112E surface swap and the un-paired cystine while structure did not bring C206 and C235 close enough → Rosetta score ↑.
+
+Next round plan (mutant-v2) – goals  
+1. Keep C206 but revert E235 → E (remove unsatisfied Cys).  
+2. Stabilise N- & C-termini via charged caps: add D1E (M1 → E) and K262 → R.  
+3. Introduce loop-prolines that do not clash with active site: S146 → P, S188 → P.  
+4. Make K112 back to K (penalty removed).  
+Sequence edit summary  
+ M1E, D72N kept, G82P kept, **E112K**, G150A kept, S146P, S188P, E235E (re-revert), K262R.  
+
+Next actions (tool calls not yet executed – will be in the following iteration)  
+• fold_protein( mutant_v2 )  
+• calculate_rosetta_score( mutant_v2 )  
+• calculate_rmsd_with_sequences( mutant_v2 )  
+• examine_secondary_structure( mutant_v2 )  
+• examine_catalytic_activity( mutant_v2 )  
+
+If Rosetta energy improves (target < –270 REU) and catalytic geometry is intact we will lock-in mutant-v2; otherwise a third round will scan surface salt-bridge patches.
+
+(continuing ...)
+
+
+=== ITERATION 16 ===
+
+[MESSAGE]
+Mutant-v2 in silico evaluation
+
+Sequence applied (E1 N72 P82 K112 retained, S146P G150A S188P K262R; 260 aa)
+
+Structural changes
+• ESMFold RMSD vs WT: 0.20 Å (fully conservative)  
+• Rosetta energy −176 REU ↑ (128 REU worse than WT, 83 REU worse than mutant-v1)  
+• Secondary structure & compactness ~unchanged (very-compact)  
+
+Catalytic snapshot – active and Zn triad still geometrically present (tool images render; “integrity” flag absent).
+
+Interpretation
+Energy exploded because disulphide removed while all prior destabilising proline / asparagine still present; removal of the extra P restored alignment (RMSD small) but cost we added P82 & S→P changes without compensatory contacts.
+
+Plan for mutant-v3
+1  Re-introduce disulphide but at positions with proper Cα–Cα distance in WT (~5.6 Å): mutate A143→C and S188 (already P) leave; instead pair C143–C206.  
+2  Revert the high-penalty G82P (return to G).  
+3  Keep N72 (salt-bridge) and K262R (pH/acid stability).  
+4  Add surface-salt bridge: D28K (opposite E25) to create K28–E25 pair.  
+5  Introduce Q101R (exposed) for thermal salt-bridge with D103.  
+
+Next iteration
+a) Build mutant-v3 sequence:  
+EHHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDNSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPCSLDYWTYPGCLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFR  
+(changes: M1E, D28K, N72, G82 reverted, A143C, C206 kept native, Q101R, K262R)
+
+b) Call fold_protein, calculate_rosetta_score, calculate_rmsd_with_sequences, examine_secondary_structure, examine_catalytic_activity.
+
+If Rosetta < −270 REU and catalytic intact, keep; else fine-tune prolines / salt bridges.
+
+(Continuing …)
