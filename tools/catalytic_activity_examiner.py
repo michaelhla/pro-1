@@ -96,14 +96,14 @@ class CatalyticActivityExaminer:
             active_site_status = self._check_residues_exist(structure_name, active_site_residues)
             zinc_binding_status = self._check_residues_exist(structure_name, zinc_binding_residues)
             
-            # Generate images
-            active_site_image = self._visualize_active_site(
-                structure_name, active_site_residues, output_dir
-            )
+            # # Generate images
+            # active_site_image = self._visualize_active_site(
+            #     structure_name, active_site_residues, output_dir
+            # )
             
-            zinc_binding_image = self._visualize_zinc_binding(
-                structure_name, zinc_binding_residues, output_dir
-            )
+            # zinc_binding_image = self._visualize_zinc_binding(
+            #     structure_name, zinc_binding_residues, output_dir
+            # )
             
             # Generate combined visualization
             combined_image = self._visualize_combined_catalytic_site(
@@ -118,8 +118,8 @@ class CatalyticActivityExaminer:
             results = {
                 'pdb_file': pdb_file_path,
                 'chain_id': self.chain_id,
-                'active_site_image': active_site_image,
-                'zinc_binding_image': zinc_binding_image,
+                # 'active_site_image': active_site_image,
+                # 'zinc_binding_image': zinc_binding_image,
                 'combined_catalytic_image': combined_image,
                 'active_site_residues': active_site_residues,
                 'zinc_binding_residues': zinc_binding_residues,
@@ -874,15 +874,15 @@ def examine_catalytic_activity(pdb_file_path: str,
         )
         
         # Encode all images as base64
-        active_site_image_base64 = None
-        zinc_binding_image_base64 = None
+        # active_site_image_base64 = None
+        # zinc_binding_image_base64 = None
         combined_image_base64 = None
         
-        if results['active_site_image'] and os.path.exists(results['active_site_image']):
-            active_site_image_base64 = encode_image_to_base64(results['active_site_image'])
+        # if results['active_site_image'] and os.path.exists(results['active_site_image']):
+        #     active_site_image_base64 = encode_image_to_base64(results['active_site_image'])
             
-        if results['zinc_binding_image'] and os.path.exists(results['zinc_binding_image']):
-            zinc_binding_image_base64 = encode_image_to_base64(results['zinc_binding_image'])
+        # if results['zinc_binding_image'] and os.path.exists(results['zinc_binding_image']):
+        #     zinc_binding_image_base64 = encode_image_to_base64(results['zinc_binding_image'])
             
         if results['combined_catalytic_image'] and os.path.exists(results['combined_catalytic_image']):
             combined_image_base64 = encode_image_to_base64(results['combined_catalytic_image'])
@@ -893,16 +893,14 @@ def examine_catalytic_activity(pdb_file_path: str,
             'chain_id': results['chain_id'],
             'active_site_residues': results['active_site_residues'],
             'zinc_binding_residues': results['zinc_binding_residues'],
-            'active_site_image_path': results['active_site_image'],
-            'active_site_image_base64': active_site_image_base64,
-            'zinc_binding_image_path': results['zinc_binding_image'],
-            'zinc_binding_image_base64': zinc_binding_image_base64,
+            # 'active_site_image_path': results['active_site_image'],
+            # 'active_site_image_base64': active_site_image_base64,
+            # 'zinc_binding_image_path': results['zinc_binding_image'],
+            # 'zinc_binding_image_base64': zinc_binding_image_base64,
             'combined_catalytic_image_path': results['combined_catalytic_image'],
             'combined_catalytic_image_base64': combined_image_base64,
             'catalytic_integrity': results['catalytic_integrity'],
-            'summary': f"Catalytic integrity: {results['catalytic_integrity']['integrity_level']} "
-                      f"(Risk: {results['catalytic_integrity']['risk_level']}, "
-                      f"Overall: {results['catalytic_integrity']['overall_integrity_percent']:.1f}%)"
+            'summary': f"Catalytic integrity analysis completed"
         }
         
         return json.dumps(serializable_results, indent=2)
@@ -914,8 +912,8 @@ def examine_catalytic_activity(pdb_file_path: str,
             'active_site_residues': active_site_residues,
             'zinc_binding_residues': zinc_binding_residues,
             'success': False,
-            'active_site_image_base64': None,
-            'zinc_binding_image_base64': None,
+            # 'active_site_image_base64': None,
+            # 'zinc_binding_image_base64': None,
             'combined_catalytic_image_base64': None
         }
         return json.dumps(error_result, indent=2)

@@ -9,6 +9,7 @@ tools and databases.
 
 import json
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Callable, Any, Optional
@@ -153,7 +154,7 @@ class CarbonicAnhydraseDesigner:
             {
                 "type": "function",
                 "name": "examine_catalytic_activity",
-                "description": "Examine the catalytic activity sites of carbonic anhydrase using PyMOL visualization. Takes exact residue dictionaries specifying which residues to examine and their positions. Generates labeled images (returned as base64-encoded data) and assesses catalytic integrity to ensure modifications haven't affected enzyme activity. Images are saved to tools/images/{image_subdir}/.",
+                "description": "Examine the catalytic activity sites of carbonic anhydrase using PyMOL visualization. Takes exact residue dictionaries specifying which residues to examine and their positions. Generates a single combined catalytic site image (returned as base64-encoded data) showing both active site and zinc binding residues, and assesses catalytic integrity to ensure modifications haven't affected enzyme activity. Images are saved to tools/images/{image_subdir}/.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -266,6 +267,10 @@ class CarbonicAnhydraseDesigner:
             # Simple feedback for visualization functions
             if function_name in ['examine_catalytic_activity', 'examine_secondary_structure']:
                 print(f"🖼️  Generated visualizations for {function_name}")
+            
+            # Wait 30 seconds between tool calls
+            print(f"⏳ Waiting 30 seconds before next tool call...")
+            time.sleep(30)
             
             return str(result)
             
