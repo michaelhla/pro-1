@@ -1,0 +1,27 @@
+Let's look for examples of successful circular permutation in enzymes:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01GkRKwD417E1e9i8Zs7cp3e
+Arguments: {'query': 'circular permutation enzyme stability engineering examples success'}
+--- TOOL OUTPUT ---
+**Circular permutation** has been successfully used in enzyme engineering to enhance stability, modify activity, and probe protein structure. This method involves joining the original N- and C- termini and creating new termini elsewhere, which can yield proteins with improved properties or altered functions.
+
+Key examples of successful circular permutation in enzyme stability engineering include:
+
+- **T4 lysozyme:** Circularly permuted variants have been created that retain catalytic activity and folding, demonstrating structural robustness to chain rearrangements[1].
+- **Disulfide oxidoreductase DsbA:** Used in biosensor engineering and shown to tolerate circular permutation without major loss of structural integrity or function, supporting its use in split-protein applications[4].
+- **Carboxypeptidase G2 (CPG2):** Multiple permuted variants expressed in *E. coli* showed similar structure and thermal stability to the wild-type enzyme. Notably, one variant (CPG2~CP-N89~) not only maintained wild-type activity but even showed increased activity in certain tagged forms, demonstrating that circular permutation did not compromise stability and may enhance function in engineered contexts[2].
+- **Aspartate transcarbamoylase and dehydrofolate reductase:** Both enzymes have also been used as models for circular permutation studies, with permutants retaining function and structure sufficient for further application; these efforts have expanded understanding of allowable sequence rearrangements and protein folding resilience[1].
+
+Supporting context:
+- Circular permutation has been applied to over 20 different proteins, often maintaining or even *improving thermostability or activity* after rearrangement[1][3]. This highlights its broad utility in protein engineering beyond a single class of enzymes.
+- Structural analyses (e.g., via circular dichroism and activity assays) of permuted enzymes often confirm preservation of key folding and functional characteristics, indicating that the three-dimensional scaffold of many proteins is inherently tolerant to such manipulations[2].
+- In addition to stability, circular permutation is leveraged to create *split-protein systems* for biosensing or modular protein engineering, building on the principle that certain proteins can be circularly permuted with retained activity[4].
+
+**Limitations and caveats:**
+- The success of circular permutation depends on identification of *permissive sites* where new termini do not interfere with the protein core or active site[4].
+- Not all proteins tolerate circular permutation equally; careful site selection and empirical validation are often necessary, as some rearrangements can decrease stability or disrupt folding.
+
+In summary, circular permutation is a proven strategy in enzyme stability engineering, with multiple documented cases—such as CPG2, DsbA, and T4 lysozyme—demonstrating successful retention or enhancement of stability and function after sequence rearrangement[1][2][4].
+--- END TOOL OUTPUT (Length: 3000 chars) ---
+=== END TOOL CALL ===
+

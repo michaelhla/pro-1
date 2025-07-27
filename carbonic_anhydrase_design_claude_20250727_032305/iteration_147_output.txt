@@ -1,0 +1,19 @@
+Let's search for information about hydrophobic core enhancement and other stabilization strategies:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_0124X8krXTjFtqDBBsmdyauD
+Arguments: {'query': 'carbonic anhydrase II thermostability enhancement hydrophobic core salt bridges'}
+--- TOOL OUTPUT ---
+Thermostability of human carbonic anhydrase II (HCAII) can be significantly enhanced by targeted changes in the **hydrophobic core** and the introduction of **salt bridges**. Studies have found that:
+
+- **Improved hydrophobic core packing:** Specific mutations that enhance the packing of hydrophobic residues in the core contribute to increased thermal stability. These mutations reduce the loss of side chain entropy during folding, leading to a more stable protein scaffold[1][3]. For example, site-directed mutagenesis targeting core residues can address loose packing or suboptimal van der Waals interactions, thereby stabilizing the folded state[1].
+- **Hydrogen bonding and salt bridges:** Enhanced surface hydrogen bonding and the formation of new salt bridges also increase thermostability[1][2][4]. Structural studies of thermostable CA variants report additional salt bridges that are absent in mesophilic (less stable) forms[4]. For example, in silico design and mutagenesis in α-carbonic anhydrase resulted in five new salt bridges, correlating with improved thermostability, making the mutant's stability comparable to naturally thermophilic homologs[4].
+- **Mutational independence and energetic effects:** In one highly thermostable HCAII variant, six mutations were found to act largely independently, each contributing via mechanisms such as increased hydrogen bonding, improved packing (hydrophobic or otherwise), and backbone conformational propensity[1][3]. Some of these changes involved the hydrophobic core, while others enhanced surface interactions or optimized amino acid conformations[1].
+
+Additional key findings:
+- Mutations specifically replacing surface hydrophobic residues can both enhance thermal stability and retain catalytic activity, particularly when combined with strategic active site alterations[2][5].
+- The introduced salt bridges typically stabilize regions of the enzyme that are otherwise flexible or prone to unfolding at higher temperatures, reducing the likelihood of thermal denaturation[4].
+
+In summary, engineering carbonic anhydrase II for greater thermostability relies on optimizing hydrophobic core packing and engineering electrostatic interactions (notably salt bridges) to fortify the protein structure against unfolding under thermal stress[1][2][4][5].
+--- END TOOL OUTPUT (Length: 2315 chars) ---
+=== END TOOL CALL ===
+

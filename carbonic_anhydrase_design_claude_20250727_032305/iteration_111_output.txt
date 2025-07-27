@@ -1,0 +1,9 @@
+Now, let's design a variant with two disulfide bonds - keeping the successful 56-69 and adding another at positions 174-179 which are spatially close in the structure:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01K6THfzE9yDnfehS55aL77v
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVCYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGCGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDCIKTKGKCADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'double_disulfide_variant.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/double_disulfide_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 53 chars) ---
+=== END TOOL CALL ===
+

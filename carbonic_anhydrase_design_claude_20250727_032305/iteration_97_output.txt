@@ -1,0 +1,32 @@
+Let's get more specific information about thermostable scaffold fusions and domain insertions:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01DiabPRJfe1x5gw8gHTViiD
+Arguments: {'query': 'protein scaffold fusion thermophilic domain insertion design examples'}
+--- TOOL OUTPUT ---
+Several published studies provide concrete examples of **thermophilic domain insertion into protein scaffolds** as a strategy in protein engineering, particularly for enhancing stability or conferring new functionalities.
+
+**Notable Examples:**
+
+- **Insertion of Endocellulase Catalytic Domains into Thermostable Scaffolds (Kim et al.):**
+    - *Design:* Exoinulinase EI, a relatively **unstable glycohydrolase**, was inserted into a **thermophilic maltodextrin-binding protein scaffold** derived from *Pyrococcus furiosus*.
+    - *Method:* The engineered protein created a fusion in which the unstable domain was stabilized by the thermostable scaffold protein.
+    - *Result:* The inserted catalytic domains retained both **structure** and **enzymatic activity**, demonstrated by far-UV and near-UV circular dichroism spectroscopy as well as enzymatic assays. The scaffold’s integrity was maintained, even with internal domain insertion, and the thermophilic environment supported the inserted domain's function[2].
+    - *Significance:* This strategy demonstrates that a *thermophilic protein scaffold* can protect and stabilize less robust protein domains, enabling single-chain, multi-domain constructs with elevated thermal resilience.
+
+- **Engineering of Split Adenylate Kinase from Hyperthermophilic Thermotoga neapolitana:**
+    - *Design:* Proteins from *Thermotoga neapolitana* (hyperthermophile) and *Bacillus subtilis* (mesophile) were fragmented and their capability to reassemble into functional structures assessed.
+    - *Result:* **Hyperthermophilic adenylate kinase split fragments** were more successful at reassembling and retaining function than their mesophilic counterparts. For example, up to 44% of hyperthermophilic fragments could complement and support *E. coli* growth, versus only 6% for mesophilic fragments[1].
+    - *Significance:* This **protein fragmentation and reassembly** approach leverages the inherent stability of thermophilic proteins, making domain insertion (a form of fragmentation and recombination) more feasible and efficient. These findings underscore the potential of thermophilic scaffolds for robust fusion and insertion designs.
+
+**Key Takeaways:**
+
+- **Thermophilic protein scaffolds** are particularly suitable for engineering multi-domain fusions or insertions because their enhanced stability accommodates potentially destabilizing insertions without loss of structure or function[1][2].
+- Fusions may involve the internal insertion of catalytic domains or splitting and modular recombination, with the thermophilic nature conferring improved folding and activity in the resulting construct.
+- These design strategies have been proposed or implemented for applications such as enhanced biofuel production (cellulase display) and synthetic biology.
+
+**Limitations:**
+- While domain insertion into thermophilic scaffolds shows promise, practical success depends on careful selection of insertion sites and domain interfaces, and not all domain–scaffold combinations will retain optimal activity or folding.
+- Most published work uses a small number of well-characterized scaffold systems, so generalizability to arbitrary proteins may still require empirical validation.
+--- END TOOL OUTPUT (Length: 3227 chars) ---
+=== END TOOL CALL ===
+

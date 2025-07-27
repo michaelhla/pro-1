@@ -1,0 +1,62 @@
+=== TOOL CALL: examine_catalytic_activity ===
+Tool ID: toolu_01G9sX4h4miCi7y4mU9cja5S
+Arguments: {'pdb_file_path': 'predicted_structures/ca2_salt_bridge_variant.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'ca2_salt_bridge_variant_catalytic'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/ca2_salt_bridge_variant.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/ca2_salt_bridge_variant_catalytic/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.013702538910720216,
+    "zinc_binding_rmsd": 0.003264018465488733,
+    "overall_rmsd": 0.014717141178040561
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+--- END TOOL OUTPUT (Length: 1309 chars) ---
+=== END TOOL CALL ===
+

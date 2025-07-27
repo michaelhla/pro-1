@@ -1,0 +1,9 @@
+Now let's evaluate the stability of our designed variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01VZyG2iDXkDDDDE6sAbXyyi
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_thermostable_v1.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 2181.70 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/hCA2_thermostable_v1.pdb.pdb
+--- END TOOL OUTPUT (Length: 159 chars) ---
+=== END TOOL CALL ===
+

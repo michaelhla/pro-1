@@ -1,0 +1,47 @@
+Let's also search specifically for successful examples of stabilizing carbonic anhydrase or similar enzymes through major structural modifications:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01ExFTwHXjcENQcoCEM1XWAW
+Arguments: {'query': 'successful examples carbonic anhydrase stability engineering domain fusion insertion deletion large structural modifications'}
+--- TOOL OUTPUT ---
+There are several documented examples of **carbonic anhydrase (CA) stability engineering** using protein domain fusion, insertion, deletion, and other large structural modifications, though most published successes center around rational mutagenesis or surface engineering rather than very large modifications.
+
+**Key examples and insights:**
+
+- **Domain Fusion and Destabilizing Domains:**  
+  One notable approach involves fusing human carbonic anhydrase II (CA2)–based *destabilizing domains (DDs)* to other proteins of interest. These DDs can control protein stability in a ligand-dependent manner through structural fusion. For instance, engineered CA2 domains with mutations such as H122Y or E106D are used as tunable stability switches: the stability of the entire fusion protein is modulated by small molecule ligands that bind specifically to the CA2-derived DD. In the absence of the ligand, the DD destabilizes and promotes degradation of the payload or fusion partner; in the ligand’s presence, the entire fusion protein stabilizes, and this effect is tunable according to ligand concentration[2]. This is a direct use of domain fusion for stability engineering.
+
+- **Rational Design with Large Modifications:**  
+  While most CA stability engineering for industrial or biochemical use has focused on improving thermostability/pH resilience through point mutations or introducing small surface loops, there are reported studies employing rational domain or segment replacement (e.g., loop swapping from thermophilic CAs into more labile variants). However, explicit, published industrial usage of *large domain insertions* or *segmental deletions* leading to practical CA applications is less common, and examples from the latest reviews mostly emphasize site-directed mutagenesis and surface charge engineering[3].
+
+- **Insertion/Deletion Mutagenesis:**  
+  Structural modifications such as mutating key residues (e.g., His64 to Ala for proton shuttle alteration[4]) or deleting flexible surface regions have been used to probe CA mechanism and sometimes to enhance stability. However, these studies typically focus on subtle structural or functional changes rather than dramatic increases in overall protein structural resilience, and published records of insertions/deletions leading to successful, highly stabilized CA variants for applied use are rare[4].
+
+**Supporting Details and Limitations:**
+
+- **Industrial Enzyme Engineering:**  
+  The majority of successful carbonic anhydrase stability engineering efforts documented in industrial or carbon sequestration contexts focus on:
+  - **Directed evolution and rational design (mutagenesis)**
+  - **Enzyme immobilization on solid supports** (not a structural modification to the polypeptide itself, but rather a post-expression engineering solution for stability)[1].
+  - **Fusion to stability-enhancing tags** (e.g., known thermostable domains), though published reports of these specifically for CAs are limited when compared to other enzymes.
+
+- **Recent Advances:**  
+  Newer academic work continually targets thermo-alkali stability by manipulating domain structures and inter-domain surfaces, with thermophilic or extremophile CA homologs providing modular domains or motifs that can sometimes be grafted onto less stable CA enzymes[3].
+
+**Summary Table: Large-Scale Structural Modifications in CA Stability Engineering**
+
+| Method                        | Example in CA Literature                                                      | Outcome                       |
+|-------------------------------|-------------------------------------------------------------------------------|-------------------------------|
+| Domain fusion (DDs, CA2)      | CA2-based destabilizing domain fusion to payload proteins[2]                  | Ligand-dependent stability    |
+| Loop/domain swap (rational)   | Swap of loops or domains from thermophilic CAs to mesophilic CAs[3]           | Enhanced thermostability (in some cases) |
+| Deletion/Insertion mutagenesis| Point mutations and small surface deletions (e.g., His64→Ala)[4]              | Local effect on function and sometimes on stability |
+| Enzyme immobilization         | Physical immobilization (not structural modification)[1]                      | Improved operational stability|
+
+**Caveats:**
+- Published, *successful* cases of large domain insertions or deletions dramatically improving CA stability are rare; most work involves more modest modifications and fusion of stability-controlling domains.
+- Large fusion constructs are sometimes used for control of CA activity (rather than just stability) in synthetic biology.
+- True de novo domain insertion (not N- or C-terminal fusion) is uncommon due to impact on CA active site geometry and function.
+
+For maximum detail or very recent, unpublished advances, primary protein engineering literature and patent filings should be monitored, as CA engineering is a rapidly developing field.
+--- END TOOL OUTPUT (Length: 4965 chars) ---
+=== END TOOL CALL ===
+

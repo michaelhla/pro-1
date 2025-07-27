@@ -1,0 +1,9 @@
+Now, let's evaluate the structure using Rosetta to get an energy score:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01KvnAhg5oafMfVFvAyYDgkC
+Arguments: {'pdb_file_path': 'predicted_structures/CA-SuperOligo.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 273.63 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA-SuperOligo.pdb.pdb
+--- END TOOL OUTPUT (Length: 151 chars) ---
+=== END TOOL CALL ===
+

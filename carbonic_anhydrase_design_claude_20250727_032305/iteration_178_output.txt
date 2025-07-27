@@ -1,0 +1,63 @@
+Let's also check the catalytic activity by examining the active site residues:
+=== TOOL CALL: examine_catalytic_activity ===
+Tool ID: toolu_01NLeS5VSZ89BY3zzgDPLmTj
+Arguments: {'pdb_file_path': 'predicted_structures/salt_bridge_variant.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'salt_bridge_variant'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/salt_bridge_variant.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/salt_bridge_variant/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.027642409988821986,
+    "zinc_binding_rmsd": 0.011839917579733386,
+    "overall_rmsd": 0.029599176935405626
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+--- END TOOL OUTPUT (Length: 1291 chars) ---
+=== END TOOL CALL ===
+

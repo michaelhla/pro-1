@@ -1,0 +1,27 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01ViZL1DA2HHRJ86GYptHv4v
+Arguments: {'query': 'most stable protein domains discovered, SUMO domain, archaeal ferritin stability'}
+--- TOOL OUTPUT ---
+Some of the **most stable protein domains** identified include those found in extremophilic organisms and specialized structural proteins, such as the *ferritin superfamily* and specific engineered plant ferritins with melting temperatures above 100 °C[2]. The **SUMO domain** (Small Ubiquitin-like Modifier) primarily functions as a post-translational modifier of other proteins rather than for structural stability, though SUMOylation can stabilize or regulate protein–protein interactions[4]. **Archaeal ferritins** are notable for exceptional stability, which makes them advantageous for biotechnological applications, but plant ferritins, particularly soybean seed H-2 ferritin (SSFH-2), possess even higher thermostability, reaching denaturation temperatures as high as 106 °C[2].
+
+**Essential context and details:**
+
+- **Most stable domains:** Stability in protein domains generally correlates with compactness, high intradomain correlation, and similarity of domain sizes, especially in multidomain proteins[1]. Real ("natural") domains are much more stable than artificially created or split domains[1].
+- **Thermostable ferritin domains:** 
+  - *Archaeal ferritins* are intrinsically thermostable and used in applications requiring high thermal resistance.
+  - *Plant ferritin (SSFH-2)* demonstrates an extremely high melting point (106 °C), surpassing most naturally occurring protein domains tested for thermostability[2].
+  - Engineering strategies grafting the EP (extra peptide) domain from plant ferritin to other ferritins (such as HuHF) have increased their thermal stabilities to almost 103 °C, enabling use in harsh industrial settings[2].
+- **SUMO domain:**
+  - SUMO is a small protein domain that covalently attaches to target proteins (SUMOylation) and modulates their localization, stability, and interactions, rather than serving primarily as a highly stable structural unit[4].
+  - While there are implications for proteostasis and disease (e.g., stabilization of hyperphosphorylated tau in Alzheimer’s disease), SUMO’s reputation is not for exceptional thermostability but for regulatory versatility[4].
+- **Domain stability mechanism:** The stability of protein domains is often attributed to the strength of intradomain interactions and the compactness of domain packing[1]. Multidomain proteins are most stable when domains are of similar and optimal size[1].
+
+**Caveats and limitations:**
+
+- While the results reference high thermostability in ferritin domains (particularly in plant and archaeal species), the specific ranking of the "most stable" domain may vary depending on the metrics (e.g., melting temperature, resistance to chemical denaturants, etc.), and current publications focus on model proteins rather than a global ranking of all known domains.
+- SUMO’s principal function is regulatory, not structural thermodynamic stability. Its presence is not associated with highest thermostability but with post-translational regulation[4].
+
+In summary, **plant ferritin domains** represent some of the highest protein domain stabilities discovered, while **archaeal ferritins** are also notably stable. The **SUMO domain** is critical for regulation of protein function via post-translational modification, but not unusually thermostable as a standalone domain[2][4][1].
+--- END TOOL OUTPUT (Length: 3308 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,49 @@
+Let's examine the secondary structure:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01VhXVwVWek1vQvc4gkUFoD8
+Arguments: {'pdb_file_path': 'predicted_structures/CA-BetaBarrel-Zn.pdb.pdb', 'image_subdir': 'CA_BetaBarrel_Zn'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA-BetaBarrel-Zn.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_BetaBarrel_Zn/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2770,
+    "total_residues": 358,
+    "radius_of_gyration": 23.7,
+    "center_of_mass": [
+      -4.84,
+      -4.49,
+      3.68
+    ],
+    "estimated_molecular_weight": 39380
+  },
+  "secondary_structure_content": {
+    "total_residues": 358,
+    "helix_residues": 53,
+    "sheet_residues": 69,
+    "loop_residues": 236,
+    "helix_percentage": 14.8,
+    "sheet_percentage": 19.3,
+    "loop_percentage": 65.9
+  },
+  "surface_properties": {
+    "total_sasa": 23220.52,
+    "hydrophobic_sasa": 11924.37,
+    "polar_sasa": 10780.43,
+    "hydrophobic_ratio": 51.4
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 358 residues. Secondary structure: 14.8% helix, 19.3% sheet, 65.9% loop. Radius of gyration: 23.7 \u00c5. Total SASA: 23220.52 \u0172. Surface hydrophobicity: 51.4%."
+}
+--- END TOOL OUTPUT (Length: 1247 chars) ---
+=== END TOOL CALL ===
+

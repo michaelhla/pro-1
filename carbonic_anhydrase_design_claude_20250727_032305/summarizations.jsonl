@@ -1,0 +1,15 @@
+{"timestamp": "2025-07-27T03:29:19.350332", "iteration": 24, "summarization_number": 1, "original_tokens_estimate": 15216, "new_tokens_estimate": 2886, "compression_ratio": 0.18966876971608831}
+{"timestamp": "2025-07-27T03:35:02.959889", "iteration": 46, "summarization_number": 2, "original_tokens_estimate": 15022, "new_tokens_estimate": 2822, "compression_ratio": 0.18785780854746373}
+{"timestamp": "2025-07-27T03:44:07.176367", "iteration": 77, "summarization_number": 3, "original_tokens_estimate": 15109, "new_tokens_estimate": 2886, "compression_ratio": 0.19101197961479913}
+{"timestamp": "2025-07-27T03:52:40.222808", "iteration": 106, "summarization_number": 4, "original_tokens_estimate": 15028, "new_tokens_estimate": 2858, "compression_ratio": 0.1901783337769497}
+{"timestamp": "2025-07-27T04:02:15.132005", "iteration": 139, "summarization_number": 5, "original_tokens_estimate": 15786, "new_tokens_estimate": 2412, "compression_ratio": 0.15279361459521096}
+{"timestamp": "2025-07-27T04:11:27.795809", "iteration": 172, "summarization_number": 6, "original_tokens_estimate": 15143, "new_tokens_estimate": 2878, "compression_ratio": 0.19005481080367168}
+{"timestamp": "2025-07-27T04:18:22.305301", "iteration": 198, "summarization_number": 7, "original_tokens_estimate": 15306, "new_tokens_estimate": 2988, "compression_ratio": 0.19521756174049393}
+{"timestamp": "2025-07-27T04:24:47.974744", "iteration": 223, "summarization_number": 8, "original_tokens_estimate": 15481, "new_tokens_estimate": 2399, "compression_ratio": 0.15496414960273885}
+{"timestamp": "2025-07-27T04:36:02.395754", "iteration": 258, "summarization_number": 9, "original_tokens_estimate": 15546, "new_tokens_estimate": 5666, "compression_ratio": 0.36446674385694067}
+{"timestamp": "2025-07-27T04:42:23.098234", "iteration": 281, "summarization_number": 10, "original_tokens_estimate": 15064, "new_tokens_estimate": 3008, "compression_ratio": 0.19968135953266064}
+{"timestamp": "2025-07-27T04:51:07.907217", "iteration": 310, "summarization_number": 11, "original_tokens_estimate": 15263, "new_tokens_estimate": 2572, "compression_ratio": 0.16851208805608334}
+{"timestamp": "2025-07-27T05:02:35.566457", "iteration": 346, "summarization_number": 12, "original_tokens_estimate": 15174, "new_tokens_estimate": 2953, "compression_ratio": 0.19460919994727824}
+{"timestamp": "2025-07-27T05:09:33.215911", "iteration": 371, "summarization_number": 13, "original_tokens_estimate": 15213, "new_tokens_estimate": 2981, "compression_ratio": 0.19595083152566883}
+{"timestamp": "2025-07-27T05:18:22.847391", "iteration": 399, "summarization_number": 14, "original_tokens_estimate": 15001, "new_tokens_estimate": 3219, "compression_ratio": 0.21458569428704752}
+{"timestamp": "2025-07-27T05:23:49.222618", "iteration": 419, "summarization_number": 15, "original_tokens_estimate": 15196, "new_tokens_estimate": 3382, "compression_ratio": 0.22255856804422217}

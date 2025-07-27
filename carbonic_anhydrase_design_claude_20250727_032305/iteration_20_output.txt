@@ -1,0 +1,9 @@
+Now let's calculate the Rosetta energy score:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_011xjFfGazqCKJ4h7fQxJzrM
+Arguments: {'pdb_file_path': 'predicted_structures/CA_rubredoxin_insertion.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 343.39 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_rubredoxin_insertion.pdb.pdb
+--- END TOOL OUTPUT (Length: 161 chars) ---
+=== END TOOL CALL ===
+

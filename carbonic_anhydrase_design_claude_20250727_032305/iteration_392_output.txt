@@ -1,0 +1,9 @@
+Let's evaluate the stability of this design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01Pet5rgCvNZ9UB2mkPpRVfM
+Arguments: {'pdb_file_path': 'predicted_structures/CA-BetaBarrel-Zn.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 1116.46 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA-BetaBarrel-Zn.pdb.pdb
+--- END TOOL OUTPUT (Length: 155 chars) ---
+=== END TOOL CALL ===
+

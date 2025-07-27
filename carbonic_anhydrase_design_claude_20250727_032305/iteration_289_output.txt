@@ -1,0 +1,16 @@
+In this design (thermostable_v4), I've introduced multiple strategic cysteine residues for potential disulfide bonds:
+- R21E and added C22: Creating a salt bridge and potential disulfide bonding region
+- S94C: Near the zinc binding site but not directly involved in coordination
+- L214C: In a loop region away from the active site
+- N253C: In the C-terminal region
+- S290C: At the C-terminus
+
+Let's evaluate this new design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01DfUuPhnV88q48S5NdFS2cf
+Arguments: {'pdb_file_path': 'predicted_structures/thermostable_v4.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -211.30 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/thermostable_v4.pdb.pdb
+--- END TOOL OUTPUT (Length: 154 chars) ---
+=== END TOOL CALL ===
+

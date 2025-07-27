@@ -1,0 +1,19 @@
+Great! Now I have two potential thermostable domains to work with:
+
+1. The ZifS (TTHA0897) zinc finger domain from Thermus thermophilus - although the exact sequence isn't readily available
+2. The rubredoxin domain from Pyrococcus furiosus, which is extremely thermostable with the sequence:
+   ```
+   MAKKKEIIDCDSCGACTKAIVEEYDDVAPKFGEEVIEYVPVDGSCGSCASVCPVG
+   ```
+
+Let's use the rubredoxin domain from Pyrococcus furiosus to create a novel carbonic anhydrase II variant. I'll design a fusion protein where I'll insert this thermostable domain at position 130-135, which is in a loop region away from the active site.
+
+Let me create this fusion:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01HHaFFtXeu19FbpMM1S746Q
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAMAAKKEIIDCDSCGACTKAIVEEYDDVAPKFGEEVIEYVPVDGSCGSCASVCPVGVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'hCA2_rubredoxin_fusion.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/hCA2_rubredoxin_fusion.pdb.pdb
+--- END TOOL OUTPUT (Length: 51 chars) ---
+=== END TOOL CALL ===
+

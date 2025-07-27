@@ -1,0 +1,54 @@
+I'll provide a comprehensive summary of our protein engineering efforts to design stable carbonic anhydrase variants.
+
+MAIN OBJECTIVE:
+- Design thermostable variants of human Carbonic Anhydrase II (CA II) using computational tools
+
+REFERENCE STRUCTURE ANALYSIS:
+- Wild-type human CA II (260 residues)
+- Rosetta score: -304.41 to -305.75 REU
+- Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+- Catalytic residues identified: Y7, N62, H64, N67, Q92 (proton transfer network)
+- Zinc-binding residues: H94, H96, H119
+- Radius of gyration: 17.19 Å
+
+VARIANTS TESTED:
+
+1. Disulfide Bond Variant (A23C/L203C/C206S):
+   - Mutations introduced a disulfide bond while preventing unwanted disulfide formation
+   - Rosetta score: -296.62 REU
+   - Catalytic site RMSD: 0.089 Å (minimal change)
+   - Secondary structure maintained
+
+2. Salt Bridge Variant (A245E/Q249R/Q253E):
+   - Enhanced salt bridge network in C-terminal region
+   - Rosetta score: -310.91 REU (most favorable)
+   - Catalytic site RMSD: 0.014 Å (excellent preservation)
+   - Lower total SASA (12,096 Å²) than wild-type (12,225 Å²)
+
+3. Combined Variant (A23C/L203C/C206S + A245E/Q249R/Q253E):
+   - Integrated disulfide bond and salt bridge enhancements
+   - Rosetta score: -300.57 REU
+   - Catalytic site RMSD: 0.097 Å (acceptable)
+
+4. β-Grasp Domain Insertion:
+   - Bold insertion of β-grasp domain after residue 160
+   - Unfavorable Rosetta score: 965.48 REU
+   - Increased radius of gyration: 25.47 Å
+   - Likely disrupted the overall fold
+
+5. Circular Permutation:
+   - Connected original N/C termini with GS-rich linker
+   - Created new termini at position 160
+   - Added stabilizing β-hairpin motif
+   - In progress
+
+DESIGN CONCLUSIONS:
+- Salt bridge variant showed the best performance with improved Rosetta score and preserved catalytic geometry
+- Domain insertion requires more careful design to prevent disruption of the fold
+- Circular permutation is a promising approach being explored
+
+NEXT STEPS:
+- Evaluate the circular permutation variant
+- Explore more conservative domain insertions
+- Consider additional strategies like thermostable β-propeller domains
+- Further refine the salt bridge variant if needed

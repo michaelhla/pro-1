@@ -1,0 +1,33 @@
+Let's search for a more precise thioredoxin sequence that is better characterized:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_0194WA37Xs1TnhWiyt1wmzGK
+Arguments: {'query': 'Pyrococcus furiosus thioredoxin sequence amino acid thermostable'}
+--- TOOL OUTPUT ---
+The **thioredoxin from Pyrococcus furiosus** is a hyperthermostable protein featuring a characteristic redox-active motif and high resistance to denaturation at elevated temperatures, remaining fully active for over 1 hour at 100°C[2].
+
+### Amino Acid Sequence
+- The **active site motif** in the P. furiosus thioredoxin-like protein is **CPYC**, located in the middle of the sequence[2].
+- The complete amino acid sequence for the *glutaredoxin-like* (thioredoxin-like) protein from *Pyrococcus furiosus* is available in UniProtKB (accession Q51760)[3]. This protein has **226 amino acids**[3].
+
+### Thermostability
+- Both the thioredoxin and the associated thioredoxin reductase from P. furiosus **retain full activity for over 1 hour at 100°C**, which is a hallmark of their extreme thermostability[2].
+- Such thermostability is typical for proteins from hyperthermophilic archaea like P. furiosus, which thrive at extremely high temperatures.
+
+### Functional Context
+- Despite its annotation as glutaredoxin-like, experimental evidence demonstrated **strong thioredoxin-like activity** and no glutaredoxin activity for this protein[2].
+- Site-directed mutagenesis confirmed that the **CPYC motif** is functionally analogous to the canonical CXXC motif found in thioredoxins of other organisms[2].
+
+### Sequence Access
+- For the full primary sequence, refer to UniProt entry **Q51760** for the glutaredoxin-like/thioredoxin-like protein from *Pyrococcus furiosus*, which provides the entire 226 amino acid sequence in standard one-letter code format[3].
+
+### Limitations
+- If you require the sequence of the canonical "thioredoxin" (distinct from the glutaredoxin-like/thioredoxin-like protein), primary literature and updated protein databases should be consulted directly, as well as genome annotations, since some functional ambiguity exists in naming conventions[2][3].
+
+**Key properties:**
+- **Amino acid sequence** (226 residues; see UniProt Q51760)[3]
+- **Active-site motif**: CPYC[2]
+- **Thermostability**: Stable and active at 100°C for >1 hour[2]
+- **Function**: Thioredoxin-like redox activity, not glutaredoxin[2]
+--- END TOOL OUTPUT (Length: 2127 chars) ---
+=== END TOOL CALL ===
+

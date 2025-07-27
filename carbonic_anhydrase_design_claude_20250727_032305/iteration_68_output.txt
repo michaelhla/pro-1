@@ -1,0 +1,30 @@
+Now let's look at another bold engineering approach - circular permutation:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Kea1dausJgTeiQnvbkVCbu
+Arguments: {'query': 'circular permutation protein engineering stability enhancement examples carbonic anhydrase'}
+--- TOOL OUTPUT ---
+Circular permutation has been used in **protein engineering** to alter properties such as stability, but there are currently no **published reports specifically describing circular permutation applied to carbonic anhydrase for stability enhancement**. However, circular permutation in general has been used successfully for stability optimization in other proteins, and evidence suggests this approach could theoretically be applied to carbonic anhydrase.
+
+**Key context and supporting details:**
+
+- **Circular permutation** involves linking the original termini of a protein and creating new ends elsewhere in the sequence, which can alter the protein's folding pathway, stability, and function[3]. Often, permuted proteins retain their native structure and function, but stability and folding kinetics may differ; in some engineered cases, stability is increased[3].
+- Numerous proteins have been engineered with circular permutation for improved stability, including ribonucleases, dihydrofolate reductase, lysozyme, and others[3]. Such engineering has successfully increased melting temperatures and resistance to denaturation in some cases[3].
+- **Carbonic anhydrase** is a model system for protein biophysics and has been extensively engineered for altered activity, pH stability, and surface properties[4]. Although the primary literature describes mutations and other modifications, there is no direct mention of circular permutation engineering performed on carbonic anhydrase in the supplied search results[4].
+- The absence of specific case studies in carbonic anhydrase does not preclude the feasibility of the approach; it likely reflects a gap in published research rather than an intrinsic limitation.
+
+**Additional notes:**
+
+- In **other systems**, circular permutation can help probe the importance of sequence connectivity and identify regions key to stability and folding. Successful examples in other enzymes suggest that, with careful design (such as placement of new termini outside structured core elements and use of flexible linkers), circular permutation could be a viable strategy for tuning carbonic anhydrase stability[2][3].
+- The most detailed reviews and databases of circular permutation in proteins list no documented examples for carbonic anhydrase, but do include other enzymes and binding proteins[3][5].
+
+**Caveat:**
+If you are seeking specific experimental protocols or published results of circular permutation directly applied to carbonic anhydrase for stability enhancement, such information is not available in the current literature covered by the search results. Theoretical and analogous applications are, however, well founded in studies of other proteins[3].
+
+**Summary of relevant strategy:**
+- **Circular permutation** can *increase protein stability* and has been demonstrated in various proteins, but not yet with documented success for carbonic anhydrase.
+- For stability enhancement in proteins, the most successful approaches often involve careful design of linker regions, permutation point selection, and activity/stability screening post-permutation[3].
+
+If you need concrete examples in proteins closely related to carbonic anhydrase, or if you are interested in general principles for implementing circular permutation in stability engineering, I can provide more details.
+--- END TOOL OUTPUT (Length: 3332 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,8 @@
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01XKeE5aQfRfNn2YRYZr9ekD
+Arguments: {'pdb_file_path': 'predicted_structures/CA_CircPerm_v1.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -222.46 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_CircPerm_v1.pdb.pdb
+--- END TOOL OUTPUT (Length: 153 chars) ---
+=== END TOOL CALL ===
+

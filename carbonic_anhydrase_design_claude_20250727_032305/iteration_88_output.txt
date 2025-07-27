@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01B6b5vcYKsDJY3bAa7Bvj6r
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_calcium_disulfide.pdb.pdb', 'image_subdir': 'calcium_disulfide_combined'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hCA2_calcium_disulfide.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/calcium_disulfide_combined/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2080,
+    "total_residues": 262,
+    "radius_of_gyration": 17.28,
+    "center_of_mass": [
+      0.47,
+      -0.69,
+      -1.39
+    ],
+    "estimated_molecular_weight": 28820
+  },
+  "secondary_structure_content": {
+    "total_residues": 262,
+    "helix_residues": 45,
+    "sheet_residues": 69,
+    "loop_residues": 148,
+    "helix_percentage": 17.2,
+    "sheet_percentage": 26.3,
+    "loop_percentage": 56.5
+  },
+  "surface_properties": {
+    "total_sasa": 12616.5,
+    "hydrophobic_sasa": 6006.69,
+    "polar_sasa": 6504.9,
+    "hydrophobic_ratio": 47.6
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 262 residues. Secondary structure: 17.2% helix, 26.3% sheet, 56.5% loop. Radius of gyration: 17.28 \u00c5. Total SASA: 12616.5 \u0172. Surface hydrophobicity: 47.6%."
+}
+--- END TOOL OUTPUT (Length: 1260 chars) ---
+=== END TOOL CALL ===
+

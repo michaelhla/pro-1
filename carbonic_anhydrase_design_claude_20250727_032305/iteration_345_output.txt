@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_015R75qnPTw1aowa5MXy2K6s
+Arguments: {'pdb_file_path': 'predicted_structures/CA_CircPerm_v1.pdb.pdb', 'image_subdir': 'CA_CircPerm_v1'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA_CircPerm_v1.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_CircPerm_v1/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2392,
+    "total_residues": 301,
+    "radius_of_gyration": 30.7,
+    "center_of_mass": [
+      -1.99,
+      -4.37,
+      -2.45
+    ],
+    "estimated_molecular_weight": 33110
+  },
+  "secondary_structure_content": {
+    "total_residues": 301,
+    "helix_residues": 94,
+    "sheet_residues": 68,
+    "loop_residues": 139,
+    "helix_percentage": 31.2,
+    "sheet_percentage": 22.6,
+    "loop_percentage": 46.2
+  },
+  "surface_properties": {
+    "total_sasa": 20832.7,
+    "hydrophobic_sasa": 10680.23,
+    "polar_sasa": 10079.5,
+    "hydrophobic_ratio": 51.3
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 301 residues. Secondary structure: 31.2% helix, 22.6% sheet, 46.2% loop. Radius of gyration: 30.7 \u00c5. Total SASA: 20832.7 \u0172. Surface hydrophobicity: 51.3%."
+}
+--- END TOOL OUTPUT (Length: 1240 chars) ---
+=== END TOOL CALL ===
+

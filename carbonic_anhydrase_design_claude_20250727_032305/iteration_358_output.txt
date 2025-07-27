@@ -1,0 +1,49 @@
+Let's analyze the secondary structure and properties:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01TfBg7qc1CTPhaUkXqSBqv2
+Arguments: {'pdb_file_path': 'predicted_structures/CA_ZincBindingMotif.pdb.pdb', 'image_subdir': 'CA_ZincBindingMotif'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA_ZincBindingMotif.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_ZincBindingMotif/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2300,
+    "total_residues": 291,
+    "radius_of_gyration": 18.32,
+    "center_of_mass": [
+      -0.06,
+      -1.39,
+      -2.97
+    ],
+    "estimated_molecular_weight": 32010
+  },
+  "secondary_structure_content": {
+    "total_residues": 291,
+    "helix_residues": 56,
+    "sheet_residues": 69,
+    "loop_residues": 166,
+    "helix_percentage": 19.2,
+    "sheet_percentage": 23.7,
+    "loop_percentage": 57.0
+  },
+  "surface_properties": {
+    "total_sasa": 13672.69,
+    "hydrophobic_sasa": 6533.67,
+    "polar_sasa": 7059.02,
+    "hydrophobic_ratio": 47.8
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 291 residues. Secondary structure: 19.2% helix, 23.7% sheet, 57.0% loop. Radius of gyration: 18.32 \u00c5. Total SASA: 13672.69 \u0172. Surface hydrophobicity: 47.8%."
+}
+--- END TOOL OUTPUT (Length: 1254 chars) ---
+=== END TOOL CALL ===
+

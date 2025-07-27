@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_0136pCD7jsiaZG3tk6TJSrh5
+Arguments: {'pdb_file_path': 'predicted_structures/thermostable_proline.pdb.pdb', 'image_subdir': 'thermostable_proline'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/thermostable_proline.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/thermostable_proline/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2085,
+    "total_residues": 261,
+    "radius_of_gyration": 17.22,
+    "center_of_mass": [
+      0.37,
+      -0.24,
+      -0.67
+    ],
+    "estimated_molecular_weight": 28710
+  },
+  "secondary_structure_content": {
+    "total_residues": 261,
+    "helix_residues": 43,
+    "sheet_residues": 69,
+    "loop_residues": 149,
+    "helix_percentage": 16.5,
+    "sheet_percentage": 26.4,
+    "loop_percentage": 57.1
+  },
+  "surface_properties": {
+    "total_sasa": 12246.67,
+    "hydrophobic_sasa": 5938.86,
+    "polar_sasa": 6261.8,
+    "hydrophobic_ratio": 48.5
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 261 residues. Secondary structure: 16.5% helix, 26.4% sheet, 57.1% loop. Radius of gyration: 17.22 \u00c5. Total SASA: 12246.67 \u0172. Surface hydrophobicity: 48.5%."
+}
+--- END TOOL OUTPUT (Length: 1254 chars) ---
+=== END TOOL CALL ===
+

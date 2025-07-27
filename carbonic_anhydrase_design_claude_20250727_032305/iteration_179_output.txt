@@ -1,0 +1,38 @@
+Now, let's design a new variant building on the salt bridge variant by incorporating surface stabilization through hydrophobic-to-polar substitutions. Let me search for relevant information on this approach:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_016rfWp9KNQwGdP2bWmYwBiw
+Arguments: {'query': 'protein thermostability engineering surface hydrophobic to polar substitution'}
+--- TOOL OUTPUT ---
+Substituting **surface hydrophobic residues with polar residues** is a common strategy in protein thermostability engineering, but the effects depend strongly on context.
+
+**Background and Rationale**
+- **Thermostable proteins**—common in thermophiles—typically have a higher proportion of hydrophobic residues in their core, which promotes tight packing and thermal resistance[2][4].
+- Surface-exposed residues in thermostable proteins are often more polar, while destabilizing polar residues buried in the core are selected against[2].
+
+**Effect of Surface Hydrophobic-to-Polar Substitution**
+- Replacing *surface hydrophobic* amino acids (e.g., Leu, Ile, Val, Phe) with *polar* ones (e.g., Ser, Thr, Asn, Gln), can **increase solubility** and may reduce undesirable aggregation. These effects are generally beneficial for protein stability under some conditions, particularly when surface hydrophobic patches are prone to aggregation in aqueous solution[2][4].
+- Such substitutions do **not generally enhance thermostability** in the same way as increasing core hydrophobic packing. The major route to high thermostability in natural and engineered proteins is usually **increasing hydrophobicity in the protein core**, not on the surface[2][4].
+
+**Engineering Considerations**
+- Excessive hydrophobic surface exposure can destabilize the protein at high temperature due to aggregation[2], so targeted hydrophobic-to-polar mutation at the surface is often used to improve stability and solubility for mesophilic proteins, or to "humanize" therapeutic proteins.
+- However, over-substitution can expose too many polar groups, increasing the entropy (flexibility) of surface loops and sometimes decreasing thermostability[2].
+
+**Supporting Context**
+- A comprehensive review highlights that natural thermophilic proteins commonly feature more **hydrophobic residues in their core** and more **polar residues on the surface** compared to mesophilic proteins[2][4]. These composition differences are thought to be an adaptive mechanism under evolutionary pressure[2].
+- Some engineered proteins achieve increased stability via salt bridges or hydrogen bonds rather than surface hydrophobicity changes[4][1].
+
+**Summary Table: Substituting Surface Hydrophobic with Polar Residues**
+
+| Mutation Type               | Effect on Thermostability              | Comments                                    |
+|-----------------------------|----------------------------------------|---------------------------------------------|
+| Core hydrophobic→Polar      | Typically destabilizing                | Avoid in thermostability engineering        |
+| Surface hydrophobic→Polar   | Can improve solubility; effect on thermostability is context-dependent | May prevent aggregation; overuse can reduce stability |
+
+**Caveats**
+- Effects are case-dependent; local environment, protein fold, and overall residue context strongly influence outcomes[2].
+- Trade-offs exist between thermostability, activity, and solubility, so engineering tasks must balance these facets[1][4].
+
+In summary, **surface hydrophobic to polar substitutions can enhance solubility and sometimes benefit thermostability by reducing aggregation**, but the primary mechanism for rising thermostability in proteins is increased hydrophobic packing in the core rather than at the surface[2][4]. Each substitution should be guided by structural analysis and, for best results, supported by computational prediction or experimental validation[1].
+--- END TOOL OUTPUT (Length: 3497 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,49 @@
+Let's examine the secondary structure of our helix duplication variant:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_015GkoCM1VAGcgQFRGp5Zdgi
+Arguments: {'pdb_file_path': 'predicted_structures/ca_helix_duplication.pdb.pdb', 'image_subdir': 'ca_duplication_engineering'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/ca_helix_duplication.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/ca_duplication_engineering/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2181,
+    "total_residues": 274,
+    "radius_of_gyration": 17.83,
+    "center_of_mass": [
+      -0.63,
+      -0.26,
+      -1.8
+    ],
+    "estimated_molecular_weight": 30140
+  },
+  "secondary_structure_content": {
+    "total_residues": 274,
+    "helix_residues": 45,
+    "sheet_residues": 69,
+    "loop_residues": 160,
+    "helix_percentage": 16.4,
+    "sheet_percentage": 25.2,
+    "loop_percentage": 58.4
+  },
+  "surface_properties": {
+    "total_sasa": 13159.21,
+    "hydrophobic_sasa": 6586.13,
+    "polar_sasa": 6526.04,
+    "hydrophobic_ratio": 50.0
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 274 residues. Secondary structure: 16.4% helix, 25.2% sheet, 58.4% loop. Radius of gyration: 17.83 \u00c5. Total SASA: 13159.21 \u0172. Surface hydrophobicity: 50.0%."
+}
+--- END TOOL OUTPUT (Length: 1261 chars) ---
+=== END TOOL CALL ===
+

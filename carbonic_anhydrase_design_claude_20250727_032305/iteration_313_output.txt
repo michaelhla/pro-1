@@ -1,0 +1,9 @@
+Now let's analyze the stability of your design with Rosetta:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_012L4wgpvGmdD8SNANLGLDrz
+Arguments: {'pdb_file_path': 'predicted_structures/ca2_zincfinger_insert.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 658.95 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/ca2_zincfinger_insert.pdb.pdb
+--- END TOOL OUTPUT (Length: 159 chars) ---
+=== END TOOL CALL ===
+

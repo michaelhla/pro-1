@@ -1,0 +1,17 @@
+Based on the analysis and information, I'll design a new variant building upon the successful salt bridge variant (A245E/Q249R/Q253E). I'll target surface-exposed hydrophobic residues for substitution to polar residues to improve thermostability while preserving the catalytic machinery.
+
+Let's create a "hydrophobic-to-polar surface variant" with the following mutations:
+1. Keep the salt bridge mutations (A245E/Q249R/Q253E) that proved successful
+2. Add V121D (substituting a surface valine with aspartic acid)
+3. Add V135Q (substituting a surface valine with glutamine)
+4. Add I146N (substituting a surface isoleucine with asparagine)
+
+Let's fold this new variant:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01Dv27PJcbVdpfzX6Axz9kwH
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLADLGIFLKQGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPERPLRNRQIKESFK', 'filename': 'hydrophobic_to_polar_variant.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/hydrophobic_to_polar_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 57 chars) ---
+=== END TOOL CALL ===
+

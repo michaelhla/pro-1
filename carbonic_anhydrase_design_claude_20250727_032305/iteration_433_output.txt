@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01VhGT68MnjazmuNavVHXFrN
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_thermostable_v2.pdb.pdb', 'image_subdir': 'ca_thermal_adaptation'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hCA2_thermostable_v2.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/ca_thermal_adaptation/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 1970,
+    "total_residues": 254,
+    "radius_of_gyration": 19.15,
+    "center_of_mass": [
+      -0.28,
+      -0.11,
+      -0.55
+    ],
+    "estimated_molecular_weight": 27940
+  },
+  "secondary_structure_content": {
+    "total_residues": 254,
+    "helix_residues": 80,
+    "sheet_residues": 27,
+    "loop_residues": 147,
+    "helix_percentage": 31.5,
+    "sheet_percentage": 10.6,
+    "loop_percentage": 57.9
+  },
+  "surface_properties": {
+    "total_sasa": 20276.37,
+    "hydrophobic_sasa": 11463.68,
+    "polar_sasa": 8723.33,
+    "hydrophobic_ratio": 56.5
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 254 residues. Secondary structure: 31.5% helix, 10.6% sheet, 57.9% loop. Radius of gyration: 19.15 \u00c5. Total SASA: 20276.37 \u0172. Surface hydrophobicity: 56.5%."
+}
+--- END TOOL OUTPUT (Length: 1257 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,20 @@
+Based on this research, I'll create a bold new design approach for carbonic anhydrase II by fusing it with a thermophilic domain from a hyperthermophilic zinc metalloenzyme. Let's search for a suitable domain:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_013szpwBEm4GEbotd9JoMkCv
+Arguments: {'query': 'thermus thermophilus zinc metalloenzyme small stable domain'}
+--- TOOL OUTPUT ---
+A **small, stable zinc metalloenzyme domain** from *Thermus thermophilus* has recently been characterized in the protein **ZifS (TTHA0897)**, a zinc finger protein. ZifS contains a compact zinc finger domain, which is a common small, thermodynamically stable structure in proteins, typically stabilized by coordination of a zinc ion by conserved cysteine and/or histidine residues[5].
+
+Key details:
+
+- **ZifS** is a **small zinc finger protein** from *Thermus thermophilus* HB8, with a crystal structure reported in 2025[5].
+- **Zinc finger domains** are known for their **small size and exceptional stability**, especially important in thermophilic organisms like *T. thermophilus*[5].
+- This domain mediates interactions with nucleic acids, proteins, lipids, and small molecules, but many bacterial zinc finger proteins remain functionally uncharacterized[5].
+- The **structure of ZifS** is representative of a **small, stable zinc-binding domain** in a thermophilic context[5].
+
+*Thermus thermophilus* also encodes other zinc-dependent proteins such as trigger factor (a zinc-dependent chaperone)[1] and CzrB (a zinc transporter with a cytoplasmic domain binding zinc)[2], but ZifS directly fits your request for a *small*, *stable* domain with a defined structure.
+
+In summary, the **ZifS protein** provides an example of a **small, highly stable zinc-binding domain** from *Thermus thermophilus*, representative of the structural strategies employed by thermophiles for metal-dependent protein stabilization[5].
+--- END TOOL OUTPUT (Length: 1516 chars) ---
+=== END TOOL CALL ===
+

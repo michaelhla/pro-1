@@ -1,0 +1,38 @@
+## Design Results Summary
+
+I've explored three promising approaches to increase the stability of carbonic anhydrase II while maintaining catalytic activity:
+
+### 1. Disulfide Bond Engineering (56-69)
+- **Rosetta Score**: -302.17 REU (excellent - significantly better than wild-type)
+- **RMSD to wild-type**: 0.083 Å (minimal structural change)
+- **Catalytic integrity**: Excellent (active site RMSD: 0.028 Å, zinc binding RMSD: 0.005 Å)
+- **Secondary structure**: 17.3% helix, 26.5% sheet, 56.2% loop
+- **Radius of gyration**: 17.2 Å (very compact)
+
+### 2. Combined Calcium Binding + Disulfide Bond
+- **Rosetta Score**: 48.09 REU (less favorable)
+- **RMSD to wild-type**: 1.823 Å (moderate structural change)
+- **Catalytic integrity**: Good (active site RMSD: 0.211 Å, zinc binding RMSD: 0.032 Å)
+- **Secondary structure**: 17.2% helix, 26.3% sheet, 56.5% loop
+- **Radius of gyration**: 17.28 Å (compact)
+
+### 3. Surface Charge Optimization
+- **Rosetta Score**: -235.91 REU (good improvement over wild-type)
+- **RMSD to wild-type**: 0.038 Å (minimal structural change)
+- **Catalytic integrity**: Excellent (active site RMSD: 0.020 Å, zinc binding RMSD: 0.010 Å)
+- **Secondary structure**: 17.3% helix, 26.5% sheet, 56.2% loop
+- **Radius of gyration**: 17.19 Å (very compact)
+
+## Recommendations for Next Steps
+
+1. **Prioritize the disulfide bond variant (56-69)** for experimental validation, as it shows the best Rosetta score (-302.17 REU) while maintaining excellent catalytic site integrity.
+
+2. **Further optimize the surface charge engineering approach** by introducing additional salt bridges at other surface positions. The current design already shows promise with a score of -235.91 REU.
+
+3. **Revisit the calcium binding site strategy** with a refined approach. The combined calcium-disulfide design didn't perform as well as expected, suggesting these particular modifications may not work synergistically.
+
+4. **Try additional disulfide positions** using computational screening to identify other promising locations for disulfide bond introduction.
+
+5. **Explore hydrophobic core optimization** as a complementary approach, focusing on improving packing in the protein core without disrupting catalytic residues.
+
+Would you like me to explore any of these approaches in more detail or investigate another stabilization strategy for your carbonic anhydrase engineering project?

@@ -1,0 +1,38 @@
+Let's search for specific TIM barrel domains that could be inserted into carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01LEaxWbfdKmyZ4obvBmZoFb
+Arguments: {'query': 'thermostable TIM barrel domain sequence from hyperthermophile PDB structure'}
+--- TOOL OUTPUT ---
+A well-characterized **thermostable TIM barrel domain from a hyperthermophile** is found in the crystal structure of **beta-glycosidase from _Thermosphaera aggregans_ (PDB code: 1QVB)**. This protein, crystallized and described in detail, adopts a classic (β/α)_8 barrel fold (TIM-barrel), typical of many glycosyl hydrolases[4].
+
+- **Organism:** _Thermosphaera aggregans_ (hyperthermophilic archaeon)
+- **Domain:** (β/α)_8 TIM barrel (entire catalytic domain)
+- **PDB Structure:** 1QVB[4]
+- **Reference:** Chi et al., FEBS Letters, 1999
+
+### Sequence Extraction
+
+To obtain the actual **domain sequence**:
+- Visit the [RCSB PDB entry for 1QVB][4] and download the **FASTA sequence**. The entire chain A corresponds to the catalytic TIM barrel, as indicated in the structure description, since glycosyl hydrolase family 1 enzymes typically consist primarily of this domain.
+- The barrel domain in this protein contains the **full (β/α)_8 fold** with no large insertions, suitable for thermostability studies[4].
+
+### TIM Barrel Domain Summary
+
+- **Residue range:** The full-length monomeric sequence (usually ~450 residues, though the central ~200-250 residues correspond to the barrel proper)[1].
+- **Function:** Beta-glycosidase activity (glycoside hydrolysis).
+- **Thermostability:** Structure reveals adaptations contributing to thermostability (e.g., increased salt bridges, improved packing).
+
+### Key Insights
+
+- The 1QVB structure is explicitly from a **hyperthermophilic source** and has been analyzed for thermostability features[4].
+- Sequence boundaries for the TIM barrel are typically residues 1-450 for the full protein, with the canonical fold residing in the central portion (for precise boundaries, examine chain A and refer to sequence annotations in the PDB file).
+
+### Caveats
+
+- For **exact TIM barrel domain boundaries**, refer to domain annotation databases or secondary structure assignments in structural viewers.
+- The domain sequence you obtain from the PDB will include the entire catalytic region; most sequence-based or structural engineering applications use the complete domain as deposited.
+
+If you need a FASTA-formatted sequence for the domain, retrieve "Chain A" from the 1QVB PDB entry, as this represents the full thermostable TIM barrel domain from a hyperthermophilic organism[4].
+--- END TOOL OUTPUT (Length: 2320 chars) ---
+=== END TOOL CALL ===
+

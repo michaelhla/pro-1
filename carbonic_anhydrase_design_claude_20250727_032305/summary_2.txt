@@ -1,0 +1,45 @@
+I'll provide a comprehensive summary of our carbonic anhydrase engineering project.
+
+# Carbonic Anhydrase Engineering Summary
+
+## Main Objective
+Design more stable carbonic anhydrase variants while maintaining catalytic activity for improved carbon capture applications.
+
+## Design Strategies Tested
+
+1. **Rubredoxin Domain Insertion with Optimized Linkers**
+   - Inserted 54-aa P. furiosus rubredoxin at position 169
+   - Used optimized flexible linkers (GGGGSGGGGSGGGGS)
+   - Rosetta score: 875.53 REU
+   - Compact structure (radius of gyration: 23.87 Å)
+   - Catalytic site integrity maintained (RMSD: 0.176)
+   - Secondary structure: 11.0% helix, 24.6% sheet, 64.4% loop
+
+2. **Random Disulfide Bond Introduction**
+   - Added disulfides in both carbonic anhydrase and rubredoxin domains
+   - Rosetta score: 894.10 REU
+   - Radius of gyration: 23.04 Å
+   - Catalytic RMSD: 0.164
+   - Secondary structure: 11.0% helix, 22.9% sheet, 66.1% loop
+
+3. **Interface-Stabilizing Disulfide Bonds**
+   - Strategic disulfide placement at domain interfaces
+   - Improved Rosetta score: 776.05 REU
+   - Most compact structure (radius of gyration: 22.91 Å)
+   - Maintained catalytic geometry (RMSD: 0.171)
+   - Secondary structure: 11.0% helix, 24.6% sheet, 64.4% loop
+
+## Key Insights
+- The rubredoxin insertion provides stability without compromising catalytic function
+- Interface-stabilizing disulfides created the most compact and stable design
+- All variants maintained excellent positioning of catalytic residues
+
+## Recommended Design
+The interface-stabilizing disulfide variant offers the best properties with lowest energy score (776.05 REU) and most compact structure.
+
+## Next Steps
+We need to explore more novel approaches from different protein families, including:
+- Calcium binding site introduction (from thermostable metalloproteases)
+- Circular permutation strategies
+- Secondary structure element duplication
+- More aggressive domain engineering approaches

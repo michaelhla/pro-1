@@ -1,0 +1,49 @@
+Let's examine the secondary structure of our calcium binding variant:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01R9yKgYR9LVSG6FmD25fBF9
+Arguments: {'pdb_file_path': 'predicted_structures/ca_calcium_binding.pdb.pdb', 'image_subdir': 'ca_calcium_engineering'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/ca_calcium_binding.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/ca_calcium_engineering/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2074,
+    "total_residues": 260,
+    "radius_of_gyration": 17.22,
+    "center_of_mass": [
+      -0.11,
+      -0.52,
+      -0.87
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 42,
+    "sheet_residues": 69,
+    "loop_residues": 149,
+    "helix_percentage": 16.2,
+    "sheet_percentage": 26.5,
+    "loop_percentage": 57.3
+  },
+  "surface_properties": {
+    "total_sasa": 12386.75,
+    "hydrophobic_sasa": 5912.39,
+    "polar_sasa": 6424.45,
+    "hydrophobic_ratio": 47.7
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 16.2% helix, 26.5% sheet, 57.3% loop. Radius of gyration: 17.22 \u00c5. Total SASA: 12386.75 \u0172. Surface hydrophobicity: 47.7%."
+}
+--- END TOOL OUTPUT (Length: 1256 chars) ---
+=== END TOOL CALL ===
+

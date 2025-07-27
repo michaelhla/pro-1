@@ -1,0 +1,58 @@
+
+
+# Carbonic Anhydrase Engineering Project Summary
+
+## Project Objective
+Design thermostable carbonic anhydrase variants while maintaining catalytic function.
+
+## Key Design Approaches Tested
+
+### Bold Design (First Attempt)
+- Incorporated EP domain from plant ferritin (24aa, from soybean seed H-2 ferritin)
+- Added zinc knuckle domain (18aa) at position 175
+- Added N-terminal stabilizing sequence
+- **Results**: 
+  - Rosetta score: 331.07 REU (positive/unstable)
+  - Very high RMSD values (15.04Å overall, 13.31Å active site)
+  - Catalytic machinery significantly disrupted
+  - Structurally compact but energetically unfavorable
+
+### Refined Conservative Design
+- Added zinc finger motif (CPECGKSFSQSSN) near C-terminus
+- Maintained most of the original structure (95% sequence identity)
+- **Results**:
+  - Rosetta score: 160.18 REU (improved but still positive)
+  - Excellent active site preservation (RMSD: 0.18Å)
+  - Near-perfect zinc binding site preservation (RMSD: 0.007Å)
+  - Overall RMSD with reference: 4.72Å (acceptable)
+  - Very compact structure (radius of gyration: 17.38Å)
+  - Good secondary structure content (17.2% helix, 25.3% sheet)
+
+### Thermostable Design v1
+- Added N-terminal propeptide inspired by thermolysin-like proteases
+- Inserted zinc-binding module from thermostable proteins
+- Introduced strategic cysteine pairs for disulfide formation
+- **Results**:
+  - Rosetta score: 685.52 REU (highly unstable)
+  - Very high RMSD values for active site (12.18Å) and zinc binding (11.65Å)
+  - Catalytic machinery significantly disrupted
+
+### Thermostable Design v2
+- More conservative approach with focused domain insertion
+- Added CAACPVCAL zinc-binding motif near C-terminus
+- **Results**: Not fully evaluated (process in progress)
+
+## Key Findings
+1. Bold, large domain insertions (24+ amino acids) significantly disrupted the protein structure and catalytic machinery
+2. Strategic, smaller insertions of zinc-binding motifs showed better preservation of structure
+3. The refined conservative design showed the best balance of innovation and functionality
+4. Active site preservation is critical - designs with low active site RMSD values are most promising
+
+## Current Status
+The refined conservative design (with zinc finger motif near C-terminus) shows the most promise for further development, with excellent catalytic site preservation and reasonable overall structure.
+
+## Next Steps
+Continue iterating with more focused modifications that maintain the active site geometry while enhancing stability through:
+1. Disulfide bond engineering at non-critical regions
+2. Smaller domain insertions at carefully selected sites
+3. Further optimization of zinc coordination chemistry

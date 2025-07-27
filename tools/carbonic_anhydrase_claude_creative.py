@@ -943,7 +943,7 @@ Continue using the computational tools extensively and keep iterating on the des
         print("🚀 Starting Claude reasoning loop...")
         
         self.iteration_count = 1
-        max_iterations = 200
+        max_iterations = 500
         all_accumulated_text = ""
         
         while self.iteration_count <= max_iterations:

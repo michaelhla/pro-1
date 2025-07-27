@@ -1,0 +1,9 @@
+Let's evaluate the stability of this design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01JEyJFwDhBfEpD7brUytZN2
+Arguments: {'pdb_file_path': 'predicted_structures/CA_DisulfideDomain.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 657.17 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_DisulfideDomain.pdb.pdb
+--- END TOOL OUTPUT (Length: 156 chars) ---
+=== END TOOL CALL ===
+

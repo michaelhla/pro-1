@@ -1,0 +1,31 @@
+Now, let's explore some specific stabilizing mutations for carbonic anhydrases:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01BFse7LXLKXmYXRRCyevTF4
+Arguments: {'query': 'specific stabilizing mutations for human carbonic anhydrase II thermostability V143C V207I'}
+--- TOOL OUTPUT ---
+The **V207I** mutation in human carbonic anhydrase II (hCA II) has been specifically constructed and characterized in the literature[1]. However, there is **no direct evidence** in the provided search results that **V143C** or **V207I** alone are established as thermostabilizing mutations for hCA II.
+
+Relevant details from the search results:
+
+- **V207I**: This mutation was synthesized via site-directed mutagenesis and expressed in *E. coli* for study[1]. The referenced research does not experimentally document a thermostabilizing effect for V207I, nor does it cite thermostability studies for this variant alone[1].
+- **V143C**: There is no mention in the search results of V143C as a characterized mutation for thermostability or any other property in hCA II.
+- **V143A**: A related mutation at this position (V143A) has been engineered to study changes in substrate specificity and hydrophobic pocket size, but its effect on thermostability is not noted[5]. This suggests that mutations at position 143 can alter enzyme properties, but not necessarily stability[5].
+
+**Established thermostabilizing mutations** for hCA II (from other studies referenced in the search):
+
+- A well-characterized **thermostable sextuple mutant** (called HCAIIts) contains: **A65T, L100H, L224S, K154N, L240P, and A248T**[2]. Each of these mutations contributes additively and independently to the enzyme's stability, primarily by promoting favorable folding and reducing conformational entropy, without affecting catalytic activity[2].
+- Additional thermostabilized mutants may combine such stabilizing mutations with active site changes for further enhancement[4].
+
+**Key Points:**
+- **V207I** has been constructed and studied but is not established as a thermostabilizing mutation in the sources provided[1].
+- **V143C** is not discussed as a thermostabilizing mutation, and only V143A has been characterized for other effects[5].
+- Known stabilizing mutations for thermostability include A65T, L100H, L224S, K154N, L240P, and A248T[2].
+- No evidence is presented for V143C or V207I as thermostability mutations; the primary characterized thermostability-enhancing mutations for hCA II are those listed above[2].
+
+If you are seeking **mutations specifically demonstrated to increase hCA II thermostability**, refer to the sextuple HCAIIts variant (A65T, L100H, L224S, K154N, L240P, A248T)[2]. 
+
+**Limitations:**  
+The search results do not provide experimental thermostability data for V143C or V207I in isolation, nor are these variants listed among established thermostable variants in current literature[1][2][4][5]. If you have evidence or interest in these mutations for stability based on recent or unpublished data, further experimental validation would be required.
+--- END TOOL OUTPUT (Length: 2764 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01GEaYu79nBCj6mnKRCzJJSL
+Arguments: {'pdb_file_path': 'predicted_structures/ca2_zincfinger_revised.pdb.pdb', 'image_subdir': 'ca2_zincfinger_revised'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/ca2_zincfinger_revised.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/ca2_zincfinger_revised/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2335,
+    "total_residues": 297,
+    "radius_of_gyration": 19.58,
+    "center_of_mass": [
+      0.63,
+      -3.38,
+      -2.01
+    ],
+    "estimated_molecular_weight": 32670
+  },
+  "secondary_structure_content": {
+    "total_residues": 297,
+    "helix_residues": 54,
+    "sheet_residues": 75,
+    "loop_residues": 168,
+    "helix_percentage": 18.2,
+    "sheet_percentage": 25.3,
+    "loop_percentage": 56.6
+  },
+  "surface_properties": {
+    "total_sasa": 14997.28,
+    "hydrophobic_sasa": 7199.05,
+    "polar_sasa": 7750.84,
+    "hydrophobic_ratio": 48.0
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 297 residues. Secondary structure: 18.2% helix, 25.3% sheet, 56.6% loop. Radius of gyration: 19.58 \u00c5. Total SASA: 14997.28 \u0172. Surface hydrophobicity: 48.0%."
+}
+--- END TOOL OUTPUT (Length: 1259 chars) ---
+=== END TOOL CALL ===
+

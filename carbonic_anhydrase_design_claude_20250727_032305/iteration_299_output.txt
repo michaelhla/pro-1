@@ -1,0 +1,14 @@
+In this final combined design, I've integrated multiple stabilizing features:
+1. Proline substitutions at flexible regions (A18P, A80P)
+2. Strategic cysteine residues for disulfide bonds (S94C, L214C, N253C, S290C)
+3. Strategic charged residue substitutions for salt bridges (A208E)
+
+Let's evaluate this comprehensive design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01EtEGAn8Lpp2bsWkuZg1rEH
+Arguments: {'pdb_file_path': 'predicted_structures/thermostable_combined.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -84.71 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/thermostable_combined.pdb.pdb
+--- END TOOL OUTPUT (Length: 159 chars) ---
+=== END TOOL CALL ===
+

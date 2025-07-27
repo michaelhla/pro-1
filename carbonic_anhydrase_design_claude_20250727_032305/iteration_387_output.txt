@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_015cXYePAt3116ZMJsXZfoFN
+Arguments: {'pdb_file_path': 'predicted_structures/CA-EFhand-Disulfide.pdb.pdb', 'image_subdir': 'CA_EFhand_Disulfide'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA-EFhand-Disulfide.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_EFhand_Disulfide/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2552,
+    "total_residues": 331,
+    "radius_of_gyration": 22.12,
+    "center_of_mass": [
+      -1.22,
+      -0.18,
+      -2.85
+    ],
+    "estimated_molecular_weight": 36410
+  },
+  "secondary_structure_content": {
+    "total_residues": 331,
+    "helix_residues": 84,
+    "sheet_residues": 68,
+    "loop_residues": 179,
+    "helix_percentage": 25.4,
+    "sheet_percentage": 20.5,
+    "loop_percentage": 54.1
+  },
+  "surface_properties": {
+    "total_sasa": 16240.57,
+    "hydrophobic_sasa": 8182.43,
+    "polar_sasa": 7937.52,
+    "hydrophobic_ratio": 50.4
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 331 residues. Secondary structure: 25.4% helix, 20.5% sheet, 54.1% loop. Radius of gyration: 22.12 \u00c5. Total SASA: 16240.57 \u0172. Surface hydrophobicity: 50.4%."
+}
+--- END TOOL OUTPUT (Length: 1253 chars) ---
+=== END TOOL CALL ===
+

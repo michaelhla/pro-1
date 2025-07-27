@@ -1,0 +1,11 @@
+The initial helix duplication doesn't show improved stability. Let me try a different approach - circular permutation with a stabilizing linker. I'll create a circularly permuted variant where the original N and C termini are connected by a stable linker, and new termini are created at a position that should enhance structural stability.
+
+Let's create a circularly permuted carbonic anhydrase with new termini at position 160:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01BQ6JnHEZuaZQyAiYtTNDgS
+Arguments: {'sequence': 'TNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKGGSGGGSMSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADF', 'filename': 'ca_circular_permutation.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/ca_circular_permutation.pdb.pdb
+--- END TOOL OUTPUT (Length: 52 chars) ---
+=== END TOOL CALL ===
+

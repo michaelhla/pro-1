@@ -1,0 +1,9 @@
+Now, let's evaluate the structure using Rosetta to get an energy score:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01LjXumdHJKSCbxHqFKfTDSB
+Arguments: {'pdb_file_path': 'predicted_structures/CA-BetaAnchor.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 9712.32 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA-BetaAnchor.pdb.pdb
+--- END TOOL OUTPUT (Length: 152 chars) ---
+=== END TOOL CALL ===
+

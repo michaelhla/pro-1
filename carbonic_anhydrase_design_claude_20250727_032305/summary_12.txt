@@ -1,0 +1,58 @@
+# Carbonic Anhydrase Engineering Summary
+
+## Project Objective
+Design stable carbonic anhydrase variants using computational tools and innovative structural modifications.
+
+## Design Iterations
+
+### Zinc Finger Domain Insertion Designs
+1. **Initial C2H2-type zinc finger domain insertion**
+   - Sequence included direct insertion of zinc finger domain (Zif268/Egr1)
+   - Rosetta score: 658.95 REU (unstable)
+   - RMSD: 16.589Å (significant structural deviation)
+   - Secondary structure: 18.3% helix, 26.4% sheet, 55.3% loop
+
+2. **Revised design with flexible linkers**
+   - Relocated zinc finger domain with GGS linkers (GGSGSGGS)
+   - Rosetta score: -59.65 REU (substantially improved)
+   - RMSD: 11.185Å (better core preservation)
+   - Sequence identity to reference: 85.4%
+   - Overall quality: "EXCELLENT"
+
+3. **C-terminal zinc finger placement**
+   - Zinc finger at C-terminus with optimized linkers
+   - Rosetta score: 100.72 REU
+   - RMSD: 2.81Å (exceptional structural preservation)
+   - Sequence identity: 97.7%
+   - Overall quality: "EXCELLENT"
+
+### CA-HeatShield Designs
+1. **Initial coiled-coil insertion**
+   - Added coiled-coil domain and altered zinc coordination with cysteine mutations
+   - Rosetta score: 590.93 REU (unstable)
+   - RMSD: 21.479Å (poor structure preservation)
+   - Secondary structure: 25.2% helix, 22.0% sheet, 52.7% loop
+
+2. **Refined coiled-coil with proper linkers**
+   - Modified with GGS linkers and better placement
+   - Rosetta score: -20.26 REU (significantly improved)
+   - RMSD: 16.26Å
+   - Overall quality: "EXCELLENT", "VERY_COMPACT"
+
+### Circular Permutation Design
+1. **Circular permutated CA with helical insertion**
+   - Moved C-terminus to N-terminus with stabilizing helix
+   - Rosetta score: -222.46 REU (most stable design)
+   - RMSD: 24.796Å (expected for circular permutation)
+   - Secondary structure: 31.2% helix, 22.6% sheet, 46.2% loop
+   - Overall quality: "EXCELLENT"
+
+## Key Findings
+1. The best energy score was achieved with circular permutation (-222.46 REU)
+2. The best structural preservation was with C-terminal zinc finger (RMSD 2.81Å)
+3. All successful designs had "EXCELLENT" quality assessments
+4. Proper linker design was critical for domain insertions
+5. Terminal modifications were less disruptive than mid-sequence insertions
+
+## Next Steps
+Continue refining the circular permutation design, which shows the most promising energy score, while ensuring critical catalytic residues maintain proper orientation.

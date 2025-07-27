@@ -1,0 +1,49 @@
+Excellent! The catalytic site RMSD is very low (0.025 Å), indicating that the active site geometry is preserved. Let's also check the secondary structure:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_015k6LQyDpySvRaU1wmY16MQ
+Arguments: {'pdb_file_path': 'predicted_structures/hydrogen_bond_enhanced.pdb.pdb', 'image_subdir': 'hydrogen_bond_enhanced'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hydrogen_bond_enhanced.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/hydrogen_bond_enhanced/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2081,
+    "total_residues": 260,
+    "radius_of_gyration": 17.2,
+    "center_of_mass": [
+      0.31,
+      -0.25,
+      -0.49
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 45,
+    "sheet_residues": 69,
+    "loop_residues": 146,
+    "helix_percentage": 17.3,
+    "sheet_percentage": 26.5,
+    "loop_percentage": 56.2
+  },
+  "surface_properties": {
+    "total_sasa": 12127.18,
+    "hydrophobic_sasa": 5839.04,
+    "polar_sasa": 6238.8,
+    "hydrophobic_ratio": 48.1
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop. Radius of gyration: 17.2 \u00c5. Total SASA: 12127.18 \u0172. Surface hydrophobicity: 48.1%."
+}
+--- END TOOL OUTPUT (Length: 1256 chars) ---
+=== END TOOL CALL ===
+

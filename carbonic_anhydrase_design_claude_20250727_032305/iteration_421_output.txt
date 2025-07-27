@@ -1,0 +1,24 @@
+There seems to be an issue with the sequence format. Let me search for the complete, properly formatted sequence.
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01BmjEAWZ4faSRucmoG5FueV
+Arguments: {'query': 'human carbonic anhydrase II complete amino acid sequence'}
+--- TOOL OUTPUT ---
+The **complete amino acid sequence** of human carbonic anhydrase II (CA II, encoded by the CA2 gene) consists of **260 amino acids**[1][2]. According to one of the most widely cited sequences, the N-terminal to C-terminal amino acid sequence is as follows (using the standard single-letter amino acid code):
+
+**MSHHWGYGKH NGPEHWHKDF PIAPGESQDL RRALKTYRLK GPGHAGVQVP YSGTAPKTIF**
+**GESLGGGTIE PVQPLLKEGM VQDVISLVGG GKHGNFHHAG AKSADFTNFD PRGLLPELTG**
+**LLKFGSPEEL NVRASLPAGS SIFDAQDKRT AVVVQDPDDL PTPVVRQFAQ QDPLLVPQNQ**
+**VPVVSYNNMR EGKRVPMTVA IQRDESNVGF FLSMWNWYHQ PSLLKNEFDS KLKFGSEHTV**
+**NNAVVLTKVH FPAPK**
+
+This sequence, including exact line/segment breaks, may vary slightly by database or supplier, but the above is the canonical amino acid sequence for **human carbonic anhydrase II** as provided by most research and reagent companies[2]. For referencing in publications or for experimental uses, always verify with the latest sequence from curated databases such as NCBI or UniProt when their services are available[1][2][3].
+
+**Key details:**
+- **Protein length:** 260 amino acids[1][2].
+- **Gene:** CA2 (carbonic anhydrase II)[1].
+- **Standard sequence identifier:** NP_000058.1[1][2].
+
+If you need this data in a specific format (such as FASTA) or in another code (three-letter), let me know. At present, NCBI and some database services are undergoing maintenance, which limits the current access to official direct records[3][4][5], but the commercial providers and literature present the above as the standard sequence for human CA II.
+--- END TOOL OUTPUT (Length: 1550 chars) ---
+=== END TOOL CALL ===
+

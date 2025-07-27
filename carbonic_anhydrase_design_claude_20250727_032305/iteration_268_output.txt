@@ -1,0 +1,49 @@
+Let's examine the secondary structure:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01MH95hfgjEGFyLV97gWm2CS
+Arguments: {'pdb_file_path': 'predicted_structures/refined_CA_design.pdb.pdb', 'image_subdir': 'refined_CA_design'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/refined_CA_design.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/refined_CA_design/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2165,
+    "total_residues": 273,
+    "radius_of_gyration": 17.38,
+    "center_of_mass": [
+      0.7,
+      -0.64,
+      -0.55
+    ],
+    "estimated_molecular_weight": 30030
+  },
+  "secondary_structure_content": {
+    "total_residues": 273,
+    "helix_residues": 47,
+    "sheet_residues": 69,
+    "loop_residues": 157,
+    "helix_percentage": 17.2,
+    "sheet_percentage": 25.3,
+    "loop_percentage": 57.5
+  },
+  "surface_properties": {
+    "total_sasa": 12606.9,
+    "hydrophobic_sasa": 6058.54,
+    "polar_sasa": 6477.14,
+    "hydrophobic_ratio": 48.1
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 273 residues. Secondary structure: 17.2% helix, 25.3% sheet, 57.5% loop. Radius of gyration: 17.38 \u00c5. Total SASA: 12606.9 \u0172. Surface hydrophobicity: 48.1%."
+}
+--- END TOOL OUTPUT (Length: 1246 chars) ---
+=== END TOOL CALL ===
+

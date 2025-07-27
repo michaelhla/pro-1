@@ -1,0 +1,63 @@
+This looks very promising! The Rosetta score (-315.51 REU) is even better than our previous best variant. Let's check the catalytic site:
+=== TOOL CALL: examine_catalytic_activity ===
+Tool ID: toolu_01XYY2QENMezt4ahFDYhXkzo
+Arguments: {'pdb_file_path': 'predicted_structures/hydrogen_bond_enhanced.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'hydrogen_bond_enhanced'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hydrogen_bond_enhanced.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/hydrogen_bond_enhanced/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.025146882029315545,
+    "zinc_binding_rmsd": 0.011949261727499431,
+    "overall_rmsd": 0.034720570455453834
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+--- END TOOL OUTPUT (Length: 1297 chars) ---
+=== END TOOL CALL ===
+

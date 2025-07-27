@@ -1,0 +1,49 @@
+Let's examine the secondary structure:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01J4ac52DaShJmwbU5DjtLSe
+Arguments: {'pdb_file_path': 'predicted_structures/CA_AlphaArmor.pdb.pdb', 'image_subdir': 'CA_AlphaArmor'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA_AlphaArmor.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_AlphaArmor/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2339,
+    "total_residues": 297,
+    "radius_of_gyration": 19.94,
+    "center_of_mass": [
+      -0.44,
+      -2.16,
+      -3.92
+    ],
+    "estimated_molecular_weight": 32670
+  },
+  "secondary_structure_content": {
+    "total_residues": 297,
+    "helix_residues": 82,
+    "sheet_residues": 69,
+    "loop_residues": 146,
+    "helix_percentage": 27.6,
+    "sheet_percentage": 23.2,
+    "loop_percentage": 49.2
+  },
+  "surface_properties": {
+    "total_sasa": 15102.93,
+    "hydrophobic_sasa": 7736.17,
+    "polar_sasa": 7311.84,
+    "hydrophobic_ratio": 51.2
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 297 residues. Secondary structure: 27.6% helix, 23.2% sheet, 49.2% loop. Radius of gyration: 19.94 \u00c5. Total SASA: 15102.93 \u0172. Surface hydrophobicity: 51.2%."
+}
+--- END TOOL OUTPUT (Length: 1241 chars) ---
+=== END TOOL CALL ===
+

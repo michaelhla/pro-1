@@ -1,0 +1,41 @@
+Let me search for more specific examples of successful domain insertions or structural engineering approaches in different enzyme families:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Jkk7XxJrZUY6dcHZY6fkdf
+Arguments: {'query': 'successful enzyme thermostabilization examples domain insertion beta propeller thermophilic proteins'}
+--- TOOL OUTPUT ---
+**Successful examples of enzyme thermostabilization via domain insertion—specifically utilizing β-propeller domains or domains from thermophilic proteins—demonstrate that engineered chimeric enzymes can achieve greater thermal stability and sometimes enhanced activity. The approach, however, is highly context-dependent and requires precise selection and positioning of the domain.**
+
+### Key Examples and Evidence
+
+- **Transposition of Thermostabilizing Domains in Xylanase:**
+  - In *Clostridium thermocellum* xylanase (XynX), a thermostabilizing domain (TSD) was originally located between the signal peptide and the catalytic domain (CD). When the TSD was deleted, thermostability decreased significantly. Importantly, moving (transposition) the TSD to the C-terminus (creating a CD-TSD chimera) failed to stabilize the enzyme—in fact, it reduced the optimal temperature and thermostability[1]. Only the enzyme with the native TSD-CD arrangement preserved or improved thermal stability (optimum temperature 5°C higher and higher residual activity after incubation at 70°C).
+  - **Implication:** Proper insertion site and domain orientation are critical for thermostabilizing effects[1].
+
+- **Thermophilic Subtilase with Inserted Thermostable/Chimeric Domains:**
+  - A study systematically swapped regions of a thermophilic subtilase protease with counterparts from a psychrophilic enzyme. They created a combinatorial mutant (PBL5X) carrying eight substitutions; this variant showed a 9-fold longer half-life at 85°C and a higher melting temperature (T_m) compared to the wild-type enzyme[2].
+  - While this involved *residue-level swaps* rather than full domain insertions, it strongly supports that incorporating thermophilic regions or structures can successfully stabilize enzymes.
+
+- **Thermophilic Proteins as Engineering Scaffolds:**
+  - Comprehensive reviews highlight **thermophilic proteins** as robust scaffolds for further engineering by domain insertion or fusion, due to their evolutionary adaptation to high temperatures. Such proteins—including those with β-propeller or TIM barrel folds—demonstrate great resilience and tolerance for fusion events. These architectures are often used as starting points for inserting new domains to engineer desired functions, such as thermostability[4].
+  - Specific examples of **β-propeller domains** being used as inserted thermostabilizing elements are well-known in natural evolution (e.g., biotin synthase, neuraminidase, and xylanase families), but direct, laboratory-based enzyme engineering reports are relatively rare in the literature captured by search results[4].
+
+### Additional Context
+
+- **Domain Insertion vs. Residue-Level Engineering:**  
+  Full *domain insertion* (e.g., β-propeller into a mesophilic enzyme) is less common and more challenging than single/multiple residue substitutions or α-helix swapping[2][4]. Insertions can severely disrupt folding or activity unless highly permissive sites are chosen—often at the N-/C-termini or at loops, generally guided by structural data[3].
+- **Practical Use:**  
+  Modern engineering often exploits domains from thermophilic proteins because of their inherent resilience, using domain insertion/fusion to build multi-functional or highly stable industrial enzymes[4]. Success is maximized with β-propeller or TIM barrel domains from robust thermophiles as the scaffold for further design.
+
+### Limitations
+
+- **β-Propeller Insertion:**  
+  Direct, documented engineering cases of successful thermostabilization by inserting a β-propeller domain into a mesophilic target enzyme are rare in available summaries; most successful examples focus on using pre-existing thermostable scaffolds, optimizing chimeras, or domain swapping closely related domains[1][4].
+- **Context Dependence:**  
+  The spatial arrangement of the inserted domain and choice of junction sites often determine success or failure[1].
+
+### Conclusion
+
+There are clear, successful cases where insertion or fusion of thermostabilizing domains—especially from thermophilic proteins—has resulted in increased enzyme thermostability, though domain orientation and the insert location are pivotal[1][2][4]. The use of robust folds like β-propeller as scaffolds for further engineering is well-validated, but successful examples involving direct β-propeller domain insertion for stabilization in diverse enzymes are limited in the literature reviewed here.
+--- END TOOL OUTPUT (Length: 4441 chars) ---
+=== END TOOL CALL ===
+

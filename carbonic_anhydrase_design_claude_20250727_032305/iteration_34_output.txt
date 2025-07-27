@@ -1,0 +1,9 @@
+Let's calculate the Rosetta energy score for this disulfide-enhanced variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01Y6AbHg7eghR8jocw1D42GE
+Arguments: {'pdb_file_path': 'predicted_structures/optimized_linker_disulfide_ca.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 894.10 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/optimized_linker_disulfide_ca.pdb.pdb
+--- END TOOL OUTPUT (Length: 167 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,31 @@
+Now I'll search for information about utilizing disulfide bonds to enhance thermostability:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Sc2g2cPfy9TaSkpiSX6eKF
+Arguments: {'query': 'enhancing thermostability of enzymes using disulfide bonds successful examples'}
+--- TOOL OUTPUT ---
+Enhancing enzyme thermostability by introducing **disulfide bonds** has been demonstrated successfully for several enzymes. This strategy works by creating covalent links between cysteine residues, which reduce the flexibility (entropy) of the unfolded protein, thereby raising the temperature at which the enzyme can function without denaturation[1][3][4].
+
+**Successful Examples:**
+
+- **Indole-3-glycerol phosphate synthase (IDO) from Bacillus cereus**: Rational design introduced a disulfide bond that **increased the half-life at 50°C from 0.39 to 4.03 hours** (about a 10-fold improvement), and specific enzyme activity increased over 3-fold. This illustrates direct thermostability and activity gains from disulfide engineering[1].
+  
+- **Catechol 1,2 Dioxygenase**: Introduction of disulfide bonds (using rational design) **significantly enhanced its thermostability**. This involved identifying candidate locations for cysteine substitutions via structural analysis and computational tools[3].
+
+- **Maltooligosyltrehalose trehalohydrolase from Pseudomonas saccharophila**: Disulfide bond engineering produced mutants (A211C-S214C and S409C-Q412C) with **improved thermostability**, validated by biochemical assays and molecular dynamics simulation[4].
+
+- **Cellobiohydrolase, lipase, and xylanase**: Introduction of disulfide bonds into these commercial enzymes has been shown to **considerably improve thermostability and even increase or maintain catalytic activity**. These results have been reproduced across several studies and protein classes[1].
+
+- **Native thermophilic enzymes** (e.g., from Sulfolobus solfataricus): In vivo studies demonstrated that a specific disulfide bond (Cys210-Cys210′) in DMD (a discriminator domain) **enhances thermostability naturally**, supporting that this mechanism is common among some thermophiles[2].
+
+**Key Considerations:**
+
+- While **disulfide bond engineering often improves thermostability**, the location and context are critical. Incorrect positioning or disruption of other stabilizing interactions (hydrophobic, hydrogen bonds, salt bridges) can reduce stability or function[4].
+  
+- Computational tools (e.g., FoldX, AlphaFold2, DSDBASE-MODIP, Disulfide by Design2) are routinely used to predict the most favorable sites for disulfide introduction before experimental validation[4].
+
+- Not all engineered disulfide bonds succeed; sometimes, they contribute little or even destabilize the protein if not carefully designed[4].
+
+These examples establish disulfide bond introduction as a robust protein engineering method for improving **enzyme thermostability**, provided it is guided by structural insight and supported by computational and experimental validation[1][2][3][4].
+--- END TOOL OUTPUT (Length: 2737 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,37 @@
+Now, let's select a well-characterized EF-hand domain. I'll search for specific examples:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01EntXaP4eQ7QQHpwEbCM5YA
+Arguments: {'query': 'calmodulin EF-hand domain sequence consensus'}
+--- TOOL OUTPUT ---
+The **consensus sequence for the calmodulin EF-hand domain** primarily refers to the highly conserved amino acid pattern in the calcium-binding loop of the EF-hand motif. The typical canonical EF-hand calcium-binding **loop sequence** is 12 residues long and is best characterized by the following consensus pattern:
+
+**EF-hand consensus**:  
+**DXDXDGXXE**  
+where:
+- D = aspartic acid (Asp)
+- X = any amino acid (usually hydrophilic or small)
+- G = glycine
+- E = glutamate
+
+However, the more precise consensus as defined in structural and sequence databases like PROSITE is:
+
+**[DE]-X-[DNS]-[ILVFYW]-X-[DE]-X(2)-[GP]-X-[DE]**  
+- The positions within the 12-residue loop often coordinate the calcium ion via conserved side chains, with Asp and Glu being crucial at key sites[4].
+
+**Context and details:**
+- In calmodulin, the **EF-hand domains are composed of two EF-hands** (each with a canonical loop) stabilized by secondary structure elements[1].
+- The highly conserved residues at positions 1, 3, 5, 7, 9, and 12 in the loop are the main liganding sites for Ca²⁺[4].
+- Calmodulin contains **four such EF-hand motifs**, paired into two domains (N-terminal and C-terminal), and all retain this consensus in their Ca²⁺-binding loops[1].
+
+**References to structure and conservation:**
+- The consensus sequence is preserved in evolution and reflected in all eukaryotic calmodulins, underpinning both function and specificity in Ca²⁺ coordination[2][4].
+- The surrounding helices and the pattern of aromatic stacking further stabilize the domain and are parts of the structural consensus for EF-hand domains[1].
+
+**Caveats and notes:**
+- While the loop consensus is highly conserved, there is some sequence variability, especially at the positions labeled "X."
+- Mutations at the key Asp and Glu positions can abolish Ca²⁺ binding[3].
+
+In summary, the **canonical calmodulin EF-hand domain consensus sequence** in the **Ca²⁺-binding loop** is best described as **[DE]-X-[DNS]-[ILVFYW]-X-[DE]-X(2)-[GP]-X-[DE]**, most commonly observed as **DXDXDGXXE** in literature and databases[4].
+--- END TOOL OUTPUT (Length: 2083 chars) ---
+=== END TOOL CALL ===
+

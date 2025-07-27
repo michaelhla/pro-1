@@ -1,0 +1,77 @@
+
+
+# Carbonic Anhydrase Engineering Summary
+
+## Project Objective
+Design stable carbonic anhydrase variants using computational tools and innovative structural modifications.
+
+## Design Iterations
+
+### Zinc Finger Domain Designs
+1. **Initial C2H2-type zinc finger domain insertion**
+   - Direct insertion of Zif268/Egr1 zinc finger domain
+   - Rosetta score: 658.95 REU (unstable)
+   - RMSD: 16.589Å (significant deviation)
+
+2. **Revised design with flexible linkers**
+   - Zinc finger with GGS linkers (GGSGSGGS)
+   - Rosetta score: -59.65 REU (improved)
+   - RMSD: 11.185Å
+   - Quality: "EXCELLENT"
+
+3. **C-terminal zinc finger placement**
+   - Zinc finger at C-terminus with optimized linkers
+   - Rosetta score: 100.72 REU
+   - RMSD: 2.81Å (excellent preservation)
+   - Quality: "EXCELLENT"
+
+### CA-HeatShield Designs
+1. **Initial coiled-coil insertion**
+   - Added coiled-coil domain with cysteine mutations
+   - Rosetta score: 590.93 REU (unstable)
+   - RMSD: 21.479Å (poor preservation)
+
+2. **Refined coiled-coil with proper linkers**
+   - Modified with GGS linkers
+   - Rosetta score: -20.26 REU (improved)
+   - RMSD: 16.26Å
+   - Quality: "EXCELLENT"
+
+### Circular Permutation Design
+- Moved C-terminus to N-terminus with stabilizing helix
+- Rosetta score: -222.46 REU (most stable of initial designs)
+- RMSD: 24.796Å (expected for permutation)
+- Quality: "EXCELLENT"
+
+### CA-TrxZincFinger
+- Thioredoxin domain fusion with zinc-binding motif
+- Rosetta score: -81.69 REU
+- High catalytic site RMSD (11.16Å)
+
+### CA-ZincBindingMotif
+- Added zinc-binding motif after residue 260
+- Rosetta score: -108.79 REU
+- RMSD: 9.271Å
+- Quality: "GOOD", "VERY_COMPACT"
+
+### CA-StrategicDisulfide
+- Three disulfide bond pairs (C39-C47, C196-C206, C217-C223)
+- Rosetta score: -259.35 REU (best score so far)
+- RMSD: 1.962Å (excellent preservation)
+- Catalytic site RMSD: 0.027Å (exceptional preservation)
+- Quality: "GOOD", "VERY_COMPACT"
+- Secondary structure: 17.2% helix, 26.4% sheet, 56.3% loop
+
+## Key Findings
+1. Best energy score: CA-StrategicDisulfide (-259.35 REU)
+2. Best structural preservation: C-terminal zinc finger (2.81Å) and CA-StrategicDisulfide (1.962Å)
+3. Proper linker design is critical for domain insertions
+4. Strategic disulfide bonds provide stability with minimal structural disruption
+5. Terminal modifications are less disruptive than mid-sequence insertions
+
+## Next Steps
+Explore more innovative approaches including:
+- Beta-barrel domain insertions
+- Domain duplication strategies
+- Calcium-binding EF-hand domain insertion
+- Continuing refinement of the most successful designs

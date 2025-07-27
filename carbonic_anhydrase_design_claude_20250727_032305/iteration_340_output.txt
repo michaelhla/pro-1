@@ -1,0 +1,49 @@
+Let's examine the secondary structure of our improved design:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01VocsEmXZFyDEbDyME4Uqut
+Arguments: {'pdb_file_path': 'predicted_structures/CA_HeatShield_v2.pdb.pdb', 'image_subdir': 'CA_HeatShield_v2'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA_HeatShield_v2.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_HeatShield_v2/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2336,
+    "total_residues": 297,
+    "radius_of_gyration": 19.36,
+    "center_of_mass": [
+      -0.88,
+      -2.61,
+      -1.67
+    ],
+    "estimated_molecular_weight": 32670
+  },
+  "secondary_structure_content": {
+    "total_residues": 297,
+    "helix_residues": 72,
+    "sheet_residues": 69,
+    "loop_residues": 156,
+    "helix_percentage": 24.2,
+    "sheet_percentage": 23.2,
+    "loop_percentage": 52.5
+  },
+  "surface_properties": {
+    "total_sasa": 15620.95,
+    "hydrophobic_sasa": 7751.17,
+    "polar_sasa": 7821.87,
+    "hydrophobic_ratio": 49.6
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 297 residues. Secondary structure: 24.2% helix, 23.2% sheet, 52.5% loop. Radius of gyration: 19.36 \u00c5. Total SASA: 15620.95 \u0172. Surface hydrophobicity: 49.6%."
+}
+--- END TOOL OUTPUT (Length: 1247 chars) ---
+=== END TOOL CALL ===
+

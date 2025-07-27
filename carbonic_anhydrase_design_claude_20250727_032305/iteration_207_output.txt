@@ -1,0 +1,26 @@
+Let me search for the specific 53-amino acid sequence:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01FeRuvfS8Y4R56QQLuVFwj1
+Arguments: {'query': 'NEXT tag 53-amino acid sequence from red alga Neoporphyra yezoensis full sequence'}
+--- TOOL OUTPUT ---
+No sequence matching a **"NEXT tag 53-amino acid sequence"** from the red alga *Neoporphyra yezoensis* (formerly *Pyropia yezoensis*) is found in the search results, nor is there a reference to a "NEXT tag" protein or peptide specific to this alga in currently published literature[1][2][3][4]. The search returns genome and organellar sequencing data, but does not provide details on this specific tag or an associated 53-amino acid sequence.
+
+### Clarification of terms and current knowledge
+- **"NEXT tag"**: In protein science and molecular biology, "tag" usually refers to a short peptide or protein sequence genetically fused to a target protein for purification or detection. Well-known examples include His-tag, FLAG-tag, GST-tag, and MBP-tag. There is no widely used "NEXT tag" in standard literature at this time.
+- **53-amino acid sequence from Neoporphyra yezoensis**: Several sequence databases contain genes and predicted proteins from this algae species, but none of the sources referenced specifically list a ubiquitous 53-amino acid tag or its sequence.
+
+### Related Sequencing Data
+- *Neoporphyra yezoensis* genome and proteome have been sequenced and published, and if you have a gene or locus identifier, a 53-amino acid segment could potentially be extracted from public databases or literature[1][2][4]. However, "NEXT tag" is not found among annotated features in these references.
+
+### Additional context (inference)
+- If "NEXT tag" is a custom-designed or newly described affinity, detection, or epitope tag, it may not be present in public domain literature or may originate from unpublished user work or proprietary projects.
+- If you seek a specific peptide or protein segment (53 AA) from a well-known *Neoporphyra yezoensis* protein, please provide its gene or protein name, accession number, or context of use.
+
+### Key limitations
+- No published evidence for a "NEXT tag" or its 53-amino acid sequence from *Neoporphyra yezoensis* in the current academic or genomic record[1][2][3][4].
+- The supplied search results focus on whole-genome and organellar sequencing, not specific protein tags or engineered fusion tags.
+
+If you can provide additional context (such as the function of the "NEXT tag," gene or protein accession number, or its intended application), a more targeted search or analysis could be performed.
+--- END TOOL OUTPUT (Length: 2348 chars) ---
+=== END TOOL CALL ===
+

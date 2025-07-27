@@ -1,0 +1,40 @@
+Let's also search for information about beta-propeller domains that could be inserted:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01MXrBmr8d6zrgc6gAqGSHk8
+Arguments: {'query': 'beta propeller domain thermal stability insertion design'}
+--- TOOL OUTPUT ---
+**Inserting domains or blades into a β-propeller protein frequently destabilizes its structure, but carefully designed symmetrical insertions or engineered repeats can restore or enhance thermal stability when guided by structural principles and validated biophysically[1][3][4].**
+
+Key findings from current research:
+
+- **Symmetry and Blade Count:** β-Propeller proteins are made up of repeating subdomains called *blades*, forming toroidal (doughnut-shaped) structures with typically 4–12 blades[3][4]. Structural symmetry is key to stability: perfectly symmetrical β-propellers, computationally designed with a fixed number of identical blades, show high thermal stability and can be crystallized readily[1][4].
+
+- **Insertion Effects:** When a domain (blade) is *inserted* (e.g., going from six to seven blades), the initial result is usually a protein with **reduced stability**, as the perfect symmetry is disrupted[1]:
+    - For example, the engineered "Pizza7.2" (seven-bladed version of the symmetrical six-bladed β-propeller "Pizza6") is folded but less thermally stable—no crystals form under standard conditions, and its melting temperature is lower than that of the six-bladed parent[1].
+    - This principle is general: odd-numbered symmetries created via insertion lead to less stable forms unless further evolved or engineered for stability[1].
+
+- **Design Strategies:** To compensate for destabilizing insertions:
+    - **Computational design**: Strategies include engineering *new hydrogen bonds*, altering inter-blade interfaces, and creating repeats with symmetrical interfaces to maximize stability even after insertion[1][4].
+    - **Directed evolution:** Some groups use sequence libraries and selection to optimize stability post-insertion[4].
+    - **Subdomain (Blade) Amplification:** New β-propellers can also form via controlled amplification and assembly of small blade modules, which can yield both stable oligomers and novel folds, depending on the compatibility of blade interfaces[3].
+
+- **Experimental Assessment:** Stability is assessed by:
+    - **Melting temperature (Tm) measurements** (thermal denaturation).
+    - **Circular dichroism (CD) spectroscopy** for folding.
+    - **High-resolution crystallography** to verify proper assembly and symmetry[1][4].
+
+- **Natural Evolution Insight:** Evolutionary analyses show that insertions or deletions of blades in natural proteins also lead to intermediate, sometimes unstable, configurations that eventually evolve compensatory changes to restore stability[1][5].
+
+- **Critical role of β-propeller domains:** In multi-domain proteins, the β-propeller domain is often essential for complex stability and function, though not always necessary for assembly[2].
+
+**Caveats and Limitations**:  
+- Not all propeller types or blade sequences tolerate insertion equally—successful design depends on the compatibility of repeat interfaces.
+- High internal symmetry simplifies design and enhances stability, but functional requirements in nature may select for less-symmetrical forms with potentially lower intrinsic stability.
+
+**In summary:**  
+- **Domain insertions** into β-propeller scaffolds generally lower thermal stability unless compensated by careful design restoring symmetry or optimizing inter-blade contacts.
+- **Perfectly symmetrical, computationally designed β-propellers** can achieve exceptional stability, serving as useful models and platforms for further engineering[1][4].
+- **Experimental validation** is crucial for confirming folding and thermal stability after any insertion or symmetry change[1][3][4].
+--- END TOOL OUTPUT (Length: 3607 chars) ---
+=== END TOOL CALL ===
+

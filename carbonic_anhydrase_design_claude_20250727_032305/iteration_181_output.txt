@@ -1,0 +1,9 @@
+Now let's calculate the Rosetta score for this new variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_012Tds5UYuqhkEf4uTQ22Dhk
+Arguments: {'pdb_file_path': 'predicted_structures/hydrophobic_to_polar_variant.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -256.60 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/hydrophobic_to_polar_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 167 chars) ---
+=== END TOOL CALL ===
+

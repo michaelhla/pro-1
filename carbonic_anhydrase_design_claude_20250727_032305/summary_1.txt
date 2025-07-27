@@ -1,0 +1,48 @@
+I'll provide a concise summary of our work designing stable carbonic anhydrase variants.
+
+# Carbonic Anhydrase Engineering Summary
+
+## Main Objective
+Design more stable carbonic anhydrase variants while maintaining catalytic activity to improve carbon capture applications.
+
+## Original Protein Analysis
+- Original sequence: 260 amino acids, starting with "MSHHWGYGKH..."
+- Rosetta energy score: -304.55 REU
+- Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+- Key catalytic residues: Y7, N62, H64, N67, Q92 (proton transfer network)
+- Zinc binding residues: H94, H96, H119 (essential for catalysis)
+
+## Design Strategies Explored
+1. **C-terminal domain fusion** with B. caldolyticus CspB cold shock protein
+   - Added 66-aa CspB with GGGGSGGGGSGGGGS linker
+   - Resulted in poor stability (Rosetta score: 1557.96 REU)
+   - Catalytic site intact (RMSD: 0.091)
+
+2. **Loop insertion strategy** with P. furiosus rubredoxin
+   - Inserted 54-aa rubredoxin at position 169 with GGS linkers
+   - Better stability (Rosetta score: 343.39 REU)
+   - Excellent structural quality assessment
+   - Catalytic site preserved (RMSD: 0.129)
+   - More promising design with very compact structure
+
+## Literature-Based Insights
+- Successful domain fusions require careful linker design
+- Thermostable domains from thermophiles provide stability benefits
+- Small stable domains like rubredoxin (54 aa) are good candidates
+- Strategic loop insertions can enhance stability without disrupting function
+- Disulfide bonds in surface loops could further enhance stability
+
+## Current Status
+The rubredoxin insertion design shows the most promise, offering:
+- Excellent structural quality
+- Maintained catalytic residue positions
+- Better Rosetta score than the C-terminal fusion
+- Compact structure beneficial for stability
+
+## Next Steps
+1. Refine the rubredoxin insertion design with optimized linkers
+2. Explore introducing strategic disulfide bonds
+3. Consider combining multiple stabilization strategies
+4. Test pH and thermal stability computationally
+
+The insertion of the thermostable rubredoxin domain appears more effective than C-terminal fusion for enhancing carbonic anhydrase stability while preserving catalytic function.

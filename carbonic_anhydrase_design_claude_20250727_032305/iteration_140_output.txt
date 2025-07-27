@@ -1,0 +1,15 @@
+It seems we need to first fold the wild-type human Carbonic Anhydrase II sequence. I'll search for the sequence information:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01K9aiD653u4cQpRjGoEw1Xv
+Arguments: {'query': 'human carbonic anhydrase II sequence UniProt'}
+--- TOOL OUTPUT ---
+The **UniProt entry for human carbonic anhydrase II** (gene: **CA2**) is **P00918**. According to UniProt, the **full-length, canonical protein sequence** consists of **260 amino acids**[2]. You can find the reviewed (Swiss-Prot) sequence for human CA II under this entry[2].
+
+For the complete amino acid sequence, visit the UniProt P00918 entry’s sequence section[2]. Here is a representative excerpt from the canonical sequence (for the full and most up-to-date version, always reference UniProt directly):
+
+> MELAEKPQSPVDIDTHTAKYDPSLKPLSVSYDKHTSIPNQDPSLKPISVSYDKHQSTQHPKDPSLKPISVSYDKHTSIPNQDPSLKPISVSYDKHQSTQHPKDPSLKPISVSYDKHTSIPNQDVQ...
+
+Refer to [UniProt entry P00918][2] for the **complete primary sequence** and further functional details.
+--- END TOOL OUTPUT (Length: 746 chars) ---
+=== END TOOL CALL ===
+

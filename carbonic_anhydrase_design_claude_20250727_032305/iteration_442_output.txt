@@ -1,0 +1,32 @@
+Now let's look at more examples of successful domain insertions and larger structural modifications that have enhanced protein stability:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01GBBqC7cowLxifgX4RWuTRd
+Arguments: {'query': 'successful domain insertion examples protein thermostability enhancement loop grafting thermophilic proteins'}
+--- TOOL OUTPUT ---
+Successful enhancement of **protein thermostability by domain insertion and loop grafting using thermophilic protein domains** is documented in several experimental studies:
+
+- **Domain insertion into thermophilic scaffolds**: Kim et al. reported the successful insertion of the exoinulinase EI domain (a relatively unstable glycohydrolase) into a loop of a **thermophilic maltodextrin-binding protein from Pyrococcus furiosus (PfMBP)**[2][3]. The resulting chimeric protein displayed significantly improved kinetic stability—meaning the enzyme retained its activity over a longer period at 37 °C—without compromising the catalytic activity of EI[2]. The improved stability was attributed to an increased kinetic barrier against irreversible inactivation, rather than just an increase in thermodynamic stability[2].
+
+- **Insertion of catalytic domains into thermostable repeats**: There are also examples where the **endocellulase catalytic domain** (CA) was inserted into **thermostable consensus ankyrin repeat scaffolds**[3]. Comparing the thermal denaturation (as reported by Tm values) of the scaffolded versus free CA domain constructs demonstrated that the domain insertion strategy can be effective in maintaining or enhancing activity at elevated temperatures suitable for industrial use[3].
+
+- **Nature of thermal adaptation and domain boundaries**: Broader proteome-wide studies reveal that in thermophilic organisms like **Thermus thermophilus**, thermal stability is often associated with *specific domains*, and that stability can be "portable"—preserved even when a domain is expressed in a different protein context[1]. This provides a mechanistic basis for why domain swapping and insertions can confer thermostability.
+
+- **Loop grafting considerations**: While precise examples of loop-by-loop "grafting" from thermophilic to mesophilic proteins are less frequently reported in the literature than full domain insertions, studies on randomization and stability landscapes of surface loops in antibody domains highlight that some loop regions tolerate modification better than others; specific "hot spots" at the level of individual residues or salt bridges can critically govern thermostability[4]. This suggests that careful loop grafting, especially when targeting loops contributing to the hydrophobic core or key salt bridges, can potentially enhance thermal stability[4].
+
+**Summary of key published example:**
+
+| Inserted Domain | Host Scaffold | Method | Thermostability Effect |
+|--------------------------|----------------------|----------|----------------------------|
+| Exoinulinase EI         | PfMBP (thermophilic) | Domain insertion into loop | Improved kinetic stability at 37 °C with preserved activity[2][3] |
+| CA endocellulase          | Consensus ankyrin repeats (thermostable) | Domain insertion | Enhanced/high thermostability suitable for industrial conditions[3] |
+
+
+**Limitations and caveats:**
+- Not all domains or loop regions are compatible with insertion or grafting; effects depend on the compatibility of interfaces, the functional requirement of loops, and maintenance of proper folding[5].
+- Studies show that while **domain boundaries** often retain stability characteristics, some structural context from the recipient scaffold and the nature of the interfacing regions can modulate the final thermostability[1][3].
+- Rational loop grafting is less developed but has potential, particularly when guided by detailed stability landscape mapping and mutational scanning[4].
+
+These examples illustrate that **domain insertion of thermophilic regions into mesophilic proteins** can successfully enhance thermostability, especially when the thermophilic domain or loop plays a key role in protein folding or stability.
+--- END TOOL OUTPUT (Length: 3766 chars) ---
+=== END TOOL CALL ===
+

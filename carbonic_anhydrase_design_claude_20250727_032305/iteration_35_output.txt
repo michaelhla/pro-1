@@ -1,0 +1,49 @@
+Let's examine the secondary structure and properties of our disulfide-enhanced variant:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01CF6dXhysPks9HQrH2PDJEr
+Arguments: {'pdb_file_path': 'predicted_structures/optimized_linker_disulfide_ca.pdb.pdb', 'image_subdir': 'disulfide_rubredoxin_insertion'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/optimized_linker_disulfide_ca.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/disulfide_rubredoxin_insertion/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2688,
+    "total_residues": 354,
+    "radius_of_gyration": 23.04,
+    "center_of_mass": [
+      -3.43,
+      -6.45,
+      -5.69
+    ],
+    "estimated_molecular_weight": 38940
+  },
+  "secondary_structure_content": {
+    "total_residues": 354,
+    "helix_residues": 39,
+    "sheet_residues": 81,
+    "loop_residues": 234,
+    "helix_percentage": 11.0,
+    "sheet_percentage": 22.9,
+    "loop_percentage": 66.1
+  },
+  "surface_properties": {
+    "total_sasa": 19909.09,
+    "hydrophobic_sasa": 9908.57,
+    "polar_sasa": 9848.43,
+    "hydrophobic_ratio": 49.8
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 354 residues. Secondary structure: 11.0% helix, 22.9% sheet, 66.1% loop. Radius of gyration: 23.04 \u00c5. Total SASA: 19909.09 \u0172. Surface hydrophobicity: 49.8%."
+}
+--- END TOOL OUTPUT (Length: 1275 chars) ---
+=== END TOOL CALL ===
+

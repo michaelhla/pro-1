@@ -1,0 +1,42 @@
+Now I'll search for more specific information about how to implement calcium binding sites in protein engineering:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Qu6f8o8DNvKB9pB9ckgLUb
+Arguments: {'query': 'engineering calcium binding sites protein stability examples DxDxDG motif'}
+--- TOOL OUTPUT ---
+**Engineering calcium-binding sites—especially those using the DxDxDG motif—can significantly enhance protein stability, with several experimentally characterized examples demonstrating this effect in various proteins, including subtilisins, B domains of adhesins, and EF-hand motifs[2][3][4].**
+
+**Key examples and mechanisms:**
+
+- **DxDxDG Motif in Calcium Binding:**
+  - The **DxDxDG motif** (where “D” is aspartate, “x” is any amino acid, and “G” is glycine) is a linear sequence that coordinates calcium ions in a variety of proteins[2][4].
+  - This motif is found in at least twelve protein families—most famously in EF-hands and β-propeller calcium blades—where it binds calcium in a nearly identical manner[2][4].
+
+- **Protein Engineering and Stability:**
+  - Introducing or optimizing **calcium-binding sites** (such as DxDxDG) by site-directed mutagenesis has been shown to increase protein stability and folding robustness[2][3].
+  - In a thermophilic archaeal subtilisin, engineering a DxDxDG-bound calcium site directly demonstrated increased folding stability, with evidence that the motif assists in *protein folding* as well as structural maintenance[2].
+
+- **Examples:**
+  - **Thermophilic Archaeal Subtilisin:**
+    - Features a DxDxDG motif that binds calcium, with experimental data showing the bound calcium significantly stabilizes the enzyme—both enhancing its functional lifetime and ensuring correct folding at high temperatures[2].
+  - **Staphylococcal Adhesin B1 Domain (SdrG):**
+    - Possesses multiple calcium-binding sites, with one especially critical for its *exceptional mechanical stability*. Removing calcium ions drastically reduces stability; restoring calcium recovers it, demonstrating direct causal influence of calcium binding[3].
+    - Mutagenesis of residues around the calcium sites can tune this stability, indicating that *engineered variants* with modified calcium coordination can adjust protein properties as desired[3].
+  - **EF-hand Domains:**
+    - Canonical calcium-binding loops, including DxDxDG, contribute to the hydrophobic core and scaffold, supporting high-affinity calcium binding and structural rigidity[4].
+  - **TLP-ste Protease:**
+    - Protein engineering experiments and natural selection have used calcium binding at specific sites (e.g., Ca3) to regulate stability and local (un)folding. Calcium binding is essential after secretion, allowing the protease to acquire a stable conformation only where needed, and preventing autodegradation where calcium is absent[1].
+
+- **Broader Applications:**
+  - The DxDxDG motif and related calcium-binding loops can be embedded in a variety of protein folds, enabling the engineering of new protein-based materials—such as hydrogels whose stiffness can be reversibly controlled by calcium concentration[3].
+
+**Limitations and context:**
+- Most characterized examples are based on naturally evolved motifs, but engineering new sites or transplanting motifs (e.g., adding a DxDxDG loop to a new scaffold) can be challenging; not all proteins will tolerate the introduced sequence or structural features.
+- Effectiveness depends on proper spatial positioning and the presence of necessary coordinating residues in the protein structure.
+
+**References:**
+- The strong structural and stabilizing role of calcium and the DxDxDG motif in evolved and engineered contexts is demonstrated in subtilisins, B domains, EF-hand proteins, and other scaffolds[1][2][3][4]. 
+
+If you need more detailed examples of specific engineering strategies or detailed case studies, please specify the desired protein system.
+--- END TOOL OUTPUT (Length: 3606 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,9 @@
+Now let's calculate the Rosetta score for this β-barrel enhanced variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01HwA5k3xvjC6fikgkPXM1jr
+Arguments: {'pdb_file_path': 'predicted_structures/beta_barrel_enhanced_CA.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 445.38 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/beta_barrel_enhanced_CA.pdb.pdb
+--- END TOOL OUTPUT (Length: 161 chars) ---
+=== END TOOL CALL ===
+

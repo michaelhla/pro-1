@@ -1,0 +1,9 @@
+Now, let's evaluate the Rosetta energy score to assess stability:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01Kv4CWGFNoshZ4hLKpPXVie
+Arguments: {'pdb_file_path': 'predicted_structures/CA_DomainBridge.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 1178.67 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_DomainBridge.pdb.pdb
+--- END TOOL OUTPUT (Length: 154 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,33 @@
+Now let's search for some specific examples of stable domains or structures we might be able to incorporate into our carbonic anhydrase design:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01DBBnpsoCQLoXK19TY8L3mv
+Arguments: {'query': 'stable protein domains that can be inserted into enzymes to enhance thermostability examples of domain insertion engineering'}
+--- TOOL OUTPUT ---
+**Stable protein domains such as cold-shock domains, zinc fingers, or entire thermophilic enzyme modules have been inserted into enzymes to improve thermostability—a process known as domain insertion engineering. Notable examples include the insertion of highly stable domains like dihydrofolate reductase and β-lactamase into structurally unrelated host enzymes, with both domains remaining functional and conferring enhanced stability to the chimeric proteins[2].**
+
+### Examples of Stable Protein Domains Used for Thermostability Enhancement
+
+- **Thermophilic enzyme domains:** Domains derived from proteins of hyperthermophilic organisms, such as glutamate dehydrogenases from *Pyrococcus furiosus* or *Thermococcus litoralis*, are inherently stable at very high temperatures and have been sources of thermostable building blocks for chimeric protein design[3].
+- **Dihydrofolate reductase (DHFR) and β-lactamase:** Collinet et al. successfully inserted DHFR (an α/β protein) and β-lactamase (a multi-domain protein) into different positions of the host protein phosphoglycerate kinase, resulting in chimeras where both host and inserted domains retained activity and stability[2].
+- **XYN xylanase domain:** Researchers inserted a wild-type xylanase (wtXYN) into a host macrocyclase enzyme; both domains remained folded and active, as confirmed by crystallography[2].
+
+### Domain Insertion Engineering: Design and Outcome
+
+- **Insertion strategy:** Stable domains can be inserted at engineered permissive sites within the target enzyme, sometimes with linkers to maintain proper folding of both domains.
+- **Results:** When well-designed, these insertions lead to proteins where both the original and inserted domains are functional and folded. In some cases, there is also evidence of *functional coupling* between the domains[2].
+- **Applications:** This approach has generated *multi-functional fusion proteins* with enhanced thermostability as well as new or combined catalytic properties[2].
+
+### Supporting Insights and General Strategies
+
+- Using a **highly stable parental protein** as a scaffold increases mutational tolerance (evolvability) and produces more robust engineered variants[4].
+- **Extensive ion-pair networks** and other stabilizing features, such as those found in hyperthermophilic enzymes, can be engineered or mimicked by domain insertion to further increase thermostability[3].
+
+### Caveats
+
+- Not all domain insertions are successful; the local structural context at the insertion site and compatibility between the domains significantly affect the outcome[2].
+- Careful design, sometimes guided by computational modeling, is required to ensure both domains remain functional and structurally stable post-insertion.
+
+In summary, **domain insertion engineering** using stable protein domains—often sourced from thermophilic or otherwise robust proteins—has produced enzymes with enhanced thermostability and, occasionally, new functions. Notable examples include insertion of thermophilic enzyme domains, DHFR, β-lactamase, and xylanase into unrelated proteins, all of which have provided valuable models for designing robust multi-domain chimeric enzymes[2][3][4].
+--- END TOOL OUTPUT (Length: 3198 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,28 @@
+Let's also look specifically at thermostable domains that could be inserted into carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01PrufEomSLZEjQJtzo8tE8M
+Arguments: {'query': 'thermostable protein domains beta-grasp domain or module for insertion'}
+--- TOOL OUTPUT ---
+The **β-grasp domain** (also called the ubiquitin-like fold) is a compact, versatile structural module found in a wide variety of proteins across all domains of life, including many that are thermostable. This domain is characterized by a mixed β-sheet (typically five strands, sometimes more) that "grasps" a short α-helix, creating a stable fold suitable for both standalone domains and as a scaffold for insertions or domain fusion[5][3].
+
+**Key features relevant to thermostability and modular insertion:**
+
+- **Thermostability**: The β-grasp fold is present in thermostable proteins such as the bacterial protein GB1 and archaeal SAMP1. Simulations and experiments show that, in these proteins, the fold's architecture enables regions of localized enhanced stability (either at the C-terminal or N-terminal hairpins, depending on the specific protein), primarily due to strategic placement of hydrophobic interactions[3]. The fold's symmetry and modularity allow for thermostability adaptations in different sequence contexts.
+
+- **Structural features**:
+  - The domain typically consists of a three- or more-stranded antiparallel β-sheet wrapped around a central α-helix[5].
+  - Hydrophobic interactions in the core of the domain are key for stability, and the fold's architecture allows for substitutions and insertions without loss of integrity[3].
+  - The fold is highly tolerant of sequence variation, explaining its presence in many protein families and its suitability for engineering.
+
+- **Passive module for insertions**:  
+  - The β-grasp domain's compactness and surface-exposed loops make it a favorable insertion site for additional elements or as a scaffold for functional motifs.
+  - For example, in the archaeal proteasome-activating protein Mpa, the β-grasp domain mediates specific interactions with target protein complexes, using its β-hairpin and surface features for binding without loss of domain stability[5].
+  - The modularity and symmetry of the domain's fold permit substitutions and insertions of sequences or motifs, which is desirable for protein engineering, including the creation of chimeric proteins with enhanced thermostability[3].
+
+- **Connection to protein engineering**:  
+  - The robust nature of the β-grasp/ubiquitin-like fold has been leveraged in engineering thermostable variants of various proteins. Its tolerance for sequence variation and modular insertions makes it an ideal scaffold when increasing thermostability through techniques such as ancestral sequence reconstruction or rational design[2]. However, detailed structural knowledge is necessary for predicting stabilizing versus destabilizing insertions.
+
+In summary, the **β-grasp domain** is a thermostable, compact, and modular domain frequently used in nature as a scaffold for insertions or for fusion with functional motifs, owing to its robust architecture and flexible surface-exposed regions[5][3][2]. Its use as an insertion module is supported by both experimental and computational analyses, indicating high adaptability and preservation of structural integrity.
+--- END TOOL OUTPUT (Length: 3086 chars) ---
+=== END TOOL CALL ===
+

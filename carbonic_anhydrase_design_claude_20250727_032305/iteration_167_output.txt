@@ -1,0 +1,9 @@
+Let's calculate the baseline Rosetta score:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01ULgjp1i5ie4ciLvRXn3Q4d
+Arguments: {'pdb_file_path': 'predicted_structures/original_CA.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -304.41 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/original_CA.pdb.pdb
+--- END TOOL OUTPUT (Length: 150 chars) ---
+=== END TOOL CALL ===
+

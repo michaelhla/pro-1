@@ -1,0 +1,29 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01LGdB3cBw5zfsMe8eCJ53qQ
+Arguments: {'query': 'successful supercharging of proteins for thermostability'}
+--- TOOL OUTPUT ---
+**Supercharging proteins**—engineering proteins with increased net surface charge—has been successfully applied to improve **thermostability** in several documented cases[1][3][4][5]. The strategy involves introducing additional charged amino acids (typically lysine or arginine for positive supercharging, glutamate or aspartate for negative supercharging) into solvent-exposed regions of a protein's surface.
+
+**Key findings and outcomes:**
+
+- **Enhanced thermostability and solubility:** Supercharging increases protein solubility and can make proteins less prone to aggregation when exposed to heat or denaturing conditions[3][5]. A study engineering a supercharged variant of ubiquitin observed that the engineered protein remained soluble and underwent reversible thermal denaturation under conditions where the wild type aggregated, indicating increased thermostability in practice[3]. However, it was noted that, while aggregation decreased, the supercharged variant was actually thermodynamically less stable than wild type according to some measures[3].
+
+- **Preservation of function despite extensive mutation:** Experiments introducing up to 36 surface charge substitutions in green fluorescent protein (GFP), as well as up to 32 and 30 mutations in other proteins, maintained their fold and function, illustrating the tolerance of many proteins for extensive surface supercharging if mutations avoid structurally critical or buried residues[5]. This success demonstrates that thermostability improvements through supercharging can be compatible with retaining protein activity.
+
+- **Enzymatic performance:** Supercharging can also enhance enzymatic properties. For example, the supercharging of a carbohydrate-binding module in cellulolytic enzymes improved both thermostability and hydrolytic activity, demonstrating practical utility for industrial and biotechnological enzyme applications[4].
+
+**Mechanistic insights:**
+
+- Supercharging typically targets solvent-exposed residues, minimizing disruption to the protein core and maintaining the native fold[5].
+- Increased net charge on the protein surface can lower the propensity for aggregation by enhancing electrostatic repulsion between protein molecules, especially under thermal stress conditions[3][5].
+
+**Caveats and considerations:**
+
+- While supercharging can reduce aggregation and improve kinetic thermostability, in some cases it may decrease the protein’s thermodynamic stability (i.e., lower the energy difference between folded and unfolded states), so the overall effect on stability can be context-dependent and needs to be empirically validated[3].
+- The optimal extent and positioning of supercharging mutations require careful design, typically guided by computational modeling and structural analysis to avoid disrupting essential structure or function[5].
+
+**Conclusion:**  
+Supercharging is a validated strategy to enhance protein thermostability by increasing net surface charge, which generally leads to improved solubility and reduced aggregation at elevated temperatures, while retaining protein function—provided that substitutions are largely confined to solvent-exposed residues[1][3][4][5].
+--- END TOOL OUTPUT (Length: 3188 chars) ---
+=== END TOOL CALL ===
+

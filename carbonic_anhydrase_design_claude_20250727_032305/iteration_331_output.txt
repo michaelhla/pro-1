@@ -1,0 +1,34 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01TsC4nqS2HPhYwJd63HMkRJ
+Arguments: {'query': 'domain insertion engineering thermostable enzyme design successful examples archaeal thermozymes'}
+--- TOOL OUTPUT ---
+Successful domain insertion engineering has been demonstrated as an effective strategy for designing and enhancing the thermostability and functionality of enzymes, including archaeal thermozymes. Several notable examples illustrate its application:
+
+**1. Pyrococcus furiosus Maltodextrin-Binding Protein (PfMBP):**  
+Researchers achieved enzyme stabilization by inserting an entire enzyme domain (EI) into a loop region of the thermophilic PfMBP, an archaeal protein from *Pyrococcus furiosus*. The resulting chimeric enzyme exhibited improved kinetic stability at 37 °C without compromising EI activity. The enhancement was attributed to an increased kinetic barrier preventing irreversible inactivation rather than a change in the thermodynamic stability between folded and unfolded states[3]. This example is a direct demonstration of domain insertion in an archaeal thermzyme.
+
+**2. Lichenase from Clostridium thermocellum:**  
+Although not archaeal, this thermostable lichenase was engineered by inserting two model fluorescent proteins (EGFP and TagRFP) into surface-exposed loops. The resulting chimeras maintained both lichenase activity and the inserted domain functions. Furthermore, the enzyme tolerated single and tandem insertions of large domains, highlighting thermostable scaffolds’ robustness as hosts for domain insertion[1].
+
+**3. Geobacillus thermocatenulatus Pullulanase:**  
+A thermostable pullulanase underwent N-terminal domain truncation and domain insertion, enhancing its properties for industrial applications. This work provides another example of combining thermostable scaffolds with inserted domains to engineer new or improved functionalities, though it involves a thermophilic bacterium, not an archaeon[5].
+
+**4. Archaeal Multidomain Glycosidase:**  
+While not a result of engineering, the natural occurrence of multidomain glycosidases in archaea, as described for an archaeal enzyme with three catalytic domains (GH5 and two GH12), reveals the evolutionary success and functional potential of domain accretion and insertion in enhancing thermostability and activity. Such natural chimeras inspire engineering approaches that emulate domain organization found in extremophilic archaea[4].
+
+**Key Insights:**
+- **Archaeal thermozymes like PfMBP have been directly engineered via domain insertion to improve or modify function and stability**[3].
+- **Thermostable bacterial enzymes (though not strictly archaeal) also serve as robust scaffolds for domain insertion, supporting multifunctional protein engineering**[1][5].
+- **Natural multidomain architectures in archaeal enzymes teach strategies for combining stable domains to yield extreme thermal stability and multi-functionality**[4].
+
+**Limitations and Recent Developments:**
+Directly engineered examples in archaeal thermozymes are rare compared to bacterial homologs. However, the *Pyrococcus furiosus* PfMBP study stands as a clear proof-of-principle for applying domain insertion in archaeal thermostable enzymes[3]. Most reported domain insertion engineering successes leverage well-characterized, highly stable scaffolds—be they archaeal or bacterial—highlighting their potential in synthetic biology for designing multifunctional, thermostable biocatalysts.
+
+**References:**
+- PfMBP domain insertion: [3]
+- Lichenase domain insertion: [1]
+- Pullulanase domain insertion: [5]
+- Natural archaeal multidomain glycosidases: [4]
+--- END TOOL OUTPUT (Length: 3422 chars) ---
+=== END TOOL CALL ===
+

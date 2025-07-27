@@ -1,0 +1,19 @@
+Let me get the complete sequence for human Carbonic Anhydrase II:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01PSsm8JtqEJZz11qc5NXNuV
+Arguments: {'query': 'human carbonic anhydrase II P00918 full amino acid sequence'}
+--- TOOL OUTPUT ---
+The **full amino acid sequence of human carbonic anhydrase II (UniProt P00918)** is:
+
+```
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK
+```
+This sequence consists of **260 amino acids**, and is consistent across authoritative databases and structural entries[3][5].
+
+- The first residue is **Methionine (M)**, and the last is **Lysine (K)**, corresponding to the full-length, canonical human sequence (residues 1–260)[3][5].
+- This sequence is used in structural and biochemical studies of carbonic anhydrase II, and matches the sequence found in UniProt entry **P00918**.
+
+No alternative full-length canonical sequences are reported in the above-cited sources.
+--- END TOOL OUTPUT (Length: 876 chars) ---
+=== END TOOL CALL ===
+

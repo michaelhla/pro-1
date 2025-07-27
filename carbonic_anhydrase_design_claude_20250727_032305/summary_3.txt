@@ -1,0 +1,48 @@
+# Carbonic Anhydrase Engineering Project Summary
+
+## Main Objective
+Design more stable carbonic anhydrase variants while maintaining catalytic activity for carbon capture applications.
+
+## Tested Design Strategies
+
+### 1. Calcium Binding Site Engineering
+- **Single Calcium Binding Site Variant (DADGDG at position 140-145)**
+  - Rosetta score: -274.52 REU
+  - Radius of gyration: 17.22 Å
+  - Catalytic site integrity maintained (active site RMSD: 0.026 Å, zinc binding RMSD: 0.004 Å)
+  - Secondary structure: 16.2% helix, 26.5% sheet, 57.3% loop
+
+- **Dual Calcium Binding Site Variant (second site at position 190-195)**
+  - Rosetta score: -179.43 REU 
+  - Radius of gyration: 17.27 Å
+  - Catalytic site integrity maintained (active site RMSD: 0.082 Å, zinc binding RMSD: 0.036 Å)
+  - Secondary structure: 16.0% helix, 26.3% sheet, 57.6% loop
+
+- **Refined Calcium Binding Variant (DxDxDG at position 222-227)**
+  - Rosetta score: -272.14 REU
+  - Most compact structure (radius of gyration: 17.17 Å)
+  - Excellent catalytic site integrity (active site RMSD: 0.043 Å, zinc binding RMSD: 0.034 Å)
+  - RMSD to wild-type: 1.815 Å
+  - Secondary structure: 16.9% helix, 26.4% sheet, 56.7% loop
+
+### 2. Secondary Structure Element Duplication
+- **α-Helix Duplication (residues 22-35 duplicated after position 160)**
+  - Rosetta score: 337.32 REU
+  - Radius of gyration: 17.83 Å
+  - Catalytic site integrity maintained (active site RMSD: 0.054 Å, zinc binding RMSD: 0.012 Å)
+  - Secondary structure: 16.4% helix, 25.2% sheet, 58.4% loop
+
+- **Circular Permutation (new termini at position 160)**
+  - Rosetta score: 6511.10 REU (unfavorable)
+  - Testing of β-strand duplication in progress
+
+## Key Insights
+- Calcium binding site engineering using DxDxDG motifs shows the most promising results
+- The refined calcium binding variant (DxDxDG at position 222-227) offers the best combination of stability and catalytic integrity
+- Secondary structure element duplication and circular permutation approaches need further optimization
+
+## Next Steps
+Continue exploring additional approaches:
+- Domain insertion strategies
+- Further refinement of calcium binding sites
+- Optimization of secondary structure element duplication approach

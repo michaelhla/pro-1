@@ -1,0 +1,34 @@
+Let's search for a different, smaller thermostable domain that would be more suitable for insertion:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01KPEs3vsTgzZ8aVo3UQvc7N
+Arguments: {'query': 'rubredoxin Pyrococcus furiosus small stable domain sequence FASTA'}
+--- TOOL OUTPUT ---
+The **rubredoxin from Pyrococcus furiosus** is a well-studied, small, and highly stable iron-sulfur protein with a typical canonical fold. Its amino acid sequence is readily accessible from structural biology databases, such as the RCSB PDB (entry 5NW3) and UniProt (accession P24297)[1]. There is also a methionine mutant construct available (PDB: 1BQ8)[2][5].
+
+Here is the canonical **wild-type Pyrococcus furiosus rubredoxin FASTA sequence** (UniProt P24297, RCSB 5NW3, 1VCX):
+
+```
+>sp|P24297|RUB_PYRFU Rubredoxin - Pyrococcus furiosus
+MAKKYTCTVCGACQASDKYVGPGKISVEELEKVSGVDLTVCPGATKLAAEKY
+```
+[1]
+
+- **Length:** 54 amino acids
+- **Key features:** Contains four conserved **cysteines** (likely at positions 5, 8, 39, 42) which coordinate the central iron ion in the functional domain[3].
+
+If you require the *methionine mutant* sequence (PDB: 1BQ8), it is as follows, with only a single amino acid difference at the N-terminus:
+
+```
+>1bq8_A Rubredoxin (methionine mutant) from Pyrococcus furiosus
+MAKKYTCTVCGACQASDKYVGPGKISVEELEKVSGVDLTVCPGATKLAAEKY
+```
+[2][5]
+
+**Note:** The wild-type and methionine mutant sequences are nearly identical; both are commonly used as the canonical small, stable rubredoxin domain from P. furiosus. The wild-type sequence is most appropriate for referencing the naturally occurring stable domain.
+
+If you need only the minimal domain (without any tags or modifications), the sequence above represents the standard **"small, stable domain"** of Pyrococcus furiosus rubredoxin[1][2][5].
+
+Let me know if you need the sequence in a different format or if you require further structural or mutational details.
+--- END TOOL OUTPUT (Length: 1637 chars) ---
+=== END TOOL CALL ===
+

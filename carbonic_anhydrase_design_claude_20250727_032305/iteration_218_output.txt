@@ -1,0 +1,33 @@
+Now, let's explore domain insertions and thermostable domains that could be incorporated into carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01HTJ9P8uMNYSfsfNWqbmQiC
+Arguments: {'query': 'thermostable protein domains for insertion into enzymes β-barrel domain insertion examples'}
+--- TOOL OUTPUT ---
+**Thermostable protein domains**—particularly those with an α/β or β-barrel fold—are commonly used as hosts for domain insertion in enzyme engineering due to their robust structure and ability to accommodate foreign sequence insertions without loss of function[1][4]. β-barrel domains themselves, such as the TIM-barrel (Triosephosphate Isomerase barrel), are among the most widely used templates.
+
+**Examples of β-barrel domain insertions:**
+- The **Clostridium thermocellum lichenase** is a thermostable enzyme (endo-β-1,3;1,4-glucan-D-glycosyl hydrolase) with high specific activity and exceptional thermostability[1]. Studies have demonstrated successful insertion of large domains—such as fluorescent proteins (EGFP and TagRFP)—into two selected loop regions of lichenase, with retention of both lichenase activity and fluorescence. These insertions can be both single and tandem, showing the β-barrel scaffold’s substantial tolerance for domain insertion without folding disruption[1].
+- The **TIM barrel (α/β barrel)** fold is especially tolerant of insertion. For instance, in *Methylophilus methylotrophus* trimethylamine dehydrogenase (PDB: 2TMD), a **Rossmann fold domain** is fully inserted at the C-terminus of a TIM barrel[2]. This forms a complex, multidomain enzyme where cofactor binding (FMN and an iron-sulfur cluster) is distributed between the two domains, demonstrating functional integration beyond simple structural fusion[2].
+- Another TIM barrel enzyme, *Lactococcus lactis* dihydroorotate dehydrogenase A (PDB: 2DOR), features β-sheets and extended loops that enclose its active site, suggesting the utility of flexible β-barrel regions for accommodating catalytic or regulatory domains[2].
+
+**Key context and engineering considerations:**
+- **α/β fold domains** (which include TIM barrels and many β-barrel enzymes) are overrepresented among enzymes that have naturally evolved multidomain architectures, often with catalytic or nucleotide-binding insertions[4]. Their mixed secondary structure and stable core make them suitable for retaining activity after domain insertions and fusions[4].
+- Thermostable domains, such as lichenase from *C. thermocellum*, are particularly desirable because their inherent stability permits more extensive modifications, such as insertions of large and even multiple domains, without compromising folding or activity[1][5].
+- Computational approaches and rational protein stapling (e.g., genetically encoded thioether cross-links) can further enhance thermostability when engineering or modifying β-barrel domain enzymes, though these strategies often target the host domain rather than the inserted sequence itself[3].
+
+**Summary table: β-barrel domain insertion examples and applications**
+
+| Host domain                        | Inserted domain(s)      | Thermostability | Function retained                   | Reference |
+|------------------------------------|-------------------------|----------------|--------------------------------------|-----------|
+| C. thermocellum lichenase (β-barrel) | EGFP, TagRFP           | High           | Yes (activity & fluorescence)        | [1]       |
+| TIM barrel (2TMD, dehydrogenase)   | Rossmann fold           | Moderate       | Yes (cofactor binding & catalysis)   | [2]       |
+| TIM barrel (2DOR, DHODase)         | β-sheets/loops (native) | Moderate       | Yes (active-site architecture)       | [2]       |
+
+**Limitations/caveats:**
+- Not all β-barrel domains tolerate large insertions equally. The position (loop, terminal, or within ordered regions) and physicochemical compatibility of insertion sites are critical for functional expression[1][4].
+- While thermostable hosts improve outcomes, some insertions may still negatively affect activity or stability and thus require empirical validation or computational pre-screening[3][4].
+
+For most robust results, **thermostable β-barrel domains (such as those from extremophiles or ancestral proteins) and flexible loop regions are prime insertion sites** for engineering multifunctional enzymes.
+--- END TOOL OUTPUT (Length: 4063 chars) ---
+=== END TOOL CALL ===
+

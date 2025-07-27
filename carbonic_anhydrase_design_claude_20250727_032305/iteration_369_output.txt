@@ -1,0 +1,35 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_013pBEf7MwHQDc3BycKt65Yw
+Arguments: {'query': 'domain duplication protein engineering thermostability examples'}
+--- TOOL OUTPUT ---
+**Domain duplication** in protein engineering involves generating proteins with repeated structural domains to enhance properties such as **thermostability**. Natural evolutionary processes commonly employ domain duplication and fusion to improve protein robustness and functionality, and several engineering efforts have adopted this principle.
+
+**Key examples and mechanisms:**
+
+- In **natural proteins**, repeat domains often result in increased structural stability. A prominent example is the **β-trefoil fold**, which possesses a threefold symmetry and is thought to have arisen by fusion of domain repeats. Deconstruction of β-trefoil into its subdomains has shown that the smaller segments self-assemble into a structure mirroring the original β-trefoil, supporting domain duplication and fusion as mechanisms to retain or enhance thermostability without immediate functional novelty[3].
+
+- **Protein engineering** studies have utilized highly stable parental proteins, often from thermophilic organisms, as scaffolds due to their inherent resistance to thermal denaturation[2]. Proteins with repeated or duplicated domains from extremophiles, such as those from *Sulfolobus acidocaldarius* and *Sulfolobus solfataricus*, have been engineered for high-affinity binding functions while maintaining or even enhancing thermostability[2]. This underscores that domain repetition itself (and the typically linked increase in the network of intramolecular contacts) provides a **mutational buffer**—proteins tolerate destabilizing mutations better, supporting further engineering.
+
+- Directed evolution and recombination strategies have deliberately created artificial domain duplications. For instance, **directed domain interface evolution** fuses an existing interaction domain with an enhancer domain, and through selective evolution, results in new functional proteins often with preserved or improved stability[1]. While this method differs from simple domain duplication, it capitalizes on the concept of increasing **domain interactions**, which frequently yield proteins with enhanced stability due to **additional inter-domain contacts**[1][5].
+
+**Mechanistic insight:**
+- *Function-retaining fusions*, where duplicated domains preserve ancestral structure and stability, serve as robust starting points for further functional diversification[3]. 
+- Increased domain interactions resulting from duplication and subsequent fusion often lead to greater **thermodynamic stability** and tolerance to harsh conditions (e.g., high temperature).
+
+**Limitations and caveats:**
+- Not all domain duplications will intrinsically increase thermostability—success depends on the nature of the domains, their interfaces, and the quality of their structural integration[3][5].
+- Most experimental examples confirm increased stability, but the contribution of domain duplication versus other stabilizing mutations frequently requires careful dissection.
+
+**Summary of examples:**
+
+| Protein/Approach                                     | Domain Duplication Role              | Thermostability Effect        | Reference |
+| ---------------------------------------------------- | ------------------------------------ | ----------------------------- | --------- |
+| β-trefoil protein                                   | Triplication and fusion of domains   | Increased stability           | [3]       |
+| Sulfolobus mini-binders                             | Antibody-like repeats/fusions        | Inherent high thermostability | [2]       |
+| Directed domain interface evolution (Affinity clamps) | Fusion and interface evolution       | Enhanced stability, function  | [1]       |
+
+**In conclusion:**  
+Domain duplication plays a significant role in naturally and artificially increasing protein thermostability. Well-characterized examples include the β-trefoil fold and engineered repeat architectures derived from highly stable thermophilic proteins[2][3]. Artificial domain fusions, when properly optimized, can further enhance both protein function and stability[1][2].
+--- END TOOL OUTPUT (Length: 4069 chars) ---
+=== END TOOL CALL ===
+

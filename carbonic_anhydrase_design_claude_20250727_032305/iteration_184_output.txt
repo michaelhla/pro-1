@@ -1,0 +1,26 @@
+Let's try an alternative approach by using a proline substitution strategy, which can improve thermostability by reducing backbone flexibility. Let's search for information on this approach:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01RwEuhks4ARCxGaTU7x8hdX
+Arguments: {'query': 'proline substitution protein thermostability engineering'}
+--- TOOL OUTPUT ---
+**Proline substitutions** are a well-established strategy in protein engineering to enhance **thermostability**, particularly by increasing rigidity in flexible regions, stabilizing secondary structure elements, and reducing conformational entropy during unfolding[2][3][5][4].
+
+Key insights and supporting details:
+
+- **Role of Proline**: Proline's unique cyclic structure restricts backbone flexibility—making it the most rigid amino acid residue—so its substitution at targeted flexible regions can rigidify local structures, thus improving thermostability[5][3][4].
+- **The Proline Rule**: This rule posits that introducing proline at the second position (i+1) of β-turns is especially effective for enhancing protein thermostability in globular proteins[2]. Site-directed mutagenesis studies and cumulative proline additions (at turns, helix N1 positions, and coils) have demonstrated significant stabilization in multiple proteins[2].
+- **Empirical Evidence**:
+  - **Glycine-to-proline substitutions** have been successful, as glycine is highly flexible. For instance, mutating glycine to proline in esterase from *Psychrobacter* increased its half-life at 40 °C from 16 minutes to 11.6 hours[3].
+  - In methyl parathion hydrolase and Bacillus levansucrase, proline substitutions increased melting temperature, operational stability, and functional yields[3].
+  - Directed evolution and site-saturation efforts often select for proline substitutions in stabilized variants[2][4].
+- **Target Sites for Substitution**: 
+  - Flexible loops and surface-exposed coils are frequent targets, but proline can also stabilize α-helices and β-turns[2][5][3].
+  - B-factor (atomic displacement parameter) analysis from X-ray structures has been used to identify flexible regions as rational sites for proline substitution, leading to enhanced enzyme stability[4].
+- **Caveats**: 
+  - Not all proline substitutions are beneficial; introduction in critical positions (e.g., active site, tight turns, or essential dynamic regions) may destabilize or disrupt function[1].
+  - The effects can be both local and long-range, impacting overall protein structure and dynamics as observed in bacteriorhodopsin mutants[1].
+
+In summary, **proline substitution is a rational and frequently effective approach for increasing protein thermostability**, with the best results achieved by targeting flexible regions, especially β-turns and loops, while avoiding critical or structurally sensitive sites[2][3][4][5].
+--- END TOOL OUTPUT (Length: 2492 chars) ---
+=== END TOOL CALL ===
+

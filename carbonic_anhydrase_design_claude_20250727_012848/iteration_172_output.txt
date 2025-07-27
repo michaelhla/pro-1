@@ -1,0 +1,34 @@
+Let me search for information about inserting thermostable domains or motifs:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01468Lo8CfxaYkEduoJML2F1
+Arguments: {'query': 'thermostable protein domains or motifs for insertion engineering coiled-coil helical bundles'}
+--- TOOL OUTPUT ---
+For insertion engineering requiring **thermostable protein domains or motifs within coiled-coil helical bundles**, several well-characterized options and design principles exist:
+
+- **Rationally Designed Hyperstable Coiled-Coils**: Modern computational design enables the creation of custom, hyperstable α-helical coiled coils, including bundles and barrels with high thermodynamic stability (ΔG_fold > 60 kcal/mol)[2]. These can be parametrically tuned for oligomerization state, geometry, and stability, making them ideal scaffolds for engineering insertions.
+
+- **Thermostable Natural and Synthetic Coiled-Coils**: Many naturally occurring trimeric or tetrameric coiled coils exhibit high stability, and their core packing (often a heptad repeat with hydrophobic residues at a/d positions) makes them robust to domain insertions or extensions[3]. Their stability is often attributed to the “knobs-into-holes” packing and can be further improved by engineering additional interhelical salt bridges[4].
+
+- **Trimerization Motifs and Salt Bridge Networks**: Specific **trimerization motifs**—such as those utilizing networks of surface-exposed salt bridges—have been shown to dominate oligomerization and topology, even over the core hydrophobic pattern, and can confer additional stability and oligomerization specificity[4]. Mutational analysis has demonstrated that these motifs can switch the structure between dimeric, trimeric, and even octameric states while maintaining high thermostability.
+
+- **Engineered Fusion Proteins**: Fusion proteins in which coiled-coil motifs are connected to target domains via flexible or appropriately registered linkers can retain thermal stability and desired oligomerization. The regular heptad repeat allows seamless fusion, reducing the risk of misfolding or instability[3].
+
+- **Empirically Validated Examples**:
+    - Hyperstable designed helical bundles as described for de novo protein engineering (Science, Huang et al., 2014)[2].
+    - Synthetic trimeric and tetrameric coiled coils with defined core packing and interhelical interactions, as detailed by Harbury et al. and Kammerer et al.[4][5].
+
+**Key design motifs and strategies:**
+- *Heptad repeat* ([abcdefg]n), especially hydrophobic residues at a/d.
+- *Salt bridge networks* (notably Glu-Arg networks) at specific e/g positions for trimeric and higher-order bundles[4].
+- Use of **stabilizing capping motifs**, such as GCN4-pLI variants and designed “stammers” or “stutters,” to enhance thermal stability and context compatibility.
+- **Fusion at natural or engineered heptad register points** to minimize distortion[3].
+
+In summary, for thermostable insertion engineering in coiled-coil helical bundles:
+- Use hyperstable, designed, or natural coiled-coil domains with robust heptad repeat cores[2][3].
+- Consider adding or exploiting trimerization/salt bridge motifs for extra stability and control over oligomerization[4].
+- Integrate inserts at register-compatible points, leveraging the modular nature of coiled coils.
+
+**Important caveat**: Oligomerization state can be highly sensitive to small sequence changes, so it is essential to validate the designed construct experimentally, even when using established motifs and predictive algorithms[4][3].
+--- END TOOL OUTPUT (Length: 3264 chars) ---
+=== END TOOL CALL ===
+

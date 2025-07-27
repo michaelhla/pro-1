@@ -1,0 +1,31 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01FPm1FKM7Phhqf7FePsVuk7
+Arguments: {'query': 'protein termini stabilization techniques capping motifs beta hairpin strands'}
+--- TOOL OUTPUT ---
+A well-established technique for stabilizing **protein termini**, particularly in **beta hairpin strands**, involves the use of specially engineered **capping motifs**. These motifs are designed to specifically reduce terminal fraying—an issue that limits the stability and folding of short hairpin peptides and beta-sheet models.
+
+One of the most robust and widely cited **beta-hairpin capping motifs** incorporates:
+- An **alkanoyl-tryptophan (Trp)** at the N terminus
+- A **Trp-Thr-Gly** tripeptide at the C terminus
+
+This motif is constructed entirely from natural amino acids and is highly effective for antiparallel beta-strand termini. Its application leads to:
+- A significant stabilizing effect (more than 6 kJ/mol), which is greater than that of disulfide bonds or other conventional stabilizing interactions in hairpins[2][4].
+- Drastically reduced fraying at hairpin and sheet termini, providing highly folded peptide scaffolds in aqueous solution (greater than 98% folded for 10- to 22-residue peptides)[2][4].
+
+**Key details about the capping motif:**
+- The N-terminus is modified with an alkanoyl-Trp, while the C-terminus is capped with a Trp-Thr-Gly sequence[2][4].
+- The motif is sequence-specific but does not require unnatural amino acids.
+- It is especially beneficial for **antiparallel beta-sheet structures**, improving their utility for biophysical and structural studies by stabilizing their folded state.
+
+Other strategies for **protein termini stabilization** (not specific to beta hairpins) include:
+- **Tethering termini** to a self-assembling protein coupler, which physically restrains the protein's ends and thus stabilizes fold and function for otherwise unstable proteins, such as integral membrane proteins[1].
+- **Disulfide bonds** or cyclization, but these methods are less effective in certain contexts compared to the dedicated beta-cap motif[2][4].
+
+**Limitations:**
+- The capping motif described is primarily effective for antiparallel beta-strands; parallel strands or other fold motifs may require different stabilization approaches.
+- While the motif is composed of natural residues, its deployment represents an engineered solution, not a natural occurrence in most proteins.
+
+In summary, the most effective and specific stabilization technique for beta-hairpin termini is the application of an **alkanoyl-Trp at the N terminus and a Trp-Thr-Gly at the C terminus**, which greatly suppresses terminal fraying and boosts fold stability[2][4].
+--- END TOOL OUTPUT (Length: 2487 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,43 @@
+The design shows good preservation of the catalytic site but has a high RMSD and Rosetta energy score. Let me try a more innovative approach with a modified beta-barrel design:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_016sQrBUxq91LRYuCQP9g7hf
+Arguments: {'query': 'thermostabilizing mutations for enzymes beyond disulfide bonds unusual approaches'}
+--- TOOL OUTPUT ---
+Enzyme thermostability can be enhanced by **strategies beyond disulfide bond introduction**, using several innovative and "unusual" approaches:
+
+**1. Incorporation of Noncanonical Amino Acids and Chemical Cross-links**
+- *Unnatural amino acids* (UAAs) with special functional groups can form non-native bridges ("staples") in the protein, stabilizing the structure[1][3].
+- For example, incorporating UAAs like O2beY, pAaF, and pVsaF at selected positions in myoglobin allowed formation of **non-natural covalent cross-links** (“staples”), increasing the melting temperature (Tm) by 5–13 °C, sometimes more efficiently than traditional disulfide bonds[3].
+- This strategy enables tuning the staple length and position to optimize stabilization without relying on natural cysteine chemistry[1][3].
+
+**2. Combinatorial Mutagenesis and Synergistic Mutational Clusters**
+- *Combinatorial approaches*: Multiple point mutations, sometimes identified through random or directed evolution, can show synergistic effects, leading to thermostabilization beyond any single mutation’s effect[2][4].
+- For example, in mycotransglutaminase, combining several amino acid substitutions (in addition to a disulfide bond) led to much greater thermostability than individual mutations[2].
+- Computational design (e.g., Rosetta) can identify clusters of mutations that stabilize enzymes by targeting weak regions or enhancing core packing[4].
+
+**3. Computation-Guided Structure-Based Design**
+- Advanced **computational prediction** tools (Rosetta, FoldX) help pinpoint residues where mutations are most likely to increase thermostability while preserving activity[4].
+- Design strategies include enhancing hydrophobic core interactions, improving electrostatic complementarity, or introducing new H-bonds or salt bridges[4].
+- Example: A triple mutant identified computationally in yeast cytosine deaminase improved Tm by 10°C and increased half-life at 50°C 30-fold, with synergistic benefit beyond the sum of single mutations[4].
+
+**4. Protein Stapling—Beyond Disulfides**
+- Use of **unnatural, extended cross-links** such as aryl-based staples between cysteine and UAA or two UAAs can create stabilizing linkages longer or geometrically distinct from natural disulfides[1][3].
+- The thermostabilizing effect is **side-chain-length–dependent**: optimizing the spatial arrangement enhances the stabilizing impact[1][3].
+
+**Caveats & Limitations**
+- While some strategies, like UAA staples, require specialized expression systems and chemical synthesis, computational methods are more broadly accessible but rely on high-quality structural data.
+- Stabilizing mutations can sometimes reduce enzyme activity, so balance and functional screening are crucial[4].
+
+**Summary of Approaches Beyond Standard Disulfide Bonds:**
+
+| Approach                            | Mechanism                   | Example/Details                              |
+|--------------------------------------|-----------------------------|-----------------------------------------------|
+| Unnatural amino acid staples         | Non-native covalent bridges | O2beY/pAaF/pVsaF in myoglobin[3]            |
+| Combinatorial multi-site mutagenesis | Synergistic point mutations | Multiple mutations in MTG[2]; Rosetta clusters[4]   |
+| Computation-aided design             | Structure-based mutation    | Packing enhancement, salt bridges[4]         |
+| Extended cross-links                 | Chemically extended staples | SbuY-based aryl cross-linking[1]             |
+
+These approaches offer powerful alternatives to traditional disulfide engineering, expanding the toolkit for enzyme thermostabilization, especially for industrial applications[1][2][3][4].
+--- END TOOL OUTPUT (Length: 3704 chars) ---
+=== END TOOL CALL ===
+

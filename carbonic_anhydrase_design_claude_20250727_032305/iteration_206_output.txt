@@ -1,0 +1,42 @@
+## Design 2: NEXT Tag Fusion with Salt Bridge Network
+
+Let's implement a design that incorporates the marine-derived NEXT tag, which has been shown to improve solubility and thermostability. I'll add this tag to the N-terminus of our salt bridge variant.
+
+First, I'll search for information about the NEXT tag:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Um74uGRrDVh2iVVdFEf6yY
+Arguments: {'query': 'marine-derived NEXT tag for protein solubility and stability sequence'}
+--- TOOL OUTPUT ---
+The **NEXT tag** is a **53-amino-acid, marine-derived peptide tag** specifically engineered to enhance both protein **solubility and stability** for recombinant expression, notably in *E. coli*[1][3]. The tag is characterized as an **intrinsically disordered peptide (IDP)**, which means it does not form a fixed secondary or tertiary structure but instead acts as an “entropic bristle” that sterically hinders protein aggregation[1][3].
+
+**Sequence, Origin, and Distinct Features:**
+- The sequence of the **NEXT tag** comes from a marine organism (the red alga *Neoporphyra yezoensis*), and its design was informed by the protein disorder and low hydrophobicity frequently found in marine IDPs[1].
+- The tag consists of **53 amino acids**, with its **C-terminal segment (NEXT~C16~)** being especially crucial for improved *in vitro* solubility, and the N-terminal region being key for *in vivo* soluble expression[1][3].
+- The **entropic bristle** nature is essential: by remaining disordered, the tag excludes neighboring molecules, preventing aggregation during folding and expression of otherwise insoluble proteins[1][3].
+
+**Effects on Protein Solubility and Stability:**
+- When fused to aggregation-prone proteins, the NEXT tag:
+  - Significantly increases *in vivo* and *in vitro* solubility across diverse fusion partners—including thermostable and marine-derived enzymes for environmental or biotechnological applications[1][3].
+  - Reduces aggregation by interfering with interactions between folding intermediates, thus facilitating proper folding[1][3].
+  - Helps maintain protein stability during both expression and purification steps[1][3].
+
+**Sequence of the NEXT Tag:**
+- The full sequence is provided in the primary literature by Kobayashi et al. (2022)[1][3], but for clarity (as per the cited open-access article), the peptide sequence is:
+  ```
+  GSEWVGEEWDEDGVDVWDEDGVGDEDGVGDEWGDGDE
+  ```
+  (Note: If you require the exact full 53-amino-acid sequence, refer to supplementary materials of the cited article or their Table 1.)
+
+**Key Advantages Compared to Other Tags:**
+- Much smaller and less likely to interfere with the function of fused proteins than tags like MBP or GST[1][3].
+- Its general-use design means it can be applied to a wide variety of difficult-to-express proteins for increased yield and functional protein recovery, particularly relevant for enzymes used in industrial and environmental biotechnology.
+
+**Limitations:**
+- The tag is relatively new (publication in 2022), so widespread adoption or long-term empirical data may still be developing[1][3].
+- Exact effects on extremely large or multidomain target proteins may require further experimental validation.
+
+**In summary:**  
+The marine-derived **NEXT tag** is a compact, intrinsically disordered peptide sequence from the red alga *Neoporphyra yezoensis* that offers potent enhancement for both protein solubility and stability, functioning through entropic exclusion to prevent aggregation during expression and purification[1][3]. For its precise amino acid sequence and detailed usage, refer directly to the supplementary information in the cited open-access research papers[1][3].
+--- END TOOL OUTPUT (Length: 3184 chars) ---
+=== END TOOL CALL ===
+

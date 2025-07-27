@@ -1,0 +1,49 @@
+Now, let's examine the secondary structure and structural properties of our new design:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_011tZMrbNGtfTgeomSAVeC8U
+Arguments: {'pdb_file_path': 'predicted_structures/optimized_linker_rubredoxin_ca.pdb.pdb', 'image_subdir': 'optimized_rubredoxin_insertion'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/optimized_linker_rubredoxin_ca.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/optimized_rubredoxin_insertion/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2693,
+    "total_residues": 354,
+    "radius_of_gyration": 23.87,
+    "center_of_mass": [
+      -4.06,
+      -6.14,
+      -5.37
+    ],
+    "estimated_molecular_weight": 38940
+  },
+  "secondary_structure_content": {
+    "total_residues": 354,
+    "helix_residues": 39,
+    "sheet_residues": 87,
+    "loop_residues": 228,
+    "helix_percentage": 11.0,
+    "sheet_percentage": 24.6,
+    "loop_percentage": 64.4
+  },
+  "surface_properties": {
+    "total_sasa": 20368.42,
+    "hydrophobic_sasa": 10236.48,
+    "polar_sasa": 10036.46,
+    "hydrophobic_ratio": 50.3
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 354 residues. Secondary structure: 11.0% helix, 24.6% sheet, 64.4% loop. Radius of gyration: 23.87 \u00c5. Total SASA: 20368.42 \u0172. Surface hydrophobicity: 50.3%."
+}
+--- END TOOL OUTPUT (Length: 1278 chars) ---
+=== END TOOL CALL ===
+

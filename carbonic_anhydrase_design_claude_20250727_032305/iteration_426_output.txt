@@ -1,0 +1,38 @@
+Based on the analysis of the hCA2 structure, I'll now design a thermostabilized variant using rigidification techniques. The structure shows a high percentage of loops (58.3%), which presents opportunities for rigidification.
+
+Let's design a variant with strategic proline substitutions in loop regions and enhanced hydrophobic packing. Looking at the structure analysis:
+
+1. **Proline substitutions in flexible loops**: I'll target several non-critical loop regions for proline introduction
+2. **Enhanced hydrophobic packing**: I'll identify regions where hydrophobic interactions can be strengthened
+3. **Preservation of catalytic site**: I'll ensure the active site residues and zinc-binding residues remain unchanged
+
+Here's my proposed design (mutations highlighted):
+
+```
+MSHHWGYGKHNGPEHWHKDFP(I→P)APGESQDLRRALKTYRLKGPG(H→P)AGVQVPYSGTAPKTIFGESLGGG
+TIEPVQP(L→F)LKEGMVQDVISLVGGGK(H→I)GNFHHAGAKSADFTNFD(P→V)RGLLPELTGLLKFGSPEEL
+NVRA(S→P)LPAGSSIFDAQDKRTAVVVQDPDDLPT(P→F)VVRQFAQDPLLVPQNQVPVVSYNNMREGKRVPMT
+VAIQRDESNVGFFLSMWNWY(H→F)QPSLLKNEFDSKLKFGSE(H→P)TV(N→V)NAVVLTKVHFPAPK
+```
+
+I've made the following mutations:
+1. I20P: Proline substitution in a loop region
+2. H55P: Proline in another loop region 
+3. L74F: Enhanced hydrophobic packing with a bulkier residue
+4. H94I: Preserved zinc-binding H94 but enhanced hydrophobic packing nearby at H81I
+5. P129V: Enhanced hydrophobic packing
+6. S145P: Proline substitution in flexible loop
+7. P199F: Enhanced hydrophobic packing
+8. H229F: Enhanced aromatic interaction
+9. H235P: Proline substitution in C-terminal region
+10. N237V: Enhanced hydrophobic packing
+
+Let me fold this mutated sequence:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01Gp7FDK8VjifPGkZrjyq9ia
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPPAPGESQDLRRALKTYRLKGPGPAGVQVPYSGTAPKTIFGESLGGGTIEPVQPFLKEGMVQDVISLVGGGKIGNFHHAGAKSADFTNFDVRGLLPELTGLLKFGSPEELNVRAPLAGSSIFDAQDKRTAVVVQDPDDLPTFVVRQFAQDPLLVPQNQVPVVSYNNMREGKRVPMTVAIQRDESNVGFFLSMWNWYFQPSLLKNEFDSKLKFGSEPTVVNAVVLTKVHFPAPK', 'filename': 'hCA2_thermostable_v1.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/hCA2_thermostable_v1.pdb.pdb
+--- END TOOL OUTPUT (Length: 49 chars) ---
+=== END TOOL CALL ===
+

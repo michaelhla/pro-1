@@ -1,0 +1,42 @@
+Based on these insights, I'll design a novel carbonic anhydrase variant that combines supercharging with an oligomerization domain. I'll call this design **CA-SuperOligo**.
+
+**Design Concept: CA-SuperOligo**
+
+This design will incorporate:
+1. **Surface supercharging** - Adding numerous charged residues on the protein surface to enhance solubility and reduce aggregation
+2. **Coiled-coil oligomerization domain** - Inserting a coiled-coil domain that will promote dimerization, significantly stabilizing the structure
+3. **Core packing optimization** - Introducing mutations that improve hydrophobic packing in the protein core
+
+Here's the detailed design:
+
+1. **Surface Supercharging**: I'll replace 15-20 surface-exposed neutral residues with positively charged lysines and arginines, distributed evenly across the protein surface to maximize electrostatic repulsion between molecules.
+
+2. **Oligomerization Domain**: I'll insert a 28-amino acid coiled-coil dimerization domain from the GCN4 leucine zipper (a well-characterized oligomerization motif) near the C-terminus, connected by flexible GGS linkers.
+
+3. **Core Optimization**: I'll introduce 3-4 mutations in the hydrophobic core to improve packing and stability without disrupting the active site.
+
+Let me now create the sequence and fold it:
+
+```
+# Original hCA2 sequence sections with:
+# 1. Surface supercharging mutations (neutral to K/R)
+# 2. GCN4-derived coiled-coil insertion near C-terminus
+# 3. Core packing optimization mutations
+```
+
+Here's the CA-SuperOligo sequence:
+
+```
+MSHHWGYGKHNGPEHWHKDFPIANGERQSPVDIDTKAVVQDPALKPLALVYGEATSRRMVNNGHSFNVEYDDSQDKAVLKDGPLTGTYRLVQFHFHWGSSDDQGSEHTVDRKKYAAELHLVHWNTKYGDFGTAAQQPDGLAVVGVFLKVGDANPALQKVLDALDSIKTKGKSTDFPNFDPGSLLPNVLDYWTYPGSLTTPPLLESVTWIVLKEPISVSSQQMLKFRTLNFNAEGEPELLMLANWRPAQPLKNRQVRGFPK
+GGSRMKQLEDKVEELLSKNYHLENEVARLKKLVGGGSSNDPITSVDGKFSLFGDSVALSNPALASVDGK
+```
+
+Let me fold this protein:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01EDtNcG8fjGoiyNMHwVrAuw
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIANGERQSPVDIDTKAVVQDPALKPLALVYGEATSRRMVNNGHSFNVEYDDSQDKAVLKDGPLTGTYRLVQFHFHWGSSDDQGSEHTVDRKKYAAELHLVHWNTKYGDFGTAAQQPDGLAVVGVFLKVGDANPALQKVLDALDSIKTKGKSTDFPNFDPGSLLPNVLDYWTYPGSLTTPPLLESVTWIVLKEPISVSSQQMLKFRTLNFNAEGEPELLMLANWRPAQPLKNRQVRGFPKGGSRMKQLEDKVEELLSKNYHLENEVARLKKLVGGGSSNDPITSVDGKFSLFGDSVALSNPALASVDGK', 'filename': 'CA-SuperOligo.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/CA-SuperOligo.pdb.pdb
+--- END TOOL OUTPUT (Length: 42 chars) ---
+=== END TOOL CALL ===
+

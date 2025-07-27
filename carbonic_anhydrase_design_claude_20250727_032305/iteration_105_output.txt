@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_019b5Nq8pW2VeLYYNfkHSpNE
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_rubredoxin_fusion.pdb.pdb', 'image_subdir': 'rubredoxin_fusion'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hCA2_rubredoxin_fusion.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/rubredoxin_fusion/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2464,
+    "total_residues": 315,
+    "radius_of_gyration": 19.71,
+    "center_of_mass": [
+      2.42,
+      2.39,
+      1.41
+    ],
+    "estimated_molecular_weight": 34650
+  },
+  "secondary_structure_content": {
+    "total_residues": 315,
+    "helix_residues": 50,
+    "sheet_residues": 69,
+    "loop_residues": 196,
+    "helix_percentage": 15.9,
+    "sheet_percentage": 21.9,
+    "loop_percentage": 62.2
+  },
+  "surface_properties": {
+    "total_sasa": 16319.57,
+    "hydrophobic_sasa": 8119.11,
+    "polar_sasa": 8101.79,
+    "hydrophobic_ratio": 49.8
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 315 residues. Secondary structure: 15.9% helix, 21.9% sheet, 62.2% loop. Radius of gyration: 19.71 \u00c5. Total SASA: 16319.57 \u0172. Surface hydrophobicity: 49.8%."
+}
+--- END TOOL OUTPUT (Length: 1252 chars) ---
+=== END TOOL CALL ===
+

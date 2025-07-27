@@ -1,0 +1,34 @@
+## Comparison of Both Design Approaches
+
+Now let's compare the two different approaches:
+
+### CA_CoilStable (Bold redesign with coiled-coil motifs)
+- **Rosetta Score**: -251.54 REU
+- **RMSD vs Reference**: 20.586 Å (major structural changes)
+- **Catalytic Site Integrity**: Excellent (RMSD 0.065 Å)
+- **Secondary Structure**: 24.1% helix, 23.7% sheet, 52.2% loop
+
+### CA_RationalStable (Conservative point mutations)
+- **Rosetta Score**: -288.16 REU (better stability)
+- **RMSD vs Reference**: 0.143 Å (nearly identical to native fold)
+- **Catalytic Site Integrity**: Excellent (RMSD 0.061 Å)
+- **Secondary Structure**: 18.1% helix, 26.5% sheet, 55.4% loop
+
+## Recommendation for Further Optimization
+
+The CA_RationalStable design shows significantly improved stability (-288.16 REU vs -251.54 REU) while maintaining the native fold almost perfectly (RMSD 0.143 Å). This conservative approach with targeted mutations (V→C at position 143 and V→I at position 207) successfully achieved greater stability without disrupting the overall structure.
+
+### Next Steps:
+1. Introduce additional stabilizing mutations based on directed evolution studies
+2. Consider adding surface-exposed disulfide bonds to further enhance thermostability
+3. Evaluate pH stability with a focus on maintaining the catalytic mechanism
+
+Let's create one more refined design that incorporates additional stabilizing mutations:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_017xRbYRomGuAUWoZAQsHc9G
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGEFGKAVQQPDGLAVLGIFLKVGSAKPGLQKCVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQILKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'CA_OptimizedStable.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/CA_OptimizedStable.pdb.pdb
+--- END TOOL OUTPUT (Length: 47 chars) ---
+=== END TOOL CALL ===
+

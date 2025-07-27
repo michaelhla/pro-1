@@ -1,0 +1,9 @@
+Now let's evaluate the Rosetta energy score of this helix duplication variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01WcyJHyUdfR4NBkpXHawJV6
+Arguments: {'pdb_file_path': 'predicted_structures/ca_helix_duplication.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 337.32 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/ca_helix_duplication.pdb.pdb
+--- END TOOL OUTPUT (Length: 158 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,29 @@
+Let's also look at some examples in other metalloproteases for inspiration:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_013xGHSe5ZvMzNyMrMNjPPaz
+Arguments: {'query': 'metalloprotease stability engineering thermostable repeating structural elements'}
+--- TOOL OUTPUT ---
+Engineering metalloproteases for enhanced thermostability typically involves rational design strategies targeting key regions influencing protein stability, including manipulation of hydrogen bonding, hydration shells, and repeating structural domains such as β-jelly roll (βJR) motifs. Mutational approaches, often guided by computational tools like molecular dynamics (MD) simulations, have demonstrated success in increasing melting temperatures and stabilizing the enzymatic core[1][4][5].
+
+Key findings and strategies:
+
+- **Targeted Mutagenesis:** Mutations such as D28N and D116N in a Pseudomonas aeruginosa metalloprotease led to melting temperature (Tₘ) increases of 6.1°C and 9.2°C, respectively, attributed to enhanced hydrogen bonding and improved hydration shells within the protein structure[1].
+  
+- **Role of Repeating Structural Elements:** The β-jelly roll (βJR) domain, a repeating structural motif, has a major role in folding and stability. Specific Ca²⁺-binding sites within this domain critically affect thermostability. Mutations converting Asn to Asp in this region reduced stability, suggesting the importance of residue type and charge at these positions[4].
+
+- **Rational Design and Simulation:** Molecular dynamics simulations are used to identify candidate residues for mutation that, when altered, can contribute new stabilizing interactions, such as additional hydrogen bonds, without compromising enzymatic activity[1][5].
+
+- **Stability Assessment:** Thermal stability is typically quantified using melting temperature (Tₘ) or temperature where half the protein is inactivated (T₅₀)[2][3]. Enhancements are considered significant when Tₘ increases by several degrees, and engineered mutants show improved performance at elevated temperatures.
+
+- **Functional Consequences:** In addition to thermal stability, these rational mutations often retain or even improve synthetic activity, an important consideration for biotechnological and industrial applications[1].
+
+Caveats:
+
+- While individual residue replacements in βJR domains or Ca²⁺-binding regions can improve stability, changes must be carefully chosen to avoid deleterious effects on folding or activity[4].
+  
+- Most documented approaches focus on point mutations or subtle modifications rather than large rearrangements of repeating elements. Engineering entire structural repeats (e.g., adding or rearranging βJR motifs) remains more challenging and less explored in the literature surveyed here.
+
+In summary, rational engineering of metalloprotease thermostability focuses on site-directed mutagenesis informed by structural understanding and computational modeling, particularly targeting repeating motifs and regions promoting hydrogen bond networks and hydration, with measured improvements in thermal tolerance and retained function demonstrated in several studies[1][4][5].
+--- END TOOL OUTPUT (Length: 2872 chars) ---
+=== END TOOL CALL ===
+

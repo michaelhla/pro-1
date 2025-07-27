@@ -1,0 +1,9 @@
+Let's evaluate our combined design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_016McaGA544xqRcFHt6YQK6f
+Arguments: {'pdb_file_path': 'predicted_structures/CA_combined_mutations.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -220.17 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_combined_mutations.pdb.pdb
+--- END TOOL OUTPUT (Length: 160 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,46 @@
+Now, let's look for small stable protein domains that could be used as fusion partners:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01FFtmd1EgZ2scdRj5JQBGaP
+Arguments: {'query': 'small stable protein domains for fusion thioredoxin ubiquitin ferredoxin cold shock proteins'}
+--- TOOL OUTPUT ---
+**Small, stable protein domains commonly used for fusion to enhance the expression, solubility, and stability of recombinant proteins include**:
+
+- **Thioredoxin (Trx)**
+- **Ubiquitin**
+- **Ferredoxin**
+- **Cold shock proteins (e.g., CspA from E. coli)**
+
+These domains serve as **fusion tags** or partners to facilitate recombinant protein expression, folding, and purification, especially for peptides or proteins that are unstable, insoluble, or prone to degradation when expressed alone[2][4].
+
+**Supporting Details:**
+
+- **Thioredoxin**:
+    - A small (~12 kDa), highly soluble, and stable redox protein from E. coli, widely used as a fusion partner[2][4].
+    - Fusion with thioredoxin increases the solubility and stability of heterologous proteins and peptides in bacterial expression systems and reduces protein aggregation into inclusion bodies[2][4].
+    - Commercial systems (e.g., His-Patch ThioFusion™) exploit thioredoxin fusions to aid in high-level, soluble expression and purification via a metal-binding domain[4].
+- **Ubiquitin**:
+    - Another small, stable domain (approx. 8.5 kDa) used as a fusion tag that can increase solubility and facilitate downstream removal by ubiquitin-specific proteases (notation from search context; direct source not provided, but this is established in protein engineering literature).
+- **Ferredoxin**:
+    - Refers to a family of small (~6-12 kDa), thermostable, and highly soluble iron-sulfur proteins. Used in fusion constructs for stabilizing peptides or as a soluble tag (not directly evidenced in the above search results but well-documented in structural biology).
+- **Cold shock proteins (CSPs)**:
+    - Small (approx. 7 kDa), highly soluble, and stable proteins from bacteria. For example, the *E. coli* CspA cold shock protein is used as a fusion tag to increase expression and solubility of target proteins, especially at lower temperatures (no direct citation from search, but broadly established in recombinant protein literature; inclusion justified by standard practice).
+
+**General Properties of These Domains:**
+
+- **Small size** minimizes steric hindrance and interference with the function of the fused protein.
+- **High stability** and **resistance to proteolysis** support improved protein yields.
+- **Well-defined folding and two-state folding kinetics**, as confirmed for many, such as cold shock proteins and SH3 domains, enable rational fusion design[1][3].
+
+**Applications:**
+- Increasing **expression levels** and **solubility** of difficult proteins in *E. coli* and other expression systems[2][4].
+- **Facilitating purification** by providing affinity handles or facilitating proper folding.
+- Protecting small peptides from **intracellular degradation**[2].
+
+**Limitations and Considerations:**
+- **Fusion domains can sometimes affect the target protein's function or activity**; removal (e.g., by protease cleavage) may be necessary after purification.
+- Choice of fusion partner may depend on the expression host, target protein properties, and intended downstream application.
+
+There is consensus that **thioredoxin, ubiquitin, ferredoxin, and cold shock proteins are among the most commonly used small, stable domains for protein fusion applications**[2][4]. Their selection is based on their structural properties, high solubility, and established records of enhancing protein expression and stability.
+--- END TOOL OUTPUT (Length: 3391 chars) ---
+=== END TOOL CALL ===
+

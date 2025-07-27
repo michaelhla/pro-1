@@ -1,0 +1,9 @@
+Let's design a new variant that combines the disulfide bond with core packing optimization:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01NrjnyvV3m4vxuDKV2hWABE
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVCYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGCGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLFTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'disulfide_core_packing_variant.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/disulfide_core_packing_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 59 chars) ---
+=== END TOOL CALL ===
+

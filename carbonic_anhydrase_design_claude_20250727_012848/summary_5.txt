@@ -1,0 +1,50 @@
+
+
+# Carbonic Anhydrase Stability Engineering Summary
+
+## Project Objective
+Design stable carbonic anhydrase variants while maintaining catalytic function.
+
+## Design Approaches and Results
+
+### Initial Conservative Design (CA_RationalStable)
+- **Mutations**: V143C and V207I
+- **Rosetta Score**: -288.16 REU (most stable of all designs)
+- **RMSD vs Reference**: 0.143 Å (excellent native fold preservation)
+- **Catalytic Integrity**: Excellent (active site RMSD: 0.060 Å)
+- **Secondary Structure**: 18.1% helix, 26.5% sheet, 55.4% loop
+
+### Second Conservative Design (CA_OptimizedStable)
+- **Mutations**: D139E, V143C, and V207I
+- **Rosetta Score**: -284.94 REU (slightly less stable than CA_RationalStable)
+- **RMSD vs Reference**: 0.148 Å (excellent native fold preservation)
+- **Catalytic Integrity**: Excellent (active site RMSD: 0.061 Å)
+
+### Bold Designs with Major Structural Modifications
+- **CA_CoilStable** (coiled-coil motifs)
+  - **Rosetta Score**: -251.54 REU
+  - **RMSD vs Reference**: 20.586 Å (significant structural changes)
+  - **Catalytic Integrity**: Well preserved despite global fold changes
+
+- **CA_ZincFingerInsert** (zinc finger domain insertion)
+  - **Rosetta Score**: 210.65 REU (positive/unfavorable energy)
+  - **Catalytic Integrity**: Excellent (active site RMSD: 0.092 Å)
+  - Most promising of the bold designs, but still unstable
+
+- **Other Bold Designs Attempted**:
+  - CA_BetaPropeller_ZincStabilized (Rosetta: 2653.01 REU)
+  - CA_CompactZincStabilized (Rosetta: 1073.24 REU)
+  - CA_ThermostableCoilInsert (Rosetta: 242.87 REU)
+  - CA_CoilTail_ZincFinger (Rosetta: 1772.34 REU)
+  - CA_PfMBP_Fusion (Rosetta: 5104.28 REU)
+  - CA_Thermostable_ZincFinger (Rosetta: 433.57 REU)
+  - CA_CTerminal_ZincFinger (Rosetta: 316.61 REU)
+
+## Key Findings
+1. Conservative point mutations (V143C, V207I) yielded the most stable structures while perfectly preserving the native fold and catalytic function
+2. Major structural modifications (domain insertions, fusion proteins) generally resulted in unfavorable energy scores
+3. The zinc finger domain insertion showed the most promise among bold designs, preserving catalytic function but with unfavorable energy
+4. All designs maintained excellent catalytic site geometry (RMSD < 0.1 Å) despite global fold differences
+
+## Current Status
+The CA_RationalStable variant with V143C and V207I mutations remains the most promising design, offering improved stability while maintaining native structure and function.

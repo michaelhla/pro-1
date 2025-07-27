@@ -1,0 +1,50 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_015wGndgn4uDfhPeAv5ppBFd
+Arguments: {'query': 'thermostable rubredoxin domain sequence pyrococcus furiosus small metal binding'}
+--- TOOL OUTPUT ---
+The **thermostable rubredoxin domain sequence** from **Pyrococcus furiosus** is a small, well-characterized metal-binding protein domain, typically comprising 53–54 residues that coordinate a single iron atom tetrahedrally through four cysteines[1][4][5]. This domain is renowned for its exceptional thermostability.
+
+### Representative Sequence
+
+According to the atomic resolution crystal structure (PDB ID: 5NW3) and UniProt entry P24297, the canonical sequence for P. furiosus rubredoxin is:
+
+```
+MAKKKEIIDCDSCGACTKAIVEEYDDVAPKFGEEVIEYVPVDGSCGSCASVCPVG
+```
+- **Length:** 54 residues[1].
+- **Gene:** rub (PF1282)[1].
+- **Metal-binding motif:** The iron is tetrahedrally coordinated by cysteines at highly conserved positions, consistent with the metal center found in all rubredoxins[5].
+- **Organism:** Pyrococcus furiosus (strain DSM 3638/ATCC 43587/JCM 8422/Vc1)[1][3].
+
+### Structural and Functional Insights
+
+- The domain size generally ranges between 45 and 55 residues, with a signature metal-binding motif consisting of four cysteines[5].
+- This domain exhibits extremely high thermostability—the P. furiosus rubredoxin is described as *the most thermostable monomeric protein known to reversibly unfold*[2][4].
+- The structure is monomeric and folds into a compact domain stabilized by the bound iron ion[3][4].
+- The sequence may have slight N-terminal variations depending on expression constructs; some studies use an Ala2→Lys mutant for better N-terminal processing[2].
+
+### Sequence Annotation and Metal Binding
+
+- The **rubredoxin domain** is annotated in protein family databases as **IPR024935**[5].
+- The **core metal-binding motif** is defined by the conserved cysteines at positions corresponding to Cys6, Cys9, Cys39, and Cys42 in the P. furiosus sequence[1][5].
+- The domain binds **one Fe(III) ion**[1][3].
+
+### References to Primary Data
+
+- **PDB 5NW3**: High-resolution structure and full sequence annotation[1].
+- **PDB 1BRF**: Wild-type structure; downloadable sequence[3].
+- **UniProt P24297**: Reference sequence entry for P. furiosus rubredoxin[1].
+
+### Key Points
+
+- **Small domain size**: 53–54 residues[1][4][5].
+- **Metal binding**: One iron atom, coordinated by four conserved cysteines[1][5].
+- **Thermostable**: Among the most thermostable monomeric proteins known[2][4].
+- **Sequence example**: Provided above, based on PDB 5NW3/UniProt[1].
+
+For detailed sequence annotation, consult the UniProt entry P24297 or the PDB structure 5NW3[1].
+
+**Caveat:** Minor sequence variants may exist depending on the construct or expression system used, but the core domain and metal-binding site remain conserved among authentic P. furiosus rubredoxins[2].
+--- END TOOL OUTPUT (Length: 2683 chars) ---
+=== END TOOL CALL ===
+

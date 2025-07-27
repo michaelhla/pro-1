@@ -1,0 +1,28 @@
+Now let's search for the specific sequence of the Bacillus caldolyticus CspB protein:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01PckhxAf1bf2CtUDj4n99oF
+Arguments: {'query': 'Bacillus caldolyticus CspB protein sequence amino acid exact FASTA format'}
+--- TOOL OUTPUT ---
+The exact amino acid sequence of the **Bacillus caldolyticus CspB protein** (chain A/B, UniProt: P41016), in standard FASTA format, is:
+
+```
+>sp|P41016|CSBP_BACCL Cold shock protein B OS=Bacillus caldolyticus OX=1393 GN=cspB PE=1 SV=1
+MANKVFAAAT YPAAVKFGFE WIKTAEEVKH FNKFGSIYYR KGGWTFVHAV NPENGIQVFS NG
+```
+**Key details:**
+- **Length:** 66 amino acids
+- **Source:** Bacillus caldolyticus
+- **Reference PDB structure:** 2hax[3]
+- **UniProt Accession:** P41016[3]
+
+This sequence is directly supported by structural database entries and the referenced UniProt record. If you require the sequence header in a minimal FASTA style (for e.g., local BLAST), the following is also acceptable:
+
+```
+>BC_CspB
+MANKVFAAATYPAAVKFGFEWIKTAEEVKHFNKFGSIYYRKGGWTFVHAVNPENGIQVFSNG
+```
+
+There is a one-residue difference in length compared to the Bacillus subtilis CspB (67 aa)[1], so it is important to use the Bacillus caldolyticus version for structural or functional analyses.
+--- END TOOL OUTPUT (Length: 961 chars) ---
+=== END TOOL CALL ===
+

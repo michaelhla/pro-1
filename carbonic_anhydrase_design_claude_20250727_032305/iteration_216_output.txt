@@ -1,0 +1,29 @@
+# Summary of New Designs
+
+## 1. Enhanced Salt Bridge Network with K100G Mutation
+- Combined salt bridge variant (A245E/Q249R/Q253E) with K100G mutation
+- Rosetta score: -292.65 REU
+- Active site RMSD: 0.015 Å
+- Zinc binding RMSD: 0.001 Å
+- Secondary structure preserved (17.3% helix, 26.5% sheet, 56.2% loop)
+- Total SASA: 12,075.62 Å²
+
+## 2. NEXT Tag Fusion with Salt Bridge Network
+- Added marine-derived NEXT tag to salt bridge variant
+- Rosetta score: 225.53 REU (unfavorable)
+- Active site RMSD: 8.98 Å (significantly altered)
+- Zinc binding RMSD: 3.95 Å (significantly altered)
+- The addition of the NEXT tag disrupted the protein structure
+
+## 3. Hydrogen Bond Enhanced CA Variant
+- Introduced G171A and G196A mutations to enhance backbone hydrogen bonds
+- Retained salt bridge mutations (A245E/Q249R/Q253E)
+- Rosetta score: -315.51 REU (best score among all variants)
+- Active site RMSD: 0.025 Å (excellent preservation)
+- Zinc binding RMSD: 0.012 Å (excellent preservation)
+- Secondary structure preserved (17.3% helix, 26.5% sheet, 56.2% loop)
+- Total SASA: 12,127.18 Å²
+
+The Hydrogen Bond Enhanced variant (Design 3) shows the most promise with the best Rosetta energy score (-315.51 REU) and excellent preservation of catalytic site geometry. This design builds on our successful salt bridge approach by introducing strategic glycine-to-alanine mutations that enhance backbone hydrogen bonding while maintaining the protein's overall structure.
+
+Would you like me to explore any of these designs further or pursue another stabilization strategy?

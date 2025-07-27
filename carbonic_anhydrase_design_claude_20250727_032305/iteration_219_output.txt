@@ -1,0 +1,38 @@
+Now let's search for a specific thermostable β-barrel domain to insert into carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_016kk5FGapC4zBqyigsdjUsB
+Arguments: {'query': 'thermostable β-barrel domain PDB sequence from extremophile organism for enzyme design'}
+--- TOOL OUTPUT ---
+For enzyme design targeting **thermostable β-barrel domains** from **extremophiles**, the structural data landscape reveals the following:
+
+- Most thermophilic or extremophile-derived enzymes with well-characterized thermostable domains (e.g., *TsBGL* from *Thermofilum* sp.) possess an (α/β)\(_8\)-barrel (TIM barrel) catalytic core, **not** a strictly β-barrel fold as seen in classical transmembrane β-barrel proteins[2].
+- True β-barrel proteins (antiparallel β-strands forming a cylindrical barrel) are primarily found in outer membrane proteins of Gram-negative bacteria, mitochondria, and chloroplasts, rather than hyperthermophilic Archaea or Bacteria, where TIM barrels dominate among characterized thermostable enzymes[3][2].
+
+### Key Findings
+
+- **TsBGL from Thermofilum sp. ex4484_79 (Archaea)**:
+  - This is a thermostable β-glucosidase: **crystal structure resolved at 2.14Å**, maximum activity at 90°C[2].
+  - **Structural fold:** Classical (α/β)\(_8\)-barrel (TIM barrel), not a pure β-barrel domain[2].
+  - **PDB Sequence:** For TsBGL, structure details are described, but the PDB accession code and explicit sequence are not provided in the search results; you would need the PDB entry (possibly referenced in the original article) to retrieve the actual sequence[2].
+  
+- **Transmembrane β-barrels from extremophiles**:
+  - No specific query results directly identify a thermostable, extremophile-derived, transmembrane β-barrel structure with PDB sequence ready for engineering[1][3].
+  - De novo designs and well-studied transmembrane β-barrels (e.g., tOmpA, TMB2.17) are available, but these are from mesophilic organisms or synthetic sources[1].
+  - Bacterial outer membrane β-barrels are reviewed extensively, with some thermostability, but direct extremophile examples remain scarce in resolved structural databases[3].
+
+### Application-Oriented Guidance
+
+- If your **enzyme design** depends on a *β*-"barrel" fold for thermostability and substrate channeling, the **(α/β)\(_8\)-barrel domain** from **thermostable hydrolases (like TsBGL)** is strongly supported by structural biology literature for extremophiles[2].
+- The classic **transmembrane β-barrel proteins** (for porins or OMPs) are less characterized in thermophiles with deposited PDB structures; in silico design or adaptation from well-characterized mesophilic species with enhanced thermostabilizing mutations may be necessary[1][3].
+- For TIM barrels, sequences and structures are widely available (see PDB for "thermostable TIM barrel" or known PDB codes in related literature)[2].
+- For true β-barrels, extensive literature exists on mesophilic bacterial OMPs, but characterized extremophile examples (with sequence/PDB) are rare—custom design or directed evolution may be required[3][1].
+
+### Limitations
+
+- Search results **do not provide a direct PDB sequence/ID for a thermostable, extremophile-derived true β-barrel (i.e., antiparallel β-strand barrel) protein**. Most high-temperature enzyme structures resolved from extremophiles use TIM barrels.
+- If a strict **β-barrel from an extremophile** is required, consider *in silico* homology modeling using bacterial OMPs as scaffolds or consult the full PDB using advanced search filters.
+
+**In summary**: The (α/β)\(_8\)-barrel catalytic domain from thermophilic enzymes like TsBGL is well-characterized and suitable for thermostable enzyme engineering from extremophiles[2]. In contrast, naturally occurring thermostable transmembrane β-barrel domains with deposited structures from extremophiles are not readily available in current databases[1][3][2].
+--- END TOOL OUTPUT (Length: 3602 chars) ---
+=== END TOOL CALL ===
+

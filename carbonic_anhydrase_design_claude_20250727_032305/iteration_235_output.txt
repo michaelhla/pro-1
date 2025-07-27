@@ -1,0 +1,25 @@
+Let's search for more specific information about successful carbonic anhydrase stabilization approaches:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01K6K8kTymbq1z97RCidxHbk
+Arguments: {'query': 'successful mutations that enhanced carbonic anhydrase II stability without compromising function'}
+--- TOOL OUTPUT ---
+Several **mutations in human carbonic anhydrase II (HCAII) have been identified that enhance its stability without compromising catalytic function**. The most detailed studies focus on variants engineered for increased thermostability, which is highly desirable for industrial and research applications.
+
+Key mutations and findings include:
+
+- **Six Stabilizing Mutations**: The variant known as HCAIIts contains six mutations: **A248T, L224S, L240P, A65T, L100H, and K154N**. Structural analysis shows each mutation contributes to stabilization through mechanisms such as increased hydrophobic surface burial (A248T, L100H), improved hydrogen bonding (L224S, L240P, A65T), reduced conformational entropy loss ([L240P]), and decreased backbone strain (multiple sites), while causing only minimal and localized structural changes away from the active site. Importantly, these mutations are **structurally independent** and do **not perturb catalytic activity** because they are distant from the active site[1].
+
+- **Surface Hydrophobic Residue Replacements**: Independent studies confirm that replacement of **surface hydrophobic residues** enhances thermal stability. These changes improve surface hydrogen bonding and maintain the **active site geometry and electrostatics**, ensuring that both **catalytic efficiency and proton transfer activity** are preserved[2].
+
+- **Mechanistic Details**: Crystallographic data indicate that the stabilizing effects stem from local changes rather than global structural rearrangements. **No significant loss of flexibility** or enzyme solubility is observed, and the enzyme's kinetic properties (including CO₂ hydration capacity) are retained[1][2].
+
+- **Combination Strategies**: Some studies optimize stability further by **combining surface mutations with strategic active site changes**, although for strict retention of native function, mutations away from the active site are preferable[2].
+
+**In summary:**  
+**Mutations such as A248T, L224S, L240P, A65T, L100H, and K154N** have been systematically validated to enhance HCAII stability with **no detectable reduction in enzymatic activity**, making them successful examples of function-preserving stabilizing mutations[1][2]. These findings provide a blueprint for engineering robust biocatalysts for biotechnology and research.
+
+No evidence in the cited literature suggests these mutations compromise function; all data support retained or even occasionally improved enzymatic performance[1][2].  
+If you require details on other CA isoforms, or additional context, please specify.
+--- END TOOL OUTPUT (Length: 2580 chars) ---
+=== END TOOL CALL ===
+

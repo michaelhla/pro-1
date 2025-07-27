@@ -1,0 +1,41 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01HRfDHrSEJqw9Ugf9z46K1H
+Arguments: {'query': 'ancestral sequence reconstruction for thermostable proteins techniques'}
+--- TOOL OUTPUT ---
+**Ancestral sequence reconstruction (ASR)** is a computational and experimental approach that infers and synthesizes the protein sequences of evolutionary ancestors, which are often found to be more thermostable than their modern descendants. The main techniques involved in ASR for thermostable protein engineering include:
+
+**1. Sequence Collection and Curation**
+- Collect a **wide set of homologous protein sequences** (descendants of the ancestor of interest), including sequences from related outgroups[2][3].
+- **Manual curation** is essential to remove incomplete, misannotated, or error-prone entries from databases, as errors can affect reconstruction reliability[2].
+
+**2. Multiple Sequence Alignment (MSA)**
+- Align all curated sequences using tools like MAFFT or Clustal Omega, ensuring conserved and variable regions are accurately represented[2].
+- Misalignments and gaps must be carefully reviewed and, where necessary, corrected manually[2].
+
+**3. Phylogenetic Tree Construction**
+- Build a **phylogenetic tree** depicting the evolutionary relationships between the collected sequences, often using maximum likelihood or Bayesian methods[2][3].
+- Tree accuracy is critical, as the topology directly influences the predicted ancestral sequences[2].
+
+**4. Ancestral Sequence Inference**
+- Use **probabilistic models of evolution** (e.g., maximum likelihood, Bayesian inference) to predict the most probable ancestral amino acid at each position[3][4].
+- Tools commonly used include PAML, FastML, and MEGA[2][3].
+- The reconstruction can be further refined by using structural/functional constraints or consensus approaches.
+
+**5. Gene Synthesis and Experimental Resurrection**
+- Synthesize the inferred ancestral gene and express the corresponding protein in a suitable expression system (commonly E. coli)[1][2].
+- Purify the protein and experimentally measure its **thermostability** and activity.
+
+**Unique Features for Thermostable Protein Engineering**
+- ASR frequently yields proteins with **increased thermostability** compared to extant homologs, possibly due to ancient organisms having adapted to hotter environments or because consensus among divergent sequences tends to favor stable residues[2][3].
+- Experimental characterization of resurrected proteins can identify mutations responsible for enhanced stability and guide further protein engineering efforts[3].
+
+**Limitations and Considerations**
+- The **accuracy of ASR** depends critically on the quality of sequence data, alignment, and phylogenetic inference; errors in any step can propagate[2].
+- Certain evolutionary events (e.g., horizontal gene transfer, rapid radiation) can complicate reconstruction[3].
+- While often successful, not all ASR-inferred proteins are guaranteed to be thermostable or functional under modern laboratory conditions[2][3].
+
+**In summary:**  
+ASR for thermostable protein design involves careful sequence curation, multiple sequence alignment, phylogenetic tree building, probabilistic ancestral inference, and experimental validation. It is a powerful tool in protein engineering, especially for generating stable proteins for biotechnology applications[2][3].
+--- END TOOL OUTPUT (Length: 3178 chars) ---
+=== END TOOL CALL ===
+

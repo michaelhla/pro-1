@@ -1,0 +1,8 @@
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01Pac7GfpdHwSTmt6JrDfT4V
+Arguments: {'pdb_file_path': 'predicted_structures/disulfide_surface_charge_variant.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -256.33 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/disulfide_surface_charge_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 171 chars) ---
+=== END TOOL CALL ===
+

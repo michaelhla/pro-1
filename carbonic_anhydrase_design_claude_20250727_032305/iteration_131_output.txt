@@ -1,0 +1,8 @@
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_0194BPDY4cUx9wJLfBDbAo7z
+Arguments: {'pdb_file_path': 'predicted_structures/triple_stability_variant.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -257.17 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/triple_stability_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 163 chars) ---
+=== END TOOL CALL ===
+

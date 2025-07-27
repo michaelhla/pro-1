@@ -1,0 +1,9 @@
+Now let's calculate the Rosetta score to assess the stability of this design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01JfadfGdxnooCAHXzG9xq8M
+Arguments: {'pdb_file_path': 'predicted_structures/CA_CoilStable.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -251.54 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_CoilStable.pdb.pdb
+--- END TOOL OUTPUT (Length: 152 chars) ---
+=== END TOOL CALL ===
+

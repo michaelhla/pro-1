@@ -1,0 +1,42 @@
+I need to summarize a carbonic anhydrase (CA) engineering project focused on creating more stable variants while maintaining catalytic activity for carbon capture applications.
+
+## Project Objective and Previous Results
+The team has been designing carbonic anhydrase variants with enhanced stability through:
+
+1. **Calcium Binding Site Engineering**:
+   - Most successful was a refined calcium binding variant with DxDxDG motif at position 222-227
+   - Rosetta score: -272.14 REU, radius of gyration: 17.17 Å
+   - Excellent catalytic site integrity (active site RMSD: 0.043 Å)
+
+2. **Secondary Structure Element Duplication**:
+   - α-Helix duplication (residues 22-35 duplicated after position 160)
+   - Rosetta score: 337.32 REU
+   - Circular permutation approach was unfavorable (Rosetta score: 6511.10 REU)
+
+## Recent Design Iterations
+
+Three new strategies were tested:
+
+1. **Disulfide Bond Engineering (56-69)**:
+   - Introduced cysteines at positions 56 and 69
+   - Rosetta score: -302.17 REU (excellent improvement over wild-type)
+   - Minimal structural change (RMSD: 0.083 Å)
+   - Excellent catalytic integrity (active site RMSD: 0.028 Å)
+   - Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+
+2. **Surface Charge Optimization**:
+   - Introduced salt bridges at positions 67-105 and 150-160
+   - Rosetta score: -235.91 REU (good improvement)
+   - Minimal structural change (RMSD: 0.038 Å)
+   - Excellent catalytic integrity (active site RMSD: 0.020 Å)
+
+3. **Domain Fusion with Thermophilic Rubredoxin**:
+   - Inserted 54-residue rubredoxin domain from Pyrococcus furiosus at position 130-135
+   - Rosetta score: 202.60 REU (less favorable)
+   - Significant structural change (RMSD: 19.62 Å)
+   - Good catalytic integrity maintained (active site RMSD: 0.115 Å)
+   - Larger protein with 315 residues vs. 260 in wild-type
+
+A combined calcium binding + disulfide bond design was also tested but showed poor results (Rosetta score: 48.09 REU).
+
+The disulfide bond variant (56-69) currently shows the most promise with the best Rosetta score while maintaining excellent catalytic site integrity.

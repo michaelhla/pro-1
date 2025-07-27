@@ -1,0 +1,22 @@
+Now, let's search for more specific information about positions in carbonic anhydrase where mutations or disulfide bonds might enhance stability:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01JLK461ZFXf14CimjDXTmo9
+Arguments: {'query': 'carbonic anhydrase II stabilizing mutation positions core packing surface charges'}
+--- TOOL OUTPUT ---
+**Stabilizing mutations in human carbonic anhydrase II (HCA II) typically enhance protein stability by improving core packing, introducing or optimizing surface charges, and increasing surface hydrogen bonding.** Several structural studies have pinpointed how these mutations confer stability:
+
+- **Core Packing:** Some stabilizing mutations increase hydrophobic interactions within the protein core, thereby enhancing overall structural integrity and resistance to unfolding. For example, well-studied thermostable HCA II variants often include internal substitutions that improve packing efficiency and reduce internal cavities, which lessens susceptibility to thermal fluctuations[3].
+
+- **Surface Charges and Hydrogen Bonding:** Introducing charged residues or those capable of hydrogen bonding on the protein surface can reduce aggregation and improve solubility. Structural studies of stabilized HCA II mutants reveal that such surface mutations often form new hydrogen bonds or salt bridges, contributing to enhanced thermostability without compromising enzyme activity[2][3].
+
+- **Mechanistic Insights:** X-ray crystallographic analysis of a highly thermostable HCA II variant (HCAIIts) showed that the six stabilizing mutations act largely independently. These mutations variably result in *increased hydrogen bonding*, *improved packing*, and *optimization of surface electrostatics*, each contributing additively to thermal stability[3].
+
+- **Functional Consequences:** Careful design of these stabilizing mutations can yield HCA II variants with increased resistance to denaturation and retained or even enhanced catalytic properties. For example, replacing certain surface hydrophobic residues with polar or charged ones increases hydrogen bonding and surface electrostatics, stabilizing the protein under stressful conditions while maintaining activity[2].
+
+- **Examples of Relevant Mutations:** 
+  - His64 and Gly145 are positions where disease-linked mutations destabilize the protein, highlighting the contrast between destabilizing and stabilizing substitutions[1][4]. In thermostable designs, stabilizing mutations are often located at the surface or the core, away from the active site, so as not to perturb catalytic geometry[2][3].
+
+In summary, **key positions for stabilizing mutations in carbonic anhydrase II are often found in the protein core and at the surface, targeting improved packing and surface charge optimization through enhanced hydrogen bonding and salt bridge formation**. These modifications can be combined for additive stability effects while preserving enzymatic function[2][3].
+--- END TOOL OUTPUT (Length: 2621 chars) ---
+=== END TOOL CALL ===
+

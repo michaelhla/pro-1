@@ -1,0 +1,38 @@
+Now, let's search for information about thermostable domains that could be inserted into carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Mt7oFV61fPcepkfEzDHEqX
+Arguments: {'query': 'small thermostable protein domains for domain insertion or fusion 20-100 residues'}
+--- TOOL OUTPUT ---
+Several **small thermostable protein domains** in the 20–100 residue range are well-suited scaffolds for **domain insertion or fusion** because of their inherent stability, solubility, and refolding characteristics:
+
+- **Albumin-Binding Domain (ABD):**
+  - **Size:** About 46 residues
+  - **Structure:** Three-helix bundle
+  - **Properties:** Highly thermostable, tolerant to pH and denaturing agents, high solubility, refolds efficiently, and widely used in protein engineering as a compact and robust scaffold[2].
+  - **Suitability:** Its small size and stability, even without disulfide bridges or bound ions, have made ABD a popular platform for inserting peptides or fusing other domains[2].
+
+A few other domains are commonly used due to similar features, though not all are explicitly detailed in the provided search results. Drawing from protein engineering literature and widely adopted practices (in combination with the information in the search results), notable examples include:
+
+- **Z-domain (Staphylococcal protein A derivative):**
+  - **Size:** ~58 residues
+  - **Structure:** Similar to ABD
+  - **Suitability:** Thermostable, used for display and fusion applications, and engineered to bind various targets[2].
+
+**General characteristics that make domains like ABD and Z-domain attractive:**
+  - **High thermal and chemical stability** due to a densely packed hydrophobic core and strong secondary structure elements[2].
+  - **No requirement for cofactors or disulfide bonds,** simplifying fusion and expression in different systems.
+  - **Small size** suitable for domain insertion/fusion while preserving function.
+
+**Other thermostable domains in the 20–100 residue range (based on broad protein engineering utility, not explicitly found in the search results):**
+  - **WW domains, SH3 domains, GB1 domain, and knottins**—these are typically compact, stable, and tunable, but each may have specific structural constraints or fusion limitations.
+
+**Limitations and Caveats:**
+- The search results provide a concrete and detailed example only for the albumin-binding domain and its analogs.
+- For other candidates like Z-domain or knottins, direct evidence of thermostability and suitability for fusion should be verified for each use case based on published thermostability measurements.
+- Structural and energetic analyses indicate that **thermostable proteins generally have higher core packing and strategic residue arrangements** as compared to mesostable proteins, reinforcing that small, highly structured domains are the best starting points for engineering stable fusion proteins[1][3].
+
+**In summary:**  
+The **albumin-binding domain** (ABD, ~46 residues) and the **Z-domain** (~58 residues) are exemplary, thoroughly-characterized, small thermostable domains ideally suited for fusion or domain insertion applications[2]. Their high thermal stability, solubility, and folding robustness make them prime platforms for protein engineering.
+--- END TOOL OUTPUT (Length: 2966 chars) ---
+=== END TOOL CALL ===
+

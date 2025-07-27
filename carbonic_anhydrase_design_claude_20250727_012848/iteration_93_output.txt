@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01NnvZdXwZ9YEhemtF2rGrib
+Arguments: {'pdb_file_path': 'predicted_structures/CA_ThermoFold_Refined.pdb.pdb', 'image_subdir': 'CA_ThermoFold_Refined'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA_ThermoFold_Refined.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_ThermoFold_Refined/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2348,
+    "total_residues": 296,
+    "radius_of_gyration": 19.73,
+    "center_of_mass": [
+      -1.82,
+      -2.8,
+      -0.86
+    ],
+    "estimated_molecular_weight": 32560
+  },
+  "secondary_structure_content": {
+    "total_residues": 296,
+    "helix_residues": 66,
+    "sheet_residues": 64,
+    "loop_residues": 166,
+    "helix_percentage": 22.3,
+    "sheet_percentage": 21.6,
+    "loop_percentage": 56.1
+  },
+  "surface_properties": {
+    "total_sasa": 15735.27,
+    "hydrophobic_sasa": 7848.01,
+    "polar_sasa": 7784.95,
+    "hydrophobic_ratio": 49.9
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 296 residues. Secondary structure: 22.3% helix, 21.6% sheet, 56.1% loop. Radius of gyration: 19.73 \u00c5. Total SASA: 15735.27 \u0172. Surface hydrophobicity: 49.9%."
+}
+--- END TOOL OUTPUT (Length: 1256 chars) ---
+=== END TOOL CALL ===
+

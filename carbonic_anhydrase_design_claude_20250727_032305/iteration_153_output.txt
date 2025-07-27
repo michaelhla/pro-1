@@ -1,0 +1,14 @@
+In this variant, I've made three strategic mutations:
+- A245E: Introduced a negatively charged glutamate to form salt bridges with nearby positively charged residues
+- Q249R: Introduced a positively charged arginine to form salt bridges with nearby negatively charged residues
+- Q253E: Changed glutamine to glutamate to enhance the salt bridge network
+
+Let's evaluate this variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01VzpCw8MRcv1ukqvofwVsnA
+Arguments: {'pdb_file_path': 'predicted_structures/ca2_salt_bridge_variant.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -310.91 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/ca2_salt_bridge_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 162 chars) ---
+=== END TOOL CALL ===
+

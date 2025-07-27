@@ -1,0 +1,8 @@
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01VmdGDUnRFjDhesY5Xtf1HX
+Arguments: {'pdb_file_path': 'predicted_structures/CA_ThermostableCoilInsert.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 242.87 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_ThermostableCoilInsert.pdb.pdb
+--- END TOOL OUTPUT (Length: 163 chars) ---
+=== END TOOL CALL ===
+

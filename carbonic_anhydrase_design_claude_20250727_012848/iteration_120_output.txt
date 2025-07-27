@@ -1,0 +1,19 @@
+## Final Design Recommendation
+
+After evaluating multiple design strategies, I recommend the **CA_RationalStable** variant as the most promising design:
+
+1. **Superior Stability**: Achieved the best Rosetta score (-288.16 REU) among all variants
+2. **Preserved Native Fold**: Maintained nearly identical structure to wild-type (RMSD 0.143 Å)
+3. **Intact Catalytic Function**: Excellent preservation of active site geometry (RMSD 0.061 Å)
+4. **Targeted Mutations**: Strategic point mutations (V→C at 143 and V→I at 207) that enhance stability without disrupting function
+
+The CA_OptimizedStable variant with the additional D→E mutation at position 139 showed slightly reduced stability (-284.94 REU) compared to CA_RationalStable, suggesting that not all mutations are additive in their stabilizing effects.
+
+For future work, I recommend:
+
+1. **Computational evaluation** of additional point mutations at surface-exposed positions
+2. **Exploring disulfide bond engineering** to further enhance thermostability
+3. **MD simulations** to assess dynamic stability under various conditions
+4. **Experimental validation** of these designs with thermal denaturation assays
+
+This rational design approach demonstrates that significant stability improvements can be achieved while carefully preserving the native fold and catalytic function of carbonic anhydrase.

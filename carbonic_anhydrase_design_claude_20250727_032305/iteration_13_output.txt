@@ -1,0 +1,9 @@
+Let's calculate the Rosetta energy score for this fusion protein:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01UzbCYV6ELgqXzt8CEAaq9p
+Arguments: {'pdb_file_path': 'predicted_structures/CA_CspB_fusion.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 1557.96 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_CspB_fusion.pdb.pdb
+--- END TOOL OUTPUT (Length: 153 chars) ---
+=== END TOOL CALL ===
+

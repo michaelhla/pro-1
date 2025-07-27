@@ -1,0 +1,49 @@
+This is a highly unfavorable score. Let's analyze the structure:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01VGPJ19ZjUPKnPKwHJwkYEq
+Arguments: {'pdb_file_path': 'predicted_structures/ca2_bgraspdomain_insert.pdb.pdb', 'image_subdir': 'ca2_bgraspdomain_insert'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/ca2_bgraspdomain_insert.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/ca2_bgraspdomain_insert/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 3132,
+    "total_residues": 397,
+    "radius_of_gyration": 25.47,
+    "center_of_mass": [
+      -3.75,
+      -1.15,
+      -8.9
+    ],
+    "estimated_molecular_weight": 43670
+  },
+  "secondary_structure_content": {
+    "total_residues": 397,
+    "helix_residues": 72,
+    "sheet_residues": 95,
+    "loop_residues": 230,
+    "helix_percentage": 18.1,
+    "sheet_percentage": 23.9,
+    "loop_percentage": 57.9
+  },
+  "surface_properties": {
+    "total_sasa": 23538.19,
+    "hydrophobic_sasa": 11972.44,
+    "polar_sasa": 11470.36,
+    "hydrophobic_ratio": 50.9
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 397 residues. Secondary structure: 18.1% helix, 23.9% sheet, 57.9% loop. Radius of gyration: 25.47 \u00c5. Total SASA: 23538.19 \u0172. Surface hydrophobicity: 50.9%."
+}
+--- END TOOL OUTPUT (Length: 1263 chars) ---
+=== END TOOL CALL ===
+

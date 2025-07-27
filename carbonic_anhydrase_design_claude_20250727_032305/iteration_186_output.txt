@@ -1,0 +1,9 @@
+Now let's calculate the Rosetta score for this proline-stabilized variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01E5H7MiV1z9q2Sek4ua7Vkp
+Arguments: {'pdb_file_path': 'predicted_structures/proline_stabilized_variant.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -102.55 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/proline_stabilized_variant.pdb.pdb
+--- END TOOL OUTPUT (Length: 165 chars) ---
+=== END TOOL CALL ===
+

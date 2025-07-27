@@ -1,0 +1,34 @@
+This full fusion is quite large and has a high energy score. Let me try a more targeted approach by using a smaller thermostable domain from an extremophile:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01XE362AG2xLFWpHhEaSJbGi
+Arguments: {'query': 'small thermostable domains from extremophiles for protein fusion stabilization'}
+--- TOOL OUTPUT ---
+Small thermostable domains from extremophiles—such as archaea and thermophilic bacteria—are widely used as **fusion partners to stabilize recombinant proteins** against thermal denaturation, aggregation, and degradation. These domains typically possess compact folds, high intrinsic stability, and strong resistance to extreme conditions, making them valuable scaffolds or solubility-enhancing fusion tags for protein engineering and biotechnology applications[1][2][3].
+
+**Key Points and Examples:**
+
+- **Thermostable domains** from extremophiles frequently derive their stability from enhanced hydrophobic cores, increased ionic (electrostatic) interactions, compactness, and in some cases, stabilizing disulfide bonds[1][2].
+- **Disulfide-rich microdomains:** Thermophilic proteins, such as the 5′-methylthioadenosine phosphorylase from *Sulfolobus solfataricus* and *Pyrococcus furiosus*, demonstrate the importance of small, disulfide-bonded domains: engineered disulfide bonds (or naturally occurring ones) can significantly raise the melting temperature and stability of both the domain itself and any protein fusion it is part of[2].
+- **Cysteinyl-tRNA synthetase (CysRS) domains:** The catalytic domains from enzymes like CysRS in archaeal extremophiles illustrate the conservation and thermostability of small, essential protein domains, which owe their stability to compact structure and conserved interfaces[1].
+- **Tardigrade CAHS domains:** In eukaryotic extremophiles, such as tardigrades, small cytosolic abundant heat-soluble (CAHS) protein domains contribute to thermal and desiccation tolerance, and recent studies suggest their modular domains can impart stability when fused to other proteins[3].
+- **Thermophilic endoglucanases and related enzymes**: Small catalytic domains from these proteins, such as those from *Myceliophthora thermophila*, remain stable at unusually high temperatures for eukaryotes and can function as thermostable modules in chimeric constructs[3].
+
+**Commonly Used Small Thermostable Domains:**
+
+- **Small ubiquitin-like modifier (SUMO):** Originally found in eukaryotes but structure-inspired by extremophile proteins; used for fusion stabilization and enhanced solubility; thermostable versions have been engineered.
+- **Carboxypeptidase inhibitor domains and SH3 domains** from archaea and thermophiles.
+- **Lactamase, rubredoxin, and ferredoxin folds** from thermophilic microbes.
+- **Small thermostable ferredoxin domains** from *Thermotoga maritima* and related archaea and bacteria.
+
+**Essential Context:**
+When choosing a fusion partner, the domain size, folding autonomy, thermodynamic stability, and compatibility with the protein of interest are crucial. Extremophile-derived domains are inherently hyperstable, allowing their fusion partners to benefit from increased heat, pH, and chemical resistance[1][2][3]. Additionally, their robust tertiary structure can protect recombinant proteins during expression and purification.
+
+**Caveats and Limitations:**
+- Not all thermostable domains are suitable for every target; domain–protein compatibility and absence of unwanted oligomerization must be tested empirically.
+- Some thermostable domains stabilize only in their native oligomeric state, which may not translate directly to single-chain fusions.
+- While intrinsic thermostability is a strong indicator, fusion must not impair the function of either domain.
+
+For the latest and most successful examples or protocol recommendations, consulting recent structural studies or domain-specific reviews on protein stabilization strategies is advised. If needed, specify the host organism or fusion application to refine recommendations.
+--- END TOOL OUTPUT (Length: 3692 chars) ---
+=== END TOOL CALL ===
+

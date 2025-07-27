@@ -1,0 +1,35 @@
+Now let me search for information about small thermostabilizing domains that could be inserted into carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01JKLNTjP5bZssiiKScLyNVk
+Arguments: {'query': 'small thermostabilizing protein domains 20-40 amino acids that could be inserted into enzymes to enhance thermostability'}
+--- TOOL OUTPUT ---
+There are currently *no universally recognized small thermostabilizing protein domains* in the 20–40 amino acid range that are routinely inserted into enzymes to enhance thermostability. Most established methods rely on other strategies, but the concept of modular, compact thermostabilizing domains is the subject of ongoing protein engineering research.
+
+**Context and supporting details:**
+
+- **Traditional strategies** for enzyme thermostabilization focus on:
+  - *Point mutations*, especially those that form new salt bridges, hydrogen bonds, or disulfide bonds in the protein core or at the surface[1][2][4].
+  - *Domain shuffling* between homologous proteins from thermophiles and mesophiles, exchanging larger, entire domains rather than ultra-small motifs[3].
+  - *Protein loop shortening* and surface engineering to reduce conformational flexibility, which helps compactness and stability[2].
+
+- **Protein domain shuffling** has been shown to increase thermostability by exchanging structural domains between enzymes, yet the domains are typically much larger than 40 amino acids—for example, *glucoamylase domains* well over 100 residues[3]. Inserted structural motifs this small (20–40 aa) are rare in published thermostabilization approaches.
+
+- **Short peptides and thermostabilizing motifs:** Natural *thermostable protein motifs* tend to be buried within the protein sequence and context-dependent, making it difficult to "plug-and-play" such motifs across different proteins. Some naturally thermostable proteins do feature repeating *α-helix* or *β-turn* motifs, but these are not generally transplantable as discrete domains[2][3].
+
+- **Disulfide-rich motifs**: Disulfide bridges (sometimes engineered using novel, longer thiol-containing amino acids) can improve thermostability if introduced at carefully selected positions[4]. Artificial insertion of such motifs requires precise knowledge of structural context; the insertion itself is not typically a 20–40 residue domain.
+
+- **Known small structural domains** such as SUMO (Small Ubiquitin-like Modifier) or zinc fingers are larger than 40 residues, and their use is primarily for solubility or binding, not purely thermostabilization.
+
+**Caveats:**
+- There is *no established literature* identifying a universally applicable small (20–40 aa) thermostabilizing domain that can be inserted into unrelated enzymes to confer thermostability[1][2][3][4]. Most published successes involve rational design, directed evolution, or domain swaps at a larger scale.
+- Some computational protein design efforts aim to create small, stable scaffolds (like mini-proteins or stabilizing “hairpins”), but these are not yet widely applied as modular enzyme-stabilizing inserts in the 20–40 residue range.
+
+**If your application requires increased enzyme thermostability** by small element insertion:
+- The most promising approach is still *site-directed mutagenesis* guided by structure-based analysis[1][2][4].
+- Explore *computationally-designed mini-domains* as the field progresses, especially from ongoing research into small protein “staples” or synthetic motifs, but these are not yet mainstream.
+- Alternatively, *disulfide bridge engineering* or *helix extension* within your enzyme's own structure may offer similar benefits[3][4].
+
+If you need references for specific small thermostable domains under 40 residues, no clear examples are currently documented in the literature[1][2][3][4]. Most thermostabilization is achieved by mutation, loop engineering, or larger domain exchange.
+--- END TOOL OUTPUT (Length: 3552 chars) ---
+=== END TOOL CALL ===
+
