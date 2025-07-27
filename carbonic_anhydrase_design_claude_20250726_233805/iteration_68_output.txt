@@ -1,0 +1,33 @@
+Let's also search for information specifically about the stability of enzymes in acidic environments:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01MaRn7v6VR8KjMx6GLrnCs4
+Arguments: {'query': 'protein stability in acidic environment strategies increased negative charge repulsion'}
+--- TOOL OUTPUT ---
+**Increasing negative charge repulsion on the protein surface is a key strategy for enhancing protein stability in acidic environments**, as it can reduce unwanted aggregation and prevent denaturation. This approach leverages the fact that, at low pH, proteins are prone to aggregation and loss of function due to protonation of side chains, but engineering more negative charges can counteract this tendency.
+
+**Essential context and supporting details:**
+
+- **Proteins stable in acidic environments (like lysosomes) are enriched in negatively charged (acidic) residues.** These proteins typically display a lower isoelectric point (pI), around 6.5, primarily due to higher frequencies of acidic amino acids (e.g., aspartic acid and glutamic acid)[5]. Such substitution increases net negative surface charge, which leads to greater electrostatic repulsion between protein molecules, decreasing the likelihood of aggregation and precipitation under acidic conditions.
+
+- **Electrostatic repulsion from surface negative charges is effective at preventing aggregation, especially at low pH where basic residues are neutralized and acidic residues remain negatively charged.** This strategy both enhances solubility and stabilizes the protein’s native fold by discouraging unwanted intermolecular interactions[2][5].
+
+- **Site-specific studies reveal that side chain interactions, especially involving acidic groups, are crucial in determining pH-dependent stability.** Specific hydrogen bonding networks or salt bridges involving acidic residues can confer local stability even as the protein’s net charge becomes more negative[1].
+
+- **Adaptations seen in thermophilic and acidophilic proteins include enrichment in both charged (notably negative) and hydrophobic residues.** This dual adaptation increases the stability window of the native state overall, not just through negative charge but also by balancing other stabilizing forces[4].
+
+**Additional relevant information:**
+
+- **Charge engineering** (via site-directed mutagenesis to introduce additional acidic residues) and chemical modifications that increase the net negative charge are common approaches for increasing acidic resistance in industrial and therapeutic proteins[2][5].
+
+- **Non-covalent strategies**, such as complexing the protein with negatively charged ligands or polymers (e.g., galactomannan), also help maintain protein solubility and prevent curdling in acidic beverages, as described for food proteins[3].
+
+**Caveats and limitations:**
+
+- **Excessive negative charge may compromise function or folding efficiency.** While more negative surface charge can increase stability and solubility, it can also disrupt native binding sites or fold if not placed judiciously, and may not be compatible with all protein types or functions[2].
+
+- **Other stabilizing interactions (hydrophobic, hydrogen bonding, chaperone-mediated) remain important as well.** Charge repulsion is just one aspect of protein adaptation to acidity—overall stability is multifactorial[5].
+
+In summary, increasing surface **negative charge—primarily through the addition of acidic residues—is a proven strategy for enhancing protein stability in acidic conditions,** due to increased repulsive electrostatic interactions that reduce aggregation and support native folding[2][5]. However, this approach is most effective when balanced with the protein’s structural and functional requirements.
+--- END TOOL OUTPUT (Length: 3440 chars) ---
+=== END TOOL CALL ===
+

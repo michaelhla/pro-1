@@ -1,0 +1,1 @@
+The Rosetta score of -132.74 REU is higher (less negative) than the wild-type score of approximately -305 REU, suggesting our initial design is less stable. Let's fold the original sequence to confirm the baseline score:

@@ -1,0 +1,32 @@
+## Analysis of Design 4 (Core Repacking and Loop Rigidification)
+
+### Overall Structural Assessment
+- **Rosetta Energy Score**: -140.30 REU - Better than Design 3 (943.09 REU), but still higher than wild-type (-305.08 REU) and Design 1 (-269.12 REU)
+- **RMSD from wild-type**: 0.511Å - Low RMSD indicates the mutations have not drastically altered the overall protein structure
+- **Catalytic site RMSD**: 0.133Å - Very well preserved catalytic site integrity with excellent zinc-binding residue preservation (0.011Å RMSD)
+- **Secondary structure**: 17.3% helix, 25.4% sheet, 57.3% loop - Similar to wild-type
+- **Surface hydrophobicity**: 50.2% - Slightly higher than wild-type (48.6%)
+
+### Impact of Specific Mutations
+- The proline substitutions (G25P, G63P, G225P) appear to have maintained the overall fold while potentially reducing loop flexibility
+- The bulkier hydrophobic substitutions (V31F, A135Y) seem to have improved core packing without significant structural distortion
+- The low RMSD values suggest that these mutations have not disrupted the core structure or catalytic machinery
+
+Let's build on these results with a refined design. I'll create a new variant that combines the most promising aspects of Design 1 and Design 4, with some additional stabilizing mutations.
+
+## Design 5: Combined Approach with Targeted Surface Modifications
+
+Building on the previous results, I'll design a hybrid approach that combines:
+1. Select mutations from Design 1 (the most successful so far)
+2. Proline substitutions in loops from Design 4
+3. New surface mutations to enhance hydrogen bonding and electrostatic networks
+
+Specific mutations for Design 5:
+1. **A65T** (from Design 1) - Surface hydrophobic to hydrophilic substitution
+2. **L100H** (from Design 1) - Surface hydrophobic to hydrophilic substitution
+3. **G25P** (from Design 4) - Proline in Loop 1 to reduce flexibility
+4. **G63P** (from Design 4) - Proline in Loop 2 to reduce flexibility
+5. **N253D** (new) - Introduce a potential salt bridge with a nearby positively charged residue
+6. **A174R** (new) - Surface residue to enhance electrostatic interactions
+
+Let me fold this variant and analyze its properties:

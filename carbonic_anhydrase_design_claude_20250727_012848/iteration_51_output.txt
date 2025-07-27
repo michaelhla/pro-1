@@ -1,0 +1,20 @@
+Now, let's search for information about hyperthermostable calcium-binding proteins that might provide insights for stabilizing carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_015Ah3jJxeicLt49PkGqja5S
+Arguments: {'query': 'calcium binding protein thermostability EF-hand domain hyperthermophile stability features'}
+--- TOOL OUTPUT ---
+**Key features contributing to the thermostability of calcium-binding proteins with EF-hand domains, particularly in hyperthermophiles, involve both structural characteristics of the EF-hand itself and the broader protein framework that supports it.**
+
+Recent research highlights several primary features that enhance thermostability:
+
+- **Optimized Calcium Coordination and EF-Hand Flexibility:** EF-hands can reorganize structurally to maintain optimal calcium coordination, with thermophilic variants able to achieve comparable ion binding by compensatory adjustments in nearby helices. Enhanced Ca²⁺ binding correlates with allosteric changes such as increased α-helicity in the D and E-helix regions, reduced β-strand content, and increased intra-helical hydrogen bonds[1].
+- **Conserved Structural Motifs:** Highly conserved amino acid clusters (“black” clusters), stabilized by CH-π and CH-O hydrogen bonds, are important for the structural stabilization of paired EF-hand domains—especially near the entry and exit points of the polypeptide chain in the domain[2]. These motifs act as a scaffold that maintains the structural integrity under thermal stress.
+- **Salt Bridges and Hydrophobic Core Protection:** Salt bridges, such as that between Arg75 and Glu81 in parvalbumin, and shielding of hydrophobic residues by non-binding domains, contribute to stability by reducing solvent exposure and increasing cohesion within the protein[2].
+- **Helical Bundle Coupling and Allosteric Effects:** Allosteric coupling between calcium binding at the EF-hand and the reorganization of adjacent helical bundles adds resilience, allowing proteins to maintain both binding function and fold stability at elevated temperatures[1].
+- **Sequence Adaptations and Loop Flexibility:** The amino acid composition of the EF-hand loops, with tailored flexibility and backbone geometry—sometimes enhanced by glycine linkers—supports both high binding affinity and maintenance of structure at high temperatures[3]. Proper flexibility is crucial to both binding and thermal stability.
+- **Hydrogen Bonding and Secondary Structure Enhancement:** Thermostable variants often show a higher content of α-helices stabilized by extensive intra-helical hydrogen bonding, which is more resistant to thermal unfolding than less-ordered structures[1].
+
+In summary, **hyperthermophile EF-hand calcium-binding proteins achieve stability through a combination of highly conserved structural motifs, optimized intra-protein interactions (e.g., salt bridges, hydrogen bonds), enhanced α-helical content, protected hydrophobic cores, and dynamic allosteric coupling between Ca²⁺ binding and the protein framework**[1][2][3]. These features collectively help retain function and structural integrity at elevated temperatures typical of hyperthermophilic environments.
+--- END TOOL OUTPUT (Length: 2836 chars) ---
+=== END TOOL CALL ===
+

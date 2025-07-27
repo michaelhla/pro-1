@@ -1,0 +1,49 @@
+That's a very high Rosetta score, which is concerning. Let's check the structural properties of this mutant:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01C44KmGUVQDYTABU3dxwsFu
+Arguments: {'pdb_file_path': 'predicted_structures/N67L_mutant.pdb.pdb', 'image_subdir': 'N67L_analysis'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/N67L_mutant.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/N67L_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2028,
+    "total_residues": 273,
+    "radius_of_gyration": 19.92,
+    "center_of_mass": [
+      0.48,
+      -0.05,
+      1.61
+    ],
+    "estimated_molecular_weight": 30030
+  },
+  "secondary_structure_content": {
+    "total_residues": 273,
+    "helix_residues": 85,
+    "sheet_residues": 0,
+    "loop_residues": 188,
+    "helix_percentage": 31.1,
+    "sheet_percentage": 0.0,
+    "loop_percentage": 68.9
+  },
+  "surface_properties": {
+    "total_sasa": 23768.32,
+    "hydrophobic_sasa": 12695.68,
+    "polar_sasa": 10825.8,
+    "hydrophobic_ratio": 53.4
+  },
+  "quality_assessment": {
+    "overall_quality": "ACCEPTABLE",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "POOR",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 273 residues. Secondary structure: 31.1% helix, 0.0% sheet, 68.9% loop. Radius of gyration: 19.92 \u00c5. Total SASA: 23768.32 \u0172. Surface hydrophobicity: 53.4%."
+}
+--- END TOOL OUTPUT (Length: 1236 chars) ---
+=== END TOOL CALL ===
+

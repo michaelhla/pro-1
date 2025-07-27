@@ -1,0 +1,42 @@
+Based on the analysis and research, I'll design a stabilized carbonic anhydrase II variant using a dual strategy of disulfide bond engineering and surface stabilization.
+
+Let's search for more specific information about disulfide bond engineering in carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Eyo5JkPwwEjpFSPSMr8exy
+Arguments: {'query': 'specific disulfide bond mutations in carbonic anhydrase II successful positions cysteine pairs'}
+--- TOOL OUTPUT ---
+**Several specific cysteine pair positions in human carbonic anhydrase II (CA II) have been mutated to form disulfide bonds, with varying success in bond formation and protein stabilization.** The best-documented and most successful position is the **Ala23Cys/Leu203Cys** double mutation, based on both experimental work and comparative protein engineering.
+
+### Successful Disulfide Bond Positions
+
+- **Ala23Cys/Leu203Cys**:
+    - This pair was identified by structural and evolutionary analysis as a natural disulfide bridge in the more thermostable carbonic anhydrase from *Neisseria gonorrhoeae* (**Cys28/Cys181** in that enzyme) and found to be occupied by cysteine in about 26% of homologs studied[4].
+    - Experimental introduction of this pair in human CA II is documented; details about the success of bond formation and effects can be found in prior work[4].
+    - The crosslink is naturally occurring in other carbonic anhydrases and is associated with greater thermostability[4].
+
+- **Other Engineered Double-Cysteine Variants**:
+    - At least three double cysteine mutants were generated and studied for novel disulfide formation in human CA II[2][5].
+    - Their bond strength was predicted using pairwise side-chain packing geometry analysis[2].
+    - **Not all introduced disulfides form spontaneously**, and in some cases, cysteine mutations can destabilize the native state or lead to formation of nonnative compact states overriding the desired stabilization effect[2][3].
+    - The specific positions for all engineered pairs (other than Ala23/Leu203) are not detailed in the retrieved materials, but the referenced studies systematically tested various candidate sites with varying outcomes[2][3][5].
+
+### Important Context and Supporting Details
+
+- **Prediction and Validation**: Geometric constraints and side-chain orientations were used to predict viable disulfide pairings, but experimental validation showed outcomes depend not just on disulfide geometry but also on structural and dynamic features of the protein fold[2].
+- **Cross-species Alignment**: Comparative analysis with more stable homologs (like the *Neisseria gonorrhoeae* enzyme) provided insight into natural disulfide connectivity that could be engineered into human CA II[4].
+- **Functional and Stability Assays**: Circular dichroism, enzymatic activity, and chemical titrations were used to assess protein integrity, activity, and stability post-mutation[2].
+
+### Limitations and Caveats
+
+- **Effectiveness Varies**: Not every engineered cysteine pair leads to a successful in vivo disulfide bond or improved stability; some engineered disulfides can even destabilize the protein[2][3].
+- **Crosslink Position Matters**: The more evolutionarily conserved or structurally analogous the position is across homologous, stable proteins, the higher the probability of successful disulfide bond engineering[4].
+- **Experimental Outcomes**: The primary success in the public literature is the Ala23Cys/Leu203Cys pair, but other variants have been tested with mixed or negative results[2][3][4].
+
+### References for Further Detail
+- **Engineering and rationale**[2][4]
+- **Experimental testing and outcomes**[2][3][5]
+
+If you need the **full list** of all tested pair positions or more details on each, consulting the referenced papers (particularly the supplementary material in [4] and full reports in [2] and [5]) is recommended. Some details, especially on negative results or less successful positions, are often found in supplementary data or tables in such publications.
+--- END TOOL OUTPUT (Length: 3565 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,59 @@
+# Design Iteration Summary and Recommendations
+
+Based on our design iterations and analysis, here's a summary of our findings:
+
+## Design Results
+
+1. **Design v6 (A134T, C205S, V207L)**
+   - Rosetta Score: -253.05 REU
+   - Catalytic Integrity: Excellent (RMSD: 0.053Å)
+   - Secondary Structure: Well maintained (17.3% helix, 26.5% sheet)
+   - Assessment: Most stable design so far
+
+2. **Design v8 (A134T, C205S, V207L + N130D, S217K, V121E)**
+   - Rosetta Score: -55.45 REU
+   - Catalytic Integrity: Moderate concern (zinc binding RMSD: 1.53Å)
+   - Assessment: Multiple surface charge modifications destabilized the structure
+
+3. **Design v9 (A134T, C205S, V207L + A259T)**
+   - Rosetta Score: -245.08 REU
+   - Catalytic Integrity: Excellent (RMSD: 0.056Å)
+   - Assessment: Single conservative mutation maintained stability
+
+4. **Design v10 (A134T, C205S, V207L + K45T, A235P)**
+   - Rosetta Score: -143.99 REU
+   - Catalytic Integrity: Excellent (RMSD: 0.070Å)
+   - Assessment: Additional mutations somewhat reduced stability
+
+## Key Insights
+
+1. **Conservative Surface Mutations Are Preferred**: Our most stable design (v6) uses conservative mutations that don't drastically alter the electrostatic properties of the protein.
+
+2. **Catalytic Integrity**: All designs except v8 maintained excellent catalytic site geometry, which is crucial for function.
+
+3. **Charge Alterations**: Multiple charge modifications (as in v8) significantly destabilized the structure, indicating that extensive surface charge engineering requires more careful analysis.
+
+4. **Proline Insertions**: The proline insertion in v10 (A235P) didn't improve stability, possibly due to disruption of local interactions.
+
+## Recommended Design
+
+**Design v6 (A134T, C205S, V207L)** remains our most promising design with:
+- Good Rosetta score (-253.05 REU)
+- Excellent catalytic site preservation
+- Maintained secondary structure
+- Minimal RMSD from wild-type (0.216Å)
+
+## Proposed Next Steps
+
+1. **Experimental Validation**: Test Design v6 experimentally for thermal stability and catalytic activity.
+
+2. **Refined Surface Engineering**: Introduce more targeted single mutations to Design v6, focusing on:
+   - Surface hydrophobic-to-polar conversions at positions not critical for structure
+   - Strategic salt bridge formation with careful computational analysis beforehand
+   - Selective rigidification of flexible loops with proline substitutions
+
+3. **Combined Approach**: Consider combining the known thermostable sextuple mutant (A65T, L100H, K154N, L224S, L240P, A248T) with elements of Design v6 in a carefully phased manner.
+
+4. **Structural Analysis**: Perform molecular dynamics simulations at elevated temperatures to identify regions with high flexibility that could benefit from stabilizing mutations.
+
+This iterative design process has yielded valuable insights into hCA II engineering strategies. The conservative Design v6 shows the most promise for further development toward a thermostable variant for carbon capture applications.

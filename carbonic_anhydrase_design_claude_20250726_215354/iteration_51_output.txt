@@ -1,0 +1,33 @@
+While this design has good structural metrics with very low RMSD (0.166 Å) and excellent catalytic site preservation (active site RMSD of 0.042 Å), the Rosetta energy score (-251.93) is still higher than the wild-type (-302.38). Let's try a different design approach.
+
+## Design Strategy for Second Novel Variant
+
+For this design, I'll focus more on strategies inspired by acid-stable extremophile proteins and successful zinc metalloprotease engineering:
+
+1. **Enhanced metal coordination network** - Introducing residues that can help stabilize the zinc binding site
+2. **Strategic salt bridge formation** - Adding residues that can form stabilizing salt bridges
+3. **Optimized surface charge distribution** - Modifying surface charges for better acid stability
+4. **Proline substitutions in key loops** - For rigidification
+
+### Proposed Novel Mutations:
+
+**1. Enhanced Metal Coordination:**
+- **S29D**: Introducing a negatively charged residue that could enhance metal binding stability
+- **N61D**: Introducing another potential metal-coordinating residue near the active site
+
+**2. Strategic Salt Bridge Formation:**
+- **A135R**: Introducing a positively charged arginine that could form a salt bridge with a nearby negative residue
+- **S197E**: Introducing a negatively charged glutamate that could form a salt bridge with a nearby positive residue
+
+**3. Surface Charge Optimization:**
+- **E69Q**: Converting a surface glutamate to glutamine to reduce pH sensitivity
+- **D72N**: Another acid-stabilizing surface mutation
+
+**4. Proline Substitutions:**
+- **G63P**: Adding a proline near the catalytic histidine to help maintain its orientation
+- **A158P**: Adding a proline in a loop region to increase rigidity
+
+**5. Hydrophobic Core Stabilization:**
+- **V121I**: Enhancing hydrophobic packing with a slightly larger side chain
+
+Let's create and analyze this new design:

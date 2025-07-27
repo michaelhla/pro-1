@@ -1,0 +1,5 @@
+I've introduced the following novel mutations based on successful strategies in other proteins but not previously applied to CA II:
+1. V143P - Loop rigidification in a region away from the active site
+2. C206E - Surface charge optimization creating a new salt bridge network
+
+Let me calculate the Rosetta energy score to evaluate stability:

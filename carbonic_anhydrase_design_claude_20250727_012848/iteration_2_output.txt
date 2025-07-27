@@ -1,0 +1,41 @@
+Let's gather more specific information about successful domain fusion strategies and thermostable domains that could be applicable to our carbonic anhydrase engineering task:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01MCgabUA98a1LNgwGyKiJXe
+Arguments: {'query': 'successful domain fusion strategies thermostable proteins examples ferredoxin thioredoxin ubiquitin enzyme stability'}
+--- TOOL OUTPUT ---
+**Successful domain fusion strategies**—notably fusion with highly thermostable domains—have been effective in **increasing the thermostability of otherwise less stable proteins**. Well-documented fusion partners include thermostable carriers such as maltodextrin-binding proteins (MBPs), ferredoxin, thioredoxin, and more recently, ubiquitin. These strategies, combined with rational computational and experimental design, have yielded enzymes and biomolecules with enhanced heat tolerance and robust industrial applicability.
+
+**Key examples and strategies:**
+
+- **Thermostable carrier fusion:**  
+    - *Pyrococcus furiosus* maltodextrin-binding protein (pfMBP) has been successfully fused to small target proteins, conferring substantial thermostability[1]. A size ratio of roughly 2:1 (carrier:target) is reported as optimal for stability transfer. This approach increased the thermostability of antigens and reporter proteins, supporting scalability and manufacturability in applications like vaccine production[1].
+    - Fusions with **ferrodoxin** and **thioredoxin** domains from hyperthermophiles have also been performed, though detailed stability metrics vary by target and construct. These small, robust scaffolds allow *in some cases* for increased folding assistance and resistance to aggregation at high temperatures[1].
+
+- **Active site redesign in thermostable scaffolds:**  
+    - In *thioredoxin*, stability was further augmented by engineering surface or buried charged residues; a variant reached a record melting temperature (Tm) of 137°C while retaining catalytic activity[2]. Although this is not domain fusion per se, it highlights that combining stable domains (as fusion partners or subdomain shuffling) with strategic sequence redesign dramatically increases thermostability[2].
+
+- **Ubiquitin fusion:**  
+    - **Ubiquitin**, while not always from thermophilic organisms, is inherently stable and sometimes used as a solubility and stability enhancer in fusion proteins[1]. Its application alongside thermostable tags is an evolving research area.
+
+- **General findings across domain fusions:**
+    - The thermostability benefits from fusion correlate strongly with the **inherent stability of the fusion partner** and **the proportion of the carrier relative to the target**[1].
+    - Fusions can be engineered to both **improve solubility** and **increase thermal resistance**, crucial for industrial enzyme applications[1][5].
+    - Using highly thermostable parental domains (including ferredoxin, thioredoxin, MBPs, or others) serves as a starting point for creating robust chimeras that show higher tolerance to mutational change and broader evolutionary potential[5].
+
+**Examples in the research literature:**
+
+| Thermostable Domain   | Example Usage                  | Result/Metric                                 | Reference |
+|----------------------|-------------------------------|-----------------------------------------------|-----------|
+| *Pyrococcus furiosus* MBP (pfMBP) | Fusion to GFP, HA antigen, others | Melting temp/solubility increase up to >10°C  | [1]       |
+| Hyperthermophilic thioredoxin | Redesigned thioredoxin | Melting temp up to 137°C, retains activity    | [2]       |
+| Ferredoxin            | Fusion partner in thermostable constructs | Enhanced stability in chimeric enzymes       | [1]       |
+| Ubiquitin             | Fusion tag in biopharma pipelines | General solubility and mild stability boost   | [1]       |
+
+**Caveats:**
+- Not all domain fusions are successful; decreasing stability or losing function can result if interface design is poor or the domains misfold[1].
+- **Consensus sequence and ancestral reconstruction** represent additional strategies for improving global protein stability but usually focus on homogenous sequence replacement rather than heterologous domain fusion[3][4].
+
+If you need specific published fusion constructs with detailed experimental data on ferredoxin, thioredoxin, or ubiquitin as N- or C-terminal domains in thermostable chimeras, please specify, and I can drill down further on particular fusion architectures or case studies.
+--- END TOOL OUTPUT (Length: 4146 chars) ---
+=== END TOOL CALL ===
+

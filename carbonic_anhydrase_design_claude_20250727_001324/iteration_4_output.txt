@@ -1,0 +1,49 @@
+Let's get more specific about the active site and stability of carbonic anhydrase II:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01VM77N4WD2fY1bdhtsJvpyb
+Arguments: {'query': 'carbonic anhydrase II structure active site proton transfer network zinc binding catalytic mechanism stability'}
+--- TOOL OUTPUT ---
+**Human carbonic anhydrase II (HCA II)** is a zinc metalloenzyme that catalyzes the reversible hydration of CO₂ to bicarbonate and a proton, using a highly optimized **active site** and **proton transfer network**:
+
+- **Active Site Structure and Zinc Binding**  
+  - The **zinc ion (Zn²⁺)** is *tetrahedrally coordinated* by three conserved histidine residues (His94, His96, and His119) and a solvent molecule (predominantly H₂O or D₂O under experimental conditions)[1][4].
+  - The active site is a cavity with distinct *hydrophilic* and *hydrophobic* faces. The hydrophilic face includes **Tyr7, Asn62, His64, Asn67, Thr199, and Thr200**, which coordinate a structured network of water molecules that connect the zinc-bound solvent to the proton-shuttling residue His64[4].
+
+- **Proton Transfer Network**  
+  - A *hydrogen-bonded chain* of waters (often labeled W1, W2, W3a, and W3b) bridges the zinc-bound water and **His64**[4].
+  - **His64** acts as a *proton shuttle*:  
+    - At higher pH, its side chain typically points “inward” toward the zinc, ready to accept a proton from the zinc-bound water.
+    - At lower pH, it can adopt an “outward” conformation toward solution, facilitating proton donate/accept steps[1][3].
+    - The position of His64 is stabilized by π-stacking interactions with **Trp5** in the outward orientation[3].
+
+- **Catalytic Mechanism**
+  - The mechanism occurs in two main steps (“ping-pong” mechanism):
+    1. **CO₂ Hydration**:  
+       - Zinc-bound OH⁻ attacks CO₂ to form HCO₃⁻, which is then released.  
+    2. **Proton Transfer and Regeneration**:  
+       - Water replaces bicarbonate at the zinc.
+       - A proton from the zinc-bound water is transferred via the water network and His64 to buffer, regenerating the active nucleophilic OH⁻[1].
+  - **Zinc's key catalytic role:**  
+    - The primary function of the zinc is to *lower the pKa* of the bound water, favoring its deprotonation to generate OH⁻ for catalysis[2].
+    - Zinc is not crucial for the ordering of the active-site water network or CO₂ orientation, which is more dependent on nearby residues, especially Tyr7, Asn62, and Asn67[2].
+
+- **Stability Factors**
+  - The water network’s structure and the enzyme’s catalytic activity are highly sensitive to mutations of residues such as Tyr7, Asn62, and Asn67. Mutating these disrupts both water structure and proton transfer efficiency[2].
+  - The enzyme structure, including the position and stability of water molecules, is maintained even in the absence of zinc, highlighting the pre-organized nature of the active site for catalysis[2].
+
+- **Notable Features**
+  - *Side chain of Tyr7 and His64* play crucial roles in maintaining the proton transfer pathway[1][2][4].
+  - *His64* is typically neutral and its orientation is pH-dependent, tuning its proton shuttle capability[1][3].
+  - Ordered active-site water molecules form essential hydrogen-bonded bridges for efficient proton transfer[1][2][4].
+
+**Important caveats:**  
+- While the overall features of the proton transfer pathway and mechanism are well established, certain proton positions and dynamics (e.g. transient protonation states of His64) remain the subject of ongoing experimental and theoretical work[1][4].
+
+**References:**
+- [1] Neutron structure of HCA II (active site structure, protonation, water network, mechanism)
+- [2] Apo-HCA II and role of zinc and stabilizing residues (water network and stability)
+- [3] Structure and catalysis by CA II (His64 orientation and interactions)
+- [4] Active-site mutation studies and hydrogen-bonding network in HCA II (structural role of residues)
+--- END TOOL OUTPUT (Length: 3618 chars) ---
+=== END TOOL CALL ===
+

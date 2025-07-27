@@ -1,0 +1,57 @@
+================================================================================
+CLAUDE THINKING TOKENS SUMMARY
+================================================================================
+Total thinking entries: 1
+Total thinking tokens (estimated): 674
+Model used: claude-3-7-sonnet-20250219
+Thinking budget per iteration: 4,096 tokens
+Average tokens per thinking entry: 674
+================================================================================
+
+NOTES:
+- All thinking content is preserved in final_output.txt
+- Individual iteration thinking saved in iteration_*_thinking.txt files
+- Token usage details logged in token_usage.jsonl
+- Claude 3.7 returns FULL thinking content
+
+THINKING TOKEN DISTRIBUTION:
+────────────────────────────────────────
+Iteration 1: 281 thinking tokens (81.4% of output)
+Iteration 2: 0 thinking tokens (0.0% of output)
+Iteration 3: 0 thinking tokens (0.0% of output)
+Iteration 4: 0 thinking tokens (0.0% of output)
+Iteration 5: 0 thinking tokens (0.0% of output)
+Iteration 6: 0 thinking tokens (0.0% of output)
+Iteration 7: 0 thinking tokens (0.0% of output)
+Iteration 8: 0 thinking tokens (0.0% of output)
+Iteration 9: 0 thinking tokens (0.0% of output)
+Iteration 10: 0 thinking tokens (0.0% of output)
+Iteration 11: 0 thinking tokens (0.0% of output)
+Iteration 12: 0 thinking tokens (0.0% of output)
+Iteration 13: 0 thinking tokens (0.0% of output)
+Iteration 14: 0 thinking tokens (0.0% of output)
+Iteration 15: 0 thinking tokens (0.0% of output)
+Iteration 16: 0 thinking tokens (0.0% of output)
+Iteration 17: 0 thinking tokens (0.0% of output)
+Iteration 18: 0 thinking tokens (0.0% of output)
+Iteration 19: 0 thinking tokens (0.0% of output)
+Iteration 20: 0 thinking tokens (0.0% of output)
+Iteration 21: 0 thinking tokens (0.0% of output)
+Iteration 22: 0 thinking tokens (0.0% of output)
+Iteration 23: 0 thinking tokens (0.0% of output)
+Iteration 24: 0 thinking tokens (0.0% of output)
+Iteration 25: 0 thinking tokens (0.0% of output)
+Iteration 26: 0 thinking tokens (0.0% of output)
+Iteration 27: 0 thinking tokens (0.0% of output)
+Iteration 28: 0 thinking tokens (0.0% of output)
+Iteration 29: 0 thinking tokens (0.0% of output)
+Iteration 30: 0 thinking tokens (0.0% of output)
+Iteration 31: 0 thinking tokens (0.0% of output)
+Iteration 32: 0 thinking tokens (0.0% of output)
+Iteration 33: 0 thinking tokens (0.0% of output)
+Iteration 34: 0 thinking tokens (0.0% of output)
+Iteration 35: 0 thinking tokens (0.0% of output)
+Iteration 36: 674 thinking tokens (83.8% of output)
+Iteration 37: 0 thinking tokens (0.0% of output)
+Iteration 38: 0 thinking tokens (0.0% of output)
+────────────────────────────────────────

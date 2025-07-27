@@ -1,0 +1,7 @@
+I need to make some adjustments to the mutations, as there appears to be an issue with the Rosetta score. Let me try a more conservative approach focusing on proven stabilizing mutations:
+
+1. Keep the successful HCAIIts mutations: N67L, A65S, L198F, E69Q, M239V, S50T
+2. Add a few key salt bridges from thermophilic carbonic anhydrases: S44R, S139E
+3. Avoid mutations in or near the active site and zinc-binding residues
+
+Let me create a new mutant sequence with these adjustments:

@@ -1,0 +1,9 @@
+Let's also calculate the Rosetta score for the wild-type for comparison:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01P7pMAxqteJovGPXfVyNMhy
+Arguments: {'pdb_file_path': 'predicted_structures/wildtype_hCA2.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -292.00 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/wildtype_hCA2.pdb.pdb
+--- END TOOL OUTPUT (Length: 152 chars) ---
+=== END TOOL CALL ===
+

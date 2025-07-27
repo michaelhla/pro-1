@@ -1,0 +1,1 @@
+Let's now fold the original protein and calculate its Rosetta score to establish a baseline:

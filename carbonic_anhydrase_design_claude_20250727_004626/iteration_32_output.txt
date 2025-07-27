@@ -1,0 +1,40 @@
+Now let's explore more specific recent research on stabilizing mutations for carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01MbWPHhTsDEZYJym91GPM9Q
+Arguments: {'query': 'specific amino acid substitutions for human carbonic anhydrase II thermostability salt bridges surface charge recent research'}
+--- TOOL OUTPUT ---
+Recent research has identified several **specific amino acid substitutions** in human carbonic anhydrase II (HCA II) that affect its **thermostability**, with a focus on surface residue engineering, salt bridge formation, and surface charge modulation.
+
+**Key amino acid substitutions and effects:**
+
+- **Surface Hydrophobic to Charged Residues:** Strategic replacement of surface hydrophobic residues with charged or hydrogen bond-forming residues, such as *Asn62Leu*, has been shown to increase thermal stability. These substitutions often promote additional surface hydrogen bonds or salt bridges, which are stabilizing without disrupting active site integrity[1]. Multiple thermostable variants combining surface and active site changes have retained catalytic efficiency while being more heat tolerant[1].
+
+- **Proline Substitutions:** Introducing **proline** at specific surface loop positions (notably residues 170 and 234) increases loop rigidity and can impart additional thermostability by restricting backbone flexibility. However, studies found that these proline substitutions had only a minor effect on thermal stability but significantly influenced catalytic rates—in some cases lowering them—demonstrating a complex relationship between rigidity and function[2].
+
+- **Surface Loop Deletions:** Deleting or engineering the highly **acidic loop (residues 230-240)** alters surface charge and compactness. For example, deleting this region was based on similarities to hyperthermophilic CAs and was hypothesized to improve thermostability by minimizing flexible, exposed regions; however, experimental results indicated minimal effect on thermostability but notable impacts on catalytic activity[2].
+
+- **Salt Bridges and Hydrogen Bond Networks:** Enhanced thermal stability is often correlated with an increase in surface salt bridges and hydrogen bonds. Modifying surface amino acids to increase these interactions—by substituting with lysine, arginine, aspartate, or glutamate—has been shown crystallographically to contribute to overall stability[1].
+
+- **Noncanonical Amino Acid Substitutions:** Incorporation of noncanonical analogs, such as *pNO2Phe (pNO2F)* and *pBrPhe (pBrF)*, at critical sites can enhance thermostability, especially under extreme pH. For instance, the pNO2F mutant showed higher melting temperatures than wild-type HCA II across various pH conditions[3].
+
+**Surface Charge Modulation:**
+Increasing the net negative or positive surface charge—by introducing charged residues at solvent-exposed positions—has been found to modulate both thermostability and catalytic characteristics. The net result is context-dependent; some substitutions can increase protein solubility and resilience to denaturation, while excessive or incorrectly positioned charges may interfere with catalytic mechanisms[1][2].
+
+**Summary Table: Selected substitutions and their effects**
+
+| Substitution         | Type           | Location      | Effect on Stability       | Effect on Activity           |
+|----------------------|----------------|---------------|--------------------------|------------------------------|
+| Asn62Leu             | Hydrophobic→Leu| Surface       | Increased                | Reduced proton transfer[1]   |
+| Pro170, Pro234       | Proline         | Surface loops | Minor increase           | Catalytic rate altered[2]    |
+| Δ230-240 loop        | Loop deletion   | Surface       | Minimal change           | Reduced activity[2]          |
+| pNO2F, pBrF          | Noncanonical    | Variable      | Increased (esp. at pH)   | Variable[3]                  |
+
+**Caveats and Limitations:**
+- Improvements in thermostability may come at the expense of **catalytic efficiency**, and vice versa[1][2].
+- Most results pertain to *in vitro* assays and may not fully replicate industrial application conditions[1].
+- Recent studies demonstrate only modest increases in stability, indicating that further refinements or combinatorial strategies are likely required for robust enhancement[2][3].
+
+For further details or more recent findings (as of 2024), primary literature databases should be consulted, as the most recent well-validated experimental work appears to date to 2015 in these search results[2].
+--- END TOOL OUTPUT (Length: 4243 chars) ---
+=== END TOOL CALL ===
+

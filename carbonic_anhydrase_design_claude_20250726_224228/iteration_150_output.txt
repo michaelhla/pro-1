@@ -1,0 +1,1 @@
+Let's try another design approach since this one has a high RMSD for the zinc binding residues. Let me redesign with more careful consideration of the catalytic region:

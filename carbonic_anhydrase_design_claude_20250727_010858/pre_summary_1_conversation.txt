@@ -1,0 +1,1157 @@
+
+--- USER MESSAGE 1 ---
+
+        You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase using ADVANCED PROTEIN ENGINEERING TECHNIQUES. THIS IS SO WE CAN REDUCE CARBON EMISSIONS AND IMPROVE CARBON CAPTURE. 
+
+        ORIGINAL SEQUENCE: MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK
+        Stability goals: Increase thermal stability, Improve stability in more acidic conditions, Maintain catalytic activity
+        CATALYTIC RESIDUES: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
+        ZINC BINDING RESIDUES: H94, H96, H119 (essential for catalytic activity)
+
+        🚀 ADVANCED ENGINEERING STRATEGIES TO EXPLORE:
+
+        **DOMAIN FUSION & CHIMERIC DESIGNS:**
+        - Fuse stable domains from thermophilic proteins (e.g., from Thermus thermophilus, Pyrococcus furiosus)
+        - Add N-terminal or C-terminal stability domains (small cold shock proteins, ferredoxin-like folds)
+        - Create domain-swapped variants with stable proteins like thioredoxin, ubiquitin, or small heat shock proteins
+        - Incorporate scaffolding domains that provide structural stability
+
+        **STRATEGIC INSERTIONS:**
+        - Insert flexible linker regions (GGGGS repeats, EAAAK repeats) to reduce strain between domains
+        - Add stabilizing loops from hyperthermophile enzymes 
+        - Insert metal-binding motifs (His-rich regions) for additional stability
+        - Add β-hairpins or small stable motifs at surface loops
+        - Insert proline-rich regions for increased rigidity where beneficial
+
+        **TARGETED DELETIONS:**
+        - Remove protease-sensitive sites and flexible loops that destabilize the protein
+        - Delete surface loops that contribute to aggregation
+        - Remove regions with high B-factors or disorder prediction
+        - Eliminate potential glycosylation sites that could cause heterogeneity
+
+        **FUSION TAGS & STABILIZING ELEMENTS:**
+        - Add N-terminal His-tags, FLAG-tags, or Strep-tags that also provide stability
+        - Incorporate maltose-binding protein (MBP) or small ubiquitin-like modifier (SUMO) as stability enhancers
+        - Add C-terminal PDZ domains or other small stable folds
+        - Include chaperone-like domains or molecular chaperone binding sites
+
+        **SEQUENCE ENGINEERING:**
+        - Increase overall flexibility by inserting glycine-rich regions
+        - Add stabilizing disulfide bonds by inserting cysteine pairs
+        - Insert salt bridge networks from halophilic organisms
+        - Add aromatic stacking regions for π-π interactions
+        - Incorporate hydrophobic cores from stable proteins
+
+        **BE BOLD - GO BEYOND POINT MUTATIONS:**
+        You are STRONGLY ENCOURAGED to make major structural modifications:
+        - 20-100 amino acid insertions of entire stable domains
+        - Large deletions of destabilizing regions (10-50 amino acids)
+        - Domain rearrangements and circular permutations
+        - Duplication of stable secondary structure elements
+        - Insertion of entire stabilizing motifs from other enzyme families
+
+        COMPUTATIONAL TOOLS AVAILABLE:
+        1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
+        2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower/more negative = more stable)
+        3. calculate_rmsd_with_sequences: Compares structures using sequence alignment and RMSD analysis
+        4. websearch: Searches for current protein engineering research, stable domains, and fusion strategies
+        5. examine_catalytic_activity: Verifies preservation of catalytic residues and zinc binding
+        6. examine_secondary_structure: Analyzes fold quality, SASA, and structural properties
+        
+        SYSTEMATIC APPROACH:
+        1. **EXTENSIVE LITERATURE SEARCH**: Research domain fusion, insertion/deletion strategies, thermostable proteins, and advanced protein engineering techniques. Look for stable domains, successful fusion proteins, and engineering principles.
+
+        2. **IDENTIFY DONOR SEQUENCES**: Find stable domains, linkers, and motifs from:
+           - Thermophilic/hyperthermophilic organisms
+           - Successfully engineered stable proteins
+           - Small stable folds (ferredoxin, thioredoxin, ubiquitin, etc.)
+           - Stabilizing peptide sequences and motifs
+
+        3. **DESIGN MAJOR MODIFICATIONS**: Create variants with:
+           - Domain fusions (N-terminal, C-terminal, or internal)
+           - Large insertions of stabilizing elements (20-100+ amino acids)
+           - Strategic deletions of problematic regions
+           - Linker insertions for flexibility and stability
+           - Combination approaches (fusion + insertion + deletion)
+
+        4. **COMPUTATIONAL VALIDATION**: Test each design with all tools, especially focusing on:
+           - Structural integrity (fold_protein, examine_secondary_structure)
+           - Stability improvement (calculate_rosetta_score - target much lower than -305)
+           - Catalytic preservation (examine_catalytic_activity)
+           - Overall assessment (calculate_rmsd_with_sequences)
+
+        **SUCCESS CRITERIA:**
+        - Rosetta score significantly below baseline (~-305)
+        - Preserved catalytic activity (RMSD < 2Å for active site)
+        - Novel modifications not found in literature
+        - Stable fold with good structural properties
+
+        **THINK BIG**: Don't just make conservative mutations. Engineer entirely new protein architectures while preserving the carbonic anhydrase active site. The most successful engineered proteins often involve major structural modifications, not just point mutations.
+
+        Start with comprehensive literature research on protein stability engineering, domain fusion strategies, and successful examples of dramatic protein modifications.
+        
+
+--- ASSISTANT MESSAGE 2 ---
+I'll help you design a more stable carbonic anhydrase variant using advanced protein engineering techniques. Let's start with a comprehensive literature search to understand cutting-edge approaches for enhancing protein stability while maintaining catalytic function.
+[TOOL CALL: websearch]
+Arguments: {'query': 'advanced protein engineering thermostable carbonic anhydrase domain fusion strategies'}
+
+
+--- USER MESSAGE 3 ---
+
+[TOOL RESULT]
+**Advanced protein engineering strategies to create thermostable carbonic anhydrase (CA) domain fusions center on three main areas:** stabilization via rational mutagenesis, recombinatorial or chimeric enzyme construction, and domain fusion with functional partners to enhance catalytic activity, stability, or new properties[1][3][4]. Here is an overview of key techniques and approaches, with relevant examples:
+
+**1. Rational Design and Mutagenesis for Thermostability**
+- *Disulfide bridge introduction*: Engineering new disulfide bonds by substituting key amino acids with cysteines can increase structural rigidity and thermal tolerance. For example, replacing residues 23 and 203 in human CA II with cysteines resulted in a thermostable variant with a 14°C higher melting temperature and preserved catalytic efficiency[1].
+- *Proline substitution and loop deletion*: Surface loops are often regions of structural flexibility and susceptibility to unfolding. Introducing proline residues into surface loops restricts flexibility, while selective loop deletion removes destabilizing elements. Both have been shown to modestly increase CA thermostability (by 3–5°C or more), guided by comparison to thermostable homologs with shorter or more rigid surface loops[1].
+
+**2. Chimeric and Recombinant Domain Fusion**
+- *Structure-guided recombination (SCHEMA method)*: This technique recombines structurally compatible fragments from various CA homologs, often from thermophilic organisms, to create chimeric enzymes with enhanced thermostability and activity profiles. Screening of natural diversity identifies stable fragments that, when recombined, yield robust hybrid CAs—these chimeras serve as scaffolds for further engineering for targeted applications (such as CO₂ capture in harsh solvents)[3].
+- *Domain fusion with partner proteins*: Fusing the CA catalytic domain to thermostable domains (such as thermostable protein scaffolds, affinity tags, or solubility enhancers) or to other enzymes... [TRUNCATED]
+
+
+--- ASSISTANT MESSAGE 4 ---
+Now, let's search for specific examples of successful domain fusions and more details on thermostable domains:
+[TOOL CALL: websearch]
+Arguments: {'query': 'thermostable protein domains for fusion engineering from extremophiles'}
+
+
+--- USER MESSAGE 5 ---
+
+[TOOL RESULT]
+**Thermostable protein domains from extremophiles**—specifically thermophilic organisms—are highly valued scaffolds in fusion protein engineering due to their **exceptional structural stability**, **increased tolerance to mutation**, and enhanced "evolvability." This stability makes them particularly attractive for use as fusion partners, tags, or frameworks in biotechnological and synthetic biology applications[1][3].
+
+### Key Thermostable Domains and Sources
+
+- **Sulfolobus solfataricus** and **Sulfolobus acidocaldarius**: These archaea produce proteins such as **Sso7d** and **Sac7d**, which are small, highly thermostable DNA-binding domains. They have been repurposed in engineering for applications like mini-binders and antibody mimetics, benefiting from their ability to maintain structure under extreme conditions[1].
+
+- **Thermus thermophilus**: Proteins from this bacterium, such as **Taq polymerase** (a DNA polymerase) and other thermostable enzymes, have been widely used for their robustness and adaptability in fusion constructs[2][3].
+
+- **Pyrococcus furiosus**: This archaeon's proteins (including various enzymes and structural domains) feature highly compact cores, increased ionic interactions, and hydrophobicity, all contributing to **melting temperatures above 90°C**—ideal for stable fusions[3].
+
+- **Haloalkane dehalogenases** from thermophiles: These enzymes have been the focus of stability engineering and ancestral sequence reconstruction, yielding mutants with melting temperatures increased by up to 24°C and greatly extended half-lives[5].
+
+### Engineering Considerations
+
+- **Structural Features**: Thermophilic proteins exhibit increased numbers of strong **ion pairs**, more hydrophobic buried side chains, compact protein cores, and well-distributed hydrogen bonds relative to mesophilic homologs. These features underlie their enhanced thermostability[3].
+
+- **Functional Trade-Offs**: There is an established activity–stability trade-off, but high baselin... [TRUNCATED]
+
+
+--- ASSISTANT MESSAGE 6 ---
+Let's also search for recent advances in carbonic anhydrase stability engineering and strategies for acid tolerance:
+[TOOL CALL: websearch]
+Arguments: {'query': 'engineering carbonic anhydrase for acid tolerance stability in low pH conditions'}
+
+
+--- USER MESSAGE 7 ---
+
+[TOOL RESULT]
+**Engineering carbonic anhydrase (CA) for acid tolerance and stability at low pH requires either identifying naturally acid-stable variants, modifying amino acid composition, or employing protein engineering strategies such as directed evolution to impart resilience to acidic environments.**
+
+**Key Context and Supporting Details:**
+
+- **Natural Acid Tolerance in CA Isozymes:**
+    - Most CA enzymes lose catalytic efficiency below pH 5.0 and become unstable under acidic conditions[2].
+    - However, **carbonic anhydrase IX (CA IX)**, particularly its catalytic domain (hCA IX-c), is an exception. It maintains structural integrity down to pH 2.0 and retains catalytic activity at pH 3.0[2].
+    - The acid tolerance of CA IX appears linked to its amino acid composition—especially the presence of the acidic PG domain, which lowers the protein’s isoelectric point (pI), supporting activity at pH <6.0[2].
+
+- **Structural and Functional Insights:**
+    - High-resolution structures of engineered CA IX-c reveal how specific structural features maintain protein folding and function at low pH[2].
+    - Amino acid substitutions that reduce the number of protonatable side chains, increase acidic surface residues, or stabilize hydrogen bonds can enhance acid resistance.
+
+- **Protein Engineering Approaches:**
+    - **Directed evolution** has been successfully used to generate CAs with dramatically improved stability, mainly for high-temperature and alkaline tolerance[1][4]. While most evolved variants focus on thermostability and alkali resistance, similar strategies could apply to evolve acid stability if low pH screening is incorporated[1].
+    - Iterative library design and high-throughput screening enable identification of CA variants with desired tolerance to harsh process conditions[1][4].
+    - Site-directed mutagenesis targeting surface residues to introduce more acidic amino acids or remove basic residues may further lower the pI and improve low pH stability.
+
+- **Applicatio... [TRUNCATED]
+
+
+--- ASSISTANT MESSAGE 8 ---
+Now, let's search for more specific examples of successful domain insertions and deletions:
+[TOOL CALL: websearch]
+Arguments: {'query': 'domain insertion and deletion strategies for protein engineering stable loop insertions examples'}
+
+
+--- USER MESSAGE 9 ---
+
+[TOOL RESULT]
+**Protein engineering strategies for stable domain or loop insertions** typically focus on identifying tolerant sites within a protein scaffold and using insertion and deletion methods that preserve or enhance structural integrity and function. Below are key strategies and illustrative examples based on recent research.
+
+**Domain Insertion Strategies**
+
+- **Randomized Insertion Libraries:** Techniques like *saturated programmable insertion engineering (SPINE)* generate comprehensive libraries by inserting a domain at virtually every possible site in the acceptor protein[^2][2]. These libraries can be screened to identify permissive “hotspots” that tolerate insertion without loss of stability or function. For example, PDZ domains (small, globular, closely spaced termini) were inserted into multiple scaffolds such as AraC, Flp recombinase, and TVMV protease using SPINE, yielding variants with retained or novel functionality[^2][2].
+
+- **Structure-Guided & Rational Insertion:** *Candidate loop regions or surface-exposed sites* are often selected, ideally in flexible or non-catalytic loops, to minimize disruption. The use of structural data helps target insertion points that are likely to accommodate new domains without steric clashes or global destabilization[^1][1][^3][3].
+
+- **Trinucleotide Deletion for Gapped Insertion:** Methods such as MuDel employ engineered transposons to generate precise one-codon (3 bp) deletions at random sites across a gene, creating “slots” for domain insertion[^1][1]. Replacing these deleted codons with the desired domain creates chimeric proteins that incorporate the new domain at structurally permissible locations.
+
+**Loop Insertion Strategies & Stability Considerations**
+
+- **Insertion into Surface Loops:** Short peptide or domain insertions are often most successful in *surface-exposed, flexible loops* well-distanced from active or functional sites. Insertion into structured or buried regions typically causes misfolding or loss of func... [TRUNCATED]
+
+
+--- ASSISTANT MESSAGE 10 ---
+Based on the literature search, I've gathered significant insights on advanced protein engineering strategies. Now, let's examine the structure of the original carbonic anhydrase to better understand its characteristics and potential modification sites.
+
+Let's fold the original protein sequence and analyze its structure:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'original_hCA2.pdb'}
+
+
+--- USER MESSAGE 11 ---
+
+[TOOL RESULT]
+predicted_structures/original_hCA2.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 12 ---
+Let's examine the secondary structure of the original protein:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/original_hCA2.pdb.pdb', 'image_subdir': 'original_structure'}
+
+
+--- USER MESSAGE 13 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/original_hCA2.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/original_structure/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2072,
+    "total_residues": 260,
+    "radius_of_gyration": 17.19,
+    "center_of_mass": [
+      0.21,
+      -0.36,
+      -0.7
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 45,
+    "sheet_residues": 69,
+    "loop_residues": 146,
+    "helix_percentage": 17.3,
+    "sheet_percentage": 26.5,
+    "loop_percentage": 56.2
+  },
+  "surface_properties": {
+    "total_sasa": 12225.72,
+    "hydrophobic_sasa": 5946.01,
+    "polar_sasa": 6232.23,
+    "hydrophobic_ratio": 48.6
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop. Radius of gyration: 17.19 \u00c5. Total SASA: 12225.72 \u0172. Surface hydrophobicity: 48.6%."
+}
+
+
+--- ASSISTANT MESSAGE 14 ---
+Let's also check the baseline Rosetta score of the original structure:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/original_hCA2.pdb.pdb'}
+
+
+--- USER MESSAGE 15 ---
+
+[TOOL RESULT]
+Rosetta energy score: -305.46 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/original_hCA2.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 16 ---
+Let's examine the catalytic activity of the original structure:
+[TOOL CALL: examine_catalytic_activity]
+Arguments: {'pdb_file_path': 'predicted_structures/original_hCA2.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'original_catalytic_site'}
+
+
+--- USER MESSAGE 17 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/original_hCA2.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/original_catalytic_site/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 4.7231516336520594e-07,
+    "zinc_binding_rmsd": 2.439220038705538e-07,
+    "overall_rmsd": 2.698722563004506e-07
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+
+
+--- ASSISTANT MESSAGE 18 ---
+Based on all the research and analysis, I'll now design a significantly enhanced carbonic anhydrase variant using advanced protein engineering techniques. I'll focus on:
+
+1. Domain fusion with a thermostable domain from an extremophile
+2. Increasing acid tolerance by incorporating features from CA IX
+3. Adding strategic insertions for enhanced stability
+4. Maintaining catalytic activity by preserving the essential residues
+
+Here's my design for a thermostable, acid-tolerant carbonic anhydrase (CA-Thermo-Acid):
+
+1. **N-terminal fusion** with Sso7d (a small, hyperthermostable DNA-binding protein from Sulfolobus solfataricus)
+2. **Strategic insertions** of acidic residues and stabilizing elements
+3. **Preservation** of all catalytic and zinc-binding residues
+
+Let me create the sequence and fold it:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MEKVKWFDSKKGIPFYAPELLEKFGKDVTKVLNKDGTKVTVELSSPFNPDEKKWVEDTDTDKRIKFKQFKTVDGDDDAGSMSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKGGSEGSEGGSGSDEDEDGESGESGSEGSEGSDEDEDGESGEGSKEKGKKEK', 'filename': 'CA_Thermo_Acid.pdb'}
+
+
+--- USER MESSAGE 19 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Thermo_Acid.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 20 ---
+Let's analyze the structure of this engineered variant:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid.pdb.pdb', 'image_subdir': 'CA_Thermo_Acid'}
+
+
+--- USER MESSAGE 21 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Thermo_Acid.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Thermo_Acid/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 3065,
+    "total_residues": 391,
+    "radius_of_gyration": 27.07,
+    "center_of_mass": [
+      0.44,
+      -0.76,
+      -4.28
+    ],
+    "estimated_molecular_weight": 43010
+  },
+  "secondary_structure_content": {
+    "total_residues": 391,
+    "helix_residues": 57,
+    "sheet_residues": 83,
+    "loop_residues": 251,
+    "helix_percentage": 14.6,
+    "sheet_percentage": 21.2,
+    "loop_percentage": 64.2
+  },
+  "surface_properties": {
+    "total_sasa": 26556.81,
+    "hydrophobic_sasa": 12348.14,
+    "polar_sasa": 14117.07,
+    "hydrophobic_ratio": 46.5
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 391 residues. Secondary structure: 14.6% helix, 21.2% sheet, 64.2% loop. Radius of gyration: 27.07 \u00c5. Total SASA: 26556.81 \u0172. Surface hydrophobicity: 46.5%."
+}
+
+
+--- ASSISTANT MESSAGE 22 ---
+Let's calculate the Rosetta score to assess stability:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid.pdb.pdb'}
+
+
+--- USER MESSAGE 23 ---
+
+[TOOL RESULT]
+Rosetta energy score: 2341.61 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Thermo_Acid.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 24 ---
+The positive Rosetta score indicates potential issues with the current design. Let's adjust our approach and try a different design:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKGGSGGSEDEVKLRYLKKFSKKGIPFYAPELLEKFGKDVTKVLNKDGTKVTVELSSPFNPDEKK', 'filename': 'CA_Thermo_Acid_v2.pdb'}
+
+
+--- USER MESSAGE 25 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Thermo_Acid_v2.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 26 ---
+Let's analyze this second design:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v2.pdb.pdb', 'image_subdir': 'CA_Thermo_Acid_v2'}
+
+
+--- USER MESSAGE 27 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Thermo_Acid_v2.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Thermo_Acid_v2/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2564,
+    "total_residues": 323,
+    "radius_of_gyration": 21.84,
+    "center_of_mass": [
+      -0.55,
+      -4.31,
+      2.76
+    ],
+    "estimated_molecular_weight": 35530
+  },
+  "secondary_structure_content": {
+    "total_residues": 323,
+    "helix_residues": 69,
+    "sheet_residues": 76,
+    "loop_residues": 178,
+    "helix_percentage": 21.4,
+    "sheet_percentage": 23.5,
+    "loop_percentage": 55.1
+  },
+  "surface_properties": {
+    "total_sasa": 18171.9,
+    "hydrophobic_sasa": 9413.39,
+    "polar_sasa": 8711.02,
+    "hydrophobic_ratio": 51.8
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 323 residues. Secondary structure: 21.4% helix, 23.5% sheet, 55.1% loop. Radius of gyration: 21.84 \u00c5. Total SASA: 18171.9 \u0172. Surface hydrophobicity: 51.8%."
+}
+
+
+--- ASSISTANT MESSAGE 28 ---
+Let's check the Rosetta score for this second design:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v2.pdb.pdb'}
+
+
+--- USER MESSAGE 29 ---
+
+[TOOL RESULT]
+Rosetta energy score: 138.23 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Thermo_Acid_v2.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 30 ---
+This score is better than the first design but still not optimal. Let's try a more targeted approach by carefully designing each element of our modification:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MVEIPKEEIVQKKYDEKKKYLLEGSKIVKHGGGSMSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKGGGGSHHTIKITLTKTELIRKLKEAEEDLAKIREEAKKLGPYPGGGHHTTHTHEGVVP', 'filename': 'CA_Thermo_Acid_v3.pdb'}
+
+
+--- USER MESSAGE 31 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Thermo_Acid_v3.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 32 ---
+Let's analyze this third design:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v3.pdb.pdb', 'image_subdir': 'CA_Thermo_Acid_v3'}
+
+
+--- USER MESSAGE 33 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Thermo_Acid_v3.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Thermo_Acid_v3/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2785,
+    "total_residues": 352,
+    "radius_of_gyration": 22.6,
+    "center_of_mass": [
+      0.6,
+      -0.88,
+      -3.0
+    ],
+    "estimated_molecular_weight": 38720
+  },
+  "secondary_structure_content": {
+    "total_residues": 352,
+    "helix_residues": 94,
+    "sheet_residues": 69,
+    "loop_residues": 189,
+    "helix_percentage": 26.7,
+    "sheet_percentage": 19.6,
+    "loop_percentage": 53.7
+  },
+  "surface_properties": {
+    "total_sasa": 21088.58,
+    "hydrophobic_sasa": 11306.71,
+    "polar_sasa": 9681.69,
+    "hydrophobic_ratio": 53.6
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 352 residues. Secondary structure: 26.7% helix, 19.6% sheet, 53.7% loop. Radius of gyration: 22.6 \u00c5. Total SASA: 21088.58 \u0172. Surface hydrophobicity: 53.6%."
+}
+
+
+--- ASSISTANT MESSAGE 34 ---
+Let's check the Rosetta score for this third design:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v3.pdb.pdb'}
+
+
+--- USER MESSAGE 35 ---
+
+[TOOL RESULT]
+Rosetta energy score: 289.64 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Thermo_Acid_v3.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 36 ---
+Let's try a more conservative approach focused on thermostability using insights from the literature. I'll try incorporating a thermostable domain from Thermus thermophilus and strategic acidic insertions:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKGGGSGGAEKTEKFRIAWELLEKGDEIVAEFEGKFFPYEEAIPLEGDEEINEKKLKVWELRKKGYEIEPKEEVVPGDDEDEIEGDEDEGEDED', 'filename': 'CA_Thermo_Acid_v4.pdb'}
+
+
+--- USER MESSAGE 37 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Thermo_Acid_v4.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 38 ---
+Let's analyze this fourth design:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v4.pdb.pdb', 'image_subdir': 'CA_Thermo_Acid_v4'}
+
+
+--- USER MESSAGE 39 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Thermo_Acid_v4.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Thermo_Acid_v4/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2810,
+    "total_residues": 352,
+    "radius_of_gyration": 24.29,
+    "center_of_mass": [
+      4.2,
+      -5.46,
+      -1.42
+    ],
+    "estimated_molecular_weight": 38720
+  },
+  "secondary_structure_content": {
+    "total_residues": 352,
+    "helix_residues": 81,
+    "sheet_residues": 69,
+    "loop_residues": 202,
+    "helix_percentage": 23.0,
+    "sheet_percentage": 19.6,
+    "loop_percentage": 57.4
+  },
+  "surface_properties": {
+    "total_sasa": 22114.21,
+    "hydrophobic_sasa": 10754.98,
+    "polar_sasa": 11313.54,
+    "hydrophobic_ratio": 48.6
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 352 residues. Secondary structure: 23.0% helix, 19.6% sheet, 57.4% loop. Radius of gyration: 24.29 \u00c5. Total SASA: 22114.21 \u0172. Surface hydrophobicity: 48.6%."
+}
+
+
+--- ASSISTANT MESSAGE 40 ---
+Let's check the Rosetta score for this fourth design:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v4.pdb.pdb'}
+
+
+--- USER MESSAGE 41 ---
+
+[TOOL RESULT]
+Rosetta energy score: 701.67 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Thermo_Acid_v4.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 42 ---
+Let's try a fifth approach using a more integrated design:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MRGSHHHHHHGSMSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKGGSGAEEATDEDKSGGEELKKVVVIFDYDPTDEKSKVFEIIRNLLKEKGLDSDEAMIYVPKGAADPSKQDIKGADPNKPQSVAVPKIEVSPDGKKIKFEP', 'filename': 'CA_Thermo_Acid_v5.pdb'}
+
+
+--- USER MESSAGE 43 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Thermo_Acid_v5.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 44 ---
+Let's analyze this fifth design:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v5.pdb.pdb', 'image_subdir': 'CA_Thermo_Acid_v5'}
+
+
+--- USER MESSAGE 45 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Thermo_Acid_v5.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Thermo_Acid_v5/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2930,
+    "total_residues": 372,
+    "radius_of_gyration": 23.86,
+    "center_of_mass": [
+      -1.05,
+      -4.24,
+      -5.08
+    ],
+    "estimated_molecular_weight": 40920
+  },
+  "secondary_structure_content": {
+    "total_residues": 372,
+    "helix_residues": 69,
+    "sheet_residues": 75,
+    "loop_residues": 228,
+    "helix_percentage": 18.5,
+    "sheet_percentage": 20.2,
+    "loop_percentage": 61.3
+  },
+  "surface_properties": {
+    "total_sasa": 22728.46,
+    "hydrophobic_sasa": 11588.51,
+    "polar_sasa": 11030.58,
+    "hydrophobic_ratio": 51.0
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 372 residues. Secondary structure: 18.5% helix, 20.2% sheet, 61.3% loop. Radius of gyration: 23.86 \u00c5. Total SASA: 22728.46 \u0172. Surface hydrophobicity: 51.0%."
+}
+
+
+--- ASSISTANT MESSAGE 46 ---
+Let's check the Rosetta score for this fifth design:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_v5.pdb.pdb'}
+
+
+--- USER MESSAGE 47 ---
+
+[TOOL RESULT]
+Rosetta energy score: 1247.51 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Thermo_Acid_v5.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 48 ---
+Let's try a more strategic approach with a focused domain insertion rather than complete domain fusions:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPEGEDEEVDEEGEPRGLLEEGEEEEDEPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'CA_Acid_Insert.pdb'}
+
+
+--- USER MESSAGE 49 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Acid_Insert.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 50 ---
+Let's analyze this design with acid-stabilizing insertions:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Acid_Insert.pdb.pdb', 'image_subdir': 'CA_Acid_Insert'}
+
+
+--- USER MESSAGE 51 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Acid_Insert.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Acid_Insert/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2248,
+    "total_residues": 282,
+    "radius_of_gyration": 18.96,
+    "center_of_mass": [
+      -1.34,
+      -0.06,
+      -0.0
+    ],
+    "estimated_molecular_weight": 31020
+  },
+  "secondary_structure_content": {
+    "total_residues": 282,
+    "helix_residues": 43,
+    "sheet_residues": 69,
+    "loop_residues": 170,
+    "helix_percentage": 15.2,
+    "sheet_percentage": 24.5,
+    "loop_percentage": 60.3
+  },
+  "surface_properties": {
+    "total_sasa": 15353.79,
+    "hydrophobic_sasa": 7369.75,
+    "polar_sasa": 7938.05,
+    "hydrophobic_ratio": 48.0
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 282 residues. Secondary structure: 15.2% helix, 24.5% sheet, 60.3% loop. Radius of gyration: 18.96 \u00c5. Total SASA: 15353.79 \u0172. Surface hydrophobicity: 48.0%."
+}
+
+
+--- ASSISTANT MESSAGE 52 ---
+Let's check the Rosetta score:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Acid_Insert.pdb.pdb'}
+
+
+--- USER MESSAGE 53 ---
+
+[TOOL RESULT]
+Rosetta energy score: 37.60 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Acid_Insert.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 54 ---
+This is getting better! Let's check if the catalytic activity is preserved:
+[TOOL CALL: examine_catalytic_activity]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Acid_Insert.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'CA_Acid_Insert_catalytic'}
+
+
+--- USER MESSAGE 55 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Acid_Insert.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/CA_Acid_Insert_catalytic/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.15659213403803657,
+    "zinc_binding_rmsd": 0.023990665222136262,
+    "overall_rmsd": 0.1382524195236302
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+
+
+--- ASSISTANT MESSAGE 56 ---
+Let's try another approach, incorporating both thermostability elements and acid resistance:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKGGGEEKPDDEEEVEEAEEEAAKEEKEEEEKAEEKEEEKEEEGGMKILVTGVPGVDGGLCIGGGMGEMFQTFASLGCEVIPGSVAKKHPDLSSSVKELKQRGLDLLVYSMKGGNPVIFDATMIVKE', 'filename': 'CA_Thermo_Acid_Final.pdb'}
+
+
+--- USER MESSAGE 57 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Thermo_Acid_Final.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 58 ---
+Let's analyze this design:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_Final.pdb.pdb', 'image_subdir': 'CA_Thermo_Acid_Final'}
+
+
+--- USER MESSAGE 59 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Thermo_Acid_Final.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Thermo_Acid_Final/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 3006,
+    "total_residues": 385,
+    "radius_of_gyration": 24.03,
+    "center_of_mass": [
+      -4.53,
+      -3.26,
+      -5.82
+    ],
+    "estimated_molecular_weight": 42350
+  },
+  "secondary_structure_content": {
+    "total_residues": 385,
+    "helix_residues": 112,
+    "sheet_residues": 77,
+    "loop_residues": 196,
+    "helix_percentage": 29.1,
+    "sheet_percentage": 20.0,
+    "loop_percentage": 50.9
+  },
+  "surface_properties": {
+    "total_sasa": 22215.67,
+    "hydrophobic_sasa": 10814.18,
+    "polar_sasa": 11185.24,
+    "hydrophobic_ratio": 48.7
+  },
+  "quality_assessment": {
+    "overall_quality": "EXCELLENT",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "GOOD",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 385 residues. Secondary structure: 29.1% helix, 20.0% sheet, 50.9% loop. Radius of gyration: 24.03 \u00c5. Total SASA: 22215.67 \u0172. Surface hydrophobicity: 48.7%."
+}
+
+
+--- ASSISTANT MESSAGE 60 ---
+Let's check the Rosetta score:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_Final.pdb.pdb'}
+
+
+--- USER MESSAGE 61 ---
+
+[TOOL RESULT]
+Rosetta energy score: 361.60 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Thermo_Acid_Final.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 62 ---
+Let's check the catalytic activity:
+[TOOL CALL: examine_catalytic_activity]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Thermo_Acid_Final.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'CA_Thermo_Acid_Final_catalytic'}
+
+
+--- USER MESSAGE 63 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Thermo_Acid_Final.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/CA_Thermo_Acid_Final_catalytic/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.0746558213977325,
+    "zinc_binding_rmsd": 0.04196212302523734,
+    "overall_rmsd": 0.07686052255306636
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+
+
+--- ASSISTANT MESSAGE 64 ---
+Let's try one more approach focusing on a strategic insertion of stabilizing elements:
+[TOOL CALL: fold_protein]
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVEAIKKLKEAEEDEEGEDEEDDVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'CA_Stabilized.pdb'}
+
+
+--- USER MESSAGE 65 ---
+
+[TOOL RESULT]
+predicted_structures/CA_Stabilized.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 66 ---
+Let's analyze this design:
+[TOOL CALL: examine_secondary_structure]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Stabilized.pdb.pdb', 'image_subdir': 'CA_Stabilized'}
+
+
+--- USER MESSAGE 67 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Stabilized.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Stabilized/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2249,
+    "total_residues": 282,
+    "radius_of_gyration": 19.15,
+    "center_of_mass": [
+      -0.76,
+      -0.96,
+      -0.46
+    ],
+    "estimated_molecular_weight": 31020
+  },
+  "secondary_structure_content": {
+    "total_residues": 282,
+    "helix_residues": 47,
+    "sheet_residues": 69,
+    "loop_residues": 166,
+    "helix_percentage": 16.7,
+    "sheet_percentage": 24.5,
+    "loop_percentage": 58.9
+  },
+  "surface_properties": {
+    "total_sasa": 14765.81,
+    "hydrophobic_sasa": 6939.78,
+    "polar_sasa": 7779.03,
+    "hydrophobic_ratio": 47.0
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 282 residues. Secondary structure: 16.7% helix, 24.5% sheet, 58.9% loop. Radius of gyration: 19.15 \u00c5. Total SASA: 14765.81 \u0172. Surface hydrophobicity: 47.0%."
+}
+
+
+--- ASSISTANT MESSAGE 68 ---
+Let's check the Rosetta score:
+[TOOL CALL: calculate_rosetta_score]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Stabilized.pdb.pdb'}
+
+
+--- USER MESSAGE 69 ---
+
+[TOOL RESULT]
+Rosetta energy score: -46.67 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_Stabilized.pdb.pdb
+
+
+--- ASSISTANT MESSAGE 70 ---
+Much better! This is a significantly improved score compared to our previous designs. Let's check the catalytic activity:
+[TOOL CALL: examine_catalytic_activity]
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Stabilized.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'CA_Stabilized_catalytic'}
+
+
+--- USER MESSAGE 71 ---
+
+[TOOL RESULT]
+{
+  "pdb_file": "predicted_structures/CA_Stabilized.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/CA_Stabilized_catalytic/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.10173333527038442,
+    "zinc_binding_rmsd": 0.012261481297424338,
+    "overall_rmsd": 0.09728235434025778
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+

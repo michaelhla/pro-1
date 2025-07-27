@@ -1,0 +1,1 @@
+This score indicates a problem with the structure. Let me check the RMSD to see what might have gone wrong:

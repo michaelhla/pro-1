@@ -1,0 +1,9 @@
+Based on our analysis, I'd like to create one final design that optimizes the mutations for both thermal and acid stability:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01MkaaChoYXMAX8dU9wMh9Lo
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTAGALADFTAFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSAEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKAAFK', 'filename': 'CA_StabCore_final.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/CA_StabCore_final.pdb.pdb
+--- END TOOL OUTPUT (Length: 46 chars) ---
+=== END TOOL CALL ===
+

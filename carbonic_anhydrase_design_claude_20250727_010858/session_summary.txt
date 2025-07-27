@@ -1,0 +1,30 @@
+
+CLAUDE DESIGN SESSION SUMMARY
+=============================
+Total iterations: 39
+Model used: claude-3-7-sonnet-20250219
+Extended thinking enabled: True
+Context limit: 15,000 tokens
+Context summarizations performed: 1
+Final output length: 16129 characters
+Output directory: carbonic_anhydrase_design_claude_20250727_010858
+
+BEST DESIGN: No successful designs recorded
+Thinking entries: 1
+Total thinking tokens (estimated): 674
+Thinking budget per iteration: 4,096 tokens
+
+Files generated:
+- final_output.txt: Complete session output with all text responses, thinking, and tool outputs
+- conversation_history.json: Full conversation including tool calls
+- iteration_*.txt: Individual iteration outputs including tool calls and outputs
+- tool_calls.jsonl: Record of all tool calls with full arguments and complete results
+- token_usage.jsonl: Detailed token usage tracking per iteration
+- best_designs.jsonl: Chronicle of best designs found with scores and sequences
+- thinking_summary.txt: Summary of all thinking token usage
+- iteration_*_thinking.txt: Individual iteration thinking content
+- summarizations.jsonl: Log of context summarization events
+- summary_*.txt: Generated conversation summaries
+- pre_summary_*_conversation.txt: Pre-summarization conversation snapshots
+
+Session completed after 39 iterations.

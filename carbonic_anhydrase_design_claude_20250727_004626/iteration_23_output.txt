@@ -1,0 +1,9 @@
+I'm still not getting a design with a better Rosetta score than the wild-type. Let me try a more conservative approach with fewer mutations:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01Hp7nvGVvcCn7K6GCvvByoM
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNRRPAQPLKNRQIKASFK', 'filename': 'stabilized_hCA2_v5.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/stabilized_hCA2_v5.pdb.pdb
+--- END TOOL OUTPUT (Length: 47 chars) ---
+=== END TOOL CALL ===
+

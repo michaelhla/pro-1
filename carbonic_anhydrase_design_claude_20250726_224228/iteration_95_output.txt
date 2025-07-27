@@ -1,0 +1,1 @@
+Let's calculate the RMSD for our new design compared to the reference structure:

@@ -1,0 +1,1 @@
+Now let's compare our design to the reference structure:

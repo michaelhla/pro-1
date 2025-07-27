@@ -1,0 +1,13 @@
+Based on this information and our previous research, let's design a final variant with enhanced thermal and acid stability:
+
+### Final Design (Design 4):
+
+1. A65T: Experimentally proven to enhance thermostability
+2. S123P: Proline substitution for rigidity, proven successful
+3. T200A: Experimentally validated thermostabilizing mutation
+4. M239V: Validated mutation to enhance thermostability
+5. D41N: Surface charge optimization for acid stability
+6. E117Q: Replacing a glutamate with glutamine to reduce pH sensitivity
+7. D160N: Another acid-stability enhancing surface mutation
+
+Let's create and analyze this final design:

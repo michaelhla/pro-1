@@ -1,0 +1,1 @@
+Now I'll calculate the Rosetta energy score for the reference structure:

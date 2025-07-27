@@ -1,0 +1,1 @@
+This confirms that our initial design is indeed less stable. Let's find out why by analyzing the structural changes and comparing with the reference structure:

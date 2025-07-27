@@ -1,0 +1,25 @@
+The score isn't as good as our previous design. Let's try one more approach, taking inspiration from extremophile enzymes.
+
+## Design Strategy for Sixth Novel Variant
+
+For this design, I'll take a different approach inspired by successful protein engineering strategies for acid stability:
+
+1. **Focus on the His-64 microenvironment** - This residue is crucial for proton shuttling and can be optimized for acid stability
+2. **Enhanced hydrophobic packing** - For overall stability
+3. **Strategic acid-stable surface modifications**
+
+### Proposed Novel Mutations:
+
+**1. His-64 Microenvironment:**
+- **N62D**: Replace asparagine with aspartate to help stabilize histidine protonation
+- **W5F**: Replace tryptophan with phenylalanine for better packing near the active site
+
+**2. Hydrophobic Core Enhancement:**
+- **V121I**: Replace valine with isoleucine for better core packing
+- **V168L**: Another hydrophobic core enhancement
+
+**3. Surface Charge Optimization:**
+- **E69Q**: Convert glutamate to glutamine for acid stability
+- **D72N**: Similar acid-stabilizing surface modification
+
+Let's create this design:

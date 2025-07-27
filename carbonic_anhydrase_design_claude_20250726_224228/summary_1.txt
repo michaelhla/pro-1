@@ -1,0 +1,49 @@
+Carbonic Anhydrase Engineering Project Summary
+
+OBJECTIVE: Design a more stable human carbonic anhydrase II (hCA II) variant for carbon capture applications with improved thermal stability and acid resistance while maintaining catalytic activity.
+
+RESEARCH FINDINGS:
+- Six-mutation variant (HCAIIts) with A65T, L100H, K154N, L224S, L240P, A248T demonstrated >85% activity after 2h at 65°C
+- Disulfide bond variants (A23C-L203C) showed improved thermal and acid stability
+- Surface charge engineering can enhance stability in acidic environments
+- Thermostable variants exhibit increased compactness, more charged residues, and enhanced ionic networks
+- Active site integrity is critical (Y7, N62, H64, N67, Q92 for catalytic function; H94, H96, H119 for zinc binding)
+
+DESIGN ITERATIONS:
+
+1. FIRST DESIGN (11 mutations):
+   - Disulfide bond engineering (A23C, L203C)
+   - Surface charge modifications (Q28E, N178K, S220R)
+   - Core packing (V121I, A158V)
+   - Secondary structure enhancement (G63A, T200P, A65T, L240Y)
+   - Results:
+     - Rosetta score: -9.68 REU (much worse than original -305.23 REU)
+     - RMSD: 2.963 Å (100% overlap, 76.7% sequence identity)
+     - Catalytic site RMSD: 0.116 (active site), 0.056 (zinc binding)
+     - Structure analysis showed good catalytic site preservation but poor overall stability
+
+2. SECOND DESIGN (6 mutations):
+   - Conservative approach with Q28E, A65T, V121I, N178K, S220R, L224S
+   - Results:
+     - Rosetta score: -260.75 REU (better but still below original)
+     - RMSD: 1.69 Å (100% overlap, 83.0% sequence identity)
+     - Catalytic site RMSD: 0.048 (active site), 0.031 (zinc binding)
+     - Secondary structure: slight increase in helical content (17.8% vs 17.3%)
+
+3. THIRD DESIGN (6 mutations):
+   - Literature-guided approach with novel combinations
+   - A65T, G145P (loop rigidification), V207I-V208I (core packing)
+   - S217E, L224S, Q249R (surface charge network)
+   - Focused on regions away from catalytic site
+
+CURRENT STATUS:
+- First two designs preserved catalytic site integrity but did not improve stability
+- Third design in progress, using literature-guided mutations in novel combinations
+- Conservative mutations work better than extensive modifications
+- Maintaining low RMSD in catalytic regions is essential for function
+
+NEXT STEPS:
+- Evaluate third design's stability and catalytic integrity
+- If needed, adjust surface charge distribution further for acid resistance
+- Consider combining successful elements from literature with novel surface modifications
+- Focus on preserving core structure while enhancing stability through surface modifications

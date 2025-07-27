@@ -1,0 +1,20 @@
+=== CLAUDE'S THINKING ===
+Let's approach this task systematically. First, I need to understand the current state of carbonic anhydrase engineering, specifically focusing on improvements for thermal stability and stability in acidic conditions while maintaining catalytic activity.
+
+I'll start with a thorough web search to understand current research on carbonic anhydrase engineering, stability mechanisms, and recent approaches.
+
+1. First search: Let's get an overview of current carbonic anhydrase engineering for stability.
+2. Then I'll search for specific approaches for thermal stability and acid stability.
+3. I'll also search for information on maintaining catalytic activity during engineering.
+
+After gathering this information, I'll propose specific mutations, fold the mutated protein, and analyze its structure and stability compared to the original.
+
+Let's begin with the web search:
+[Signature: ErUBCkYIBRgCIkBUgBmNinyjgBp1abQTv59l5eUlS8Dwv74GaAQg31DglWT5JbH83HeQ4BAV2YIAA5XO3iCtKzVxncI27rUYpFuEEgwARqdiFgrNa5EAbSwaDF7ecZF8ldQkQPsLBCIwPQMpB2rQKXHOm794xIc1LA4Dunr/xH9kwyk9kxdT7cdjrfhLvwlx/3U0neDJ9GccKh3MJobd+Aj60PSRXe5b0XzYNFbnLFzaY0h97P3U2BgC]
+=== END THINKING ===
+
+# Carbonic Anhydrase Engineering for Improved Stability
+
+I'll help you design a more stable variant of carbonic anhydrase II (CA II) for carbon capture applications. Let's start with a thorough literature review to understand current approaches before proposing novel modifications.
+
+## Step 1: Research on Carbonic Anhydrase Engineering

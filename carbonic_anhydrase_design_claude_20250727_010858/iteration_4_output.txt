@@ -1,0 +1,46 @@
+Now, let's search for more specific examples of successful domain insertions and deletions:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01RgLDAQf17krgheP9aGwjad
+Arguments: {'query': 'domain insertion and deletion strategies for protein engineering stable loop insertions examples'}
+--- TOOL OUTPUT ---
+**Protein engineering strategies for stable domain or loop insertions** typically focus on identifying tolerant sites within a protein scaffold and using insertion and deletion methods that preserve or enhance structural integrity and function. Below are key strategies and illustrative examples based on recent research.
+
+**Domain Insertion Strategies**
+
+- **Randomized Insertion Libraries:** Techniques like *saturated programmable insertion engineering (SPINE)* generate comprehensive libraries by inserting a domain at virtually every possible site in the acceptor protein[^2][2]. These libraries can be screened to identify permissive “hotspots” that tolerate insertion without loss of stability or function. For example, PDZ domains (small, globular, closely spaced termini) were inserted into multiple scaffolds such as AraC, Flp recombinase, and TVMV protease using SPINE, yielding variants with retained or novel functionality[^2][2].
+
+- **Structure-Guided & Rational Insertion:** *Candidate loop regions or surface-exposed sites* are often selected, ideally in flexible or non-catalytic loops, to minimize disruption. The use of structural data helps target insertion points that are likely to accommodate new domains without steric clashes or global destabilization[^1][1][^3][3].
+
+- **Trinucleotide Deletion for Gapped Insertion:** Methods such as MuDel employ engineered transposons to generate precise one-codon (3 bp) deletions at random sites across a gene, creating “slots” for domain insertion[^1][1]. Replacing these deleted codons with the desired domain creates chimeric proteins that incorporate the new domain at structurally permissible locations.
+
+**Loop Insertion Strategies & Stability Considerations**
+
+- **Insertion into Surface Loops:** Short peptide or domain insertions are often most successful in *surface-exposed, flexible loops* well-distanced from active or functional sites. Insertion into structured or buried regions typically causes misfolding or loss of function but surface loop insertions can be well-tolerated and maintain structural stability[^2][2][^5][5].
+
+- **Engineering Stable Junctions:** The stability of loop insertions is improved by ensuring the inserted sequence has *compatible secondary structure propensity* or can be accommodated without introducing strain. Sometimes flexible linkers (such as short Gly-Ser repeats) are included at the ends of the inserted loop to promote proper domain folding and flexibility[^3][3].
+
+- **Examples of Successful Insertions:**
+    - *SPINE-generated libraries* of AraC, Flp, and other proteins with PDZ domain insertions retained function at select permissive sites[^2][2].
+    - Cas9 engineering often uses both end-to-end domain fusions and insertions at rationally chosen internal loops, resulting in stable, functional multidomain proteins[^3][3].
+    - “Single amino acid” insertion/deletion mutagenesis (deep indel mutagenesis) is used to empirically map protein regions tolerant to such changes, facilitating identification of stable insertion sites[^4][4].
+
+**Deletion Strategies**
+
+- **Systematic Loop Deletions/Scans:** Similar to insertion, targeted or random deletion (single amino acids or longer segments) can map dispensable regions and inform design of minimal or more stable protein variants[^1][1][^4][4].
+
+**Critical Insights:**
+
+- **Stability and Function Mapping:** Comprehensive screening (deep mutagenesis or NGS-based tracking of insertion/deletion libraries) is key to empirically mapping *tolerant sites* for stable insertions or deletions[^2][2][^5][5].
+- **Domain Choice:** Small, structurally independent domains with proximal N- and C-termini (like PDZ or SH3) tend to insert more stably than larger or more extended domains[^2][2].
+
+**Limitations:**  
+While general principles are established, successful design often requires **experimental validation**, as even structurally “rational” sites can behave unpredictably. Functional assays post-insertion are essential to confirm stability and activity.
+
+[^1]: [1]
+[^2]: [2]
+[^3]: [3]
+[^4]: [4]
+[^5]: [5]
+--- END TOOL OUTPUT (Length: 4079 chars) ---
+=== END TOOL CALL ===
+

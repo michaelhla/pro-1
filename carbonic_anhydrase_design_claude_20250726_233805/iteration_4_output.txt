@@ -1,0 +1,19 @@
+Now, let me search for structural insights on carbonic anhydrase stability:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01C7jxQxxStcrGmTrrze2qUN
+Arguments: {'query': 'carbonic anhydrase structural features disulfide bonds thermostability hydrophobic core electrostatic interactions'}
+--- TOOL OUTPUT ---
+Carbonic anhydrase (CA) displays several important structural features that relate directly to its stability and function, including **disulfide bonds, thermostability, hydrophobic core formation, and electrostatic interactions**.
+
+- **Disulfide Bonds**: Certain thermostable α-carbonic anhydrases, such as those from thermophilic organisms, have **intramolecular disulfide bonds** that contribute significantly to structural rigidity and increased thermostability[2]. These disulfide bonds help maintain the enzyme's structural integrity under elevated temperatures by covalently linking different parts of the polypeptide chain.
+
+- **Thermostability**: The thermostability of some α-carbonic anhydrases is enhanced not only by **disulfide bond formation** but also by **extensive intermolecular interactions** (such as dimerization) and the presence of large, negatively charged surface patches[2]. These features are often exploited in engineered variants for use in industrial processes where resistance to heat and varying pH is required.
+
+- **Hydrophobic Core**: The **hydrophobic core** of CA, particularly within the active site cavity, is critical for substrate (CO₂) binding. The active site displays a marked **hydrophobic/polar polarization**: one half is hydrophilic (important for catalysis and proton transfer), while the other half comprises a **linear hydrophobic patch** formed by residues such as V128, V138, L136, L192, V201, and W203[2]. This structural arrangement supports substrate access and orientation, and mutations to these hydrophobic residues can reduce enzyme activity.
+
+- **Electrostatic Interactions**: The surface of some CAs features **large negatively charged patches**, which further stabilize the protein and promote interactions necessary for dimerization or higher-order assembly[2]. Additionally, the zinc ion in the active site, coordinated by three histidine residues and water/hydroxyl, strongly influences the local electrostatic environment, facilitating proton transfer and catalytic efficiency[3].
+
+In summary, the combination of **disulfide bonds, hydrophobic core organization, and extensive electrostatic interactions**—particularly among thermostable and extremophilic CAs—play central roles in the enzyme's **structural stability, substrate binding, and catalytic activity**[2][3]. These features can be targeted in protein engineering to further enhance CA function in challenging environments.
+--- END TOOL OUTPUT (Length: 2449 chars) ---
+=== END TOOL CALL ===
+

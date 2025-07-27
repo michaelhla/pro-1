@@ -1,0 +1,9 @@
+Let me look for other potential stabilization approaches:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01B7UGExiuUEiA2u3LGQRx6C
+Arguments: {'query': 'specific mutations shown to stabilize human carbonic anhydrase II A65T L100H K154N L224S L240P A248T'}
+--- TOOL OUTPUT ---
+The mutations **A65T, L100H, K154N, L224S, L240P, and A248T** in human carbonic anhydrase II (HCAII) are known to stabilize the enzyme. These mutations contribute to increased stability by enhancing hydrogen bonding, improving packing, and reducing side chain entropy loss during folding[2][3][4]. The structural changes associated with these mutations act largely independently, resulting in improved backbone conformational energetics and overall thermostability[3][4]. This variant is one of the most thermostable forms of HCAII, which is beneficial for applications requiring enzyme stability under harsh conditions[3][4].
+--- END TOOL OUTPUT (Length: 626 chars) ---
+=== END TOOL CALL ===
+

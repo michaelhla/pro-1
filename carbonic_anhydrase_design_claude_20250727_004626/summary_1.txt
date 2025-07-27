@@ -1,0 +1,45 @@
+
+
+# Carbonic Anhydrase Engineering for Enhanced Stability Summary
+
+## Objective
+Design a more stable variant of human carbonic anhydrase II (hCA II) for carbon capture applications, focusing on increased thermal stability and acid resistance while maintaining catalytic activity.
+
+## Key Research Findings
+- Thermostable CA variants can be engineered through:
+  - Surface residue modifications (replacing hydrophobic with hydrophilic)
+  - Disulfide bond engineering (strategically placed for rigidity)
+  - Proline substitutions (enhancing local rigidity)
+  - Loop rigidification (reducing flexible regions)
+  - Salt bridge optimization (enhancing electrostatic networks)
+- A known thermostable sextuple mutant (A65T, L100H, K154N, L224S, L240P, A248T) has been documented
+
+## Baseline Measurements
+- Original sequence Rosetta score: -301.26 REU
+- Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+- Catalytic residues verified with near-zero RMSD (active site RMSD: 4.72×10⁻⁷)
+
+## Mutations Tested
+Multiple design iterations were tested with various mutations including:
+1. Design v1: G6A, H36D, A65C, A69C, L100H, A140E, K154C, V161C, G196A, L240P, A248T, Q249E (Rosetta: -98.42)
+2. Design v2: G6A, H36D, L100H, A140E, T193P, L240P, A248T, Q249E (Rosetta: -217.40)
+3. Design v3: A65T, L100H, K154N, L224S, L240P, A248T (known thermostable set) (Rosetta: -169.24)
+4. Design v4: A65T, L100H, L155P, L240P, W209T, A248T (Rosetta: -162.47)
+5. Design v5: W209R (Rosetta: -128.44)
+6. Design v6: A134T, C205S, V207L (Rosetta: -286.89) - Best scoring design
+7. Design v7: A65T, L100H, K154N, L224S, L240P, A248T, W209T (Rosetta: -158.65)
+
+## Best Design Results
+Design v6 with mutations A134T, C205S, V207L achieved a Rosetta score of -286.89 REU, which is closest to the wild-type score (-301.26 REU).
+
+## Conclusions
+1. The attempted disulfide bond designs significantly destabilized the protein structure
+2. Conservative mutations at specific surface residues produced the best results
+3. Direct implementation of the known sextuple mutant pattern did not yield favorable Rosetta scores in our model
+4. The best design (v6) introduced more subtle changes that maintained overall fold stability
+
+## Next Steps
+1. Further refine design v6 with additional stabilizing mutations
+2. Test more conservative approaches focused on surface charge optimization
+3. Examine catalytic activity of the best design to ensure function is preserved
+4. Consider combined approaches with both core and surface stabilizing mutations

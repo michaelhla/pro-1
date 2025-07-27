@@ -1,0 +1,40 @@
+Now let's search for more specific information about key point mutations that could improve thermal stability in carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_015LWAsrDDjzL1cwASpFadVR
+Arguments: {'query': 'specific thermostabilizing point mutations in human carbonic anhydrase II HCAIIts mutation details'}
+--- TOOL OUTPUT ---
+The **thermostabilizing point mutations** in the human carbonic anhydrase II variant known as **HCAIIts** are a set of six specific amino acid substitutions identified to enhance the enzyme’s thermal stability. These mutations act largely independently, contributing to increased hydrogen bonding, improved packing, and reduced entropy loss upon folding[1][3].
+
+The **six point mutations** in HCAIIts are:
+- **K170A** (Lysine 170 to Alanine)
+- **A171L** (Alanine 171 to Leucine)
+- **N189A** (Asparagine 189 to Alanine)
+- **L198A** (Leucine 198 to Alanine)
+- **S220A** (Serine 220 to Alanine)
+- **I227A** (Isoleucine 227 to Alanine)
+
+These residues are scattered through the protein and were chosen based on strategies such as reducing side-chain entropy and optimizing local conformational energetics, which are commonly overlooked but critical for thermal stability[1][3].
+
+Structural analyses show that these mutations do not disrupt the overall fold of the enzyme; rather, they optimize local interactions in ways that independently contribute to improved thermostability[1][3].
+
+- **Key context:** The structure of this thermostable variant HCAIIts (PDB structure 6B00) reveals root mean square deviations (RMSDs) of only ~0.34–0.38 Å compared to the wild type, supporting that these changes do not significantly alter the enzyme's overall structure[1].
+
+- **Mechanisms of stabilization:**
+  - Increased hydrogen bonding (notably at mutant interfaces).
+  - Improved hydrophobic packing.
+  - Reduced entropy loss due to mutation of flexible/entropically costly side chains.
+  - Enhanced backbone conformational energetics at specific mutation sites[1][3].
+
+These HCAIIts mutations are well-characterized in the literature and have been patented for use in biotechnological applications that require enzyme robustness under harsh, usually high-temperature conditions[1][3].
+
+No evidence in the provided search results indicated additional thermostable variants under the HCAIIts designation with different mutations, nor did they indicate that other frequently studied activity-altering mutants (e.g., for substrate specificity or esterase promiscuity) are directly related to increased thermostability[2][4]. 
+
+**In summary:**  
+- **HCAIIts** contains six thermostabilizing point mutations: K170A, A171L, N189A, L198A, S220A, and I227A[1][3].  
+- These changes add thermal stability by favorably affecting local structure, side-chain entropy, and backbone energetics.  
+- The enzyme still closely resembles the wild type in overall structure and retains functional properties.
+
+For detailed residue locations or structural data, see the Protein Data Bank entry **6B00**, which reports the ultra-high resolution structure of HCAIIts[3].
+--- END TOOL OUTPUT (Length: 2738 chars) ---
+=== END TOOL CALL ===
+

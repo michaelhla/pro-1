@@ -1,0 +1,9 @@
+Now, let's create a variant with the A23C/L203C disulfide bond strategy (with C206S mutation to prevent unwanted disulfide formation) plus a conservative proline in a loop region for rigidity:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01TR1K2xmx9QvXuJcm3EC9kN
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGCPPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'ca2_disulfide_plus_proline.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/ca2_disulfide_plus_proline.pdb.pdb
+--- END TOOL OUTPUT (Length: 55 chars) ---
+=== END TOOL CALL ===
+

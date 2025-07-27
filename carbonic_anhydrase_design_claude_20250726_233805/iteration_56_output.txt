@@ -1,0 +1,49 @@
+That's a very good Rosetta score! Let's check the secondary structure properties:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_011YGoyfvyCc4A3KwUA4cJL6
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_v12.pdb.pdb', 'image_subdir': 'ca_design_v12'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hCA2_v12.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/ca_design_v12/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2087,
+    "total_residues": 260,
+    "radius_of_gyration": 17.2,
+    "center_of_mass": [
+      0.19,
+      -0.42,
+      -1.08
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 45,
+    "sheet_residues": 69,
+    "loop_residues": 146,
+    "helix_percentage": 17.3,
+    "sheet_percentage": 26.5,
+    "loop_percentage": 56.2
+  },
+  "surface_properties": {
+    "total_sasa": 12190.78,
+    "hydrophobic_sasa": 5889.46,
+    "polar_sasa": 6252.4,
+    "hydrophobic_ratio": 48.3
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop. Radius of gyration: 17.2 \u00c5. Total SASA: 12190.78 \u0172. Surface hydrophobicity: 48.3%."
+}
+--- END TOOL OUTPUT (Length: 1233 chars) ---
+=== END TOOL CALL ===
+

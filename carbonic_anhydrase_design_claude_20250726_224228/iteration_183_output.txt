@@ -1,0 +1,1 @@
+The RMSD of 2.381 Å is quite high, indicating significant structural deviation. Let's look at the catalytic integrity:

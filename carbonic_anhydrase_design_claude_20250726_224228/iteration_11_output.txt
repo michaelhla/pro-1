@@ -1,0 +1,3 @@
+The Rosetta score for the modified protein is significantly higher (less negative), which indicates a less stable structure than the original. This is concerning and suggests we need to revise our approach. Let's check the RMSD to understand how much the structure has changed.
+
+## Step 6: Calculate RMSD with Reference Structure

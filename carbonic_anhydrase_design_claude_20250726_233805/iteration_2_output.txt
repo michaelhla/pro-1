@@ -1,0 +1,39 @@
+Let me get more specific information about mutations that improve stability in carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01T8YqU8f5E4LkUvGBbQCCQS
+Arguments: {'query': 'specific mutations that improve carbonic anhydrase II stability amino acid substitutions thermostability'}
+--- TOOL OUTPUT ---
+Specific amino acid substitutions that increase the **thermostability** of human carbonic anhydrase II (HCAII) have been identified and characterized in several studies. The most extensively described variant is a **sextuple mutant** known as HCAIIts, which combines the following six substitutions:
+
+- **A65T** (Alanine 65 to Threonine)
+- **L100H** (Leucine 100 to Histidine)
+- **K154N** (Lysine 154 to Asparagine)
+- **L224S** (Leucine 224 to Serine)
+- **L240P** (Leucine 240 to Proline)
+- **A248T** (Alanine 248 to Threonine)
+
+This combination was created through **random mutagenesis** targeting residues identified as enhancing thermostability individually. The resulting HCAIIts mutant demonstrates remarkable thermal resistance, retaining over 85% activity after 2 hours at 65°C, whereas wild-type HCAII loses most activity under milder conditions (<15% at 55°C)[1].
+
+**Mechanisms and Supporting Context:**
+- The increased stability from these substitutions is primarily attributed to **surface mutations** that replace hydrophobic residues, resulting in additional surface hydrogen bonding without perturbing the active site geometry or catalytic function[2].
+- Structural analysis confirms that these mutations are largely independent in their effects and do not induce disruptive conformational changes, as the mutated variant retains high structural similarity (Cα-RMSDs ~0.34–0.38 Å) to the wild type[1].
+- Studies evaluating subsets of these mutations (such as L100H, L224S, L240P) verify that even partial combinations can enhance stability without reducing enzyme kinetics[1][2].
+
+Additional strategies have also involved introducing **noncanonical amino acids** (e.g., pNO2F) to further improve thermostability under a wider pH range. Such mutants have demonstrated higher thermal stability compared to wild type, though these studies are less common than those involving canonical amino acid substitutions[3].
+
+Other research highlights the importance of targeting hydrophobic residues with many residue-residue contacts for substitution. Altering these positions can significantly influence protein stability by affecting the protein’s folding/unfolding equilibrium, although specific mutant detail in that context is more general[4].
+
+**Key substitutions for increased HCAII thermostability:**
+- **A65T**
+- **L100H**
+- **K154N**
+- **L224S**
+- **L240P**
+- **A248T**[1][2]
+
+**Caveats:** While these mutations reliably enhance thermostability in vitro, effects may vary in vivo or in industrial settings. Additionally, introducing noncanonical amino acids offers further stability but requires more complex protein engineering and expression systems[3]. 
+
+References indicate that **surface-focused substitutions** (especially converting hydrophobic to more hydrophilic or Proline/Threonine residues) are most effective for carbonic anhydrase II thermostabilization without compromising catalytic function[1][2].
+--- END TOOL OUTPUT (Length: 2927 chars) ---
+=== END TOOL CALL ===
+

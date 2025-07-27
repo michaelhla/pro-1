@@ -1,0 +1,1 @@
+Let's also get the Rosetta energy score for the wild-type as our baseline:

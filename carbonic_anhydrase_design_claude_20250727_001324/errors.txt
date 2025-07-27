@@ -1,0 +1,1 @@
+Iteration 96: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'messages.51: all messages must have non-empty content except for the optional final assistant message'}}

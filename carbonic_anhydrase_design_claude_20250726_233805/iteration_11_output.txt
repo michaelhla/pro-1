@@ -1,0 +1,45 @@
+## Step 2: Designing Stability-Enhancing Mutations
+
+Based on my research, I will design a novel carbonic anhydrase variant with enhanced thermal stability and acid resistance while maintaining catalytic activity. I'll integrate several strategies:
+
+1. **Introduction of engineered disulfide bonds** - a feature found in thermostable carbonic anhydrases
+2. **Surface modifications** to improve surface charge distribution and hydrogen bonding
+3. **Specific amino acid substitutions** based on computational insights and literature findings
+4. **Careful preservation of the catalytic residues** and active site geometry
+
+Here are my proposed novel mutations:
+
+1. **A65T** - Literature-supported mutation that increases thermostability
+2. **L100H** - Improves thermostability through surface hydrogen bonding
+3. **L240P** - Enhances rigidity through proline substitution
+4. **A248T** - Improves thermostability through surface hydrogen bonding
+5. **V121C and A144C** - Novel engineered disulfide bond to increase structural rigidity (these positions are close in 3D structure but not in sequence)
+6. **K170D** - Novel acidic residue substitution to improve stability in acidic conditions
+7. **N253D** - Additional acidic residue to improve pH stability
+8. **I146F** - Novel mutation to enhance hydrophobic core packing
+9. **S197M** - Novel mutation to strengthen hydrophobic interactions
+10. **A23R** - Novel surface charge modification to improve electrostatic interactions
+
+## Step 3: Creating the Engineered CA Sequence
+
+Let me apply these mutations to the original sequence:
+
+Original sequence:
+```
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK
+```
+
+Modified sequence with mutations (changes in bold):
+```
+MSHHWGYGKHNGPEHWHKDFPI**R**KGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAV**T**KGGPLDGTYRLIQFHFHWGSLDGQGSE**H**TVDKKKYAAELHLVHWNTKYGDFGKAVQQPDG**C**AVLG**F**FLKVGSAKPG**C**QKVVDVLDS**D**KTKGKSADFTNFDPRGLLPE**M**LDYWTYPGSLTT**P**PLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMV**D**NWRPAQPLKNRQIKASFK
+```
+
+Let me now fold this modified sequence:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_013nhuc2ZqDSsdHguQfbJ3HL
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIRKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVTKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGCAVLGFFLKVGSAKPGCQKVVDVLDSDKTKGKSADFTNFDPRGLLPEMLDYWTYPGSLTTPPLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'engineered_hCA2_v1.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/engineered_hCA2_v1.pdb.pdb
+--- END TOOL OUTPUT (Length: 47 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,13 @@
+=== CLAUDE'S THINKING ===
+I'll approach this protein engineering task systematically, following the outlined steps. First, I'll conduct a thorough web search to understand the current state of carbonic anhydrase engineering and general principles of enzyme stability.
+
+1. Web search on carbonic anhydrase engineering and stability:
+Let me search for information on carbonic anhydrase engineering, focusing on stability improvements.
+[Signature: ErUBCkYIBRgCIkDPSSnUHRWYm3cXjD0zzJIEnPr3lwM6nnVMOmLpSlDwCCW5UFr+k3BKjKvOPWrJz426KrnKfk5oR0yMVjmrGjBiEgyhCUlktRhwrkkHscIaDETwxiIMDahXgdrpPCIwxcNYJGk/3mulpkG377iD75WuCuKaYVx9uxhF1pptCYJNhNi+qylzGC33XbPr6qclKh1U9seGwIuiy7Ib3HQ127ApPH3hd+Nr9Vl574FyMBgC]
+=== END THINKING ===
+
+# Carbonic Anhydrase Engineering for Enhanced Stability
+
+I'll systematically design a more stable variant of human carbonic anhydrase II (hCA II) for improved carbon capture applications. First, let's research current approaches and strategies.
+
+## Step 1: Research on Carbonic Anhydrase Engineering

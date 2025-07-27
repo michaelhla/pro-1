@@ -1,0 +1,8 @@
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01W8jkZJrVnNSDpvaeEcEst2
+Arguments: {'pdb_file_path': 'predicted_structures/ca2_hydrophobic_core.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -253.96 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/ca2_hydrophobic_core.pdb.pdb
+--- END TOOL OUTPUT (Length: 159 chars) ---
+=== END TOOL CALL ===
+

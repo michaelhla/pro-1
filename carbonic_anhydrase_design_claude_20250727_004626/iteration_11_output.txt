@@ -1,0 +1,60 @@
+## Step 2: Design Strategy Based on Research Findings
+
+Based on my research, I'll now propose a novel design strategy for improving carbonic anhydrase stability while maintaining catalytic function:
+
+1. **Introduce strategic disulfide bonds** to enhance rigidity and stabilize flexible regions
+2. **Replace glycine residues** in loop regions with alanine or proline to reduce flexibility
+3. **Optimize surface residues** to enhance hydrophilic interactions and salt bridge networks
+4. **Introduce proline residues** at strategic positions to enhance local rigidity
+5. **Enhance helix capping** with stabilizing residues
+
+The key is to ensure these modifications don't disrupt the active site or catalytic function.
+
+### Proposed Mutations:
+
+1. **Introduce disulfide bonds**:
+   - K154C-V161C: Create a disulfide bond in a surface loop region
+   - A65C-A69C: Stabilize a loop region near the active site without disrupting function
+
+2. **Glycine replacements**:
+   - G6A: Replace glycine with alanine to reduce flexibility
+   - G196A: Replace glycine with alanine in a loop region
+
+3. **Surface residue optimizations**:
+   - L100H: Replace hydrophobic leucine with histidine on the surface (known to enhance thermostability)
+   - L240P: Introduce proline at a loop position (known to enhance thermostability)
+   - A248T: Replace alanine with threonine to improve hydrogen bonding
+
+4. **Helix capping and enhanced salt bridges**:
+   - A140E: Introduce a negative charge to potentially form a salt bridge with nearby positive residues
+   - K18R: Replace lysine with arginine to strengthen potential salt bridges
+
+5. **Acid stability enhancements**:
+   - H36D: Replace histidine with aspartic acid to maintain negative charge at low pH
+   - Q249E: Introduce glutamic acid to strengthen electrostatic networks
+
+## Step 3: Modify the Original Sequence
+
+Now I'll create the modified sequence incorporating these mutations:
+
+**Original sequence:**
+```
+MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK
+```
+
+**Modified sequence** (with mutations G6A, H36D, A65C, A69C, L100H, A140E, K154C, V161C, G196A, L240P, A248T, Q249E):
+```
+MSHHWAYGKHNGPEDHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHCFNVEFDDSQDKCVLKGGPLDGTYRLIQFHFHWGSHDGQGSEHTVDKKKYAAELHLVHWNTKYEDFGKAVQQPDGLAVLGIFCKVGSAKPGLQKCVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPASVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKPSFKTE
+```
+
+## Step 4: Fold the Modified Protein
+
+Let's fold the modified protein using ESMFold:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01DKBbugwxiSL8Xp2Rnh1ckp
+Arguments: {'sequence': 'MSHHWAYGKHNGPEDHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHCFNVEFDDSQDKCVLKGGPLDGTYRLIQFHFHWGSHDGQGSEHTVDKKKYAAELHLVHWNTKYEDFGKAVQQPDGLAVLGIFCKVGSAKPGLQKCVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPASVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKPSFKTE', 'filename': 'stabilized_hCA2_v1.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/stabilized_hCA2_v1.pdb.pdb
+--- END TOOL OUTPUT (Length: 47 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,29 @@
+Based on this analysis, I'll now design a new mutation to enhance the stability of carbonic anhydrase II while preserving its catalytic function. Let's incorporate one of the mutations mentioned in the literature: N67L, which is part of the thermostabilizing mutations but is also within the active site residues.
+
+First, I need to modify the protein sequence. Let me get the reference sequence from the literature:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01S4rtiYQtoiruWaLdJSJ4Z6
+Arguments: {'query': 'human carbonic anhydrase II (hCA2) amino acid sequence'}
+--- TOOL OUTPUT ---
+The **amino acid sequence** for human carbonic anhydrase II (hCA2, gene symbol: CA2, UniProt accession: P00918) is widely available in protein structure databases and protein sequence resources. According to structural data resources for PDB entry 1CA2, human CA2 is a 260-amino-acid protein (starting after the initiator methionine from Ser2 to Lys260)[2][3].
+
+The **full canonical amino acid sequence** of human carbonic anhydrase II (hCA2, UniProt P00918) is:
+
+```
+MAHAEAGTLS ELLKNGALMN VYVPAFNSDS QDKAVLKGGD LVQPGTYVDK NQSPVDIKTL NEDVYGNKGS AIKCAKLKGG PLDGTYRLPD YRLDTTWGGP CGDNAVPMMG HNSDFSDSKN QPLKPLSVSL PGYLIQKTYR EGRTIVGVGV AACLRDFLAP ESVSEGTKIN VDEVFRTNPV LVKDAQALKS SQPLSIVGST AAKPNAPENA RSVIYSSAEF LSNLNENFNA IQPSVSGHRI CNISVSSEQL AAKDVDTSVG SEHTVEEAIK RLA
+```
+— This sequence includes all amino acids from the mature hCA2 protein[2][3].
+
+For reference, the **primary sequence starts with**:  
+_MAHAEAGTLSELLKNGALMNVYVPAFNSDSQDKAVLKGGDLVQPGTYVDKNQSPVDIKTLNEDVYGNKGS..._
+
+Key details:
+- **Amino acid range** (in most recombinant expression constructs): Ser2–Lys260[2].
+- **UniProt Accession:** P00918[2].
+- **Protein Length:** 260 amino acids[2].
+- **Structure source:** RCSB PDB 1CA2 or UniProt P00918[2][3].
+
+If the verified official sequence is required for direct comparison or download, consult authoritative sequence databases (such as UniProt P00918) or the RCSB PDB (entry 1CA2)[2][3].
+--- END TOOL OUTPUT (Length: 1404 chars) ---
+=== END TOOL CALL ===
+

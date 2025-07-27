@@ -1,0 +1,60 @@
+
+
+# Carbonic Anhydrase II Engineering Summary
+
+## Objective
+Design more stable variants of carbonic anhydrase II (CA II) to improve thermal stability and acid resistance while maintaining catalytic activity for carbon capture applications.
+
+## Key Research Findings
+1. **Stability Enhancement Strategies**:
+   - Disulfide bond engineering (A23C/L203C with C206S) increases thermal stability (+6.6 kcal/mol)
+   - Surface electrostatics optimization improves acid stability
+   - Hydrophobic core packing optimization increases overall stability
+   - Proline introduction in loops enhances rigidity
+   - Multiple point mutations can work additively for stabilization
+
+2. **Critical Regions**:
+   - Active site residues (Y7, N62, H64, N67, Q92) for proton transfer network
+   - Zinc binding residues (H94, H96, H119) essential for catalysis
+   - Surface-exposed residues important for acid stability
+   - Loop regions amenable to rigidification
+
+## Mutations Tested
+Multiple design variants were tested with various mutations:
+
+1. **First comprehensive design** - Rosetta score: 325.38 (worse than WT)
+   - A23C/L203C/C206S + multiple additional mutations (V135P, N178R, A65R, L223F, A53I, S217D, V121I)
+
+2. **Disulfide bond design** - Rosetta score: -300.38
+   - A23C mutation
+
+3. **Novel stability design** - Rosetta score: -304.17
+   - K106R mutation (conservative surface change)
+
+4. **Thermoacid stable variant** - Rosetta score: -232.07
+   - D243E and K196R mutations
+
+5. **Multi-surface variant** - Rosetta score: -278.89
+   - C206K and C209R mutations (surface electrostatics)
+
+6. **Strategic design** - Rosetta score: -279.17
+   - V135I, T199I, C206K mutations
+
+## Structural Analysis
+- Wild-type CA II: Rosetta score -305.47
+- Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+- Compact structure with good radius of gyration (17.19 Å)
+- Catalytic site geometry is critical to maintain
+
+## Challenges and Results
+- Maintaining the same or better Rosetta score while introducing stabilizing mutations proved difficult
+- Most variants showed worse Rosetta scores than wild-type (-305.47)
+- The best performing variant had a Rosetta score of -304.17 with a conservative K106R mutation
+- No variant achieved the target of significantly improving on the wild-type score while maintaining structure
+
+## Next Steps
+1. Focus on more conservative mutations with established benefits
+2. Combine A23C/L203C disulfide with fewer additional mutations
+3. Explore computational optimization of surface charge patterns
+4. Test additional variants with loop stabilization strategies
+5. Consider directed evolution approaches alongside rational design

@@ -1,0 +1,10 @@
+=== ITERATION 97 THINKING TOKENS ===
+Estimated thinking tokens: 189
+Timestamp: 2025-07-26T23:08:32.178376
+============================================================
+
+Based on the previous iterations, I need to take a different approach for the next design. My 5-mutation design based on literature-reported mutations was decent but didn't show improved stability over wild-type, and the 8-mutation design with added salt bridges was problematic, showing a much worse Rosetta score.
+
+The hint suggests looking at different proteins, particularly other zinc metalloproteases, for stability-enhancing modifications that might be transferable to carbonic anhydrase. This cross-protein approach makes sense since the underlying biophysical principles of protein stability can often be applied across different protein families.
+
+I'll start by searching for information about stabilizing mutations in other zinc metalloproteases:

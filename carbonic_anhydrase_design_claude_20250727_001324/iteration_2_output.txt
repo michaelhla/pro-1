@@ -1,0 +1,31 @@
+Let's get more specific information on mutations and engineering approaches:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Y2ZsSsBwqPDYHLYe3RLQFq
+Arguments: {'query': 'carbonic anhydrase II specific mutations for stability disulfide bonds thermostability engineering'}
+--- TOOL OUTPUT ---
+Specific **mutations engineered to improve the thermostability of human carbonic anhydrase II (HCAII)** include both *disulfide bond introduction* and *point substitutions targeting stability*. The most well-documented and characterized approach involves **engineering a disulfide bond between residues Ala23Cys and Leu203Cys** on a background in which Cys206 is replaced with serine (Cys206Ser) to prevent unwanted disulfide linkage[2]. This *dsHCAII* variant showed significantly improved thermal tolerance and a net stabilization of 6.6 kcal/mol, with no substantial loss of catalytic efficiency[2].
+
+Additional approaches to increase thermostability have used **multiple point mutations**. A patented HCAII variant termed HCAIIts incorporates **six substitutions** whose increased stability is attributed to:
+- Enhanced hydrogen bonding
+- Improved packing
+- Reduced side chain entropy
+- Improved backbone conformational energetics
+
+The structure of HCAIIts confirmed these mutations mainly exert their effects independently, each contributing additional stabilization[3]. Specific details of the six mutations are indicated in the patent and structural literature, but the summarized mechanism stresses improved core packing and backbone rigidity rather than new disulfide bonds[3].
+
+**Novel engineered disulfide bonds** have also been modeled and tested in HCAII, aiming to connect residues spatially close in the folded structure, but not naturally forming disulfide bonds. Computational evaluation and subsequent mutagenesis have shown such disulfide engineering to be a viable strategy[4].
+
+**Key strategies for thermostability engineering in HCAII:**
+- **Ala23Cys/Leu203Cys** disulfide (with Cys206Ser background) for increased resistance to denaturation and greater thermal stability[2].
+- **Multiple point mutations** (as in HCAIIts): each providing small, additive increases in stability through increased backbone rigidity, better hydrophobic core packing, and favorable entropic effects[3].
+- **Targeted backbone and side-chain substitutions** identified through rational design, as described in computational and structural studies[5].
+- Disease-related mutations such as G145R and H94Y lead to decreased, not increased, stability, and are mainly relevant for structure-function analysis rather than stability engineering[1].
+
+**Limitations and caveats:**
+- While disulfide engineering proves effective in *in vitro* stability assays, effects on protein solubility or folding kinetics may vary between constructs and conditions.
+- Newly engineered variants should always be evaluated for catalytic activity, as some stability-increasing mutations have the potential to affect function[2][3].
+
+If further details on the specific six mutations of HCAIIts or more candidate positions for disulfide engineering are needed, refer to the cited structural and patent literature for complete residue lists and atomic details[3][4].
+--- END TOOL OUTPUT (Length: 2938 chars) ---
+=== END TOOL CALL ===
+

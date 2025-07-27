@@ -1,0 +1,13 @@
+Based on all the information gathered, I'll now design a novel variant of carbonic anhydrase II focused on thermostabilization through strategic mutations. My approach will target flexible loops and improve core packing without disrupting the catalytic residues.
+
+## Design 4: Core Repacking and Loop Rigidification Variant
+
+Here are the specific mutations I'm proposing:
+
+1. **G25P**: Introducing proline in Loop 1 (residues 22-33) to reduce conformational flexibility
+2. **V31F**: Replacing a small hydrophobic residue with a bulkier aromatic one to improve packing and restrict loop movement
+3. **G63P**: Adding proline in Loop 2 (residues 55-67) to rigidify this catalytically important flexible region
+4. **A135Y**: Substituting alanine with tyrosine to enhance core packing and introduce potential hydrogen bonding opportunities
+5. **G225P**: Adding proline in another flexible loop region (residues 225-240) to restrict mobility
+
+Let me fold this variant and analyze its properties:

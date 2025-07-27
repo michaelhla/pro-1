@@ -1,0 +1,3 @@
+Based on the structural analysis and research findings, let's design a first mutant with surface hydrophobic residues replaced by hydrophilic ones to enhance hydrogen bonding. From our analysis, the wild-type has a high surface hydrophobicity ratio (48.6%). Let's target specific surface-exposed hydrophobic residues.
+
+Let's search for specific examples of successful carbonic anhydrase surface mutations:

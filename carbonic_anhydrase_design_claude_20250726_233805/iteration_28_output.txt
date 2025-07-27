@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01AY327bWiL7BWoTV66HDGA5
+Arguments: {'pdb_file_path': 'predicted_structures/engineered_hCA2_v6.pdb.pdb', 'image_subdir': 'engineered_hCA2_v6'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/engineered_hCA2_v6.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/engineered_hCA2_v6/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2074,
+    "total_residues": 260,
+    "radius_of_gyration": 17.19,
+    "center_of_mass": [
+      0.23,
+      -0.31,
+      -0.61
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 43,
+    "sheet_residues": 69,
+    "loop_residues": 148,
+    "helix_percentage": 16.5,
+    "sheet_percentage": 26.5,
+    "loop_percentage": 56.9
+  },
+  "surface_properties": {
+    "total_sasa": 12187.26,
+    "hydrophobic_sasa": 5959.14,
+    "polar_sasa": 6180.54,
+    "hydrophobic_ratio": 48.9
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 16.5% helix, 26.5% sheet, 56.9% loop. Radius of gyration: 17.19 \u00c5. Total SASA: 12187.26 \u0172. Surface hydrophobicity: 48.9%."
+}
+--- END TOOL OUTPUT (Length: 1251 chars) ---
+=== END TOOL CALL ===
+

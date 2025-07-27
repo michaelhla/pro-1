@@ -1,0 +1,29 @@
+Let me try a more comprehensive approach with more informed mutations:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01LBi3hUuUDZQwmL2k8BwD8E
+Arguments: {'query': 'carbonic anhydrase II stability engineering loops flexible regions proline glycine mutation'}
+--- TOOL OUTPUT ---
+Stability engineering of carbonic anhydrase II (HCA II) involves modifying flexible regions and loops to enhance its stability. Here are key points related to this topic:
+
+## Stability Engineering Approaches
+
+1. **Proline Substitution**: Incorporating proline residues, particularly in surface loops, can increase rigidity but may have mixed effects on stability. For example, a proline substitution at position 170 can lead to increased flexibility in the 230–240 loop, which may reduce thermal stability[2][4].
+
+2. **Surface Loop Deletion**: Deleting surface loops, such as the 230–240 loop, can potentially affect stability and catalytic activity. This approach has shown minimal effect on thermal stability but impacts catalytic efficiency[2].
+
+3. **Disulfide Bonds**: Engineering disulfide bonds within HCA II has been shown to significantly stabilize the enzyme. A thermally stable and acid-stable variant of HCA II was created by introducing an engineered disulfide bond[3].
+
+## Impact of Flexible Regions
+
+Flexible regions, especially in enzyme loops, play crucial roles in both stability and catalytic activity. For instance, the highly acidic loop (residues 230–240) significantly contributes to the catalytic activity of HCA II[2].
+
+## Mutation Effects
+
+- **Glycine Mutation**: While specific glycine mutations in HCA II are not detailed in the provided sources, generally, glycine's role in protein structures is significant due to its flexibility. Mutating glycine could potentially alter the enzyme's stability and activity depending on the site and context.
+
+- **Proline Mutation**: Proline substitutions can alter the rigidity and flexibility of loops, affecting enzyme stability and activity as mentioned earlier[2][4].
+
+These strategies highlight the complexities of engineering stability and activity in enzymes like HCA II, emphasizing the importance of understanding the structural and catalytic implications of mutations and modifications.
+--- END TOOL OUTPUT (Length: 1961 chars) ---
+=== END TOOL CALL ===
+

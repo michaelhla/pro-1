@@ -1,0 +1,1 @@
+This is much better! The Rosetta score of -294.82 is closer to the wild-type score of -302.38. Let's verify all our analyses with this new design:

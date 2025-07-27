@@ -1,0 +1,9 @@
+Now let's evaluate the stability of our disulfide bond mutant using Rosetta:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01M3UwYHbBAbKqwzsobiTnVc
+Arguments: {'pdb_file_path': 'predicted_structures/A23C_L203C_mutant.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -242.71 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/A23C_L203C_mutant.pdb.pdb
+--- END TOOL OUTPUT (Length: 156 chars) ---
+=== END TOOL CALL ===
+

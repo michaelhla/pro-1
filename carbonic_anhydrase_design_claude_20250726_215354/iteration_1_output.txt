@@ -1,0 +1,26 @@
+=== CLAUDE'S THINKING ===
+Let's break down the task and approach it systematically:
+
+1. I need to design a more stable variant of carbonic anhydrase that maintains catalytic activity while improving thermal stability and stability in acidic conditions.
+2. I have the original sequence and information about catalytic residues (Y7, N62, H64, N67, Q92) and zinc binding residues (H94, H96, H119).
+3. I have access to six computational tools that I must use throughout the design process.
+
+Let's start with step 1 - performing a thorough web search to understand the current state of carbonic anhydrase engineering and research on enzyme stability.
+
+I'll use the websearch tool to gather information on:
+1. Current research on carbonic anhydrase engineering, especially for stability
+2. Methods for improving thermal stability in enzymes
+3. Approaches for enhancing acid stability in enzymes
+4. Recent advances in protein engineering for enzyme stabilization
+
+Once I have this information, I can propose specific mutations that are novel and backed by scientific principles.
+[Signature: ErUBCkYIBRgCIkA3oRNUUS6uP0UWrpBlARfVzqEq7ukL42LOkOLPWIeQhmxopHpgF4t2Q3lk67CMm4bT0jBd1nzm+juG1X/djdBWEgxIkLNGxoxnS70GEzcaDHxtlraYdkRigsS8RCIwZ0N1WiI5xWIrR0CvHjC1Gz/zzT3fXiqKlKYc+2bag2lOcts7KPqKDcZI3WuolauEKh16Kx8C3TdK+n21wdDv1/Lo9eAauxTf2v/kTESFQBgC]
+=== END THINKING ===
+
+# Carbonic Anhydrase Engineering for Improved Stability
+
+I'll help you design a more thermally and acid-stable carbonic anhydrase variant while preserving its catalytic activity. Let's follow a systematic approach, starting with thorough research.
+
+## Step 1: Literature Research on Enzyme Stability Engineering
+
+Let's begin by researching current approaches to engineering carbonic anhydrase stability:

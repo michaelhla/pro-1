@@ -1,0 +1,32 @@
+Let's also look at general protein thermostabilization strategies that might inspire novel mutations for carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01R1JNGSfD8Npmn5DAeKinoG
+Arguments: {'query': 'novel protein thermostabilization strategies beyond disulfide bonds and proline substitutions'}
+--- TOOL OUTPUT ---
+Beyond disulfide bonds and proline substitutions, several **novel strategies for protein thermostabilization** have emerged. These approaches leverage advances in protein engineering, computational prediction, and directed evolution.
+
+**Key strategies include:**
+
+- **Amino Acid Substitutions Based on Comparative Sequence Analysis:** Systematic comparison between mesophilic and thermophilic homologs identifies mutations that increase internal hydrophobicity, stabilize helices, and enhance core packing[1]. Introducing single-point mutations at targeted, non-conserved, or flexible regions has been shown to raise thermostability, though effects can be cooperative and non-additive[1].
+
+- **Directed Evolution:** This experimental method involves iterative rounds of random mutagenesis, recombination, and selection under thermal stress, without requiring prior structural knowledge. Directed evolution is highly effective for discovering thermostable variants by mimicking accelerated natural selection[2].
+
+- **Computational Design and Deep Learning:** Recent computational tools, such as ensemble-based methods (e.g., Rosetta mAF-min) and deep-learning models like ProCeSa, predict stabilizing mutations with increasing accuracy[3][5]. These approaches often target increased backbone rigidity or improved hydrophobic core packing and are capable of screening a vast sequence space rapidly.
+
+- **Noncanonical Amino Acid Incorporation:** Techniques to introduce novel amino acids (e.g., with longer side-chains or special functionalities) can create new stabilizing interactions not possible with the canonical 20 amino acids, expanding the designable stability landscape[4].
+
+- **Surface Charge Optimization and Salt Bridge Engineering:** Alteration of surface residues to promote new salt bridges and optimize electrostatic interactions can improve stability, especially in proteins from hyperthermophiles, though this is typically guided by structure-based design and experimental validation.
+
+- **Hydrophobic Core Repacking:** Mutations that enhance core hydrophobic interactions or fill internal cavities reduce conformational flexibility, contributing to enhanced thermal resistance[1][3].
+
+- **Helix and Sheet Propensity Tuning:** Beyond proline, substituting residues with high helix or sheet propensity at appropriate positions can rigidify secondary structure elements, contributing to thermostability[1].
+
+**Caveats and Limitations:**
+- Effects of individual mutations may not be additive, and some may have unfavorable tradeoffs for activity or solubility[1][2].
+- Predictive accuracy of computational approaches varies between proteins, and experimental validation remains essential[3][5].
+- These strategies are most effective when tailored to the structure and function of the protein of interest, often requiring a combination of methods for optimal results[1][2][3][5].
+
+Overall, **directed evolution and computational design** now complement **rational design** strategies based on core packing, hydrophobicity, and sequence comparison, offering a diverse and synergistic toolkit for protein thermostabilization that goes well beyond traditional approaches like disulfide or proline engineering[1][2][3][5].
+--- END TOOL OUTPUT (Length: 3230 chars) ---
+=== END TOOL CALL ===
+

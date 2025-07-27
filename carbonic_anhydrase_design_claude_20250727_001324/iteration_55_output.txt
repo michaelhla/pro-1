@@ -1,0 +1,38 @@
+Let me search for some additional information about successful CA II stabilization strategies:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_015okVGqQmV9wj6i7fcqhNeE
+Arguments: {'query': 'successful mutations for carbonic anhydrase II stability thermostability disulfide bonds'}
+--- TOOL OUTPUT ---
+Several successful mutations have been reported to enhance the **stability** and **thermostability** of human carbonic anhydrase II (HCAII), including variants with engineered **disulfide bonds**.
+
+**Key Mutations for Enhanced Stability/Thermostability in HCAII:**
+
+- **Six-mutation variant (HCAIIts):**  
+  This thermostable variant includes the mutations **A65T, L100H, K154N, L224S, L240P, and A248T**. The sextuple mutant retains more than 85% activity after 2 hours at 65°C, whereas the wild-type loses most activity under these conditions. The crystal structure revealed that combinations of these mutations, particularly those involving non-polar surface residues (such as L100H, L224S, L240P), are associated with increased stability[1].
+
+- **Disulfide bond engineering (dsHCAII):**  
+  Introduction of cysteine residues at positions **Ala23Cys and Leu203Cys** (with a compensatory mutation Cys206Ser) established a **disulfide bridge** in HCAII. This variant (dsHCAII) showed:
+    - Roughly **twofold increased resistance to denaturation** by guanidine hydrochloride (GuHCl) compared to pseudo-wild-type HCAII[2].
+    - **Thermal stability enhanced by up to 14 K** (as measured by differential scanning calorimetry) compared to wild-type, with maintained catalytic efficiency[2][4].
+    - The X-ray crystal structure at 1.77 Å confirmed successful disulfide bond formation and preserved active-site architecture[2][4].
+
+**Additional Insights:**
+
+- Introduction of non-canonical amino acids (such as pNO2F) at certain positions has also been shown to modestly enhance thermostability, particularly at extreme pH, though the increase is less pronounced compared to disulfide engineering or the HCAIIts mutations[3].
+
+**Summary Table of Key Mutations:**
+
+| Modification Type         | Mutation(s)                       | Effect                                      | Structural Evidence         |
+|--------------------------|------------------------------------|---------------------------------------------|----------------------------|
+| Multi-site mutation      | A65T, L100H, K154N, L224S, L240P, A248T | Major thermostability increase              | Crystal structure solved[1] |
+| Disulfide bond           | Ala23Cys, Leu203Cys, Cys206Ser     | Twofold increased resistance to denaturant; up to 14 K higher Tm | Crystal structure solved[2][4] |
+
+**Caveats and Limitations:**  
+While these approaches have demonstrated clear improvement in thermal and chemical stability, it is important to note that:
+- The specific effect of each mutation in the HCAIIts sextuple variant is context-dependent and may not transfer directly to other carbonic anhydrase isoforms[1].
+- Disulfide bond engineering may not universally enhance stability for all CA isoforms, and the position of the introduced disulfide is critical to preserving activity[2][4].
+
+These successful mutations offer promising strategies for creating robust CA enzymes suited to industrial applications requiring high thermal or chemical stability.
+--- END TOOL OUTPUT (Length: 3016 chars) ---
+=== END TOOL CALL ===
+

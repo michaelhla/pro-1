@@ -1,0 +1,56 @@
+
+        You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase. THIS IS SO WE CAN REDUCE CARBON EMISSIONS AND IMPROVE CARBON CAPTURE. 
+
+        ORIGINAL SEQUENCE: MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK
+        Stability goals: Increase thermal stability, Improve stability in more acidic conditions, Maintain catalytic activity
+        CATALYTIC RESIDUES: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
+        ZINC BINDING RESIDUES: H94, H96, H119 (essential for catalytic activity)
+
+        You have access to six computational tools that you MUST use extensively to accomplish this task:
+        1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
+        2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower or more negative = more stable)
+        3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
+        4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
+        5. examine_catalytic_activity: CRITICAL TOOL - Examines catalytic residues and compares them to reference structure using Kabsch RMSD. Use this to verify mutations haven't disrupted Y7, N62, H64, N67, Q92 (active site) or H94, H96, H119 (zinc binding). Returns RMSD values and catalytic integrity assessment. Use the standard hCA II residue dictionaries provided in the tool description.
+        6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
+        
+        IMPORTANT: You MUST use these tools multiple times throughout the design process. Do not stop after a single tool call. Keep using tools until you have completed the entire design workflow.
+
+        Please approach this systematically:
+        1. Use websearch to find current research on general enzyme stability and recent engineering approaches. Go deep into the literature and Uniprot. THIS SHOULD BE VERY THOROUGH BEFORE CONTINUING TO THE NEXT STEPS. THIS IS A FUNDAMENTALLY IMPORTANT STEP.
+        2. Using the findings from your research, propose specific amino acid mutations that could improve stability. These can be simple point mutations, or larger insertions/deletions.
+        3. Then modify the original sequence using the mutations you proposed. Make sure you have applied your mutations correctly. 
+        4. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
+        5. Use calculate_rosetta_score to get the stability score of your modified sequence.
+        6. Use calculate_rmsd_with_sequences to compare with the reference structure.
+        7. **CRITICAL** Use examine_catalytic_activity to verify that catalytic residues are preserved and get RMSD values for the catalytic sites. This ensures mutations haven't disrupted enzyme function.
+        8. Use examine_secondary_structure to analyze the new structure's fold, SASA, and structural quality
+        9. Compare scores and provide recommendations with quantitative rationale. 
+        
+
+        Always preserve the catalytic activity of the enzyme while improving stability.
+        Use the Rosetta scores to validate your design decisions quantitatively (more negative = more stable).
+        
+        RMSD interpretation guidelines:
+        - RMSD < 2.0 Å: Very similar structures in aligned region (conservative mutations)
+        - RMSD 2.0-5.0 Å: Moderate structural changes in aligned region (acceptable for stability improvements)
+        - RMSD > 5.0 Å: Significant structural changes in aligned region (may affect function, use with caution)
+        
+        Sequence alignment interpretation:
+        - Overlap percentage: Shows how much of the shorter sequence was aligned (higher = better coverage)
+        - Sequence identity: Percentage of identical amino acids in aligned region (higher = more conservative changes)
+        - High overlap (>80%) + High identity (>80%): Conservative design with good coverage
+        - High overlap (>80%) + Medium identity (60-80%): Moderate mutations with good coverage
+        - Low overlap (<60%): Limited alignment - RMSD may not represent overall similarity
+        - Always examine aligned_ref_sequence and aligned_new_sequence to understand what was compared
+        - The alignment uses sliding window to find the region of maximum sequence similarity
+        
+
+        Remember, protein sequences are 1-indexed, not 0-indexed.
+        
+        Start by conducting a thorough web search to understand the current state of carbonic anhydrase engineering. The rosetta score of your design must be lower than the wildtype score of ~ -305.
+       
+        You are not restricted to point mutations. You can propose larger insertions/deletions, or even entire domains. Feel free to fetch other sequences from uniprot and use them in your designs + modifications. 
+
+        The modifications you propose MUST BE NOVEL!!!! THEY CANNOT BE THE SAME AS WHAT HAS ALREADY BEEN FOUND IN THE LITERATURE!!!!!
+        

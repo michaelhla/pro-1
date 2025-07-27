@@ -1,0 +1,49 @@
+Let's analyze this design with acid-stabilizing insertions:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01C8QaA49BtQCdZh7FSfPFLn
+Arguments: {'pdb_file_path': 'predicted_structures/CA_Acid_Insert.pdb.pdb', 'image_subdir': 'CA_Acid_Insert'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA_Acid_Insert.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_Acid_Insert/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2248,
+    "total_residues": 282,
+    "radius_of_gyration": 18.96,
+    "center_of_mass": [
+      -1.34,
+      -0.06,
+      -0.0
+    ],
+    "estimated_molecular_weight": 31020
+  },
+  "secondary_structure_content": {
+    "total_residues": 282,
+    "helix_residues": 43,
+    "sheet_residues": 69,
+    "loop_residues": 170,
+    "helix_percentage": 15.2,
+    "sheet_percentage": 24.5,
+    "loop_percentage": 60.3
+  },
+  "surface_properties": {
+    "total_sasa": 15353.79,
+    "hydrophobic_sasa": 7369.75,
+    "polar_sasa": 7938.05,
+    "hydrophobic_ratio": 48.0
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 282 residues. Secondary structure: 15.2% helix, 24.5% sheet, 60.3% loop. Radius of gyration: 18.96 \u00c5. Total SASA: 15353.79 \u0172. Surface hydrophobicity: 48.0%."
+}
+--- END TOOL OUTPUT (Length: 1243 chars) ---
+=== END TOOL CALL ===
+

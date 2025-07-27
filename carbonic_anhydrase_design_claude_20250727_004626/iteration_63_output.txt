@@ -1,0 +1,49 @@
+Now let's examine the secondary structure of our disulfide bond mutant:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_013awEM55cC6Qtb4gjTmHirK
+Arguments: {'pdb_file_path': 'predicted_structures/A23C_L203C_mutant.pdb.pdb', 'image_subdir': 'A23C_L203C_analysis'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/A23C_L203C_mutant.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/A23C_L203C_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2080,
+    "total_residues": 261,
+    "radius_of_gyration": 17.2,
+    "center_of_mass": [
+      0.11,
+      -0.2,
+      -0.65
+    ],
+    "estimated_molecular_weight": 28710
+  },
+  "secondary_structure_content": {
+    "total_residues": 261,
+    "helix_residues": 44,
+    "sheet_residues": 69,
+    "loop_residues": 148,
+    "helix_percentage": 16.9,
+    "sheet_percentage": 26.4,
+    "loop_percentage": 56.7
+  },
+  "surface_properties": {
+    "total_sasa": 12287.57,
+    "hydrophobic_sasa": 5966.34,
+    "polar_sasa": 6273.46,
+    "hydrophobic_ratio": 48.6
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 261 residues. Secondary structure: 16.9% helix, 26.4% sheet, 56.7% loop. Radius of gyration: 17.2 \u00c5. Total SASA: 12287.57 \u0172. Surface hydrophobicity: 48.6%."
+}
+--- END TOOL OUTPUT (Length: 1248 chars) ---
+=== END TOOL CALL ===
+

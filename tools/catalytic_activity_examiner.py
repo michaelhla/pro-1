@@ -127,7 +127,8 @@ class CatalyticActivityExaminer:
                 'zinc_binding_status': zinc_binding_status,
                 'structural_analysis': analysis,
                 'catalytic_integrity': self._assess_catalytic_integrity(
-                    active_site_status, zinc_binding_status, analysis
+                    active_site_status, zinc_binding_status, analysis,
+                    active_site_residues, zinc_binding_residues
                 )
             }
             
@@ -589,12 +590,15 @@ class CatalyticActivityExaminer:
     
     def _assess_catalytic_integrity(self, active_site_status: Dict[str, Dict], 
                                    zinc_binding_status: Dict[str, Dict],
-                                   structural_analysis: Dict[str, Any]) -> Dict[str, Any]:
+                                   structural_analysis: Dict[str, Any],
+                                   active_site_residues: Dict[str, Dict],
+                                   zinc_binding_residues: Dict[str, Dict]) -> Dict[str, Any]:
         """
         Assess overall catalytic integrity based on residue presence and type matching.
         """
         # Calculate RMSD using structural alignment (returns None values with flexible residue spec)
-        rmsd_results = self._calculate_aligned_rmsd(active_site_status, zinc_binding_status)
+        rmsd_results = self._calculate_aligned_rmsd(active_site_status, zinc_binding_status,
+                                                  active_site_residues, zinc_binding_residues)
         
         # Count residue status for integrity assessment
         active_site_total = len(active_site_status)
@@ -675,7 +679,9 @@ class CatalyticActivityExaminer:
         }
     
     def _calculate_aligned_rmsd(self, active_site_status: Dict[str, Dict], 
-                               zinc_binding_status: Dict[str, Dict]) -> Dict[str, Optional[float]]:
+                               zinc_binding_status: Dict[str, Dict],
+                               active_site_residues: Dict[str, Dict],
+                               zinc_binding_residues: Dict[str, Dict]) -> Dict[str, Optional[float]]:
         """
         Calculate RMSD between current structure and reference positions using available residues
         for optimal alignment (rotation and translation minimization).
@@ -708,66 +714,66 @@ class CatalyticActivityExaminer:
             'H119': [-1.588, 0.345, -0.294]     # Histidine 119 - zinc coordination
         }
         
-        def calculate_rmsd_for_residue_set(residue_status: Dict[str, Dict]) -> Optional[float]:
+        def calculate_rmsd_for_residue_set(residue_status: Dict[str, Dict], 
+                                          original_residues: Dict[str, Dict]) -> Optional[float]:
             """Calculate RMSD for a set of residues if reference coordinates are available."""
             current_coords = []
             ref_coords = []
             
             for res_key, status in residue_status.items():
-                if status['exists'] and res_key in reference_coords:
-                    # Get current coordinates from PyMOL
-                    res_num = None
-                    for res_info_key, res_info in {**active_site_status, **zinc_binding_status}.items():
-                        if res_info_key == res_key:
-                            res_num = res_info.get('number')
-                            break
+                if status['exists'] and res_key in reference_coords and res_key in original_residues:
+                    # Get residue number from original residue dictionary
+                    res_num = original_residues[res_key]['number']
+                    selection = f"chain {self.chain_id} and resi {res_num} and name CA"
                     
-                    if res_num is not None:
-                        selection = f"chain {self.chain_id} and resi {res_num} and name CA"
-                        try:
-                            # Get coordinates from PyMOL
-                            coords = cmd.get_coords(f"hca_structure and {selection}")
-                            if coords is not None and len(coords) > 0:
-                                current_coords.append(coords[0])
-                                ref_coords.append(reference_coords[res_key])
-                        except:
-                            continue
+                    try:
+                        # Get coordinates from PyMOL
+                        coords = cmd.get_coords(f"hca_structure and {selection}")
+                        if coords is not None and len(coords) > 0:
+                            current_coord = coords[0]
+                            ref_coord = reference_coords[res_key]
+                            current_coords.append(current_coord)
+                            ref_coords.append(ref_coord)
+                    except Exception as e:
+                        print(f"Warning: Could not get coordinates for {res_key} (residue {res_num}): {e}")
+                        continue
             
             if len(current_coords) >= 3:  # Need at least 3 points for meaningful RMSD
                 current_coords = np.array(current_coords)
                 ref_coords = np.array(ref_coords)
                 
                 # Use Kabsch algorithm for optimal alignment
-                return self._kabsch_rmsd(ref_coords, current_coords)
+                rmsd_result = self._kabsch_rmsd(ref_coords, current_coords)
+                return rmsd_result
             
             return None
         
         # Calculate RMSD for each residue set
-        active_site_rmsd = calculate_rmsd_for_residue_set(active_site_status)
-        zinc_binding_rmsd = calculate_rmsd_for_residue_set(zinc_binding_status)
+        active_site_rmsd = calculate_rmsd_for_residue_set(active_site_status, active_site_residues)
+        zinc_binding_rmsd = calculate_rmsd_for_residue_set(zinc_binding_status, zinc_binding_residues)
         
         # Calculate overall RMSD using all available residues
         all_current_coords = []
         all_ref_coords = []
         
-        for res_key, status in {**active_site_status, **zinc_binding_status}.items():
-            if status['exists'] and res_key in reference_coords:
-                # Find the residue number
-                res_num = None
-                for res_info_key, res_info in {**active_site_status, **zinc_binding_status}.items():
-                    if res_info_key == res_key:
-                        res_num = res_info.get('number')
-                        break
+        # Combine both residue sets for overall calculation
+        all_original_residues = {**active_site_residues, **zinc_binding_residues}
+        all_status = {**active_site_status, **zinc_binding_status}
+        
+        for res_key, status in all_status.items():
+            if status['exists'] and res_key in reference_coords and res_key in all_original_residues:
+                # Get residue number from original residue dictionary
+                res_num = all_original_residues[res_key]['number']
+                selection = f"chain {self.chain_id} and resi {res_num} and name CA"
                 
-                if res_num is not None:
-                    selection = f"chain {self.chain_id} and resi {res_num} and name CA"
-                    try:
-                        coords = cmd.get_coords(f"hca_structure and {selection}")
-                        if coords is not None and len(coords) > 0:
-                            all_current_coords.append(coords[0])
-                            all_ref_coords.append(reference_coords[res_key])
-                    except:
-                        continue
+                try:
+                    coords = cmd.get_coords(f"hca_structure and {selection}")
+                    if coords is not None and len(coords) > 0:
+                        all_current_coords.append(coords[0])
+                        all_ref_coords.append(reference_coords[res_key])
+                except Exception as e:
+                    print(f"Warning: Could not get coordinates for {res_key} (residue {res_num}): {e}")
+                    continue
         
         overall_rmsd = None
         if len(all_current_coords) >= 3:
@@ -786,14 +792,19 @@ class CatalyticActivityExaminer:
         Calculate RMSD between two sets of coordinates using the Kabsch algorithm
         for optimal superposition.
         
+        The Kabsch algorithm finds the optimal rotation matrix R that minimizes
+        the RMSD between two sets of coordinates after translation to their centroids.
+        
         Args:
             coords1: Reference coordinates (N x 3)
-            coords2: Current coordinates (N x 3)
+            coords2: Current coordinates (N x 3) to be aligned to coords1
             
         Returns:
-            RMSD value in Angstroms
+            RMSD value in Angstroms after optimal alignment
         """
         assert coords1.shape == coords2.shape
+        assert coords1.shape[1] == 3, "Coordinates must be 3D"
+        assert coords1.shape[0] >= 3, "Need at least 3 points for alignment"
         
         # Center the coordinates
         centroid1 = np.mean(coords1, axis=0)
@@ -802,25 +813,29 @@ class CatalyticActivityExaminer:
         coords1_centered = coords1 - centroid1
         coords2_centered = coords2 - centroid2
         
-        # Calculate the cross-covariance matrix
+        # Calculate the cross-covariance matrix H
+        # H = P^T Q where P=coords2_centered (mobile), Q=coords1_centered (reference)
+        # We want to find R such that P @ R ≈ Q, minimizing ||Q - P @ R||^2
         H = coords2_centered.T @ coords1_centered
         
-        # SVD decomposition
+        # SVD decomposition: H = U S V^T
         U, S, Vt = np.linalg.svd(H)
         
-        # Calculate rotation matrix
-        R = Vt.T @ U.T
+        # Calculate optimal rotation matrix: R = U V^T
+        R = U @ Vt
         
-        # Ensure proper rotation (not reflection)
+        # Ensure proper rotation (determinant = +1, not reflection)
+        # If det(R) < 0, we have a reflection, so flip the last column of U
         if np.linalg.det(R) < 0:
-            Vt[-1, :] *= -1
-            R = Vt.T @ U.T
+            U_corrected = U.copy()
+            U_corrected[:, -1] *= -1
+            R = U_corrected @ Vt
         
-        # Apply rotation to coords2
-        coords2_rotated = coords2_centered @ R.T
+        # Apply optimal rotation to coords2_centered to align with coords1_centered
+        coords2_aligned = coords2_centered @ R
         
-        # Calculate RMSD
-        diff = coords1_centered - coords2_rotated
+        # Calculate RMSD after optimal alignment
+        diff = coords1_centered - coords2_aligned
         rmsd = np.sqrt(np.mean(np.sum(diff**2, axis=1)))
         
         return rmsd

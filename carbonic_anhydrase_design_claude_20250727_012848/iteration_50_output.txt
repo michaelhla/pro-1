@@ -1,0 +1,36 @@
+Now let's look for structural features in highly stable beta-barrels that might be applicable to our design:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01GVzm1WH8z7Zdw5Z518q3U5
+Arguments: {'query': 'hyperthermostable beta barrel proteins structural features circular permutation stabilizing motifs'}
+--- TOOL OUTPUT ---
+**Hyperthermostable beta barrel proteins** are stabilized by a range of structural features, including specific amino acid motifs, internal networks of interactions (such as salt bridges and hydrophobic clusters), and are sometimes engineered or evolve through *circular permutation*—where the N- and C-termini are repositioned without compromising the overall fold or function[1][3][4]. These adaptations increase thermostability and can tolerate significant sequence rearrangements if core structural motifs are preserved.
+
+**Key structural features and stabilizing motifs:**
+
+- **Hydrophobic Core Packing:** Improved or densely packed hydrophobic clusters within the barrel stabilize the fold by reducing internal motion and water penetration, which is essential for stability at high temperatures. Experimental designs of de novo TIM barrels (one of the most studied β-barrel architectures) have demonstrated that enhanced hydrophobic packing significantly increases thermal stability, as verified by crystallography[4].
+
+- **Salt Bridge Networks:** Installation of salt bridge clusters—electrostatic interactions between oppositely charged side chains—can provide additional stabilization. This strategy, inspired by naturally occurring hyperthermostable barrels, has been shown to produce "highly stabilizing, but also destabilizing effects" depending on the placement and nature of these bridges. Strategic placement that mimics natural motifs can impart substantial thermostability[4].
+
+- **Hydrogen Bonding Patterns:** Extensive inter-strand and interhelical hydrogen bonding is a common and significant stabilizer in both natural and engineered β-barrels. Such networks reduce the entropy cost of folding by locking in the barrel architecture[2][4].
+
+- **Circular Permutation Tolerance:** β-barrel proteins such as the TIM barrel (βα)_8 domains and membrane β-barrels like OmpA and GFP have shown remarkable structural tolerance to *circular permutation*—the generation of new sequence termini at non-native positions[1][3][5]. When new termini are placed in loops (surface-exposed flexible regions) rather than central β-strands, the functional and structural stability is better preserved. This repositioning can reduce the flexibility of the new termini, prevent fraying/unfolding, and even improve thermostability in some cases[1][3][5].
+
+- **Specific Sequence Motifs:** Certain amino acid patterns, especially in the core region and at the β-turns or connections between β-strands and α-helices, are recurrent in highly stable barrels. For TIM barrels, these are often short sequence segments facilitating close packing or confined within H-bond/salt bridge clusters[4].
+
+**Summary Table: Stabilizing Features in Hyperthermostable β-Barrel Proteins**
+
+| Feature                  | Role in Stability                                     | Notable Examples/Notes                        |
+|--------------------------|------------------------------------------------------|-----------------------------------------------|
+| Hydrophobic core packing | Reduces internal flexibility; excludes water         | Engineered TIM barrels[4]                     |
+| Salt bridge networks     | Provides electrostatic stabilization                 | Inspired by natural barrels[4]                |
+| Hydrogen bonds           | Maintains precise β-sheet alignment and rigidity     | Common in all β-barrels[2][4]                 |
+| Circular permutation     | Stabilizes fragile termini; tolerates loop rearrangement | GFP, OmpA, TIM barrels[1][3][5]              |
+| Sequence motifs          | Direct packing and interaction at key fold positions | TIM barrels—βα interfaces, β-turns[4]         |
+
+**Caveats:**  
+The actual effect of specific mutations or permutations on thermostability is highly context-dependent—what stabilizes one β-barrel may destabilize another[4][3]. Salt bridge clusters, in particular, require careful design, as incorrect placement may introduce strain or destabilize the fold[4].
+
+**Authoritative sources** underline that engineered and natural hyperthermostable β-barrel proteins rely on similar structural logic, with motif conservation and sequence rearrangement (circular permutation) being powerful approaches to modulate and enhance protein stability at high temperatures[1][3][4][5].
+--- END TOOL OUTPUT (Length: 4317 chars) ---
+=== END TOOL CALL ===
+

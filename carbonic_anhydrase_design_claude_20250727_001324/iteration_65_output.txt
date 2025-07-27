@@ -1,0 +1,69 @@
+## Carbonic Anhydrase II Engineering - Update on New Designs
+
+I've designed and analyzed several new variants focused on improving carbonic anhydrase II stability while maintaining catalytic function. Here's a summary of the findings:
+
+### 1. Wild-Type Reference
+- **Rosetta score**: -306.05 REU
+- **Secondary structure**: 17.3% helix, 26.5% sheet, 56.2% loop
+- **Radius of gyration**: 17.19 Å (very compact)
+
+### 2. Disulfide Bond + Proline Design
+- **Mutations**: A23C, L203C, L202P (aiming for disulfide bond + loop rigidification)
+- **Rosetta score**: -230.36 REU (worse than wild-type)
+- **RMSD from reference**: 0.602 Å
+- **Catalytic site integrity**: Excellent (active site RMSD: 0.134 Å, zinc binding RMSD: 0.014 Å)
+- **Secondary structure**: 16.2% helix, 26.2% sheet, 57.7% loop
+- **Assessment**: While this design maintains excellent catalytic site geometry, the Rosetta score indicates reduced overall stability compared to wild-type.
+
+### 3. Surface Electrostatics Design
+- **Mutations**: K67R, C206E, C209R (improving surface charge interactions)
+- **Rosetta score**: -283.36 REU (better than other designs but still below wild-type)
+- **RMSD from reference**: 0.149 Å (very close to wild-type structure)
+- **Catalytic site integrity**: Excellent (active site RMSD: 0.047 Å, zinc binding RMSD: 0.007 Å)
+- **Secondary structure**: 17.3% helix, 26.5% sheet, 56.2% loop (identical to wild-type)
+- **Assessment**: This design maintains native-like structure with better stability than other designs, suggesting surface modifications are less disruptive.
+
+### 4. Hydrophobic Core Design
+- **Mutations**: V204I (improving core packing)
+- **Rosetta score**: -253.96 REU
+- **RMSD from reference**: 0.019 Å (nearly identical to wild-type)
+- **Catalytic site integrity**: Excellent (active site RMSD: 0.012 Å, zinc binding RMSD: 0.004 Å)
+- **Secondary structure**: 17.3% helix, 26.5% sheet, 56.2% loop
+- **Assessment**: Single conservative mutation maintains structure but does not improve stability.
+
+### 5. HCAIIts Partial Implementation
+- **Mutations**: A65T, A248P (based on published thermostable variant)
+- **Rosetta score**: -195.46 REU (significant decrease in predicted stability)
+- **RMSD from reference**: 0.06 Å
+- **Catalytic site integrity**: Excellent (active site RMSD: 0.021 Å, zinc binding RMSD: 0.007 Å)
+- **Assessment**: Despite literature support, the mutations appear destabilizing in our modeling.
+
+### 6. Combined Approach
+- **Mutations**: A23C, L203C, A65T (combining disulfide and HCAIIts strategy)
+- **Rosetta score**: -206.28 REU (significant decrease in stability)
+- **RMSD from reference**: 1.493 Å (largest structural deviation)
+- **Catalytic site integrity**: Good (active site RMSD: 0.053 Å, zinc binding RMSD: 0.024 Å)
+- **Secondary structure**: 17.6% helix, 26.4% sheet, 55.9% loop
+- **Assessment**: The combined mutations cause structural changes that are predicted to be destabilizing.
+
+### Key Findings and Recommendations
+
+1. **Discrepancy with Literature**: Our computational predictions show decreased stability for mutations reported in literature to increase thermostability. This suggests limitations in our computational approach or the need for experimental validation.
+
+2. **Surface Modifications**: The surface electrostatics design (-283.36 REU) showed the least stability decrease, consistent with the idea that surface mutations tend to be less disruptive.
+
+3. **Catalytic Site Preservation**: All designs maintained excellent catalytic site geometry, suggesting function would likely be preserved.
+
+4. **Path Forward**:
+   - Focus on conservative surface mutations to improve acid stability
+   - Consider smaller, incremental changes rather than multiple mutations
+   - Explore alternative disulfide bond positions that might be less disruptive
+   - Investigate experimental methods like directed evolution to complement computational design
+   - Consider testing the surface electrostatics design as it showed the best computational stability
+
+5. **Next Design Iteration**:
+   - Test single HCAIIts mutations individually to identify which ones might be causing destabilization
+   - Explore alternative positions for the disulfide bond
+   - Consider more conservative surface charge optimizations focusing on acidic residues
+
+The surface electrostatics design appears most promising among the variants tested, though it still doesn't match the wild-type's predicted stability. Future work should focus on understanding this discrepancy between our computational predictions and experimental results reported in literature.

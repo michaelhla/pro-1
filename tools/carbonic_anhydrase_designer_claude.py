@@ -78,6 +78,12 @@ class CarbonicAnhydraseDesignerClaude:
         self.messages = []
         self.summarization_count = 0
         
+        # Track best design across iterations
+        self.best_sequence = None
+        self.best_score = None
+        self.best_iteration = None
+        self.baseline_score = None  # Track baseline/reference score
+        
         print(f"🚀 Starting Claude design session - outputs will be saved to: {self.output_dir}")
         print(f"📊 Context limit set to {self.context_limit:,} tokens")
         if self.enable_thinking:
@@ -427,25 +433,25 @@ Continue using the computational tools extensively and keep iterating on the des
             },
             {
                 "name": "examine_catalytic_activity",
-                "description": "Examine the catalytic activity sites of carbonic anhydrase using PyMOL visualization. Takes exact residue dictionaries specifying which residues to examine and their positions. Generates labeled images (returned as base64-encoded data) and assesses catalytic integrity to ensure modifications haven't affected enzyme activity. Images are saved to tools/images/{image_subdir}/.",
+                "description": "Examine catalytic activity sites of carbonic anhydrase II variants using PyMOL visualization and RMSD analysis. Compares CA coordinates of specified catalytic residues against reference structure (hCA2_folded.pdb) using Kabsch algorithm for optimal alignment. Returns JSON with RMSD values, catalytic integrity assessment, residue status, and visualization images. CRITICAL: Use this tool to verify that mutations haven't disrupted essential catalytic residues. RMSD interpretation: <0.5Å=minimal change, 0.5-2.0Å=moderate change, >2.0Å=significant structural change that may affect function.",
                 "input_schema": {
                     "type": "object",
                     "properties": {
                         "pdb_file_path": {
                             "type": "string",
-                            "description": "Path to the PDB file to examine (e.g., 'predicted_structures/mutant.pdb')"
+                            "description": "Path to the PDB file to examine (e.g., 'predicted_structures/mutant.pdb'). Must be a carbonic anhydrase II structure."
                         },
                         "active_site_residues": {
                             "type": "object",
-                            "description": "Dictionary of active site residues with format {'Y7': {'name': 'TYR', 'function': 'Proton transfer', 'number': 7}, ...}. For standard hCA II: Y7, N62, H64, N67, Q92"
+                            "description": "Dictionary of active site residues in EXACT format: {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}. Use these exact standard hCA II active site residues."
                         },
                         "zinc_binding_residues": {
                             "type": "object",
-                            "description": "Dictionary of zinc binding residues with format {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, ...}. For standard hCA II: H94, H96, H119"
+                            "description": "Dictionary of zinc coordination residues in EXACT format: {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}. Use these exact standard hCA II zinc binding residues. These are ESSENTIAL for catalytic activity."
                         },
                         "image_subdir": {
                             "type": "string",
-                            "description": "Subdirectory name within tools/images/ to save visualization images. Choose a descriptive name."
+                            "description": "Descriptive subdirectory name within tools/images/ to save visualization (e.g., 'mutation_L143F', 'design_iteration_3'). Choose meaningful names for organization."
                         }
                     },
                     "required": ["pdb_file_path", "active_site_residues", "zinc_binding_residues", "image_subdir"]
@@ -486,6 +492,95 @@ Continue using the computational tools extensively and keep iterating on the des
             "examine_secondary_structure": examine_secondary_structure
         }
     
+    def _update_best_score_tracking(self, rosetta_result: str, arguments: dict):
+        """
+        Parse Rosetta score from tool result and update best score tracking.
+        """
+        try:
+            # Parse the score from the result string
+            # Look for patterns like "Total score: -485.623" or "Rosetta score: -485.623"
+            import re
+            score_patterns = [
+                r"Total score:\s*([-\d\.]+)",
+                r"Rosetta score:\s*([-\d\.]+)", 
+                r"Score:\s*([-\d\.]+)",
+                r"Energy:\s*([-\d\.]+)"
+            ]
+            
+            score = None
+            for pattern in score_patterns:
+                match = re.search(pattern, rosetta_result)
+                if match:
+                    score = float(match.group(1))
+                    break
+            
+            if score is not None:
+                pdb_path = arguments.get("pdb_file_path", "unknown")
+                
+                # Check if this is a reference/baseline score
+                if "hCA2_folded.pdb" in pdb_path or "reference" in pdb_path.lower() or "baseline" in pdb_path.lower():
+                    if self.baseline_score is None:
+                        self.baseline_score = score
+                        print(f"📊 BASELINE SCORE SET: {score:.3f} (from {pdb_path})")
+                
+                # Update best score if this is better (more negative)
+                if self.best_score is None or score < self.best_score:
+                    self.best_score = score
+                    self.best_iteration = self.iteration_count
+                    
+                    # Try to extract sequence from recent fold_protein calls in conversation
+                    recent_sequence = self._extract_recent_sequence()
+                    if recent_sequence:
+                        self.best_sequence = recent_sequence
+                    
+                    improvement = ""
+                    if self.baseline_score is not None:
+                        improvement = f" (Δ{score - self.baseline_score:+.3f} vs baseline)"
+                    
+                    print(f"🎯 NEW BEST SCORE: {score:.3f}{improvement} at iteration {self.iteration_count}")
+                    print(f"   PDB: {pdb_path}")
+                    if recent_sequence:
+                        print(f"   Sequence length: {len(recent_sequence)} residues")
+                    
+                    # Save best design info
+                    best_info = {
+                        "timestamp": datetime.now().isoformat(),
+                        "iteration": self.iteration_count,
+                        "score": score,
+                        "pdb_path": pdb_path,
+                        "sequence": recent_sequence,
+                        "baseline_score": self.baseline_score,
+                        "improvement": score - self.baseline_score if self.baseline_score else None
+                    }
+                    
+                    with open(self.output_dir / "best_designs.jsonl", "a") as f:
+                        f.write(json.dumps(best_info) + "\n")
+                else:
+                    comparison = ""
+                    if self.best_score is not None:
+                        comparison = f" (current best: {self.best_score:.3f})"
+                    print(f"📊 Score: {score:.3f}{comparison}")
+                    
+        except Exception as e:
+            print(f"⚠️  Could not parse Rosetta score from result: {e}")
+
+    def _extract_recent_sequence(self) -> Optional[str]:
+        """
+        Extract the most recent protein sequence from fold_protein tool calls.
+        """
+        try:
+            # Look through recent messages for fold_protein calls
+            for message in reversed(self.messages[-10:]):  # Check last 10 messages
+                if message.get("role") == "assistant":
+                    for content in message.get("content", []):
+                        if hasattr(content, 'name') and content.name == "fold_protein":
+                            return content.input.get("sequence")
+                        elif isinstance(content, dict) and content.get("name") == "fold_protein":
+                            return content.get("input", {}).get("sequence")
+            return None
+        except:
+            return None
+
     def _execute_tool_call(self, tool_call) -> str:
         """
         Execute a tool call and return the result.
@@ -517,6 +612,10 @@ Continue using the computational tools extensively and keep iterating on the des
             print(f"✅ Tool {tool_name} completed")
             print(result)
             
+            # Track best designs based on Rosetta scores
+            if tool_name == "calculate_rosetta_score":
+                self._update_best_score_tracking(result, arguments)
+            
             # Log tool execution to file
             tool_log = {
                 "timestamp": datetime.now().isoformat(),
@@ -524,6 +623,7 @@ Continue using the computational tools extensively and keep iterating on the des
                 "tool_name": tool_name,
                 "arguments": arguments,
                 "status": "success",
+                "result": str(result),
                 "result_length": len(str(result))
             }
             
@@ -547,6 +647,7 @@ Continue using the computational tools extensively and keep iterating on the des
                 "tool_name": tool_name,
                 "arguments": arguments if 'arguments' in locals() else None,
                 "status": "error",
+                "result": None,
                 "error": str(e)
             }
             
@@ -568,6 +669,7 @@ Continue using the computational tools extensively and keep iterating on the des
                 - tool_results: List of tool result messages to add to conversation
         """
         tool_results = []
+        thinking_token_count = 0
         
         # Print the response content (non-tool parts)
         print("💬 CLAUDE'S RESPONSE:")
@@ -578,9 +680,24 @@ Continue using the computational tools extensively and keep iterating on the des
                 print(content_block.text)
                 print()
             elif content_block.type == "thinking":
+                thinking_content = content_block.thinking
+                thinking_token_count += self._estimate_tokens(thinking_content)
+                
                 print("🧠 CLAUDE'S THINKING:")
                 print("─" * 40)
-                print(content_block.thinking)
+                print(thinking_content)
+                print("─" * 40)
+                
+                # Log thinking tokens info
+                if hasattr(content_block, 'signature'):
+                    print(f"   Thinking signature: {content_block.signature[:50]}...")
+                print(f"   Thinking tokens (estimated): {self._estimate_tokens(thinking_content):,}")
+                print()
+            elif content_block.type == "redacted_thinking":
+                # Handle redacted thinking blocks
+                print("🧠 CLAUDE'S THINKING (REDACTED):")
+                print("─" * 40)
+                print("[REDACTED THINKING CONTENT - preserved for conversation continuity]")
                 print("─" * 40)
                 print()
             elif content_block.type == "tool_use":
@@ -610,28 +727,85 @@ Continue using the computational tools extensively and keep iterating on the des
         
         print("=" * 60)
         
-        # Save this iteration's content
+        # Save this iteration's content including ALL thinking tokens and tool outputs
         iteration_content = ""
+        thinking_content_full = ""
+        
         for content_block in response.content:
             if content_block.type == "text":
                 iteration_content += content_block.text + "\n"
             elif content_block.type == "thinking":
+                thinking_text = content_block.thinking
+                thinking_content_full += thinking_text + "\n"
+                
                 iteration_content += "=== CLAUDE'S THINKING ===\n"
-                iteration_content += content_block.thinking + "\n"
+                iteration_content += thinking_text + "\n"
+                if hasattr(content_block, 'signature'):
+                    iteration_content += f"[Signature: {content_block.signature}]\n"
                 iteration_content += "=== END THINKING ===\n\n"
+            elif content_block.type == "redacted_thinking":
+                iteration_content += "=== CLAUDE'S THINKING (REDACTED) ===\n"
+                iteration_content += "[REDACTED THINKING CONTENT]\n"
+                iteration_content += "=== END REDACTED THINKING ===\n\n"
+            elif content_block.type == "tool_use":
+                iteration_content += f"=== TOOL CALL: {content_block.name} ===\n"
+                iteration_content += f"Tool ID: {content_block.id}\n"
+                iteration_content += f"Arguments: {content_block.input}\n"
+                
+                # Find the corresponding tool result from our tool_results list
+                tool_result_content = None
+                for tool_result in tool_results:
+                    if tool_result["tool_use_id"] == content_block.id:
+                        tool_result_content = tool_result["content"]
+                        break
+                
+                if tool_result_content:
+                    iteration_content += "--- TOOL OUTPUT ---\n"
+                    iteration_content += str(tool_result_content) + "\n"
+                    iteration_content += f"--- END TOOL OUTPUT (Length: {len(str(tool_result_content))} chars) ---\n"
+                else:
+                    iteration_content += "--- TOOL OUTPUT: NOT FOUND ---\n"
+                
+                iteration_content += "=== END TOOL CALL ===\n\n"
         
         if iteration_content.strip():
             iteration_file = self.output_dir / f"iteration_{self.iteration_count}_output.txt"
             with open(iteration_file, "w") as f:
                 f.write(iteration_content)
         
-        # Log usage if available
+        # Save thinking content separately for detailed analysis
+        if thinking_content_full.strip():
+            thinking_file = self.output_dir / f"iteration_{self.iteration_count}_thinking.txt"
+            with open(thinking_file, "w") as f:
+                f.write(f"=== ITERATION {self.iteration_count} THINKING TOKENS ===\n")
+                f.write(f"Estimated thinking tokens: {self._estimate_tokens(thinking_content_full):,}\n")
+                f.write(f"Timestamp: {datetime.now().isoformat()}\n")
+                f.write("=" * 60 + "\n\n")
+                f.write(thinking_content_full)
+        
+        # Log usage if available including thinking token details
         if hasattr(response, 'usage'):
             usage = response.usage
             print(f"📊 TOKEN USAGE:")
             print(f"   Input tokens: {usage.input_tokens:,}")
             print(f"   Output tokens: {usage.output_tokens:,}")
+            if thinking_token_count > 0:
+                print(f"   Thinking tokens (estimated): {thinking_token_count:,}")
+                print(f"   Thinking percentage: {(thinking_token_count/usage.output_tokens)*100:.1f}%" if usage.output_tokens > 0 else "")
             print()
+            
+            # Log detailed token usage to file
+            token_log = {
+                "timestamp": datetime.now().isoformat(),
+                "iteration": self.iteration_count,
+                "input_tokens": usage.input_tokens,
+                "output_tokens": usage.output_tokens,
+                "thinking_tokens_estimated": thinking_token_count,
+                "thinking_percentage": (thinking_token_count/usage.output_tokens)*100 if usage.output_tokens > 0 else 0
+            }
+            
+            with open(self.output_dir / "token_usage.jsonl", "a") as f:
+                f.write(json.dumps(token_log) + "\n")
         
         return len(tool_results) == 0, tool_results
     
@@ -676,7 +850,8 @@ Continue using the computational tools extensively and keep iterating on the des
         2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower or more negative = more stable)
         3. calculate_rmsd_with_sequences: Uses sliding window sequence alignment to find maximum overlap between reference (hCA2_folded.pdb) and new structure, then calculates RMSD over aligned core region. Returns RMSD, overlap percentage, and sequence identity.
         4. websearch: Searches the web for current information about protein engineering, research papers, and methodologies
-        5. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
+        5. examine_catalytic_activity: CRITICAL TOOL - Examines catalytic residues and compares them to reference structure using Kabsch RMSD. Use this to verify mutations haven't disrupted Y7, N62, H64, N67, Q92 (active site) or H94, H96, H119 (zinc binding). Returns RMSD values and catalytic integrity assessment. Use the standard hCA II residue dictionaries provided in the tool description.
+        6. examine_secondary_structure: Analyzes secondary structure content, calculates SASA and structural properties, and provides quality assessment with base64-encoded visualizations you can examine
         
         IMPORTANT: You MUST use these tools multiple times throughout the design process. Do not stop after a single tool call. Keep using tools until you have completed the entire design workflow.
 
@@ -687,8 +862,9 @@ Continue using the computational tools extensively and keep iterating on the des
         4. Use the fold_protein tool to predict the structure of your modified sequence. This will return a filepath to your pdb. 
         5. Use calculate_rosetta_score to get the stability score of your modified sequence.
         6. Use calculate_rmsd_with_sequences to compare with the reference structure.
-        7. Use examine_secondary_structure to analyze the new structure's fold, SASA, and structural quality
-        8. Compare scores and provide recommendations with quantitative rationale. 
+        7. **CRITICAL** Use examine_catalytic_activity to verify that catalytic residues are preserved and get RMSD values for the catalytic sites. This ensures mutations haven't disrupted enzyme function.
+        8. Use examine_secondary_structure to analyze the new structure's fold, SASA, and structural quality
+        9. Compare scores and provide recommendations with quantitative rationale. 
         
 
         Always preserve the catalytic activity of the enzyme while improving stability.
@@ -715,7 +891,7 @@ Continue using the computational tools extensively and keep iterating on the des
        
         You are not restricted to point mutations. You can propose larger insertions/deletions, or even entire domains. Feel free to fetch other sequences from uniprot and use them in your designs + modifications. 
 
-        The modifications you propose MUST BE NOVEL!!!! 
+        The modifications you propose MUST BE NOVEL!!!! THEY CANNOT BE THE SAME AS WHAT HAS ALREADY BEEN FOUND IN THE LITERATURE!!!!!
         """
         
         # Save initial prompt to file
@@ -794,8 +970,30 @@ Continue using the computational tools extensively and keep iterating on the des
                     # If the response is very short or mentions final/conclusion, prompt to continue
                     print("📢 Prompting Claude to continue with more iterations...")
                         
-                    continue_prompt = """
-Continue with the next design iteration. Please proceed with:
+                    # Prepare best score summary
+                    best_summary = ""
+                    if self.best_score is not None:
+                        best_summary = f"""
+🎯 CURRENT BEST DESIGN SUMMARY:
+- Best Rosetta Score: {self.best_score:.3f} (iteration {self.best_iteration})"""
+                        if self.baseline_score is not None:
+                            improvement = self.best_score - self.baseline_score
+                            best_summary += f"""
+- Improvement vs Baseline: {improvement:+.3f} ({improvement/abs(self.baseline_score)*100:+.1f}%)"""
+                        if self.best_sequence:
+                            best_summary += f"""
+- Best Sequence Length: {len(self.best_sequence)} residues"""
+                        best_summary += f"""
+- Target: Beat current best score of {self.best_score:.3f}
+
+"""
+                    else:
+                        best_summary = """
+🎯 NO SCORES RECORDED YET - Start by getting baseline measurements!
+
+"""
+                    
+                    continue_prompt = f"""{best_summary}Continue with the next design iteration. Please proceed with:
 
 1. Building the next mutant variant
 2. Using the computational tools (fold_protein, calculate_rosetta_score, etc.)
@@ -804,7 +1002,10 @@ Continue with the next design iteration. Please proceed with:
 
 Remember to use the tools extensively and keep iterating until you have a design that meets all the stability goals.
 
-HINT: You can search for modifications that have made other, similar proteins more stable. THIS IS WHAT YOU SHOULD DO IF THE PREVIOUS MODIFICATIONS DID NOT WORK.
+HINT: You can search for modifications that have made other, COMPLETELY DIFFERENT proteins more stable. You can take the insights from these modifications and apply them to carbonic anhydrase (very likely to be fruitful). For example, you may want to look at mutations that have made other zinc metalloproteases more stable. THIS IS WHAT YOU SHOULD DO IF THE PREVIOUS MODIFICATIONS DID NOT WORK.
+
+The modifications you propose MUST BE NOVEL!!!! THEY CANNOT BE THE SAME AS WHAT HAS ALREADY BEEN FOUND IN THE LITERATURE!!!!!
+
 """
                         
                     self.messages.append({
@@ -825,27 +1026,135 @@ HINT: You can search for modifications that have made other, similar proteins mo
                     f.write(f"Iteration {self.iteration_count}: {e}\n")
                 break
         
-        # Collect all text from the conversation
+        # Collect all text from the conversation including ALL thinking tokens and tool outputs
+        total_thinking_tokens = 0
+        thinking_entries = 0
+        
         for message in self.messages:
             if message["role"] == "assistant":
                 for content in message["content"]:
                     if hasattr(content, 'text'):
                         all_accumulated_text += content.text + "\n\n"
                     elif hasattr(content, 'thinking'):
+                        thinking_text = content.thinking
+                        thinking_tokens = self._estimate_tokens(thinking_text)
+                        total_thinking_tokens += thinking_tokens
+                        thinking_entries += 1
+                        
                         all_accumulated_text += "=== CLAUDE'S THINKING ===\n"
-                        all_accumulated_text += content.thinking + "\n"
+                        all_accumulated_text += f"[Thinking Entry #{thinking_entries}, Estimated tokens: {thinking_tokens:,}]\n"
+                        if hasattr(content, 'signature'):
+                            all_accumulated_text += f"[Signature: {content.signature}]\n"
+                        all_accumulated_text += "─" * 60 + "\n"
+                        all_accumulated_text += thinking_text + "\n"
+                        all_accumulated_text += "─" * 60 + "\n"
                         all_accumulated_text += "=== END THINKING ===\n\n"
+                    elif hasattr(content, 'name') and hasattr(content, 'input'):  # tool_use content
+                        all_accumulated_text += f"=== TOOL CALL: {content.name} ===\n"
+                        all_accumulated_text += f"Tool ID: {getattr(content, 'id', 'unknown')}\n"
+                        all_accumulated_text += f"Arguments: {content.input}\n"
+                        all_accumulated_text += "=== END TOOL CALL ===\n\n"
+                    elif hasattr(content, 'type') and content.type == "redacted_thinking":
+                        thinking_entries += 1
+                        all_accumulated_text += "=== CLAUDE'S THINKING (REDACTED) ===\n"
+                        all_accumulated_text += f"[Redacted Thinking Entry #{thinking_entries}]\n"
+                        all_accumulated_text += "[REDACTED THINKING CONTENT - preserved for conversation continuity]\n"
+                        all_accumulated_text += "=== END REDACTED THINKING ===\n\n"
                     elif isinstance(content, dict) and content.get("type") == "text":
                         all_accumulated_text += content.get("text", "") + "\n\n"
+                    elif isinstance(content, dict) and content.get("type") == "tool_use":
+                        all_accumulated_text += f"=== TOOL CALL: {content.get('name', 'unknown')} ===\n"
+                        all_accumulated_text += f"Tool ID: {content.get('id', 'unknown')}\n"
+                        all_accumulated_text += f"Arguments: {content.get('input', {})}\n"
+                        all_accumulated_text += "=== END TOOL CALL ===\n\n"
                     elif isinstance(content, dict) and content.get("type") == "thinking":
+                        thinking_text = content.get("thinking", "")
+                        thinking_tokens = self._estimate_tokens(thinking_text)
+                        total_thinking_tokens += thinking_tokens
+                        thinking_entries += 1
+                        
                         all_accumulated_text += "=== CLAUDE'S THINKING ===\n"
-                        all_accumulated_text += content.get("thinking", "") + "\n"
+                        all_accumulated_text += f"[Thinking Entry #{thinking_entries}, Estimated tokens: {thinking_tokens:,}]\n"
+                        if content.get("signature"):
+                            all_accumulated_text += f"[Signature: {content.get('signature')}]\n"
+                        all_accumulated_text += "─" * 60 + "\n"
+                        all_accumulated_text += thinking_text + "\n"
+                        all_accumulated_text += "─" * 60 + "\n"
                         all_accumulated_text += "=== END THINKING ===\n\n"
+                    elif isinstance(content, dict) and content.get("type") == "redacted_thinking":
+                        thinking_entries += 1
+                        all_accumulated_text += "=== CLAUDE'S THINKING (REDACTED) ===\n"
+                        all_accumulated_text += f"[Redacted Thinking Entry #{thinking_entries}]\n"
+                        all_accumulated_text += "[REDACTED THINKING CONTENT - preserved for conversation continuity]\n"
+                        all_accumulated_text += "=== END REDACTED THINKING ===\n\n"
+            elif message["role"] == "user" and isinstance(message.get("content"), list):
+                # Handle tool results in user messages
+                for content in message["content"]:
+                    if isinstance(content, dict) and content.get("type") == "tool_result":
+                        all_accumulated_text += f"=== TOOL RESULT ===\n"
+                        all_accumulated_text += f"Tool Use ID: {content.get('tool_use_id', 'unknown')}\n"
+                        all_accumulated_text += "--- TOOL OUTPUT ---\n"
+                        all_accumulated_text += str(content.get("content", "")) + "\n"
+                        all_accumulated_text += f"--- END TOOL OUTPUT (Length: {len(str(content.get('content', '')))} chars) ---\n"
+                        all_accumulated_text += "=== END TOOL RESULT ===\n\n"
         
-        # Save final conversation to file
+        # Save final conversation to file with thinking summary
         final_output_file = self.output_dir / "final_output.txt"
         with open(final_output_file, "w") as f:
+            f.write("=" * 80 + "\n")
+            f.write("CLAUDE CARBONIC ANHYDRASE DESIGN SESSION - COMPLETE OUTPUT\n")
+            f.write("=" * 80 + "\n")
+            f.write(f"Total iterations: {self.iteration_count}\n")
+            f.write(f"Model used: {self.model}\n")
+            f.write(f"Extended thinking enabled: {self.enable_thinking}\n")
+            if self.enable_thinking:
+                f.write(f"Thinking budget: {self.thinking_budget:,} tokens\n")
+                f.write(f"Total thinking entries: {thinking_entries}\n")
+                f.write(f"Total thinking tokens (estimated): {total_thinking_tokens:,}\n")
+            f.write(f"Context summarizations: {self.summarization_count}\n")
+            f.write("=" * 80 + "\n\n")
             f.write(all_accumulated_text)
+        
+        # Save a dedicated thinking summary
+        if thinking_entries > 0:
+            thinking_summary_file = self.output_dir / "thinking_summary.txt"
+            with open(thinking_summary_file, "w") as f:
+                f.write("=" * 80 + "\n")
+                f.write("CLAUDE THINKING TOKENS SUMMARY\n")
+                f.write("=" * 80 + "\n")
+                f.write(f"Total thinking entries: {thinking_entries}\n")
+                f.write(f"Total thinking tokens (estimated): {total_thinking_tokens:,}\n")
+                f.write(f"Model used: {self.model}\n")
+                f.write(f"Thinking budget per iteration: {self.thinking_budget:,} tokens\n")
+                f.write(f"Average tokens per thinking entry: {total_thinking_tokens//thinking_entries:,}\n" if thinking_entries > 0 else "")
+                f.write("=" * 80 + "\n\n")
+                
+                f.write("NOTES:\n")
+                f.write("- All thinking content is preserved in final_output.txt\n")
+                f.write("- Individual iteration thinking saved in iteration_*_thinking.txt files\n")
+                f.write("- Token usage details logged in token_usage.jsonl\n")
+                if self.model.startswith("claude-4"):
+                    f.write("- Claude 4 returns SUMMARIZED thinking (charged for full tokens)\n")
+                else:
+                    f.write("- Claude 3.7 returns FULL thinking content\n")
+                f.write("\n")
+                
+                f.write("THINKING TOKEN DISTRIBUTION:\n")
+                f.write("─" * 40 + "\n")
+                # Add a simple breakdown if we have token usage logs
+                token_usage_file = self.output_dir / "token_usage.jsonl"
+                if token_usage_file.exists():
+                    try:
+                        with open(token_usage_file, "r") as log_file:
+                            for line in log_file:
+                                data = json.loads(line.strip())
+                                iteration = data.get("iteration", "?")
+                                thinking_tokens = data.get("thinking_tokens_estimated", 0)
+                                thinking_pct = data.get("thinking_percentage", 0)
+                                f.write(f"Iteration {iteration}: {thinking_tokens:,} thinking tokens ({thinking_pct:.1f}% of output)\n")
+                    except:
+                        f.write("Could not load detailed token usage breakdown\n")
+                f.write("─" * 40 + "\n")
         
         # Save conversation history
         conversation_file = self.output_dir / "conversation_history.json"
@@ -858,21 +1167,29 @@ HINT: You can search for modifications that have made other, similar proteins mo
                     content_list = []
                     for content in msg["content"]:
                         if hasattr(content, 'type'):
-                            if content.type == "text":
+                            if content.type == "text":      
                                 content_list.append({"type": "text", "text": content.text})
                             elif content.type == "thinking":
-                                content_list.append({
+                                thinking_entry = {
                                     "type": "thinking", 
                                     "thinking": content.thinking,
-                                    "signature": getattr(content, 'signature', None)
-                                })
-                            elif content.type == "tool_use":
-                                content_list.append({
-                                    "type": "tool_use",
-                                    "id": content.id,
-                                    "name": content.name,
-                                    "input": content.input
-                                })
+                                    "estimated_tokens": self._estimate_tokens(content.thinking)
+                                }
+                            if hasattr(content, 'signature') and content.signature:
+                                thinking_entry["signature"] = content.signature
+                            content_list.append(thinking_entry)
+                        elif content.type == "redacted_thinking":
+                            content_list.append({
+                                "type": "redacted_thinking",
+                                "note": "Redacted thinking content preserved for conversation continuity"
+                            })
+                        elif content.type == "tool_use":
+                            content_list.append({
+                                "type": "tool_use",
+                                "id": content.id,
+                                "name": content.name,
+                                "input": content.input
+                            })
                         elif isinstance(content, dict):
                             content_list.append(content)
                     serializable_messages.append({
@@ -885,21 +1202,57 @@ HINT: You can search for modifications that have made other, similar proteins mo
             json.dump(serializable_messages, f, indent=2)
         
         # Save final summary
+        best_design_summary = ""
+        if self.best_score is not None:
+            best_design_summary = f"""
+
+BEST DESIGN ACHIEVED:
+- Best Rosetta Score: {self.best_score:.3f} (iteration {self.best_iteration})"""
+            if self.baseline_score is not None:
+                improvement = self.best_score - self.baseline_score
+                best_design_summary += f"""
+- Baseline Score: {self.baseline_score:.3f}
+- Improvement: {improvement:+.3f} ({improvement/abs(self.baseline_score)*100:+.1f}%)"""
+            if self.best_sequence:
+                best_design_summary += f"""
+- Best Sequence Length: {len(self.best_sequence)} residues
+- Best Sequence: {self.best_sequence[:50]}{'...' if len(self.best_sequence) > 50 else ''}"""
+        else:
+            best_design_summary = """
+
+BEST DESIGN: No successful designs recorded"""
+
         summary = f"""
 CLAUDE DESIGN SESSION SUMMARY
 =============================
 Total iterations: {self.iteration_count}
 Model used: {self.model}
+Extended thinking enabled: {self.enable_thinking}
 Context limit: {self.context_limit:,} tokens
 Context summarizations performed: {self.summarization_count}
 Final output length: {len(all_accumulated_text)} characters
-Output directory: {self.output_dir}
+Output directory: {self.output_dir}{best_design_summary}"""
+
+        if self.enable_thinking and thinking_entries > 0:
+            summary += f"""
+Thinking entries: {thinking_entries}
+Total thinking tokens (estimated): {total_thinking_tokens:,}
+Thinking budget per iteration: {self.thinking_budget:,} tokens"""
+
+        summary += f"""
 
 Files generated:
-- final_output.txt: Complete session output with all text responses
+- final_output.txt: Complete session output with all text responses, thinking, and tool outputs
 - conversation_history.json: Full conversation including tool calls
-- iteration_*.txt: Individual iteration outputs
-- tool_calls.jsonl: Record of all tool calls and their results"""
+- iteration_*.txt: Individual iteration outputs including tool calls and outputs
+- tool_calls.jsonl: Record of all tool calls with full arguments and complete results
+- token_usage.jsonl: Detailed token usage tracking per iteration
+- best_designs.jsonl: Chronicle of best designs found with scores and sequences"""
+
+        if thinking_entries > 0:
+            summary += f"""
+- thinking_summary.txt: Summary of all thinking token usage
+- iteration_*_thinking.txt: Individual iteration thinking content"""
 
         if self.summarization_count > 0:
             summary += f"""
@@ -925,21 +1278,38 @@ Session completed after {self.iteration_count} iterations.
         if self.summarization_count > 0:
             print(f"Context summarizations: {self.summarization_count}")
         
+        # Print best design summary
+        if self.best_score is not None:
+            print(f"\n🎯 BEST DESIGN ACHIEVED:")
+            print(f"   Score: {self.best_score:.3f} (iteration {self.best_iteration})")
+            if self.baseline_score is not None:
+                improvement = self.best_score - self.baseline_score
+                print(f"   Improvement: {improvement:+.3f} ({improvement/abs(self.baseline_score)*100:+.1f}%)")
+            if self.best_sequence:
+                print(f"   Sequence: {self.best_sequence[:60]}{'...' if len(self.best_sequence) > 60 else ''}")
+        else:
+            print(f"\n⚠️  NO SUCCESSFUL DESIGNS RECORDED")
+        
         # Check if there were API retries
         if retry_log_file.exists():
             try:
                 retry_count = sum(1 for _ in open(retry_log_file))
-                print(f"API retry attempts: {retry_count}")
+                print(f"\nAPI retry attempts: {retry_count}")
             except:
                 pass
         
         print(f"📁 All outputs saved to: {self.output_dir}")
         print(f"\n📁 Results saved to: {self.output_dir}/")
-        print(f"   - final_output.txt")
+        print(f"   - final_output.txt (includes all thinking content and tool outputs)")
         print(f"   - conversation_history.json")
-        print(f"   - iteration_*.txt")
-        print(f"   - tool_calls.jsonl")
+        print(f"   - iteration_*.txt (includes tool calls and outputs)")
+        print(f"   - tool_calls.jsonl (full results included)")
+        print(f"   - token_usage.jsonl")
+        print(f"   - best_designs.jsonl (progress tracking)")
         print(f"   - session_summary.txt")
+        if thinking_entries > 0:
+            print(f"   - thinking_summary.txt")
+            print(f"   - iteration_*_thinking.txt ({thinking_entries} files)")
         if self.summarization_count > 0:
             print(f"   - summarizations.jsonl")
             print(f"   - summary_*.txt ({self.summarization_count} files)")
@@ -978,7 +1348,7 @@ def main():
     designer = CarbonicAnhydraseDesignerClaude(
         model="claude-3-7-sonnet-20250219",  # Claude 3.7 with extended thinking support
         max_tokens=16384,  # Increased to accommodate thinking + response
-        context_limit=40000,  # 180k tokens to stay under 200k limit
+        context_limit=15000,  # 180k tokens to stay under 200k limit
         enable_thinking=True,  # Enable extended reasoning display
         thinking_budget=4096  # Generous budget for deep protein engineering reasoning
     )

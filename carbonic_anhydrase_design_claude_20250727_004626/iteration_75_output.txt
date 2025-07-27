@@ -1,0 +1,49 @@
+Let's examine the structure of our selective stabilized variant:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01CoPx9fCJjtovMSdrUhbfjd
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_selective.pdb.pdb', 'image_subdir': 'stabilized_CA2_selective_analysis'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/stabilized_CA2_selective.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/stabilized_CA2_selective_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2064,
+    "total_residues": 259,
+    "radius_of_gyration": 17.15,
+    "center_of_mass": [
+      -0.03,
+      -0.18,
+      -0.8
+    ],
+    "estimated_molecular_weight": 28490
+  },
+  "secondary_structure_content": {
+    "total_residues": 259,
+    "helix_residues": 44,
+    "sheet_residues": 68,
+    "loop_residues": 147,
+    "helix_percentage": 17.0,
+    "sheet_percentage": 26.3,
+    "loop_percentage": 56.8
+  },
+  "surface_properties": {
+    "total_sasa": 12296.46,
+    "hydrophobic_sasa": 5816.52,
+    "polar_sasa": 6417.74,
+    "hydrophobic_ratio": 47.3
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 259 residues. Secondary structure: 17.0% helix, 26.3% sheet, 56.8% loop. Radius of gyration: 17.15 \u00c5. Total SASA: 12296.46 \u0172. Surface hydrophobicity: 47.3%."
+}
+--- END TOOL OUTPUT (Length: 1272 chars) ---
+=== END TOOL CALL ===
+

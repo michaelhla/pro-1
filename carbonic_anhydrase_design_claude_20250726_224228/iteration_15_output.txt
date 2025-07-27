@@ -1,0 +1,1 @@
+Let's calculate the Rosetta score for this more conservative design:

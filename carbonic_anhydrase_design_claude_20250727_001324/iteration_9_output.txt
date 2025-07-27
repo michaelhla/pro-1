@@ -1,0 +1,35 @@
+Let's search for more information about approaches to improve carbonic anhydrase stability in acidic conditions:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01V6hxFpsunDoASgCCShr4do
+Arguments: {'query': 'carbonic anhydrase acid stability pH low improvements engineering mutations'}
+--- TOOL OUTPUT ---
+**Engineered mutations have been successfully developed to improve the acid stability of carbonic anhydrase (CA), enabling the enzyme to withstand lower pH conditions while retaining catalytic efficiency**[3][4]. This is crucial for applications such as industrial CO₂ capture, where CA is often exposed to acidic environments.
+
+**Key strategies and findings:**
+
+- **Disulfide Bond Engineering:**  
+    The introduction of a rationally designed *disulfide bond* in human CA II yielded a variant (dsHCAII) with a *14–15 K higher denaturation temperature* and *improved stability at pH values below 6.0*, all *without compromising catalytic efficiency* or proton transfer rates[3]. This shows that specific structural modification, such as new disulfide bridges, can boost the enzyme’s acid resistance.
+
+- **Hydrophobic-to-Hydrophilic Surface Mutations:**  
+    Additional work combined disulfide bridges with surface mutations that increased hydrogen bonding, further enhancing overall stability and enthalpic contributions, which are beneficial for functioning under acidic stress[3].
+
+- **Directed Evolution and High-Throughput Screening:**  
+    A large-scale *random mutagenesis* and screening program identified 84 unique mutations at 44 positions across the CA structure that resulted in significant enhancements in both *acid and thermal stability*[4]. While the detailed list of mutations is not shown in the snippet, the results underscore that both active-site and surface residue changes can contribute to improved acid tolerance.
+
+- **Acid Tolerance and Activity Retention:**  
+    These engineered CAs are reported to retain high activity even after prolonged exposure to harsh acidic conditions characteristic of industrial processes (e.g., low pH environments seen during intense CO₂ capture)[3][4].
+
+**Additional details:**
+- Rational design and high-throughput evolution are complementary: *Directed evolution* yields a broad palette of beneficial mutations; *rational design* (e.g., engineering disulfide bonds) targets specific weak spots in the protein’s architecture[3][4].
+- Hydrophobic to hydrophilic surface substitutions can increase hydrogen bonding and solvent interactions, further stabilizing the enzyme in aqueous and acidic conditions[3].
+
+**Limitations and caveats:**
+- While many identified mutations increase acid stability, not all preserve maximal catalytic rates—careful selection is crucial.
+- Source [2] notes that certain buffer components (e.g., sulfate, nitrate) and their conjugate bases can also influence activity independently of pH, so stability engineering must account for the chemical environment as well as the pH itself[2].
+- The detailed mapping of specific mutations to acid stability enhancement is an ongoing research area and may vary depending on the specific CA isoform and intended application.
+
+**In summary:**  
+*Disulfide bond introduction, surface hydrophilicity increases, and directed evolution approaches have led to CA variants with marked improvements in acid stability and retention of catalytic function, confirming the feasibility of engineering CA for low-pH industrial applications*.[3][4]
+--- END TOOL OUTPUT (Length: 3162 chars) ---
+=== END TOOL CALL ===
+

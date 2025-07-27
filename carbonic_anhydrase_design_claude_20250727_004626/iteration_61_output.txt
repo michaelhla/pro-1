@@ -1,0 +1,24 @@
+Based on the collected information, I'll design a stabilized carbonic anhydrase II variant using a combination of:
+
+1. Disulfide bond engineering with the A23C/L203C mutation pair (known to be successful)
+2. Surface stabilization through strategic mutations
+
+Let's first create this mutant:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01XJMVukVJzEdM4TdRKjowX9
+Arguments: {'query': 'human carbonic anhydrase II amino acid sequence wild type full'}
+--- TOOL OUTPUT ---
+The **full wild-type amino acid sequence** of human carbonic anhydrase II (**CAII**, gene: CA2), composed of 260 residues, is as follows[1]:
+
+```
+MSHHWGYGKH NGPEHWHKDF PIAKGERQSP VDIDTHTAKY DPSLKPLSVS YDQATSLRIL
+NNGHAFNVEF DDSQDKAVLK GGPLDGTYRL IQFHFHWGSL DGQGSEHTVD KKKYAAELHL
+VHWNTKYGDF GKAVQQPDGL AVLGIFLKVG S AKPGLQKVV DVLDSIKTKG KSADFTNFDP
+RGLLPESLDY WTYPGSLTTP PLLECVTWIV LKEPISVSSE QVLKFRKLNF NGEGEPEELM
+VDNWRPAQPL KNRQIKASFK
+```
+
+This sequence is referenced in UniProtKB (accession: **P00918**) and DrugBank[1]. The amino acid count and sequence can be verified as the canonical wild-type form used in research and clinical annotation[1].
+--- END TOOL OUTPUT (Length: 646 chars) ---
+=== END TOOL CALL ===
+

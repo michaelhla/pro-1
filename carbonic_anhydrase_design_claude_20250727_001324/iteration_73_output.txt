@@ -1,0 +1,32 @@
+Now, let me explore what other structures might already exist in the predicted_structures directory. Based on the information, I'll design a new mutation to improve carbonic anhydrase stability while preserving its catalytic function.
+
+Let's search for recent literature on carbonic anhydrase stability enhancement:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01GLDGLWRFxoUQoSjUCiJAeY
+Arguments: {'query': 'carbonic anhydrase II stability engineering recent mutations'}
+--- TOOL OUTPUT ---
+Multiple recent studies have focused on **engineering carbonic anhydrase II (CA II) for enhanced stability**—particularly thermal stability—using targeted mutations. Here are the key findings regarding such mutations and their mechanisms:
+
+- **Surface Hydrophobic Residue Replacements:** Specific replacements of *surface hydrophobic residues* with more hydrophilic or hydrogen bond-capable amino acids have been shown to enhance CA II thermal stability. Structural analysis revealed that increased surface hydrogen bonding plays a critical role in this stabilization, without compromising catalytic efficiency or solubility. Notably, combining stabilizing surface mutations with certain active site changes resulted in thermostable mutants with favorable kinetic properties[1].
+
+- **Multi-site Mutational Engineering:** One well-studied thermostable variant, often referred to as *HCAIIts*, incorporates **six specific mutations**. Structural studies indicate that these mutations function mostly independently. The observed mechanisms for increased thermostability include:
+    - Increased **hydrogen bonding**
+    - Improved **packing** within the protein core
+    - Reduced **side-chain entropy loss** upon folding
+    - Enhanced **backbone conformational energetics** due to amino acid-specific preferences
+   
+  The research suggests that improved backbone conformational energetics—through careful choice of residue replacements—can be a valuable but sometimes overlooked approach for protein stabilization[2].
+
+- **Representative Thermostabilizing Mutations:** While some articles do not directly list every amino acid substitution, previous patents and crystallographic analyses of HCAIIts variants typically mention mutations such as **N67L, N244G, D71G, E117A, L198A, and H64A** (from earlier engineering efforts), which are associated with stabilization effects via the mechanisms above[2]. These mutations are selected to alter surface properties, reduce flexibility in key loops, and enhance internal packing.
+
+- **Ligand Effects and Activity Considerations:** Computational studies highlight that certain mutations can also shift enzyme stability in the presence of different substrates or inhibitors. For instance, a particular mutant form showed greater stability and compactness when bound to acetazolamide (a classical CA inhibitor) versus the wild type, underscoring that the engineered enzyme’s stability can be context-dependent[4].
+
+- **Emerging Approaches:** Beyond classical mutagenesis, current research encourages using AI-driven methods and structural analysis to design mutants, focusing on key *amino acids and structural features* that enhance durability under industrial or extreme conditions[3].
+
+**Caveats:**  
+Not all mutations confer stability in all environments or substrate contexts, and the effect of each substitution depends on location, local structure, and interaction networks within the protein. Recent literature may not always list the very latest or proprietary mutation sets due to patenting or ongoing research[2][3][4].
+
+In summary, **recent stability engineering of carbonic anhydrase II most commonly employs surface residue substitutions that increase hydrogen bonding and improve packing**, with certain multi-site mutants (e.g., HCAIIts with up to six changes) achieving high thermostability while maintaining enzymatic activity[1][2].
+--- END TOOL OUTPUT (Length: 3392 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,1 @@
+Let's calculate the Rosetta energy score for this new design:

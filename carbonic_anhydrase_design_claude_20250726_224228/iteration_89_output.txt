@@ -1,0 +1,1 @@
+Let's calculate the RMSD between our mutant and the reference structure to ensure we haven't dramatically changed the overall fold:

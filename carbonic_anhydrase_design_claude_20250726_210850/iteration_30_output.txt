@@ -1,0 +1,1 @@
+This is close to the original score. Let me add one more mutation, L198F, which is known to be effective:

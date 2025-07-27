@@ -1,0 +1,11 @@
+Now, let's create the new CA-StabCore sequence with the six HCAIIts mutations (K170A, A171L, N189A, L198A, S220A, I227A) and the strategic disulfide bond (P165C, K170C instead of Q170C since position 170 is K in our sequence).
+
+Here's the modified sequence:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_018BgmPSfyePD7tEGiiHw5ab
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKCCKALSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSAEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKAAFK', 'filename': 'CA_StabCore.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/CA_StabCore.pdb.pdb
+--- END TOOL OUTPUT (Length: 40 chars) ---
+=== END TOOL CALL ===
+

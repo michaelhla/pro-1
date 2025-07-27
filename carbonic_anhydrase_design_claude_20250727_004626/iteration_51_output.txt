@@ -1,0 +1,9 @@
+Now let's calculate the Rosetta score for Design v10:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01FeqvKU9LgHQf8U6TifckEd
+Arguments: {'pdb_file_path': 'predicted_structures/design_v10.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -143.99 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/design_v10.pdb.pdb
+--- END TOOL OUTPUT (Length: 149 chars) ---
+=== END TOOL CALL ===
+

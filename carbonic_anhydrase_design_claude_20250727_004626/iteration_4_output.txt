@@ -1,0 +1,36 @@
+Let me look for information on acidic resistance and strategies that might be specific to carbonic anhydrase for acid stability:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_011rK7oDqxSDb2CmokDajz3F
+Arguments: {'query': 'carbonic anhydrase acid stability proton resistance pH below 7 engineering mutations for acidic environments'}
+--- TOOL OUTPUT ---
+**Carbonic anhydrase (CA) can be engineered for increased acid stability and proton resistance at pH below 7 through specific mutations, particularly by introducing stabilizing features like engineered disulfide bonds and surface residue modifications.** Analysis of structural, catalytic, and evolutionary studies provides key strategies for such engineering.
+
+**Context and Key Findings:**
+
+- **Engineered Disulfide Bonds:** Introducing cysteine residues to form new disulfide bridges enhances the *acid stability* of human carbonic anhydrase II (HCAII) without reduction in catalytic efficiency or proton transfer rates[3]. The engineered variant showed a denaturing temperature increase of 14–15 K and remained active at pH less than 6.0, indicating improved resilience in acidic environments[3].
+  
+- **Surface Residue Modifications:** Mutations that alter surface hydrophobic residues to hydrophilic ones can further enhance enzyme stability under acidic conditions through increased enthalpic and hydrogen bonding contributions[3]. These modifications can be combined with disulfide bridge insertion for additive effects.
+
+- **Proton Transfer Activity:** The active site and key residues (e.g., histidines critical for proton shuttling) remained functionally robust in the acid-stabilized variant, preserving the enzyme’s ability to resist proton inhibition and maintain efficient catalysis at low pH[3].
+
+- **Industrial Relevance:** Enhancements enable CA function in conditions typical of industrial carbon capture (high temperature and pH < 7) and could be adapted for other acidic or harsh environments[3].
+
+**Supporting Details and Further Considerations:**
+
+- **β-class CAs** have also been subjected to directed evolution for greater stability, but most documented enhancements target thermotolerance and alkali tolerance (pH > 10), rather than acid resistance[2].
+- **Testing for Acid Stability:** Functional assays confirm that immobilized or engineered CA remains active in acidic SO₂ environments, supporting practical application in low pH systems[4].
+
+**Caveats and Limitations:**
+- Most data focuses on HCAII; acid-stabilizing strategies may need optimization for other CA classes or isoforms.
+- While disulfide engineering and surface mutations improve *global stability* and function at low pH, detailed mechanism for proton resistance (i.e., avoiding protonation of crucial active site residues) may depend on specific residue environments and could require active site engineering in addition to scaffold stabilization.
+
+**Summary of Engineering Approaches for Acidic Environments:**
+- **Engineered disulfide bonds** to reinforce structural integrity at low pH[3].
+- **Surface residue hydrophilic mutations** to promote solvent interactions and hydrogen bond networks[3].
+- *Validate proton-transfer residue functionality* to maintain activity despite increased proton concentration[3].
+- Combine with immobilization methods for additional protection in applications[4].
+
+Directed evolution and rational design provide effective paths for generating *acid-stable carbonic anhydrases* suitable for **proton resistance and high activity below pH 7**[3].
+--- END TOOL OUTPUT (Length: 3176 chars) ---
+=== END TOOL CALL ===
+

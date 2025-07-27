@@ -1,0 +1,38 @@
+It seems there's limited information about EF-hand domains in Thermus thermophilus. Let's search for alternative calcium-binding domains from thermophilic organisms that we could incorporate into our design:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01GDYTMEwP6v1h3R1igbpyTy
+Arguments: {'query': 'thermostable calcium binding protein domains from thermophiles for protein engineering'}
+--- TOOL OUTPUT ---
+**Thermostable calcium-binding protein domains from thermophiles are valuable tools for protein engineering** due to their intrinsic stability at high temperatures and robust metal ion coordination, which can impart both structural and functional advantages to engineered proteins. The following information synthesizes key features, examples, and considerations relevant to their identification and application:
+
+**Key Features and Examples:**
+
+- **Dx[DN]xDG motif:** This linear motif is recognized as a classical calcium-binding sequence and is present in several thermostable proteins. For example, *Thermococcus kodakaraensis* subtilisin (PDB 2z2x) incorporates a thermostable calcium-binding domain with a large insertion that binds four Ca²⁺ ions via the Dx[DN]xDG motif[1]. Similar motifs exist in enzymes from other thermophilic and hyperthermophilic microorganisms, such as *Thermus thermophilus* and *Pyrococcus furiosus*[1][2].
+
+- **Stabilizing mechanisms:** Thermophilic calcium-binding domains often display increased hydrophobic interaction, reduced loop length, fewer conformationally strained residues, and a preference for charged residues and ion pairs, all of which contribute to overall protein thermostability[2][4]. These structural features can serve as guidelines for rational design or for the selection of suitable domains for protein engineering.
+
+- **Domain portability:** Independently folding thermostable domains, particularly those that coordinate calcium ions through robust motifs, are attractive as *modular biobricks* for synthetic biology and protein engineering, where stability and folding autonomy are crucial[4].
+
+**Considerations for Protein Engineering:**
+
+- **Domain selection:** When choosing thermostable calcium-binding domains for fusion or insertion into other proteins, designers should focus on motifs and structures from the known thermophilic organisms and examine available PDB structures (such as 2z2x, 2z07, etc.) for template domains[1].
+
+- **Functional impact:** Incorporation of these domains can increase the thermal and chemical stability of engineered proteins and sometimes confer additional regulatory properties via calcium binding or release[4].
+
+**Additional Thermostable Calcium-Binding Proteins:**
+
+- **Calreticulin:** This protein has distinct high- and low-affinity calcium-binding sites within globular and acidic domains, respectively. While calreticulin itself is not from a thermophile, its structure and binding sites can inform the design of artificial thermostable calcium-binding modules[3]. However, for maximal thermostability, domains from genuine thermophilic sources are preferred.
+
+**Limitations and Practical Guidance:**
+
+- While a catalog of all thermostable calcium-binding domains from thermophiles is not available in the search results, design efforts are best guided by studying naturally occurring calcium-binding motifs in thermophilic proteins, as annotated in the PDB[1]. The Dx[DN]xDG family represents a prominent and structurally validated motif to start with.
+
+- Approaches such as ancestral sequence reconstruction and rational design tools (e.g., iRDP web server) can be employed to engineer enhanced thermostability or to search for optimal domains[2][4].
+
+- The precise **biophysical context** (e.g., ion concentration, pH, fusion site) must always be considered to preserve both the stability and function of the engineered domain.
+
+**In summary:**  
+Thermostable calcium-binding domains from thermophiles, particularly those with the Dx[DN]xDG motif (e.g., in *T. kodakaraensis* subtilisin), are promising scaffolds for protein engineering, offering structural robustness and potential for modular fusion. Rational selection and engineering guided by analysis of thermophilic protein structures can further optimize their use[1][2][4].
+--- END TOOL OUTPUT (Length: 3842 chars) ---
+=== END TOOL CALL ===
+

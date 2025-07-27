@@ -1,0 +1,1 @@
+Let me calculate the baseline Rosetta score for the original structure:

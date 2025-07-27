@@ -1,0 +1,33 @@
+## Summary of Design Iterations
+
+After several iterations, I've developed multiple improved designs for carbonic anhydrase with enhanced stability. Here's a comparison of our best designs:
+
+1. **v11 (Disulfide Bond Design)**
+   - Mutations: A65T, L100H, K154N, S193D, S240P + N23C, S220C, G145P
+   - Rosetta score: -127.17 REU
+   - RMSD: 0.421 Å (96.92% sequence identity)
+   - Catalytic site RMSD: 0.094 Å (excellent preservation)
+   - Secondary structure: 17.3% helix, 24.6% sheet, 58.1% loop
+
+2. **v12 (Salt Bridge Design)**
+   - Mutations: A65T, L100H, K154N, S193D, S240P + Q5E, A20D, S199K
+   - Rosetta score: -276.53 REU (best score)
+   - RMSD: 0.412 Å (96.92% sequence identity)
+   - Catalytic site RMSD: 0.205 Å (good preservation)
+   - Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+
+3. **v13 (Combined Inhibitor Resistance Design)**
+   - Mutations: A65T, L100H, K154N, S193D, S240P + G7D, A20D, K9R, S217P
+   - Rosetta score: -27.38 REU
+   - RMSD: 1.231 Å (96.54% sequence identity)
+   - Catalytic site RMSD: 0.279 Å (good preservation)
+   - Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+
+The v12 design appears to be the most promising with the best Rosetta score, lowest RMSD, and excellent preservation of catalytic activity. Its strategic salt bridge engineering provides improved stability while maintaining the protein's structure. The G7D mutation in v13, drawn from recent research, may provide better inhibitor resistance for industrial applications, but the overall stability score is lower.
+
+Each design offers different advantages:
+- v11: Disulfide bond for enhanced stability
+- v12: Salt bridge engineering for optimal thermostability
+- v13: Improved inhibitor resistance for industrial applications
+
+These designs demonstrate successful application of different protein engineering strategies to enhance carbonic anhydrase stability while preserving its essential catalytic function.

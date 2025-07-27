@@ -1,0 +1,8 @@
+Based on my research, I'll design a novel carbonic anhydrase II variant with two engineered disulfide bonds targeting flexible regions that haven't been explored in the literature. I'll select residue pairs that meet the geometric criteria for disulfide bond formation based on my understanding of the protein structure.
+
+For my design, I'll introduce the following novel disulfide bonds:
+
+1. **First disulfide bond**: Between positions 56 (in loop 2) and 128 (in a flexible region) - These residues are spatially close in the folded structure but in different regions of the protein, which could help stabilize loop 2
+2. **Second disulfide bond**: Between positions 174 and 178 - These are in a flexible surface loop region
+
+Let's create this mutant by introducing the necessary cysteine substitutions:

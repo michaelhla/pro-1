@@ -1,0 +1,52 @@
+# Protein Engineering Project Summary: Designing Stable Carbonic Anhydrase Variants
+
+## Main Objective
+Design more stable variants of carbonic anhydrase (CA) for carbon capture applications that:
+- Increase thermal stability
+- Improve stability in acidic conditions
+- Maintain catalytic activity
+
+## Baseline Assessment
+Original CA (sequence: MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK):
+- Rosetta score: -305.57 REU
+- 260 residues (17.3% helix, 26.5% sheet, 56.2% loop)
+- Critical functional residues: catalytic residues (Y7, N62, H64, N67, Q92) and zinc-binding residues (H94, H96, H119)
+
+## Design Iterations
+
+### Design 1: CA-ThermX
+- Strategy: N-terminal fusion with Pyrococcus furiosus thioredoxin domain, proline-rich insert, metal-binding motif
+- Results:
+  - Rosetta score: 1944.79 REU (unfavorable)
+  - Active site RMSD: 7.79 Å (poor catalytic preservation)
+  - Zinc binding RMSD: 11.26 Å (significant disruption)
+
+### Design 2: CA-StableFold
+- Strategy: C-terminal fusion with thermostable domain, flexible GGGGS linker
+- Results:
+  - Rosetta score: 873.46 REU (improved but still unfavorable)
+  - Active site RMSD: 0.087 Å (excellent catalytic preservation)
+  - Zinc binding RMSD: 0.063 Å (excellent structural integrity)
+  - Overall RMSD to original: 0.281 Å (maintains original fold)
+
+### Design 3: CA-ThermoStable
+- Strategy: C-terminal fusion with P. furiosus thioredoxin, strategic proline insertions (PPGP at position 154-157), triple GGGGS linker
+- Sequence: MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTPPGPIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFEGGGGSGGGGSGGGGSMKVEIKAEEPIIVGDPVLSNVKYGPQGIGGIRYCVFQDNEDTIVIVDAKNKDYPGDFDTTLEEMGIDAFIDVYFYPGAAKAGLLKEIVQIRVQDVREAEKVIGVEFDGLFNQEIIKYFKSGCPVTAIKFISDFFGKSEIKKKVLKDGKMDDIKMFISTQLKKLVPLIANGAFFKM
+- Results:
+  - Rosetta score: 1677.99 REU (still unfavorable)
+  - Active site RMSD: 0.12 Å (excellent catalytic preservation)
+  - Zinc binding RMSD: 0.072 Å (excellent preservation of zinc coordination)
+  - 457 residues (29.5% helix, 17.3% sheet, 53.2% loop)
+
+## Key Findings
+1. C-terminal fusions better preserve catalytic function than N-terminal fusions
+2. Flexible linkers (GGGGS) help maintain functional integrity between domains
+3. Strategic proline insertions in loop regions can enhance rigidity without disrupting function
+4. Current designs maintain catalytic site geometry but have unfavorable Rosetta scores
+
+## Next Steps
+Next design iterations should focus on:
+1. Addressing the unfavorable Rosetta scores while maintaining catalytic integrity
+2. Exploring mutations in zinc metalloproteases for transferable stability-enhancing modifications
+3. Investigating circular permutation approaches
+4. Testing different insertion positions for stabilizing motifs

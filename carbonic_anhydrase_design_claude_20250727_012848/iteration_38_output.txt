@@ -1,0 +1,9 @@
+Let's create one more variant with a more incremental approach, implementing just a few of the key thermostabilizing mutations from HCAIIts:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01Nbsyk3xApuENA5ZXTNdYu5
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTGKALADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSAEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKAAFK', 'filename': 'CA_StabCore_v3.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/CA_StabCore_v3.pdb.pdb
+--- END TOOL OUTPUT (Length: 43 chars) ---
+=== END TOOL CALL ===
+

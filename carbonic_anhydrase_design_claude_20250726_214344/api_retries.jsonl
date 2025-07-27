@@ -1,0 +1,3 @@
+{"timestamp": "2025-07-26T21:46:58.327220", "iteration": 11, "retry_attempt": 1, "max_retries": 10, "wait_time": 1.1411039323537722, "error": "Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}}"}
+{"timestamp": "2025-07-26T21:47:19.866501", "iteration": 11, "retry_attempt": 2, "max_retries": 10, "wait_time": 2.03537516137383, "error": "Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}}"}
+{"timestamp": "2025-07-26T21:47:42.228366", "iteration": 11, "retry_attempt": 3, "max_retries": 10, "wait_time": 4.69319691012777, "error": "Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}}"}

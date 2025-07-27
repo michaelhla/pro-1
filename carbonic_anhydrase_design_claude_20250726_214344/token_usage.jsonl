@@ -1,0 +1,17 @@
+{"timestamp": "2025-07-26T21:44:00.726320", "iteration": 1, "input_tokens": 3202, "output_tokens": 317, "thinking_tokens_estimated": 217, "thinking_percentage": 68.45425867507886}
+{"timestamp": "2025-07-26T21:44:11.315711", "iteration": 2, "input_tokens": 4419, "output_tokens": 76, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:44:20.541034", "iteration": 3, "input_tokens": 5265, "output_tokens": 69, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:44:34.073943", "iteration": 4, "input_tokens": 6045, "output_tokens": 72, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:44:49.043990", "iteration": 5, "input_tokens": 6979, "output_tokens": 67, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:45:01.130858", "iteration": 6, "input_tokens": 7606, "output_tokens": 76, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:45:30.300968", "iteration": 7, "input_tokens": 8610, "output_tokens": 1115, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:45:44.837430", "iteration": 8, "input_tokens": 9812, "output_tokens": 557, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:45:53.110487", "iteration": 9, "input_tokens": 10397, "output_tokens": 109, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:46:23.475774", "iteration": 10, "input_tokens": 10563, "output_tokens": 291, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:47:54.837032", "iteration": 11, "input_tokens": 10880, "output_tokens": 76, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:48:00.795205", "iteration": 12, "input_tokens": 11011, "output_tokens": 108, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:48:09.007329", "iteration": 13, "input_tokens": 11963, "output_tokens": 410, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:48:52.431609", "iteration": 14, "input_tokens": 12721, "output_tokens": 366, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:49:28.324810", "iteration": 15, "input_tokens": 13585, "output_tokens": 113, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:50:08.818995", "iteration": 16, "input_tokens": 14198, "output_tokens": 116, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}
+{"timestamp": "2025-07-26T21:50:56.536191", "iteration": 17, "input_tokens": 14810, "output_tokens": 369, "thinking_tokens_estimated": 0, "thinking_percentage": 0.0}

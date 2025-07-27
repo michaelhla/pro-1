@@ -1,0 +1,1 @@
+Based on this information, let's focus our carbonic anhydrase engineering on surface residue substitutions to enhance thermostability through increased hydrogen bonding networks. Let's fold the wild-type human carbonic anhydrase II as our baseline reference, then design mutations targeting surface hydrophobic residues.

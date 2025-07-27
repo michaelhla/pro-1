@@ -1,0 +1,26 @@
+The RMSD of 2.054 Å is significant and indicates more substantial structural changes. Let's try a different approach with fewer, more targeted mutations.
+
+## Design Strategy for Third Novel Variant
+
+Let's try a more focused approach with a smaller number of carefully chosen mutations that could enhance stability without disrupting the overall structure:
+
+1. **Strategic calcium binding site** - Inspired by thermolysin's calcium binding for stability
+2. **Careful surface charge modifications** for acid stability
+3. **Limited proline substitutions** in non-critical loops
+
+### Proposed Novel Mutations:
+
+**1. Calcium Binding Site Introduction:**
+- **S29D and Q136E**: Creating a potential calcium binding site with two negative charges in proximity (inspired by thermolysin's calcium binding)
+
+**2. Surface Charge Optimization:**
+- **E69Q**: Converting a surface glutamate to glutamine for acid stability
+- **D171N**: Another surface charge modification
+
+**3. Proline Substitution:**
+- **S99P**: Introducing a proline in a non-critical loop region
+
+**4. Hydrophobic Core Enhancement:**
+- **A158I**: Enhancing the hydrophobic core with a larger hydrophobic residue
+
+Let's create this new design:

@@ -1,0 +1,1 @@
+Based on the information gathered, I'll design a novel carbonic anhydrase variant using strategies that have been successful in other proteins but have not yet been applied to CA II. Let's fold a new variant with carefully selected mutations:

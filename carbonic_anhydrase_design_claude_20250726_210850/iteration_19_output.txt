@@ -1,0 +1,1 @@
+This looks much better! Let me check the RMSD and other structural properties:

@@ -1,0 +1,36 @@
+Let's deepen our understanding by looking at specific mutations and regions that contribute to thermal stability:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01AzDMqdYwsjLNoPS3PM1cpF
+Arguments: {'query': 'carbonic anhydrase II thermostability engineering specific mutations regions and surface electrostatics'}
+--- TOOL OUTPUT ---
+Thermostability engineering of **carbonic anhydrase II (CA II)** has focused on targeted **mutations in specific regions**—primarily surface-exposed residues, loop regions, and selected secondary structural elements—and on optimizing **surface electrostatics** to enhance protein stability under high temperatures.
+
+**Key Mutation Regions and Strategies:**
+
+- **Surface Mutations:** Studies show that **replacing hydrophobic surface residues with more hydrophilic or charged ones** increases surface hydrogen bonding and stabilizing electrostatic interactions, improving thermal resistance without compromising catalytic activity[3].
+- **Introduction of Disulfide Bonds:** Engineering new **disulfide bridges** (e.g., Ala23Cys and Leu203Cys) increases rigidity and enhances thermal and acid stability of CA II by reducing local conformational entropy, and this does not disrupt the active site geometry[2].
+- **Proline Substitutions:** *Incorporating proline residues* at select loop or helix-turn-helix regions increases local rigidity due to proline's restricted backbone flexibility, yielding significant improvements in thermostability[4].
+- **Multiple Stabilizing Mutations:** Several thermostable variants use *combinations of up to six mutations*, each contributing independently through mechanisms such as increased H-bonding, improved local packing, or reduced entropy loss during folding[1].
+
+**Specific Example Mutations:**
+
+While exact mutation lists can vary, one of the most thermostable CA II variants described incorporates six mutations that improve stability by several molecular mechanisms:
+
+- These mutations are distributed across the protein and act largely independently[1].
+- Some mutations improve H-bonding and local packing, while others reduce entropy lost on folding.
+- Four of the mutations were specifically noted to improve *backbone conformational energetics*, a factor sometimes overlooked in protein engineering[1].
+
+**Surface Electrostatics Optimization:**
+
+- Enhancing **surface charge distribution** (increasing favorable salt bridges and hydrogen bonds on the protein surface) is a recurring strategy. Rational design efforts focus on eliminating destabilizing surface patches and increasing polar or charged residue content to discourage aggregation and denaturation at high temperatures[3].
+- Preserving proper **active site electrostatics** is essential to maintain CA II’s catalytic efficiency; stabilizing mutations are typically placed away from the active site or are specifically designed to maintain its environment[3].
+
+**Structural and Functional Impacts:**
+
+- Mutations designed for thermostabilization can lead to **higher melting temperatures** (e.g., increases of 14 K reported), maintained or improved catalytic rates, and increased resistance to acid and heat denaturation[2][3].
+- Structural studies show the **mutant enzymes retain highly similar global folds** compared to the wild-type (e.g., Cα-RMSDs ~0.34–0.38 Å), confirming that stability enhancements do not require large-scale structural rearrangements[1].
+
+In summary, **engineering thermostable CA II variants leverages targeted mutations chiefly in surface regions**, the introduction of rigidity-enhancing features (disulfides, prolines), and optimization of surface electrostatics, all while safeguarding active site geometry and function[1][2][3][4].
+--- END TOOL OUTPUT (Length: 3372 chars) ---
+=== END TOOL CALL ===
+

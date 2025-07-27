@@ -1,0 +1,48 @@
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01LWjDVoY7FJeUYkx2RWDTCe
+Arguments: {'pdb_file_path': 'predicted_structures/N67L_L198A_double_mutant.pdb.pdb', 'image_subdir': 'N67L_L198A_analysis'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/N67L_L198A_double_mutant.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/N67L_L198A_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2069,
+    "total_residues": 260,
+    "radius_of_gyration": 17.18,
+    "center_of_mass": [
+      0.17,
+      -0.31,
+      -0.62
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 45,
+    "sheet_residues": 69,
+    "loop_residues": 146,
+    "helix_percentage": 17.3,
+    "sheet_percentage": 26.5,
+    "loop_percentage": 56.2
+  },
+  "surface_properties": {
+    "total_sasa": 12039.68,
+    "hydrophobic_sasa": 5856.4,
+    "polar_sasa": 6134.89,
+    "hydrophobic_ratio": 48.6
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop. Radius of gyration: 17.18 \u00c5. Total SASA: 12039.68 \u0172. Surface hydrophobicity: 48.6%."
+}
+--- END TOOL OUTPUT (Length: 1257 chars) ---
+=== END TOOL CALL ===
+

@@ -1,0 +1,9 @@
+Let's calculate the Rosetta score:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01CWyUYCVKwxYCXHsGz727Wc
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_hCA2_v6.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -286.89 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/stabilized_hCA2_v6.pdb.pdb
+--- END TOOL OUTPUT (Length: 157 chars) ---
+=== END TOOL CALL ===
+

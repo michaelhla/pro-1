@@ -1,0 +1,1 @@
+This Rosetta score is quite high, indicating potential issues with this design. Let's check the structure's similarity to the reference:

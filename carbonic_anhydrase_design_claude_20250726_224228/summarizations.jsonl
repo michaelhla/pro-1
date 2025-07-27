@@ -1,0 +1,6 @@
+{"timestamp": "2025-07-26T22:48:34.584243", "iteration": 20, "summarization_number": 1, "original_tokens_estimate": 15757, "new_tokens_estimate": 2989, "compression_ratio": 0.1896934695690804}
+{"timestamp": "2025-07-26T22:57:08.929067", "iteration": 50, "summarization_number": 2, "original_tokens_estimate": 15667, "new_tokens_estimate": 2520, "compression_ratio": 0.1608476415395417}
+{"timestamp": "2025-07-26T23:04:45.992751", "iteration": 79, "summarization_number": 3, "original_tokens_estimate": 15260, "new_tokens_estimate": 2386, "compression_ratio": 0.1563564875491481}
+{"timestamp": "2025-07-26T23:11:09.657063", "iteration": 103, "summarization_number": 4, "original_tokens_estimate": 15006, "new_tokens_estimate": 2928, "compression_ratio": 0.1951219512195122}
+{"timestamp": "2025-07-26T23:17:01.202050", "iteration": 126, "summarization_number": 5, "original_tokens_estimate": 15307, "new_tokens_estimate": 2667, "compression_ratio": 0.17423401058339322}
+{"timestamp": "2025-07-26T23:25:14.087266", "iteration": 154, "summarization_number": 6, "original_tokens_estimate": 15046, "new_tokens_estimate": 2979, "compression_ratio": 0.19799282201249502}

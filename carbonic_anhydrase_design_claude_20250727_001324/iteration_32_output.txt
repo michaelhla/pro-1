@@ -1,0 +1,32 @@
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01FSELr19AhtoDrTYWpjVo3K
+Arguments: {'query': 'carbonic anhydrase II novel thermostabilizing mutations A23C L203C and additional successful stability mutations disulfide bonds loop rigidity'}
+--- TOOL OUTPUT ---
+**Thermostabilizing mutations** in human carbonic anhydrase II (CA II), including engineered **disulfide bonds** such as A23C and L203C, have been investigated to increase protein stability, loop rigidity, and overall thermostability.
+
+### Disulfide Bond Engineering (A23C, L203C, and Loop Rigidity)
+- **Disulfide bonds** can stabilize proteins by covalently linking different regions, thus reducing conformational flexibility and unfolding[2].
+- While the search results do not specifically confirm the existence of the **A23C/L203C pair** in CA II, introducing cysteines at surface-exposed or structurally strategic positions (such as A23 and L203) is a known method to create novel disulfide bridges that cross-link secondary structure elements or loops, leading to increased rigidity and stability.
+- Prior studies in disulfide engineering for CA II and other proteins highlight significant improvements in thermal stability and resistance to denaturation when designed appropriately[2].
+
+### Structural Insights from Thermostable CA II Mutants
+- The **6B00 structure** and its related study detail a thermostable CA II variant containing **six point mutations** that act largely independently, increasing stability via:
+    - Enhanced hydrogen bonding
+    - Improved internal packing
+    - Reduced loss of side chain entropy upon folding
+    - For four mutations, improved backbone conformational energetics[1][4]
+- However, **the six mutations in the patented variant are not directly specified in the search results**, and none are explicitly listed as A23C or L203C. The main mechanisms for increased thermostability are still applicable: increased rigidity, backbone stabilization, and strategic hydrogen-bond networks[1][4].
+
+### Other Notable Stability-Enhancing Mutations
+- Rational design approaches, such as those using molecular dynamics (MD), have identified stabilizing substitutions (e.g. Asn140Gly, Thr175Pro, Asp232Pro, and Val143Ile) that restrict local flexibility, especially in loops, hence reinforcing conformational stability[3].
+- Surface hydrophobic residue replacements have also been shown empirically to improve CA II thermostability[5].
+
+### Conclusion and Evidence Gaps
+- **Disulfide engineering, including theoretically proposed pairs like A23C and L203C, is a logical and partially validated method** for enhancing CA II thermostability, likely acting by increasing loop rigidity and reducing dynamics[2].
+- There is no direct experimental evidence for the **A23C-L203C mutation pair** in the above-cited CA II studies in the results provided.
+- Documented strategies for increasing CA II thermal stability generally include a combination of: **disulfide bond introduction, loop rigidity mutations, core packing improvements, and backbone energetics optimizations**[1][3][4].
+
+**Caveat:** For specific information on the experimental stability results and structural consequences of the **A23C/L203C mutation pair**, or a comprehensive list of CA II thermostabilizing mutations via disulfide bonds targeting loop rigidity, further literature beyond the search results or targeted mutagenesis studies would be required.
+--- END TOOL OUTPUT (Length: 3153 chars) ---
+=== END TOOL CALL ===
+

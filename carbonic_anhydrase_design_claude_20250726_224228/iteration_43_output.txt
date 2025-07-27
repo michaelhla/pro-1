@@ -1,0 +1,5 @@
+For this focused design, I've introduced just two key mutations:
+1. V143P - Loop rigidification in a non-catalytic region 
+2. V184I - Core packing enhancement for increased stability
+
+Let's evaluate this design:

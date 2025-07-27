@@ -1,0 +1,52 @@
+Let's also examine the secondary structure:
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01L8D7qA6gCWzTEEspKBFbHQ
+Arguments: {'pdb_file_path': 'predicted_structures/CA_v14_design.pdb.pdb', 'image_subdir': 'CA_v14_design'}
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/CA_v14_design.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/CA_v14_design/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 1847,
+    "total_residues": 235,
+    "radius_of_gyration": 18.82,
+    "center_of_mass": [
+      0.31,
+      -0.92,
+      -0.11
+    ],
+    "estimated_molecular_weight": 25850
+  },
+  "secondary_structure_content": {
+    "total_residues": 235,
+    "helix_residues": 43,
+    "sheet_residues": 26,
+    "loop_residues": 166,
+    "helix_percentage": 18.3,
+    "sheet_percentage": 11.1,
+    "loop_percentage": 70.6
+  },
+  "surface_properties": {
+    "total_sasa": 20488.11,
+    "hydrophobic_sasa": 10891.71,
+    "polar_sasa": 9529.11,
+    "hydrophobic_ratio": 53.2
+  },
+  "quality_assessment": {
+    "overall_quality": "ACCEPTABLE",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "POOR",
+    "issues": [
+      "High loop content may indicate flexibility/disorder"
+    ],
+    "recommendations": [
+      "Consider stabilizing mutations to reduce loop regions",
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 235 residues. Secondary structure: 18.3% helix, 11.1% sheet, 70.6% loop. Radius of gyration: 18.82 \u00c5. Total SASA: 20488.11 \u0172. Surface hydrophobicity: 53.2%."
+}
+--- END TOOL OUTPUT (Length: 1370 chars) ---
+=== END TOOL CALL ===
+

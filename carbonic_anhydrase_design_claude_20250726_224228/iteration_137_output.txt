@@ -1,0 +1,1 @@
+Now let's compare the new design structure with the reference:

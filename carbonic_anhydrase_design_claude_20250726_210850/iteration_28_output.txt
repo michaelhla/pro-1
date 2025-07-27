@@ -1,0 +1,1 @@
+Let me try a more focused approach with just the key mutations from the HCAIIts variant (let's try with a single S50T mutation first):

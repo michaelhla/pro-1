@@ -1,0 +1,819 @@
+================================================================================
+CLAUDE CARBONIC ANHYDRASE DESIGN SESSION - COMPLETE OUTPUT
+================================================================================
+Total iterations: 80
+Model used: claude-3-7-sonnet-20250219
+Extended thinking enabled: True
+Thinking budget: 4,096 tokens
+Total thinking entries: 1
+Total thinking tokens (estimated): 239
+Context summarizations: 2
+================================================================================
+
+=== CLAUDE'S THINKING ===
+[Thinking Entry #1, Estimated tokens: 239]
+[Signature: ErUBCkYIBhgCIkBoajaQfZxpc5DMl2APdPErGUMvouvAxnq1IyR9UvhmzBTwgpKzpEXX6z+VJop1tr9bdCXfzEmZ5/U2WN9vhOXnEgxrB2Vp+S1msx5PwZEaDAUQizsbwb0IfBa7NyIwoyLcYbeSh8hHYFSO4ZkawhsI/JU42KdUgc9q9C0tZgQ3Xt5Nn83kqMmXp0hY2LaPKh2ZkspIssAh0AoDCD8RSAuP9rgeBUo21RDxfIwuqRgC]
+────────────────────────────────────────────────────────────
+The user is asking me to continue with a carbonic anhydrase design process. From the conversation summary, it appears they were previously examining coordination spheres and key stabilizing regions in carbonic anhydrase.
+
+From the context, I can see they were analyzing:
+1. Zinc binding residues (H94, H96, H119)
+2. Active site residues including H64, Q92, N62, N67, Y7
+3. Other residues like T200, E106, L143, T198
+
+The user wants me to continue the design process, focusing on using computational tools and iterating on the design.
+
+Given the available tools, I should:
+1. First understand the structure of the carbonic anhydrase (hCA2)
+2. Examine the secondary structure and catalytic activity sites
+3. Consider potential mutations for enhanced stability
+4. Fold and evaluate these mutants
+5. Compare them with the original structure
+
+Let me start by examining the secondary structure and catalytic activity of the reference structure (hCA2_folded.pdb):
+────────────────────────────────────────────────────────────
+=== END THINKING ===
+
+I'll continue with the carbonic anhydrase design process by examining the reference structure and exploring stabilization strategies.
+
+First, let's examine the secondary structure of the reference hCA2 protein to understand its baseline characteristics:
+
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01GVxByZYPfFbwdDsmLoJB3L
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_folded.pdb', 'image_subdir': 'hCA2_baseline_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01GVxByZYPfFbwdDsmLoJB3L
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hCA2_folded.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/hCA2_baseline_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2072,
+    "total_residues": 260,
+    "radius_of_gyration": 17.19,
+    "center_of_mass": [
+      0.21,
+      -0.36,
+      -0.7
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 45,
+    "sheet_residues": 69,
+    "loop_residues": 146,
+    "helix_percentage": 17.3,
+    "sheet_percentage": 26.5,
+    "loop_percentage": 56.2
+  },
+  "surface_properties": {
+    "total_sasa": 12225.72,
+    "hydrophobic_sasa": 5946.01,
+    "polar_sasa": 6232.23,
+    "hydrophobic_ratio": 48.6
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop. Radius of gyration: 17.19 \u00c5. Total SASA: 12225.72 \u0172. Surface hydrophobicity: 48.6%."
+}
+--- END TOOL OUTPUT (Length: 1243 chars) ---
+=== END TOOL RESULT ===
+
+Now, let's examine the catalytic activity sites to ensure we understand the critical regions that must be preserved:
+
+=== TOOL CALL: examine_catalytic_activity ===
+Tool ID: toolu_01KpPtQvLULYDgBe1ZvPQJbz
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_folded.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'hCA2_catalytic_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01KpPtQvLULYDgBe1ZvPQJbz
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/hCA2_folded.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/hCA2_catalytic_analysis/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 4.7231516336520594e-07,
+    "zinc_binding_rmsd": 2.439220038705538e-07,
+    "overall_rmsd": 2.698722563004506e-07
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+--- END TOOL OUTPUT (Length: 1287 chars) ---
+=== END TOOL RESULT ===
+
+Now, let's search for recent research on carbonic anhydrase stabilization strategies:
+
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Wkm2kTv3Fe9XYSSbo2P6Ed
+Arguments: {'query': 'carbonic anhydrase II thermostability engineering disulfide bonds metal binding protein stability'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01Wkm2kTv3Fe9XYSSbo2P6Ed
+--- TOOL OUTPUT ---
+**Engineering disulfide bonds and optimizing metal binding both enhance the thermostability of human carbonic anhydrase II (HCAII) without substantially compromising its catalytic activity.** Disulfide bond introduction and mutations enhancing Zn(II) affinity are two prominent strategies in the rational design of this metalloenzyme for industrial applications.
+
+### Disulfide Bond Engineering
+
+- **Inserting engineered disulfide bonds into HCAII** demonstrably increases its thermal stability. For example, a specific engineered disulfide bridge raised the denaturation temperature by 14–15 K compared to wild-type HCAII, yielding an active enzyme stable at elevated temperatures and low pH suitable for industrial carbon capture[2].
+- This enhanced stability **does not compromise overall catalytic efficiency**: the engineered variant possesses similar k_cat/K_m and proton transfer rates as the wild type[2].
+- Structural analyses confirm the active site remains largely unperturbed, supporting the feasibility of combining disulfide engineering with other stability-enhancing mutations[2].
+
+### Metal Binding Optimization
+
+- **High zinc occupancy** is essential for maintaining the catalytic activity and stability of HCAII, as zinc binds at the enzyme’s active site[1].
+- Overexpression protocols using ZnCl₂ during protein production result in enzyme preparations with greater zinc content, further contributing to overall thermostability[1].
+- Structural studies of thermostable HCAII variants indicate that stability improvements from metal optimization and point mutations are largely additive and structurally independent[1].
+
+### Protein Stability & Structure
+
+- **Thermostable HCAII variants** often include multiple independent mutations that:
+  - Increase backbone hydrogen bonding and improved packing
+  - Reduce conformational entropy
+  - Improve side chain and backbone energetics[1]
+- Surface engineering (e.g., hydrophobic-to-hydrophilic substitutions), in concert with disulfide insertion, can yield *synergistic* stabilization effects—primarily *enthalpic* gains from new hydrogen bonds[2].
+
+### Additional Context
+
+- Disulfide bonds are generally more stabilizing when buried within the protein's hydrophobic core, rather than exposed on the surface[4].
+- Rational disulfide engineering, informed by molecular modeling, has been extended to other carbonic anhydrase isoforms as well, often multiplying thermostability several-fold[3].
+
+### Limitations and Notes
+
+- The success of disulfide engineering depends on careful site selection to avoid misfolding or functional impairment; not all cysteine pair insertions yield beneficial results.
+
+**In summary:** *Engineering disulfide bridges and optimizing zinc binding are both validated, structure-supported, and largely additive routes to increase HCAII thermostability for biotechnological applications requiring resilience under heat and chemical stress*[1][2][3][4].
+--- END TOOL OUTPUT (Length: 2943 chars) ---
+=== END TOOL RESULT ===
+
+Based on the analysis and research, I'll design a stabilized carbonic anhydrase II variant using a dual strategy of disulfide bond engineering and surface stabilization.
+
+Let's search for more specific information about disulfide bond engineering in carbonic anhydrase:
+
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Eyo5JkPwwEjpFSPSMr8exy
+Arguments: {'query': 'specific disulfide bond mutations in carbonic anhydrase II successful positions cysteine pairs'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01Eyo5JkPwwEjpFSPSMr8exy
+--- TOOL OUTPUT ---
+**Several specific cysteine pair positions in human carbonic anhydrase II (CA II) have been mutated to form disulfide bonds, with varying success in bond formation and protein stabilization.** The best-documented and most successful position is the **Ala23Cys/Leu203Cys** double mutation, based on both experimental work and comparative protein engineering.
+
+### Successful Disulfide Bond Positions
+
+- **Ala23Cys/Leu203Cys**:
+    - This pair was identified by structural and evolutionary analysis as a natural disulfide bridge in the more thermostable carbonic anhydrase from *Neisseria gonorrhoeae* (**Cys28/Cys181** in that enzyme) and found to be occupied by cysteine in about 26% of homologs studied[4].
+    - Experimental introduction of this pair in human CA II is documented; details about the success of bond formation and effects can be found in prior work[4].
+    - The crosslink is naturally occurring in other carbonic anhydrases and is associated with greater thermostability[4].
+
+- **Other Engineered Double-Cysteine Variants**:
+    - At least three double cysteine mutants were generated and studied for novel disulfide formation in human CA II[2][5].
+    - Their bond strength was predicted using pairwise side-chain packing geometry analysis[2].
+    - **Not all introduced disulfides form spontaneously**, and in some cases, cysteine mutations can destabilize the native state or lead to formation of nonnative compact states overriding the desired stabilization effect[2][3].
+    - The specific positions for all engineered pairs (other than Ala23/Leu203) are not detailed in the retrieved materials, but the referenced studies systematically tested various candidate sites with varying outcomes[2][3][5].
+
+### Important Context and Supporting Details
+
+- **Prediction and Validation**: Geometric constraints and side-chain orientations were used to predict viable disulfide pairings, but experimental validation showed outcomes depend not just on disulfide geometry but also on structural and dynamic features of the protein fold[2].
+- **Cross-species Alignment**: Comparative analysis with more stable homologs (like the *Neisseria gonorrhoeae* enzyme) provided insight into natural disulfide connectivity that could be engineered into human CA II[4].
+- **Functional and Stability Assays**: Circular dichroism, enzymatic activity, and chemical titrations were used to assess protein integrity, activity, and stability post-mutation[2].
+
+### Limitations and Caveats
+
+- **Effectiveness Varies**: Not every engineered cysteine pair leads to a successful in vivo disulfide bond or improved stability; some engineered disulfides can even destabilize the protein[2][3].
+- **Crosslink Position Matters**: The more evolutionarily conserved or structurally analogous the position is across homologous, stable proteins, the higher the probability of successful disulfide bond engineering[4].
+- **Experimental Outcomes**: The primary success in the public literature is the Ala23Cys/Leu203Cys pair, but other variants have been tested with mixed or negative results[2][3][4].
+
+### References for Further Detail
+- **Engineering and rationale**[2][4]
+- **Experimental testing and outcomes**[2][3][5]
+
+If you need the **full list** of all tested pair positions or more details on each, consulting the referenced papers (particularly the supplementary material in [4] and full reports in [2] and [5]) is recommended. Some details, especially on negative results or less successful positions, are often found in supplementary data or tables in such publications.
+--- END TOOL OUTPUT (Length: 3565 chars) ---
+=== END TOOL RESULT ===
+
+Based on the collected information, I'll design a stabilized carbonic anhydrase II variant using a combination of:
+
+1. Disulfide bond engineering with the A23C/L203C mutation pair (known to be successful)
+2. Surface stabilization through strategic mutations
+
+Let's first create this mutant:
+
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01XJMVukVJzEdM4TdRKjowX9
+Arguments: {'query': 'human carbonic anhydrase II amino acid sequence wild type full'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01XJMVukVJzEdM4TdRKjowX9
+--- TOOL OUTPUT ---
+The **full wild-type amino acid sequence** of human carbonic anhydrase II (**CAII**, gene: CA2), composed of 260 residues, is as follows[1]:
+
+```
+MSHHWGYGKH NGPEHWHKDF PIAKGERQSP VDIDTHTAKY DPSLKPLSVS YDQATSLRIL
+NNGHAFNVEF DDSQDKAVLK GGPLDGTYRL IQFHFHWGSL DGQGSEHTVD KKKYAAELHL
+VHWNTKYGDF GKAVQQPDGL AVLGIFLKVG S AKPGLQKVV DVLDSIKTKG KSADFTNFDP
+RGLLPESLDY WTYPGSLTTP PLLECVTWIV LKEPISVSSE QVLKFRKLNF NGEGEPEELM
+VDNWRPAQPL KNRQIKASFK
+```
+
+This sequence is referenced in UniProtKB (accession: **P00918**) and DrugBank[1]. The amino acid count and sequence can be verified as the canonical wild-type form used in research and clinical annotation[1].
+--- END TOOL OUTPUT (Length: 646 chars) ---
+=== END TOOL RESULT ===
+
+Now that I have the sequence, I'll make the A23C/L203C mutations to introduce a disulfide bond, which has been shown to increase thermostability without compromising function. Let me modify the sequence and fold the protein:
+
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01KVbf21pP6HVu9araRaKTYs
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'A23C_L203C_mutant.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01KVbf21pP6HVu9araRaKTYs
+--- TOOL OUTPUT ---
+predicted_structures/A23C_L203C_mutant.pdb.pdb
+--- END TOOL OUTPUT (Length: 46 chars) ---
+=== END TOOL RESULT ===
+
+Now let's examine the secondary structure of our disulfide bond mutant:
+
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_013awEM55cC6Qtb4gjTmHirK
+Arguments: {'pdb_file_path': 'predicted_structures/A23C_L203C_mutant.pdb.pdb', 'image_subdir': 'A23C_L203C_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_013awEM55cC6Qtb4gjTmHirK
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/A23C_L203C_mutant.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/A23C_L203C_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2080,
+    "total_residues": 261,
+    "radius_of_gyration": 17.2,
+    "center_of_mass": [
+      0.11,
+      -0.2,
+      -0.65
+    ],
+    "estimated_molecular_weight": 28710
+  },
+  "secondary_structure_content": {
+    "total_residues": 261,
+    "helix_residues": 44,
+    "sheet_residues": 69,
+    "loop_residues": 148,
+    "helix_percentage": 16.9,
+    "sheet_percentage": 26.4,
+    "loop_percentage": 56.7
+  },
+  "surface_properties": {
+    "total_sasa": 12287.57,
+    "hydrophobic_sasa": 5966.34,
+    "polar_sasa": 6273.46,
+    "hydrophobic_ratio": 48.6
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 261 residues. Secondary structure: 16.9% helix, 26.4% sheet, 56.7% loop. Radius of gyration: 17.2 \u00c5. Total SASA: 12287.57 \u0172. Surface hydrophobicity: 48.6%."
+}
+--- END TOOL OUTPUT (Length: 1248 chars) ---
+=== END TOOL RESULT ===
+
+Let's also check the catalytic activity of our disulfide bond mutant:
+
+=== TOOL CALL: examine_catalytic_activity ===
+Tool ID: toolu_01HtW982FgppwT1H2yvU8v8w
+Arguments: {'pdb_file_path': 'predicted_structures/A23C_L203C_mutant.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'A23C_L203C_catalytic_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01HtW982FgppwT1H2yvU8v8w
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/A23C_L203C_mutant.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/A23C_L203C_catalytic_analysis/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.11353528179979598,
+    "zinc_binding_rmsd": 0.021796905573545307,
+    "overall_rmsd": 0.10160094698143335
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+--- END TOOL OUTPUT (Length: 1297 chars) ---
+=== END TOOL RESULT ===
+
+Let's compare this disulfide mutant with the reference structure:
+
+=== TOOL CALL: calculate_rmsd_with_sequences ===
+Tool ID: toolu_01KbuuN9iLB2xDRzsDkiis3n
+Arguments: {'pdb_file2': 'predicted_structures/A23C_L203C_mutant.pdb.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01KbuuN9iLB2xDRzsDkiis3n
+--- TOOL OUTPUT ---
+(1.462, {'rmsd': 1.462, 'overlap_percentage': 100.0, 'alignment_length': 260, 'ref_sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'new_sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'aligned_ref_sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'aligned_new_sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASF', 'ref_start': 0, 'ref_end': 260, 'new_start': 0, 'new_end': 260, 'sequence_identity': 84.23076923076923, 'pdb_file1': 'predicted_structures/hCA2_folded.pdb', 'pdb_file2': 'predicted_structures/A23C_L203C_mutant.pdb.pdb', 'chain_id1': 'A', 'chain_id2': 'A'})
+--- END TOOL OUTPUT (Length: 1471 chars) ---
+=== END TOOL RESULT ===
+
+Now let's evaluate the stability of our disulfide bond mutant using Rosetta:
+
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01M3UwYHbBAbKqwzsobiTnVc
+Arguments: {'pdb_file_path': 'predicted_structures/A23C_L203C_mutant.pdb.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01M3UwYHbBAbKqwzsobiTnVc
+--- TOOL OUTPUT ---
+Rosetta energy score: -242.71 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/A23C_L203C_mutant.pdb.pdb
+--- END TOOL OUTPUT (Length: 156 chars) ---
+=== END TOOL RESULT ===
+
+Let's also calculate the Rosetta score for the original structure for comparison:
+
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_012xj4nnAHb3EzgKDxJx9iRB
+Arguments: {'pdb_file_path': 'predicted_structures/hCA2_folded.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_012xj4nnAHb3EzgKDxJx9iRB
+--- TOOL OUTPUT ---
+Rosetta energy score: -302.40 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/hCA2_folded.pdb
+--- END TOOL OUTPUT (Length: 146 chars) ---
+=== END TOOL RESULT ===
+
+Based on the first analysis, let's now design a double strategy by adding surface stabilization mutations. I'll search for established surface mutations that improve stability:
+
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01XLiuCRmk9wE7HuRhKRBcib
+Arguments: {'query': 'carbonic anhydrase II surface mutations that improve thermostability specific mutations'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01XLiuCRmk9wE7HuRhKRBcib
+--- TOOL OUTPUT ---
+Specific **surface mutations known to improve thermostability in human carbonic anhydrase II (HCA II)** have been identified in the well-characterized thermostable variant referred to as HCAIIts. This variant contains the following six point mutations:
+
+- **A65T**
+- **L100H**
+- **K154N**
+- **L224S**
+- **L240P**
+- **A248T**
+
+These mutations were discovered through random mutagenesis and individually shown to increase thermostability. The combination of these six mutations in the HCAIIts variant leads to dramatically improved thermal stability: HCAIIts remains over 85% active after 2 hours at 65°C, in contrast to wild-type HCAII, which is less than 15% active after 2 hours at 55°C[1][4][5]. Structural and kinetic studies on subsets of these mutations, especially those involving non-polar surface residues (L100H, L224S, L240P), suggest that the mutations act largely independently and increase stability through different mechanisms such as enhanced hydrogen bonding, improved packing, and reduced side chain entropy loss[1][4][5].
+
+**Key details:**
+- All six mutations are on the surface or near-surface of the protein.
+- Some mutations (such as L100H, L224S, and L240P) directly affect nonpolar surface residues[1].
+- The increased thermostability is attributed not only to direct effects at mutation sites but also to improvements in overall backbone conformational energetics and packing[4][5].
+
+Other engineered carbonic anhydrases (not from human CA II) have also shown stability improvements from surface mutations (e.g., D168K and R210L in Nitratiruptor tergarcus α-CA[2]), but the most well-studied and impactful mutations for **human CA II** thermostability are those listed above.
+
+There is no published evidence of single surface mutations that surpass the stability improvements seen in the sextuple HCAIIts combination. Individual mutations contribute, but the combination is vital for maximal stability[1][4][5].
+--- END TOOL OUTPUT (Length: 1936 chars) ---
+=== END TOOL RESULT ===
+
+Based on this information, I'll create a combined strategy mutant with both the disulfide bond (A23C/L203C) and key surface stabilizing mutations from the HCAIIts variant (A65T, L100H, K154N, L224S, L240P, A248T). Let's create this comprehensive stabilized variant:
+
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01AYnZnXVLvnevZgGEXwxKcb
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTDKKKYAAELHLVHWNTKYGDFGKAVQQPDGHAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLNFRKLNFNGEGEPEELMVDNWRPAQPSKNRQIKATFK', 'filename': 'stabilized_CA2_comprehensive.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01AYnZnXVLvnevZgGEXwxKcb
+--- TOOL OUTPUT ---
+predicted_structures/stabilized_CA2_comprehensive.pdb.pdb
+--- END TOOL OUTPUT (Length: 57 chars) ---
+=== END TOOL RESULT ===
+
+Now let's examine the structure of our comprehensive stabilized variant:
+
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_017Reqb9NsunvorpCpGL1Tpt
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_comprehensive.pdb.pdb', 'image_subdir': 'stabilized_CA2_comprehensive_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_017Reqb9NsunvorpCpGL1Tpt
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/stabilized_CA2_comprehensive.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/stabilized_CA2_comprehensive_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2073,
+    "total_residues": 260,
+    "radius_of_gyration": 17.19,
+    "center_of_mass": [
+      0.62,
+      -0.7,
+      -0.81
+    ],
+    "estimated_molecular_weight": 28600
+  },
+  "secondary_structure_content": {
+    "total_residues": 260,
+    "helix_residues": 42,
+    "sheet_residues": 68,
+    "loop_residues": 150,
+    "helix_percentage": 16.2,
+    "sheet_percentage": 26.2,
+    "loop_percentage": 57.7
+  },
+  "surface_properties": {
+    "total_sasa": 12392.83,
+    "hydrophobic_sasa": 5954.38,
+    "polar_sasa": 6369.42,
+    "hydrophobic_ratio": 48.0
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 260 residues. Secondary structure: 16.2% helix, 26.2% sheet, 57.7% loop. Radius of gyration: 17.19 \u00c5. Total SASA: 12392.83 \u0172. Surface hydrophobicity: 48.0%."
+}
+--- END TOOL OUTPUT (Length: 1279 chars) ---
+=== END TOOL RESULT ===
+
+Let's verify that the catalytic activity site is maintained in our comprehensive stabilized variant:
+
+=== TOOL CALL: examine_catalytic_activity ===
+Tool ID: toolu_011JxXRxJeo4zmeKHxdKuXk7
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_comprehensive.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'stabilized_CA2_comprehensive_catalytic_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_011JxXRxJeo4zmeKHxdKuXk7
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/stabilized_CA2_comprehensive.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/stabilized_CA2_comprehensive_catalytic_analysis/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.1811954274926538,
+    "zinc_binding_rmsd": 1.4940104367549858,
+    "overall_rmsd": 1.2139906496181083
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+--- END TOOL OUTPUT (Length: 1322 chars) ---
+=== END TOOL RESULT ===
+
+Let's calculate the RMSD comparison with the reference structure:
+
+=== TOOL CALL: calculate_rmsd_with_sequences ===
+Tool ID: toolu_017pimEKYLKvS7zhq3E34qz2
+Arguments: {'pdb_file2': 'predicted_structures/stabilized_CA2_comprehensive.pdb.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_017pimEKYLKvS7zhq3E34qz2
+--- TOOL OUTPUT ---
+(2.853, {'rmsd': 2.853, 'overlap_percentage': 100.0, 'alignment_length': 260, 'ref_sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'new_sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTDKKKYAAELHLVHWNTKYGDFGKAVQQPDGHAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLNFRKLNFNGEGEPEELMVDNWRPAQPSKNRQIKATFK', 'aligned_ref_sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'aligned_new_sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTDKKKYAAELHLVHWNTKYGDFGKAVQQPDGHAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLNFRKLNFNGEGEPEELMVDNWRPAQPSKNRQIKATFK', 'ref_start': 0, 'ref_end': 260, 'new_start': 0, 'new_end': 260, 'sequence_identity': 59.61538461538461, 'pdb_file1': 'predicted_structures/hCA2_folded.pdb', 'pdb_file2': 'predicted_structures/stabilized_CA2_comprehensive.pdb.pdb', 'chain_id1': 'A', 'chain_id2': 'A'})
+--- END TOOL OUTPUT (Length: 1481 chars) ---
+=== END TOOL RESULT ===
+
+Finally, let's calculate the Rosetta energy score for our comprehensive stabilized variant:
+
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01TgmDDGsbs9NBv68et7P1PG
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_comprehensive.pdb.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01TgmDDGsbs9NBv68et7P1PG
+--- TOOL OUTPUT ---
+Rosetta energy score: 63.85 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/stabilized_CA2_comprehensive.pdb.pdb
+--- END TOOL OUTPUT (Length: 165 chars) ---
+=== END TOOL RESULT ===
+
+Based on these results, let's try another approach by being more selective with our mutations to avoid disrupting the overall structure too much. Let's focus on the disulfide bond (A23C/L203C) plus just a few key surface mutations (A65T, L240P):
+
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_017hnaq3CEWjBhepyiCfjhFW
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLKFRKLNFNGEGEPEELMVDNWRPAQPKNRQIKASFK', 'filename': 'stabilized_CA2_selective.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_017hnaq3CEWjBhepyiCfjhFW
+--- TOOL OUTPUT ---
+predicted_structures/stabilized_CA2_selective.pdb.pdb
+--- END TOOL OUTPUT (Length: 53 chars) ---
+=== END TOOL RESULT ===
+
+Let's examine the structure of our selective stabilized variant:
+
+=== TOOL CALL: examine_secondary_structure ===
+Tool ID: toolu_01CoPx9fCJjtovMSdrUhbfjd
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_selective.pdb.pdb', 'image_subdir': 'stabilized_CA2_selective_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01CoPx9fCJjtovMSdrUhbfjd
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/stabilized_CA2_selective.pdb.pdb",
+  "chain_id": "A",
+  "secondary_structure_image_path": "/root/pro-1/tools/images/stabilized_CA2_selective_analysis/secondary_structure.png",
+  "structural_properties": {
+    "total_atoms": 2064,
+    "total_residues": 259,
+    "radius_of_gyration": 17.15,
+    "center_of_mass": [
+      -0.03,
+      -0.18,
+      -0.8
+    ],
+    "estimated_molecular_weight": 28490
+  },
+  "secondary_structure_content": {
+    "total_residues": 259,
+    "helix_residues": 44,
+    "sheet_residues": 68,
+    "loop_residues": 147,
+    "helix_percentage": 17.0,
+    "sheet_percentage": 26.3,
+    "loop_percentage": 56.8
+  },
+  "surface_properties": {
+    "total_sasa": 12296.46,
+    "hydrophobic_sasa": 5816.52,
+    "polar_sasa": 6417.74,
+    "hydrophobic_ratio": 47.3
+  },
+  "quality_assessment": {
+    "overall_quality": "GOOD",
+    "compactness": "VERY_COMPACT",
+    "secondary_structure_quality": "ACCEPTABLE",
+    "issues": [],
+    "recommendations": [
+      "Very compact structure - good for stability"
+    ]
+  },
+  "summary": "Structure contains 259 residues. Secondary structure: 17.0% helix, 26.3% sheet, 56.8% loop. Radius of gyration: 17.15 \u00c5. Total SASA: 12296.46 \u0172. Surface hydrophobicity: 47.3%."
+}
+--- END TOOL OUTPUT (Length: 1272 chars) ---
+=== END TOOL RESULT ===
+
+Let's verify the catalytic activity of our selective stabilized variant:
+
+=== TOOL CALL: examine_catalytic_activity ===
+Tool ID: toolu_016k91RMQrjBwHRQghJHr8AY
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_selective.pdb.pdb', 'active_site_residues': {'Y7': {'name': 'TYR', 'function': 'Proton transfer network', 'number': 7}, 'N62': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 62}, 'H64': {'name': 'HIS', 'function': 'Proton shuttle', 'number': 64}, 'N67': {'name': 'ASN', 'function': 'Proton transfer network', 'number': 67}, 'Q92': {'name': 'GLN', 'function': 'Activator binding', 'number': 92}}, 'zinc_binding_residues': {'H94': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 94}, 'H96': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 96}, 'H119': {'name': 'HIS', 'function': 'Zinc coordination', 'number': 119}}, 'image_subdir': 'stabilized_CA2_selective_catalytic_analysis'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_016k91RMQrjBwHRQghJHr8AY
+--- TOOL OUTPUT ---
+{
+  "pdb_file": "predicted_structures/stabilized_CA2_selective.pdb.pdb",
+  "chain_id": "A",
+  "active_site_residues": {
+    "Y7": {
+      "name": "TYR",
+      "function": "Proton transfer network",
+      "number": 7
+    },
+    "N62": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 62
+    },
+    "H64": {
+      "name": "HIS",
+      "function": "Proton shuttle",
+      "number": 64
+    },
+    "N67": {
+      "name": "ASN",
+      "function": "Proton transfer network",
+      "number": 67
+    },
+    "Q92": {
+      "name": "GLN",
+      "function": "Activator binding",
+      "number": 92
+    }
+  },
+  "zinc_binding_residues": {
+    "H94": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 94
+    },
+    "H96": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 96
+    },
+    "H119": {
+      "name": "HIS",
+      "function": "Zinc coordination",
+      "number": 119
+    }
+  },
+  "combined_catalytic_image_path": "/root/pro-1/tools/images/stabilized_CA2_selective_catalytic_analysis/combined_catalytic_site.png",
+  "catalytic_integrity": {
+    "active_site_rmsd": 0.9661834737196383,
+    "zinc_binding_rmsd": 2.96049924865648,
+    "overall_rmsd": 2.269187121861289
+  },
+  "summary": "Catalytic integrity analysis completed"
+}
+--- END TOOL OUTPUT (Length: 1311 chars) ---
+=== END TOOL RESULT ===
+
+Let's calculate the RMSD for this selective variant:
+
+=== TOOL CALL: calculate_rmsd_with_sequences ===
+Tool ID: toolu_01TZQQhfMwD8p2fofpC9nXqv
+Arguments: {'pdb_file2': 'predicted_structures/stabilized_CA2_selective.pdb.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01TZQQhfMwD8p2fofpC9nXqv
+--- TOOL OUTPUT ---
+(2.558, {'rmsd': 2.558, 'overlap_percentage': 100.0, 'alignment_length': 259, 'ref_sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'new_sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLKFRKLNFNGEGEPEELMVDNWRPAQPKNRQIKASFK', 'aligned_ref_sequence': 'SHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'aligned_new_sequence': 'MSHHWGYGKHNGPEHWHKDFPICKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVCDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEEQVLKFRKLNFNGEGEPEELMVDNWRPAQPKNRQIKASFK', 'ref_start': 1, 'ref_end': 260, 'new_start': 0, 'new_end': 259, 'sequence_identity': 55.5984555984556, 'pdb_file1': 'predicted_structures/hCA2_folded.pdb', 'pdb_file2': 'predicted_structures/stabilized_CA2_selective.pdb.pdb', 'chain_id1': 'A', 'chain_id2': 'A'})
+--- END TOOL OUTPUT (Length: 1473 chars) ---
+=== END TOOL RESULT ===
+
+Finally, let's calculate the Rosetta energy score for our selective stabilized variant:
+
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01XtPKsveBrwFh4MNXmF2VJV
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_selective.pdb.pdb'}
+=== END TOOL CALL ===
+
+=== TOOL RESULT ===
+Tool Use ID: toolu_01XtPKsveBrwFh4MNXmF2VJV
+--- TOOL OUTPUT ---
+Rosetta energy score: 224.77 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/stabilized_CA2_selective.pdb.pdb
+--- END TOOL OUTPUT (Length: 162 chars) ---
+=== END TOOL RESULT ===
+

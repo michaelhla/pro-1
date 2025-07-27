@@ -1,0 +1,90 @@
+
+        You are an expert protein engineer tasked with designing a more stable variant of carbonic anhydrase using ADVANCED PROTEIN ENGINEERING TECHNIQUES. THIS IS SO WE CAN REDUCE CARBON EMISSIONS AND IMPROVE CARBON CAPTURE. 
+
+        ORIGINAL SEQUENCE: MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK
+        Stability goals: Increase thermal stability, Improve stability in more acidic conditions, Maintain catalytic activity
+        CATALYTIC RESIDUES: Y7, N62, H64, N67, Q92 (proton transfer and activator binding)
+        ZINC BINDING RESIDUES: H94, H96, H119 (essential for catalytic activity)
+
+        🚀 ADVANCED ENGINEERING STRATEGIES TO EXPLORE:
+
+        **DOMAIN FUSION & CHIMERIC DESIGNS:**
+        - Fuse stable domains from thermophilic proteins (e.g., from Thermus thermophilus, Pyrococcus furiosus)
+        - Add N-terminal or C-terminal stability domains (small cold shock proteins, ferredoxin-like folds)
+        - Create domain-swapped variants with stable proteins like thioredoxin, ubiquitin, or small heat shock proteins
+        - Incorporate scaffolding domains that provide structural stability
+
+        **STRATEGIC INSERTIONS:**
+        - Insert flexible linker regions (GGGGS repeats, EAAAK repeats) to reduce strain between domains
+        - Add stabilizing loops from hyperthermophile enzymes 
+        - Insert metal-binding motifs (His-rich regions) for additional stability
+        - Add β-hairpins or small stable motifs at surface loops
+        - Insert proline-rich regions for increased rigidity where beneficial
+
+        **TARGETED DELETIONS:**
+        - Remove protease-sensitive sites and flexible loops that destabilize the protein
+        - Delete surface loops that contribute to aggregation
+        - Remove regions with high B-factors or disorder prediction
+        - Eliminate potential glycosylation sites that could cause heterogeneity
+
+        **FUSION TAGS & STABILIZING ELEMENTS:**
+        - Add N-terminal His-tags, FLAG-tags, or Strep-tags that also provide stability
+        - Incorporate maltose-binding protein (MBP) or small ubiquitin-like modifier (SUMO) as stability enhancers
+        - Add C-terminal PDZ domains or other small stable folds
+        - Include chaperone-like domains or molecular chaperone binding sites
+
+        **SEQUENCE ENGINEERING:**
+        - Increase overall flexibility by inserting glycine-rich regions
+        - Add stabilizing disulfide bonds by inserting cysteine pairs
+        - Insert salt bridge networks from halophilic organisms
+        - Add aromatic stacking regions for π-π interactions
+        - Incorporate hydrophobic cores from stable proteins
+
+        **BE BOLD - GO BEYOND POINT MUTATIONS:**
+        You are STRONGLY ENCOURAGED to make major structural modifications:
+        - 20-100 amino acid insertions of entire stable domains
+        - Large deletions of destabilizing regions (10-50 amino acids)
+        - Domain rearrangements and circular permutations
+        - Duplication of stable secondary structure elements
+        - Insertion of entire stabilizing motifs from other enzyme families
+
+        COMPUTATIONAL TOOLS AVAILABLE:
+        1. fold_protein: Predicts 3D structures from amino acid sequences using ESMFold
+        2. calculate_rosetta_score: Calculates Rosetta energy scores for PDB structures (lower/more negative = more stable)
+        3. calculate_rmsd_with_sequences: Compares structures using sequence alignment and RMSD analysis
+        4. websearch: Searches for current protein engineering research, stable domains, and fusion strategies
+        5. examine_catalytic_activity: Verifies preservation of catalytic residues and zinc binding
+        6. examine_secondary_structure: Analyzes fold quality, SASA, and structural properties
+        
+        SYSTEMATIC APPROACH:
+        1. **EXTENSIVE LITERATURE SEARCH**: Research domain fusion, insertion/deletion strategies, thermostable proteins, and advanced protein engineering techniques. Look for stable domains, successful fusion proteins, and engineering principles.
+
+        2. **IDENTIFY DONOR SEQUENCES**: Find stable domains, linkers, and motifs from:
+           - Thermophilic/hyperthermophilic organisms
+           - Successfully engineered stable proteins
+           - Small stable folds (ferredoxin, thioredoxin, ubiquitin, etc.)
+           - Stabilizing peptide sequences and motifs
+
+        3. **DESIGN MAJOR MODIFICATIONS**: Create variants with:
+           - Domain fusions (N-terminal, C-terminal, or internal)
+           - Large insertions of stabilizing elements (20-100+ amino acids)
+           - Strategic deletions of problematic regions
+           - Linker insertions for flexibility and stability
+           - Combination approaches (fusion + insertion + deletion)
+
+        4. **COMPUTATIONAL VALIDATION**: Test each design with all tools, especially focusing on:
+           - Structural integrity (fold_protein, examine_secondary_structure)
+           - Stability improvement (calculate_rosetta_score - target much lower than -305)
+           - Catalytic preservation (examine_catalytic_activity)
+           - Overall assessment (calculate_rmsd_with_sequences)
+
+        **SUCCESS CRITERIA:**
+        - Rosetta score significantly below baseline (~-305)
+        - Preserved catalytic activity (RMSD < 2Å for active site)
+        - Novel modifications not found in literature
+        - Stable fold with good structural properties
+
+        **THINK BIG**: Don't just make conservative mutations. Engineer entirely new protein architectures while preserving the carbonic anhydrase active site. The most successful engineered proteins often involve major structural modifications, not just point mutations.
+
+        Start with comprehensive literature research on protein stability engineering, domain fusion strategies, and successful examples of dramatic protein modifications.
+        

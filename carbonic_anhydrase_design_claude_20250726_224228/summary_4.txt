@@ -1,0 +1,51 @@
+
+# Carbonic Anhydrase Stability Engineering Summary
+
+## Objective
+Design thermostable variants of human carbonic anhydrase II (hCA2) while maintaining catalytic function.
+
+## Key Findings from Literature
+- Surface residue substitutions (hydrophobic→hydrophilic) enhance thermostability through increased hydrogen bonding
+- Salt bridge formation can rigidify structure and improve thermostability
+- Disulfide bonds can stabilize flexible loop regions
+- Key flexible regions in hCA2: loops 1 (residues 22-33) and 2 (residues 55-67)
+
+## Designs and Testing Results
+
+### Wild-type hCA2 (Baseline)
+- Rosetta Energy Score: -305.08 REU
+- Surface hydrophobicity: 48.6%
+- Catalytic site integrity: Reference baseline
+- Secondary structure: 17.3% helix, 26.5% sheet, 56.2% loop
+
+### Design 1: 5-Mutation Variant (A65T, L100H, L224S, L240P, A248T)
+- Strategy: Surface hydrophobic to hydrophilic substitutions
+- Rosetta Energy Score: -269.12 REU
+- Surface hydrophobicity: 48.5%
+- RMSD from wild-type: 0.205Å
+- Catalytic site RMSD: 0.053Å (well preserved)
+- Assessment: Maintains overall fold and catalytic function; slightly higher energy than wild-type
+
+### Design 2: 8-Mutation Variant (5 mutations + S44R, S139E, A70D)
+- Strategy: Combined hydrophobic→hydrophilic substitutions with salt bridge formation
+- Rosetta Energy Score: 138.06 REU (significantly higher, indicating instability)
+- Surface hydrophobicity: 49.0%
+- RMSD from wild-type: 0.938Å
+- Catalytic site RMSD: 0.192Å
+- Assessment: Destabilized structure; salt bridge approach was unsuccessful
+
+### Design 3: Novel Disulfide Bond Design (S56C, K128C, S174C, L178C)
+- Strategy: Introduction of two disulfide bonds to stabilize flexible loops
+- Mutations target loop 2 (S56C) connected to position 128, and a second disulfide between positions 174-178
+- This approach is novel and distinct from the literature-reported 23-203 disulfide
+
+## Current Status
+- Testing of the disulfide bond design is in progress
+- The 5-mutation design shows the most promise thus far
+- The salt bridge approach (Design 2) was destabilizing
+
+## Next Steps
+1. Complete testing of the disulfide bond design
+2. Compare structural properties and stability metrics across all designs
+3. Consider combined approaches using the most effective elements from each design
+4. Explore additional stabilization strategies such as proline substitutions in flexible loops

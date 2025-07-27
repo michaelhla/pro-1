@@ -1,0 +1,3 @@
+This is concerning - the Rosetta score is higher (less negative) than the wild-type, indicating reduced stability. Let's compare the structures to understand what might have gone wrong:
+
+## Step 6: Calculate RMSD with Reference Structure

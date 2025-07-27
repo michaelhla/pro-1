@@ -1,0 +1,32 @@
+Now let's also search for information on circular permutation approaches:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_0178P5Wazx7uLWXF8tGeeiov
+Arguments: {'query': 'circular permutation approaches for increasing protein thermostability examples'}
+--- TOOL OUTPUT ---
+Circular permutation—a technique where a protein's sequence is rearranged so the original termini are connected and new termini are introduced elsewhere—has been used to probe and enhance **protein thermostability**, although the mechanism and evolutionary tolerance can vary by protein structure[2][4].
+
+**Experimental examples and approaches:**
+
+- **Adenylate Kinase (AK) from Thermotoga neapolitana:**  
+  Studies created libraries of circularly permuted AK, a protein with inherently high thermostability (melting temperature, Tₘ ≥ 99°C), to analyze how new termini at different positions affected function and stability[1]. Functional variants were identified at 40°C using selection assays in E. coli. This approach revealed that AK’s tolerance to permutation—retaining thermostability and activity—was strongly linked to (i) distance between new termini and active sites, (ii) underlying sequence variability, and (iii) flexibility of regions near the new ends[1].  
+  Similarly, deep mutational scanning of various AK orthologs showed that the fraction of permuted, functional variants correlated with the original protein's thermostability: proteins with higher intrinsic thermostability tolerated more permutations without loss of function[3][5]. The mobile AMP-binding domain within AK showed greatest tolerance to new termini, while more rigid domains (lid and core) were more sensitive, especially in less stable proteins[3].
+
+- **General Insights:**  
+  - Permutations that create new termini in flexible regions (such as mobile domains or loops) are more likely to preserve thermostability than those in rigid, functional cores[1][3].
+  - In some cases, permutation increases local flexibility, which can either enhance or impair folding and stability depending on the protein's structural context[3].
+  - Comparing wild-type and permuted variants allows identification of topology and dynamics that constrain or promote thermostability[3].
+
+**Other proteins and approaches:**  
+- **Evolutionary analogs:** The fission-and-fusion model suggests that some proteins in nature have evolved by permutation of domains, as seen in membrane-bound transhydrogenases, which display permutations in their domain arrangement among different species—some of which may relate to adaptation for thermostability in different environments[4].
+
+**Summary of circular permutation strategies for thermostability:**
+- Introduce new termini into non-essential, flexible regions to minimize destabilization.
+- Screen large libraries of permuted variants for retained function at elevated temperatures.
+- Utilize thermostable starting scaffolds (such as thermophilic enzymes) to increase the probability that permutations will yield stable, active proteins[1][3].
+- Analyze positional effects: domains with higher contact energy and mobility are good targets[3].
+- Learn from evolutionary examples where nature has used permutation to create robust, thermostable proteins[4].
+
+Key studies consistently show that these permutation approaches, especially when applied to highly stable proteins, can reveal sequence-structure relationships governing thermostability and, at times, generate novel thermostable variants[1][3][5].
+--- END TOOL OUTPUT (Length: 3216 chars) ---
+=== END TOOL CALL ===
+

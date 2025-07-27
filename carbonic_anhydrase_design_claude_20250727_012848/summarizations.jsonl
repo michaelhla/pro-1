@@ -1,0 +1,3 @@
+{"timestamp": "2025-07-27T01:35:33.162359", "iteration": 24, "summarization_number": 1, "original_tokens_estimate": 15477, "new_tokens_estimate": 3112, "compression_ratio": 0.20107255928151452}
+{"timestamp": "2025-07-27T01:43:32.103284", "iteration": 52, "summarization_number": 2, "original_tokens_estimate": 15357, "new_tokens_estimate": 2528, "compression_ratio": 0.1646154847952074}
+{"timestamp": "2025-07-27T01:50:29.908825", "iteration": 77, "summarization_number": 3, "original_tokens_estimate": 15223, "new_tokens_estimate": 3007, "compression_ratio": 0.19753005320896014}

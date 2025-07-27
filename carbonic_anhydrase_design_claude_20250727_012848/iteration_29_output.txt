@@ -1,0 +1,9 @@
+Now let's check the Rosetta energy score of our new design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01K6xo7MPCrnxcr85C67zcAX
+Arguments: {'pdb_file_path': 'predicted_structures/CA_StabCore.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 483.22 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_StabCore.pdb.pdb
+--- END TOOL OUTPUT (Length: 149 chars) ---
+=== END TOOL CALL ===
+

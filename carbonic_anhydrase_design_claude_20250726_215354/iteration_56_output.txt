@@ -1,0 +1,24 @@
+This score is very high, indicating potential issues with the model. Let's try a different approach.
+
+## Design Strategy for Fourth Novel Variant
+
+Let's try a more conservative approach, focusing on mutations that are known to be effective in other proteins but haven't been applied to carbonic anhydrase before:
+
+1. **Mimicking acid-stable enzyme surface properties** - Inspired by carbonic anhydrase IX
+2. **Strategic proline substitutions** in flexible regions
+3. **Enhanced hydrophobic core**
+
+### Proposed Novel Mutations:
+
+**1. Surface Charge Optimization:**
+- **E69Q and E106Q**: Converting surface glutamates to glutamines to reduce pH sensitivity
+- **D130N**: Another surface charge modification for acid stability
+
+**2. Proline Substitutions:**
+- **A158P**: Introducing a proline in a loop region
+
+**3. Hydrophobic Core Enhancement:**
+- **V121I**: Replacing valine with isoleucine for better hydrophobic packing
+- **A135L**: Introducing a larger hydrophobic residue
+
+Let's create this design:

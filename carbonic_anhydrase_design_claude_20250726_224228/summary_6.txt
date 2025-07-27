@@ -1,0 +1,69 @@
+
+
+# Carbonic Anhydrase Thermostabilization Summary
+
+## Project Objective
+Design thermostable variants of human carbonic anhydrase II (hCA II) using novel stabilization strategies not previously applied to this enzyme.
+
+## Reference Structure Analysis
+- **Rosetta score**: -303.03 REU
+- **Secondary structure**: 17.3% helix, 26.5% sheet, 56.2% loop
+- **Surface hydrophobicity**: 48.6%
+- **Key catalytic elements**: Zinc binding (H94, H96, H119) and proton transfer network (Y7, N62, H64, N67, Q92)
+
+## Design 7: Metal Coordination and Core Packing Strategy
+**Mutations**:
+- K9Y: N-terminal π-π stacking
+- L57F: Core packing optimization
+- E117D: Metal coordination sphere tuning
+- V121I: Hydrophobic packing improvement
+- A134E: Salt bridge with R136
+- T199I: Hydrophobic core strengthening
+- P202D: Ionic interaction with K171
+- M241W: C-terminal stabilization
+
+**Results**:
+- Rosetta score: -273.64 REU
+- RMSD from reference: 0.293 Å
+- Active site RMSD: 0.112 Å
+- Zinc binding RMSD: 0.051 Å
+- Secondary structure preserved (17.3% helix, 26.5% sheet, 56.2% loop)
+- Surface hydrophobicity: 49.0%
+
+## Design 8: Cavity-Filling and Entropy Reduction Strategy
+**Mutations**:
+- V135W, S217M: Cavity filling
+- A85R: Electrostatic interactions in frustrated region
+- L184P: Loop rigidification
+- S197Y: Enhanced hydrophobic packing
+- A65Y: Cation-π interactions
+- T200A: Entropy reduction
+- L120I: Core packing fine-tuning
+
+**Results**:
+- Rosetta score: -195.16 REU
+- RMSD: 2.494 Å
+- Zinc binding RMSD: 1.505 Å (too high)
+- Secondary structure slightly altered (16.2% helix, 26.3% sheet, 57.5% loop)
+
+## Design 9: Revised Approach with Catalytic Region Protection
+**Mutations**:
+- S220A, A170F, P201W, P198L, S192P (focus on preserving catalytic machinery)
+
+**Results**:
+- Rosetta score: -201.80 REU
+- RMSD: 0.267 Å (excellent structural preservation)
+- Surface hydrophobicity: 49.9% (improvement)
+- Secondary structure preserved (17.3% helix, 26.5% sheet, 56.2% loop)
+
+## Current Status
+Design 7 shows the most promising balance between improved stability (better Rosetta score) and preserved function (low catalytic site RMSD). Design 9 maintains excellent structural integrity but with less energetic improvement.
+
+## Next Steps
+1. Combine successful mutations from Designs 7 and 9
+2. Consider additional novel strategies:
+   - Halogen bonding with non-canonical amino acids
+   - Biospecific covalent cross-linking
+   - Dynamic allostery optimization
+3. Perform molecular dynamics simulations at elevated temperatures
+4. Experimentally validate top designs through thermal denaturation experiments

@@ -1,0 +1,16 @@
+The results for the N67L mutant are promising:
+
+1. The Rosetta energy score is -291.79 REU, which is slightly higher (less stable) than the reference structure (-301.57 REU), but still indicates a stable structure.
+2. The overall RMSD is very low (0.103), indicating that the global structure is maintained.
+3. The secondary structure content is identical to the reference structure (17.3% helix, 26.5% sheet, 56.2% loop).
+4. The catalytic site integrity is well-preserved with an active site RMSD of only 0.009 and a zinc binding RMSD of 0.002.
+
+Let's try another mutation that was mentioned in the literature: L198A, which is a core packing mutation that might enhance stability:
+=== TOOL CALL: fold_protein ===
+Tool ID: toolu_01SS7VvasPUu8ruXyEZyb8Ko
+Arguments: {'sequence': 'MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGALPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK', 'filename': 'L198A_mutant.pdb'}
+--- TOOL OUTPUT ---
+predicted_structures/L198A_mutant.pdb.pdb
+--- END TOOL OUTPUT (Length: 41 chars) ---
+=== END TOOL CALL ===
+

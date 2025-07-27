@@ -1,0 +1,27 @@
+Based on the first analysis, let's now design a double strategy by adding surface stabilization mutations. I'll search for established surface mutations that improve stability:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01XLiuCRmk9wE7HuRhKRBcib
+Arguments: {'query': 'carbonic anhydrase II surface mutations that improve thermostability specific mutations'}
+--- TOOL OUTPUT ---
+Specific **surface mutations known to improve thermostability in human carbonic anhydrase II (HCA II)** have been identified in the well-characterized thermostable variant referred to as HCAIIts. This variant contains the following six point mutations:
+
+- **A65T**
+- **L100H**
+- **K154N**
+- **L224S**
+- **L240P**
+- **A248T**
+
+These mutations were discovered through random mutagenesis and individually shown to increase thermostability. The combination of these six mutations in the HCAIIts variant leads to dramatically improved thermal stability: HCAIIts remains over 85% active after 2 hours at 65°C, in contrast to wild-type HCAII, which is less than 15% active after 2 hours at 55°C[1][4][5]. Structural and kinetic studies on subsets of these mutations, especially those involving non-polar surface residues (L100H, L224S, L240P), suggest that the mutations act largely independently and increase stability through different mechanisms such as enhanced hydrogen bonding, improved packing, and reduced side chain entropy loss[1][4][5].
+
+**Key details:**
+- All six mutations are on the surface or near-surface of the protein.
+- Some mutations (such as L100H, L224S, and L240P) directly affect nonpolar surface residues[1].
+- The increased thermostability is attributed not only to direct effects at mutation sites but also to improvements in overall backbone conformational energetics and packing[4][5].
+
+Other engineered carbonic anhydrases (not from human CA II) have also shown stability improvements from surface mutations (e.g., D168K and R210L in Nitratiruptor tergarcus α-CA[2]), but the most well-studied and impactful mutations for **human CA II** thermostability are those listed above.
+
+There is no published evidence of single surface mutations that surpass the stability improvements seen in the sextuple HCAIIts combination. Individual mutations contribute, but the combination is vital for maximal stability[1][4][5].
+--- END TOOL OUTPUT (Length: 1936 chars) ---
+=== END TOOL CALL ===
+

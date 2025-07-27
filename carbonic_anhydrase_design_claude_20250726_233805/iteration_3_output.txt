@@ -1,0 +1,47 @@
+Let me also research mutations that improve stability in acidic conditions:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01XFqT8s3qo2j8hngU59uKb7
+Arguments: {'query': 'carbonic anhydrase acid stability mutations engineering low pH'}
+--- TOOL OUTPUT ---
+Several approaches have been explored to engineer **carbonic anhydrase (CA) for increased acid stability** and enhanced function at **low pH**, using both rational mutagenesis and directed evolution.
+
+**Natural Acid-Stable Variants**
+- **Human carbonic anhydrase IX (hCA IX)** displays natural stability and catalytic activity at *very low pH*, maintaining its fold down to pH 2.0 and activity at pH 3.0[2]. This is unusual for CAs, most of which are unstable below pH 5.0. Key features believed to underpin this stability include:
+  - A large number of acidic residues in the PG domain, lowering the protein’s overall isoelectric point (pI) and enhancing resistance to acid denaturation.
+  - The overall fold and amino acid composition of the catalytic domain alone confer significant acid stability, even when isolated from the PG domain[2].
+
+**Rational Mutagenesis for Stability**
+- **Patent literature** reports that specific mutations increase the general stability of human carbonic anhydrase II (HCAII), which can be a basis for improving acid stability[3]. Key reported positions (using HCAII numbering) include substitutions at:
+  - 65
+  - 93
+  - 100
+  - 136
+  - 153
+  - 198
+  - 223
+  - 239
+  - 247  
+  These mutations maintain activity and improve stability, though low pH functionality must be determined experimentally for each[3].
+- **Disease-linked mutations** such as **Gly145Arg and His94Tyr** actually decrease HCAII stability and are not beneficial for acid resistance[1].
+
+**Directed Evolution**
+- **Directed evolution** has been successful for engineering β-class CAs, achieving variants with dramatically improved stability under industrial conditions, including extremes of temperature, solvent, and pH[4]. However, the referenced work primarily focused on **alkaline stability (pH >10)**, not on low pH. The general approach—iterative library generation and screening for functional variants under desired conditions—is applicable for acid stability but results specific to low pH were not detailed in the cited work[4].
+
+**Additional Insights**
+- Rational engineering based on features of hCA IX (abundant surface acidic residues, low pI, stable fold at low pH) may guide mutation choices in other CA isoforms[2]. Such features could be introduced into other CA backgrounds by site-directed mutagenesis or recombination.
+- Incorporating sequences/domains from acid-stable isoforms (e.g., from hCA IX) into other CA types is a potential strategy, though structural compatibility and catalytic integrity must be validated experimentally[2].
+
+**Limitations and Considerations**
+- Most work has focused on overall thermostability or stability in alkaline/solvent conditions, rather than direct acid stability.
+- **Low pH stability** is complex and may involve both *surface charge management* and protection of the active site from proton-induced denaturation.
+- Specific sequence changes required for best acid stability in non-CA IX backgrounds remain to be comprehensively elucidated in the literature provided.
+
+**In summary:**  
+- **hCA IX** is naturally acid-stable; its features can guide engineering of other CAs for low pH use[2].
+- Specific **mutations at positions like 65, 93, 100, 136, 153, 198, 223, 239, 247** in HCAII have enhanced stability generally, but effect at low pH must be specifically tested[3].
+- Directed evolution and domain fusion may further enhance acid stability[2][4].
+
+There is strong evidence that engineering acid-stable CAs is feasible by combining insights from naturally acid-tolerant isoforms and systematically screening rational mutation libraries under low pH conditions.
+--- END TOOL OUTPUT (Length: 3635 chars) ---
+=== END TOOL CALL ===
+

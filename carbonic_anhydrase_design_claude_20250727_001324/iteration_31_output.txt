@@ -1,0 +1,48 @@
+I need to look for more successful mutations in the literature to guide my design:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_019avM1euWsVoJfCX3BuErtC
+Arguments: {'query': 'carbonic anhydrase II specific proven stabilizing mutations amino acid positions examples thermal acid stability'}
+--- TOOL OUTPUT ---
+Several **specific mutations** have been experimentally proven to stabilize human carbonic anhydrase II (HCAII), enhancing its **thermal** and, in some contexts, **acid stability**. These stabilizing mutations mainly involve **site-directed replacements of surface hydrophobic residues**.
+
+**Key Proven Stabilizing Mutations and Amino Acid Positions:**
+
+- **Surface Hydrophobic Residue Mutations:**  
+  Targeting certain surface-exposed hydrophobic amino acids and replacing them with residues that facilitate additional hydrogen bonding or other stabilizing interactions has been shown to confer increased thermal stability to HCAII[2].  
+  *Exact amino acid positions and mutation identities are not specified in the available summary from the search result, but the cited study emphasizes targeted surface replacements as a strategy for thermostabilization.*
+
+- **Proline 237 (P237) Mutations:**  
+  The residue at position **237** plays a significant role in HCAII stability. While some mutations at this site are destabilizing (especially disease-related P237H), other substitutions—such as P237A and P237I—have been studied for their effects.  
+  Notably, **P237A** appears to **stabilize the native-to-intermediate (N↔I) state**, with a smaller destabilizing effect than other substitutions[1]. The precise increase in thermal or acid stability for P237A is not fully quantified in the summary, but it is less destabilizing compared to P237T, P237F, and P237H.  
+  The effects are measured in changes to folding free energy (ΔΔG); modifying this site can shift the enzyme towards greater stability[1].
+
+**Mechanisms of Stabilization:**
+
+- **Hydrogen Bonding:**  
+  Thermostabilizing mutations often increase surface hydrogen bonding networks, which help maintain protein structure at elevated temperatures without compromising catalytic function[2].
+
+- **Retention of Catalytic Activity:**  
+  Importantly, these engineered thermostable mutants retain proper active site geometry and catalytic ability, making them suitable for industrial or harsh environmental applications[2].
+
+**Acid Stability:**
+- Direct information on acid stability was not present in the supplied search results. However, increased thermal stability often correlates with greater resistance to denaturation at low pH, provided that stabilizing interactions are retained in acidic conditions. Specific mutations that enhance acid stability in HCAII would require further literature review beyond the current results.
+
+**Additional Strategies:**
+
+- **Non-canonical Amino Acid Incorporation:**  
+  The use of non-canonical amino acids (ncAAs) at specific positions has been reviewed as a tool for improved thermal stability in enzymes broadly, including carbonic anhydrases. Incorporation of bulkier hydrophobic ncAAs into buried positions (exact residue numbers not given for HCAII) can enhance packing and reduce cavity formation, incrementally improving thermal stability[4].
+
+**Limitations and Caveats:**
+- Full lists of stabilizing mutations with residue-by-residue details for HCAII are not included in the provided search results.
+- The reference studies primarily address thermal stability; acid stability is not directly measured or discussed.
+- Mechanistic details and explicit amino acid positions (other than P237) are underreported in the available summaries.
+
+**References:**
+- [1]: Experimental determination of folding and stability effects of P237 mutations in HCAII (not all stabilizing).
+- [2]: Overview of surface hydrophobic residue replacements as a successful strategy for thermostabilization; covers kinetic and structural characterization but does not list all specific mutations in the provided summary.
+- [4]: Review of non-canonical amino acids for enzyme thermal stabilization in general; mentions carbonic anhydrase among examples.
+
+If you require **precise mutation identities and residue numbers** for industrial or research purposes, consult the full text of the referenced articles, especially [2], which details the engineered thermostable HCAII mutants.
+--- END TOOL OUTPUT (Length: 4067 chars) ---
+=== END TOOL CALL ===
+

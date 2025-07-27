@@ -1,0 +1,9 @@
+Finally, let's calculate the Rosetta energy score for our comprehensive stabilized variant:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01TgmDDGsbs9NBv68et7P1PG
+Arguments: {'pdb_file_path': 'predicted_structures/stabilized_CA2_comprehensive.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 63.85 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/stabilized_CA2_comprehensive.pdb.pdb
+--- END TOOL OUTPUT (Length: 165 chars) ---
+=== END TOOL CALL ===
+

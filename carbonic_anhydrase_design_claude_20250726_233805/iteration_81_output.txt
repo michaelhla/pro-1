@@ -1,0 +1,9 @@
+Let me calculate the Rosetta energy score for this more focused design:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01AxP1TreCjCBtQN3pEqwaSh
+Arguments: {'pdb_file_path': 'predicted_structures/CA_v14_focused.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: -186.90 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/CA_v14_focused.pdb.pdb
+--- END TOOL OUTPUT (Length: 153 chars) ---
+=== END TOOL CALL ===
+

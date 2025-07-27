@@ -1,0 +1,41 @@
+Let me specifically search for information about non-canonical approaches or mutations that might be unique:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01Uih7wXQGpexAE2tUEejLWg
+Arguments: {'query': 'novel approaches carbonic anhydrase engineering unnatural amino acids covalent modifications disulfide engineering computationally guided mutations'}
+--- TOOL OUTPUT ---
+Recent advances in engineering **carbonic anhydrase (CA)** have leveraged several innovative strategies, including the incorporation of unnatural amino acids, targeted covalent modifications, disulfide engineering, and computationally guided mutations to enhance enzyme stability, activity, and functional resilience under industrial conditions.
+
+**Key Approaches:**
+
+- **Unnatural Amino Acids:**  
+  Incorporation of *non-canonical amino acids (ncAAs)* into CA structure is an emerging technique for improving thermal stability and expanding chemical functionality beyond what is achievable with the 20 canonical amino acids[4]. This allows precise introduction of new functional groups, improved protein folding, and enhanced tolerance to otherwise destabilizing mutations, thus supporting advanced directed evolution and stability engineering campaigns[4].
+
+- **Covalent Modifications:**  
+  *Site-selective post-translational modifications* such as the installation of dehydroalanine (Dha) from cysteine, followed by conjugate Michael-type additions, provide a modular way to install non-natural side chains at designated residues in CAs[2]. This enables precise chemical diversification, facilitates mechanistic probe design, and allows the creation of new catalytic or regulatory sites[2].
+
+- **Disulfide Engineering:**  
+  Introduction of *engineered disulfide bonds*—by selectively substituting cysteines to foster new disulfide linkages—has been used to improve CA's thermostability and resilience to harsh environments[4]. This is particularly relevant for industrial CO₂ capture applications where enzymes must withstand high pH, temperature, or ionic strengths[1].
+
+- **Computationally Guided Mutations:**  
+  *Machine learning and computational modeling* are being applied to guide site-directed mutagenesis for CA. These methods allow the prediction and identification of stabilizing mutations, either to reinforce protein core packing, alter surface charges, or introduce new stabilizing contacts such as salt bridges or hydrogen bonds[1]. High-throughput screening in tandem with computational prediction accelerates the development of ultrastable CAs for CO₂ capture[1].
+
+**Illustrative Examples:**
+
+- Chemical installation of *thio- (via cysteine residues) and aza- (via amines)* groups at specific protein positions via Michael-type reactions now allows creation of functionalized CAs with unnatural linkages, a technique validated even under protein-friendly aqueous conditions[2].
+- Non-canonical amino acid incorporation permits not only thermal stabilization but also prolonged functional lifetimes under operational conditions relevant to carbon capture, and can be synergistically combined with conventional site-directed mutagenesis[4].
+
+**Significance:**
+
+- These advanced engineering tools directly address limitations of naturally occurring CA, especially **enzyme stability, recyclability, and adaption to non-physiological environments** critical for scalable industrial applications[1][3][4].
+- Enhanced CAs may substantially reduce energy inputs and costs in CO₂ capture technologies, and foster new applications in carbon sequestration and accelerated mineral weathering[1][3].
+
+**Caveats:**
+
+- Regio- and chemoselectivity for chemical modifications can be challenging and sometimes lack precision[4].
+- Industrial translation requires further optimization, particularly for scale-up and enzyme recovery/recycling[3].
+
+**Summary:**  
+Current state-of-the-art CA engineering combines genetic code expansion (for ncAAs), chemical modification methods, rational disulfide introduction, and sophisticated computational strategies to generate robust, functional biocatalysts well-suited to demanding industrial CO₂ capture and sequestration scenarios[1][2][4].
+--- END TOOL OUTPUT (Length: 3789 chars) ---
+=== END TOOL CALL ===
+

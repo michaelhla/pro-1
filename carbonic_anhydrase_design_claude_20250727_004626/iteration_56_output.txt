@@ -1,0 +1,41 @@
+Now, let's search for information specifically about zinc-binding sites in carbonic anhydrase:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01XaKtEBVFFVvXncmyEoCcYh
+Arguments: {'query': 'carbonic anhydrase zinc binding site structure coordination sphere second coordination sphere'}
+--- TOOL OUTPUT ---
+The **zinc binding site structure of carbonic anhydrase** features a well-defined **first coordination sphere** and a functionally important **second coordination sphere**.
+
+**First Coordination Sphere:**
+- The **Zn²⁺ ion** is coordinated in a **tetrahedral geometry** by:
+  - **Three histidine residues** (from the protein, providing nitrogen ligands)
+  - **One solvent molecule**, which is typically a water molecule or hydroxide ion depending on the enzyme's state and pH[2][5]
+  
+  Experimental and computational data consistently show this 3-His + 1-water/hydroxide arrangement as the canonical structure in human and other vertebrate carbonic anhydrases[2][4][5].
+
+**Summary of First Coordination Sphere Ligands:**
+
+| Ligand Type       | Residues / Atoms        | Coordination |
+|-------------------|------------------------|--------------|
+| Nitrogen (N)      | His94, His96, His119   | 3            |
+| Oxygen (O)        | Water or OH⁻           | 1            |
+
+**Second Coordination Sphere:**
+- The **second coordination sphere** includes amino acid residues and solvent molecules that **do not directly bind to Zn²⁺**, but are **spatially close**, often hydrogen bonding to the first-sphere ligands, especially the bound water/hydroxide.
+- These residues (frequently tyrosine, threonine, glutamine, or aspartate) help **stabilize the structure**, **orient the catalytic water molecule**, and can influence the **proton transfer events** during catalysis[2].
+- The protein environment in this sphere also helps position **buffers and proton shuttles** (e.g., His64 in CA II), which participate in catalytic turnover.
+
+**Mechanistic Role:**
+- The precise arrangement of both the **first and second coordination spheres** is crucial for the **high catalytic efficiency and specificity** of carbonic anhydrase[2][5].
+- The **second sphere** assists in:
+  - Facilitating **proton transfer**
+  - Stabilizing **transition states**
+  - Modulating **ligand exchange**
+
+**Key points supported by high-resolution crystal structures and X-ray absorption spectroscopy** indicate that in both native and metal-reconstituted human carbonic anhydrase, this arrangement is highly conserved[2][5].
+
+If more detailed atomic-level information is required (such as identification of specific second-sphere residues for a given isoform), such data are typically found in high-resolution protein structures (e.g., PDB entries) and reviews focused on enzymatic mechanism[2][5].
+
+**Limitations:** Some second-sphere interactions can vary by carbonic anhydrase isoform and species, so some structural details may differ between variants.
+--- END TOOL OUTPUT (Length: 2623 chars) ---
+=== END TOOL CALL ===
+

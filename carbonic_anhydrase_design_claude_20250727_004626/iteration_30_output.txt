@@ -1,0 +1,40 @@
+Let's try to understand why my designs are not achieving better Rosetta scores by understanding the original structure better:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01WjfitqsSZtjHPow9nDBb6L
+Arguments: {'query': 'most efficient mutations thermostable carbonic anhydrase surface charge optimization'}
+--- TOOL OUTPUT ---
+The most efficient mutations to optimize **thermostability** and **surface charge** in carbonic anhydrases (CAs) target residues on the enzyme surface that influence protein rigidity, salt bridge networks, and loop stability, while maintaining or improving catalytic activity.
+
+**Key efficient mutations and strategies include:**
+
+- **Single-point surface mutations affecting charge and rigidity:**  
+  The *K100G* mutation in *Sulfurihydrogenibium yellowstonense* CA, achieved through rational design, improved thermostability by 3 °C (as measured by melting temperature) and doubled enzyme half-life at 85 °C without loss of catalytic efficiency. This mutation locally reduced flexibility by rearranging salt bridges and hydrogen bonds on the enzyme surface, which enhances thermostability[2].
+
+- **Disulfide bridge engineering:**  
+  In human CA II, substituting residues 23 and 203 with cysteines (dsHCA II) to introduce a disulfide bond (mimicking a stabilizing feature in related α-class CAs) raised melting temperature by 14 °C while retaining high catalytic performance[3].
+
+- **Surface loop rigidification:**  
+  Substituting a flexible surface-loop residue with proline (e.g., Glu234Pro in hCA II) increased the melting temperature by about 3 °C[3].  
+  Deletion of destabilizing surface loops (e.g., residues 230–240 in hCA II) that are solvent-exposed and highly flexible also further improved thermostability, as observed in highly stable CAs like SspCA[3].
+
+- **Directed evolution targeting surface residues:**  
+  Iterative high-throughput screening and directed evolution of the β-class CA from *Desulfovibrio vulgaris* generated variants with excellent thermostability and solvent tolerance, functioning at temperatures up to 107 °C and pH > 10[1]. While specific mutations are proprietary or detailed in the full study, the strategy involved optimizing surface charge and active-site surroundings for stability in harsh, alkaline, high-temperature environments.
+
+**Mechanistic context and supporting details:**
+
+- Enhancing thermostability typically involves increasing surface charge balance and compactness, engineered through charge-changing mutations and structural rigidification, especially in regions subject to high fluctuations.
+- Introducing or reorganizing salt bridges, hydrogen bonds, or disulfide bonds on the surface improves the folding energy landscape and decreases aggregation or denaturation at elevated temperatures[2][3].
+
+**Caveats:**
+- Excessive alteration of surface charge or loop structure can disrupt enzyme folding or function if not precisely targeted.
+- Some strategies (like directed evolution) produce numerous combinations; the most efficient mutation depends on context, background enzyme, and specific stability vs. activity requirements.
+
+**References:**
+- [1] Describes large-scale improvement of thermostability and surface properties via directed evolution.
+- [2] Demonstrates K100G surface mutation for thermostability via rational design.
+- [3] Summarizes proline substitution, disulfide bridge introduction, and loop deletion as strategies for thermostable and charge-optimized CA variants.
+
+For most CA enzymes, efficient thermostabilizing surface mutations include **K100G substitution, introducing disulfide bridges, substituting flexible residues with proline, and deleting destabilizing loops**—all tailored through rational design or directed evolution for enhanced surface charge and rigidity[1][2][3].
+--- END TOOL OUTPUT (Length: 3470 chars) ---
+=== END TOOL CALL ===
+

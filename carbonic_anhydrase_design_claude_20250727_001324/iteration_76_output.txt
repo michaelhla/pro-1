@@ -1,0 +1,9 @@
+Now let's analyze this new mutant structure:
+=== TOOL CALL: calculate_rosetta_score ===
+Tool ID: toolu_01PW3DJtd7dEqZvVtXU3qkFF
+Arguments: {'pdb_file_path': 'predicted_structures/N67L_mutant.pdb.pdb'}
+--- TOOL OUTPUT ---
+Rosetta energy score: 1873.09 REU (Rosetta Energy Units). Lower scores indicate more stable structures. File: predicted_structures/N67L_mutant.pdb.pdb
+--- END TOOL OUTPUT (Length: 150 chars) ---
+=== END TOOL CALL ===
+

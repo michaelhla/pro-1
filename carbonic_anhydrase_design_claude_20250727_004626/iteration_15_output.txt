@@ -1,0 +1,39 @@
+I see the score is still not as good as the wild-type. Let me research thermostable carbonic anhydrase variants more specifically:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01VeDzg2VeKWHjvZG5PyiGyL
+Arguments: {'query': 'most thermostable carbonic anhydrase variants specific point mutations disulfide engineering'}
+--- TOOL OUTPUT ---
+The most thermostable carbonic anhydrase (CA) variants have been engineered using both **point mutations and disulfide bond engineering**, particularly in α-class CAs. Key examples and specific mutations are detailed below:
+
+**1. Thermovibrio ammonificans carbonic anhydrase (TaCA) – Disulfide Engineering and Point Mutations:**
+- **Native Feature:** TaCA's remarkable thermostability is largely due to a **native inter-subunit disulfide bond between two Cys67 residues**, promoting tetramerization and structural rigidity[2][4].
+- **Disulfide Engineering:** Introducing disulfide bonds at selected flexible sites has also been effective in other CAs. For example, in Neisseria gonorrhoeae CA, **engineered surface disulfide bonds increased thermostability 8-fold**[2].
+- **Point Mutations:** Directed evolution of TaCA has led to **N-terminal mutations** that tripled the enzyme's half-life in high salt and at temperatures above 70 °C[2].
+- **Rigidifying Mutations:** MD simulations predicted and experimental studies confirmed that certain mutations—designed to rigidify flexible protein regions—improved thermostability even further. Two of four mutants with such point mutations showed enhanced stability above wild-type TaCA[2].
+
+**2. Human Carbonic Anhydrase II (hCAII) – Mutational Stabilization and Disulfides:**
+- **Six-Point Mutant (Patented HCAIIts variant):** One of the most thermostable human CA II variants possesses **six point mutations**. Structural analysis shows each mutation provides distinct stabilization, such as increased hydrogen bonding, better packing, or reduced side-chain entropy[3].
+- **Notable Stabilizing Approaches:** hCAII has also been stabilized by **proline substitutions, loop engineering, and rationally designed disulfide bonds**[2].
+- **Example Mutations:** While the precise mutations in HCAIIts are proprietary/patented, their stabilizing effect has been attributed to improving backbone energetics and structural compactness[3][5].
+
+**3. Sulphurihydrogenibium species CAs (SspCA and SazCA) – Natural Thermostability Features:**
+- High thermostability in these CAs is correlated with a **higher content of secondary structural elements, more surface-charged residues, and ionic networks** rather than engineered disulfide bonds per se[1].
+- **SazCA** retains activity after 3 hours at 100 °C, though SspCA is even more stable[1]. No specific point mutations or disulfide engineering have been reported for these natural extremophiles, but their mechanisms provide valuable templates for further protein engineering.
+
+### Summary Table: Key Carbonic Anhydrase Thermostable Variants
+
+| CA Variant             | Thermostability Features                    | Engineered Mutations / Bonds      | Notes |
+|------------------------|---------------------------------------------|-----------------------------------|-------|
+| TaCA (T. ammonificans) | Native inter-subunit disulfide (C67), rigid structure; enhanced by N-terminal and rigidifying mutations | Inter-subunit C67-C67 disulfide, several rigidifying point mutations | Surface disulfide engineering robust in other α-CAs[2][4] |
+| hCAII (human)          | Patented 6-point mutant, proline/loop/disulfide engineering | Multiple independent point mutations; rationally designed disulfides | 6B00 structure, each mutation stabilizes via independent mechanism[3][5] |
+| NgCA (N. gonorrhoeae)  | Surface disulfide bond engineering          | Surface disulfide bonds           | 8-fold thermostability increase[2] |
+| SspCA, SazCA           | Natural high secondary structure, ionic networks, surface charge | N/A (no engineered mutations reported) | Extreme natural thermophiles[1] |
+
+**Important Caveats:**
+- The exact amino acid substitutions for some highly thermostable engineered variants are sometimes proprietary or vary by source; full details may require reviewing original patent or experimental literature[3].
+- Disulfide bond engineering is context-dependent and requires precise placement for effectiveness without compromising activity[2].
+
+For **future protein engineering efforts, combining rational design (MD simulation–guided rigidifying point mutations) and disulfide engineering provides the most robust route to ultra-thermostable CA variants**[2][4].
+--- END TOOL OUTPUT (Length: 4266 chars) ---
+=== END TOOL CALL ===
+

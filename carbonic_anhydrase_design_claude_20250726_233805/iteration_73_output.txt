@@ -1,0 +1,24 @@
+Now I'll search for information about the carbonic anhydrase sequence to help design a new variant:
+=== TOOL CALL: websearch ===
+Tool ID: toolu_01BgqM9KapMmYv9Fz6Q9Fq9w
+Arguments: {'query': 'human carbonic anhydrase II amino acid sequence'}
+--- TOOL OUTPUT ---
+The **amino acid sequence of human carbonic anhydrase II (CA II)** consists of 260 residues, typically encompassing the range **Met1–Lys260**. The UniProt accession for human CA II is **P00918**[1][2][4].
+
+A common reported sequence (from UniProt P00918 and commercial suppliers) is:
+
+**MSHHWGYGKH NGPEHWHKDF PIAPGESLHS DTLDFRTGPA FPSNFRPQPL KTYRLPGAQI LKETWGSYPG YPGIKAIKSA IPEGAMTILD NNVPKKLQVL VGGPLDGLAV ISVKFGSELL KGKSPAIIFD PAEFTYLPPL AENMNVGHSF HVNFEDNDQK IWGRTPELLG NQDDPSRYQA LAKGCASGDS PSGLLPWKYY DDAQPDSKQE IKIWFNSPNG QVDKAVEIKK KLRN"
+
+This is a single-letter sequence, **starting at Methionine (M)** and ending at **Lysine (K)** at residue 260[4].
+
+If you require the sequence in another format or residue range (e.g., starting at Ser2 per some recombinant proteins), please clarify.
+
+**Key points:**
+- Full sequence is 260 amino acids (Met1–Lys260)[1][4].
+- Widely referenced UniProt sequence is given above.
+- If you need the sequence for a particular isoform or variant, specify the isoform.
+
+The primary reference and canonical source for this sequence is **UniProt P00918**, and it matches what is available on commercial and research bioinformatics databases[1][2][4].
+--- END TOOL OUTPUT (Length: 1186 chars) ---
+=== END TOOL CALL ===
+
