@@ -1,0 +1,359 @@
+{
+  "sequences": [
+    {
+      "id": 1,
+      "name": "WT",
+      "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [],
+      "reasoning_trace": null
+    },
+    {
+      "id": 2,
+      "name": "Creative",
+      "sequence": "MLQHLLEFVFMSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSPKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [
+        {
+          "position": 0,
+          "type": "insertion",
+          "description": "N-terminal insertion",
+          "from": null,
+          "to": "MLQHLLEFVF",
+          "length": 10
+        },
+        {
+          "position": 151,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "A",
+          "to": "P"
+        }
+      ],
+      "reasoning_trace": "<think>\n\nBased on the general information provided, I note that the enzyme, Human Carbonic Anhydrase II, catalyzes the hydration of carbon dioxide to form bicarbonate and water. This enzyme is prone to denaturation at high temperatures, which limits its industrial applications. The studies mentioned suggest that incorporating a covalent cyclization and polymerization strategy or fusing the enzyme with solubility-enhancing peptides can improve its stability.\n\nConsidering the active site residues, I note that H64 and D19 are crucial for catalysis, and altering these residues may compromise the enzyme's function. However, I will propose mutations to the protein's stability-enhancing regions. The NEXT tag, which has been successfully used to improve the expression and solubility of the \u03b1-CA of Thermovibrio ammonificans, may also be effective for Human Carbonic Anhydrase II.\n\nTo further enhance the stability of Human Carbonic Anhydrase II, I propose the following novel mutations:\n\n1. A mutation that allows for the incorporation of the NEXT tag at the N-terminus of the enzyme, which has been shown to improve expression and solubility. This mutation would involve changing the native sequence to include the necessary codons for the NEXT tag.\n\nSpecifically, I suggest adding the codons for the NEXT tag (TAA AAG CAG CAT CTT CTT GAG TTT GTA TTC) at the N-terminus of the enzyme, replacing the native amino acid sequence starting from the first amino acid (Ala). This would result in a change from:\n\nM to L in position 1 (A1L)\nS to T in position 2 (S2T)\nH to S in position 3 (H3S)\n\n2. A mutation that involves the incorporation of a proline residue at a position that enhances protein stability. Proline is known to introduce a kink in the polypeptide chain, which can improve stability by preventing the formation of misfolded structures.\n\nI propose introducing a proline residue at position 144, which is located near the protein's surface. This mutation would result in a change from:\n\nA to P in position 144 (A144P)\n\n3. A mutation that involves the introduction of a disulfide bond to improve protein stability. Disulfide bonds can provide stability by linking two cysteine residues, which can be located at positions that do not interfere with the enzyme's activity.\n\nI propose introducing a disulfide bond between cysteine residues at positions 101 and 217. This mutation would result in a change from:\n\nC to C (disulfide bond) in positions 101 and 217 (C101-C217)\n\nThese mutations are based on the premise that incorporating the NEXT tag, a proline residue, and a disulfide bond can improve the stability of Human Carbonic Anhydrase II without compromising its activity.\n\nReasoning for each mutation:\n\n* The incorporation of the NEXT tag at the N-terminus has been shown to improve expression and solubility (Jo et al., 2024). By adding the necessary codons for the NEXT tag, we can take advantage of this enhancement.\n* The introduction of a proline residue at position 144 can improve stability by introducing a kink in the polypeptide chain, preventing the formation of misfolded structures. Proline is a well-known stabilizing amino acid.\n* The introduction of a disulfide bond between cysteine residues at positions 101 and 217 can provide stability by linking two cysteine residues that do not interfere with the enzyme's activity. Disulfide bonds are a common method for improving protein stability.\n\n</think>"
+    },
+    {
+      "id": 3,
+      "name": "Pro-1 Variant 1",
+      "sequence": "MSHHWGWGKHNGPEHWHKDFPIEKGERQSPVDIDTHTAKYDPSLKPLSVSYDQSTSLRIFGNGHAVNVGFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [
+        {
+          "position": 6,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "Y",
+          "to": "W"
+        },
+        {
+          "position": 22,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "A",
+          "to": "E"
+        },
+        {
+          "position": 53,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "A",
+          "to": "S"
+        },
+        {
+          "position": 59,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "L",
+          "to": "F"
+        },
+        {
+          "position": 60,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "N",
+          "to": "G"
+        },
+        {
+          "position": 65,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "F",
+          "to": "V"
+        },
+        {
+          "position": 68,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "E",
+          "to": "G"
+        }
+      ],
+      "reasoning_trace": "<think>\n\nFrom the GENERAL INFORMATION section, we know that the enzyme, Human Carbonic Anhydrase II, is a zinc-containing enzyme that catalyzes the rapid conversion of carbon dioxide to bicarbonate and water. We also know that the side chain of Leu-198 is located at the mouth of the active site hydrophobic pocket, and this pocket is required for substrate association. Furthermore, we are given information about the thermal stability and catalytic efficiency of the enzyme, including the effects of specific mutations on its activity.\n\nThe KNOWN MUTATIONS section provides information about the effects of specific mutations on the activity of the enzyme. We see that some mutations, such as Y7F and H64G, have impaired activity, while others, such as Y7H and N67H, have reduced proton transfer rates. We also see that some mutations, such as A65F and A65S, have reduced activity, and that others, such as N67Q and N67L, have impaired activity.\n\nFrom the information provided, we can synthesize the following insights:\n\n* The active site of the enzyme is critical for its activity, and mutations that alter the active site can affect the enzyme's ability to catalyze the conversion of carbon dioxide to bicarbonate and water.\n* The hydrophobic pocket at the mouth of the active site is important for substrate association, and mutations that alter this pocket can affect the enzyme's activity.\n* Some mutations, such as Y7F and H64G, may be more detrimental to the enzyme's activity than others, such as Y7H and N67H.\n* Deletions or insertions of specific sequences may help improve the stability of the enzyme, but these modifications should be carefully considered to ensure that they do not compromise the enzyme's activity.\n\nWith this information in mind, we can propose the following novel mutations to optimize the stability of the enzyme:\n\n1. A22E: Changing Alanine at position 22 to Glutamic acid. This mutation may help improve the stability of the enzyme by introducing a charged residue at the active site.\n2. A65S/A67G: Changing Alanine at position 65 to Serine and Asparagine at position 67 to Glycine. This mutation may help improve the stability of the enzyme by introducing a more flexible residue at the active site.\n3. K72V: Changing Lysine at position 72 to Valine. This mutation may help improve the stability of the enzyme by introducing a non-polar residue at the active site.\n4. N67T: Changing Asparagine at position 67 to Threonine. This mutation may help improve the stability of the enzyme by introducing a more hydrophilic residue at the active site.\n5. E90G: Changing Glutamic acid at position 90 to Glycine. This mutation may help improve the stability of the enzyme by introducing a more flexible residue at the active site.\n6. Y7W/Y7A: Changing Phenylalanine at position 7 to Tryptophan and Alanine at position 7 to Alanine. This mutation may help improve the stability of the enzyme by introducing a larger residue at the active site.\n7. Q71S: Changing Glutamine at position 71 to Serine. This mutation may help improve the stability of the enzyme by introducing a more hydrophilic residue at the active site.\n8. L19F: Changing Leucine at position 19 to Phenylalanine. This mutation may help improve the stability of the enzyme by introducing a non-polar residue at the active site.\n\n</think>"
+    },
+    {
+      "id": 4,
+      "name": "Pro-1 Variant 2",
+      "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKSNFNGEGEPEELMVDNWRPAQPLKNRQIKASFKG",
+      "modifications": [
+        {
+          "position": 227,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "L",
+          "to": "S"
+        },
+        {
+          "position": 260,
+          "type": "insertion",
+          "description": "C-terminal extension",
+          "from": null,
+          "to": "G",
+          "length": 1
+        }
+      ],
+      "reasoning_trace": "<think>\n\nAfter carefully reading the GENERAL INFORMATION and KNOWN MUTATIONS sections, several interesting insights emerge:\n\n1.  The enzyme's stability and activity are influenced by various mutations, some of which have been shown to improve or impair the enzyme's performance.\n2.  Leucine residues at positions 100, 224, and 240 have been identified as crucial for the enzyme's thermostability, and their substitution with histidine, serine, and proline, respectively, resulted in a triple mutant (TS1) with enhanced thermal stability.\n3.  The double mutant Tyr7Phe/Asn67Gln showed an improvement in rate constants of proton transfer by about six-fold compared to the native enzyme.\n4.  Deletion of ~10 amino acid loops in CAII has led to greater thermal stability without harming catalytic activity.\n5.  Positions 1 to 10, 16 to 39, and 250 to 260 are disordered in the wild-type enzyme, suggesting that these regions may be flexible and adaptable, but also potentially susceptible to mutations.\n\nConsidering the above points and the information provided, novel mutations to optimize the stability of the enzyme could be proposed as follows:\n\n1.  **Insertion of a Glycine (G) at position 151**: This could help to create a flexible loop that might improve the enzyme's thermostability and activity. Glycine is an ideal amino acid for creating a conformational change that could allow the enzyme to bind to substrates more efficiently.\n    \\[151G (Source: Biochemistry, 1993, Vol. 32, Issue 22, pp. 6241-6251)\\]\n2.  **Mutation of Leu224 to Serine (S)**: This change could help to reduce the hydrophobic interactions between the Leu224 side chain and the substrate, allowing for more efficient substrate binding and turnover.\n    \\[224S (Source: Biochemistry, 1995, Vol. 34, Issue 17, pp. 5701-5709)\\]\n3.  **Deletion of amino acids 56-58**: This deletion could help to reduce the steric hindrance caused by the disordered regions of the enzyme, allowing for more efficient substrate binding and catalysis.\n    \\[\u039457-58 (Source: Protein Sci, 2000, Vol. 9, Issue 1, pp. 152-162)\\]\n4.  **Insertion of a Proline (P) at position 163**: This could help to create a conformational change that could allow the enzyme to bind to substrates more efficiently. Proline is an ideal amino acid for creating a bend in the protein structure that could facilitate substrate binding.\n    \\[163P (Source: Biochemistry, 1994, Vol. 33, Issue 23, pp. 6921-6931)\\]\n\nThese mutations are proposed based on the information provided and are intended to optimize the stability of the enzyme while preserving its activity and function.\n\n</think>"
+    },
+    {
+      "id": 5,
+      "name": "Pro-1 Variant 3",
+      "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNLGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFIKVGSAKPGLQKVVDVLDSIKIKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [
+        {
+          "position": 61,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "N",
+          "to": "L"
+        },
+        {
+          "position": 146,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "L",
+          "to": "I"
+        },
+        {
+          "position": 167,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "T",
+          "to": "I"
+        }
+      ],
+      "reasoning_trace": "<think>\n\nFrom the GENERAL INFORMATION section, we know that the hydrophobic side chain of Leu-198 is located at the mouth of the active site hydrophobic pocket, and this pocket is required for substrate association. Substitutions at the mouth of the pocket, such as Leu-198-->Glu, Leu-198-->His, and Leu-198-->Arg, decrease kcat/KM for CO2 hydration. However, the substitution of a compact aliphatic side chain for Leu-198, such as Leu-198-->Ala, has a smaller effect on catalysis.\n\nWe also know that deletion of ~10 amino acid loops in CAII has led to greater thermal stability without harming catalytic activity. This suggests that targeted deletions or insertions of amino acid sequences may improve stability.\n\nFrom the KNOWN MUTATIONS section, we see that some mutations have improved catalytic activity, such as Y7F and N67Gln, which retained the same thermal stability as the triple mutant TS1 but showed an improvement in rate constants of proton transfer. Other mutations, such as H64A, H64G, and H64W, have impaired activity and were rescued by 4-methylimidazole (4-MI). This suggests that modifications at position 64 may be sensitive to the presence of a specific cofactor.\n\nConsidering these insights, I propose novel mutations to optimize the stability of the enzyme:\n\n1. N64L (Changing Asparagine at position 64 to Leucine): This mutation may improve stability while maintaining activity, as Leu is a more hydrophobic residue than Asn.\n2. L198I (Changing Leucine at position 198 to Isoleucine): This mutation may maintain the compact aliphatic side chain of Leu-198 while improving stability, as Ile is a more hydrophobic residue than Leu.\n3. Insertion of Gly at position 221 (G221): This insertion may improve stability by creating a more flexible region of the protein, potentially reducing stress on the active site.\n4. Deletion of 6 amino acids between positions 233 and 239 (\u0394233-239): This deletion may improve stability by reducing the number of potential misfolding interactions in the protein.\n5. T199I (Changing Threonine at position 199 to Isoleucine): This mutation may improve stability while maintaining activity, as Ile is a more hydrophobic residue than Thr.\n\nEach of these mutations is designed to improve stability while preserving activity, and they are based on specific insights from the GENERAL INFORMATION and KNOWN MUTATIONS sections.\n\n</think>"
+    },
+    {
+      "id": 6,
+      "name": "Pro-1 Variant 4",
+      "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILAYLHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [
+        {
+          "position": 60,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "N",
+          "to": "A"
+        },
+        {
+          "position": 61,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "N",
+          "to": "Y"
+        },
+        {
+          "position": 62,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "G",
+          "to": "L"
+        }
+      ],
+      "reasoning_trace": "<think>\n\nBefore proposing novel mutations, I will synthesize insights from the GENERAL INFORMATION and KNOWN MUTATIONS sections:\n\n* The active site of carbonic anhydrase II (CAII) is a hydrophobic pocket that requires the side chain of Leu-198 for substrate association. Hydrophobic-->hydrophilic amino acid substitutions at the mouth of the pocket decrease kcat/KM for CO2 hydration (Krebs et al., 1993).\n* Deletion of ~10 amino acid loops in CAII has led to greater thermal stability without harming catalytic activity.\n* Certain mutations at positions 62, 64, and 67 have been reported to affect enzyme activity and stability (e.g., N62D, H64A, and N67Q).\n* The side chain of Arg-198 must be reasonably mobile to accommodate substrate association, despite being a bulky residue (Krebs et al., 1993).\n* The enzyme has a Zn2+ metal ion that is essential for its activity.\n\nConsidering these insights, I propose novel mutations to optimize the stability of CAII:\n\n1. **Insertion of a Glycine residue after Pro200**: P200G (Pro200Gly). This insertion is inspired by the deletion of ~10 amino acid loops in CAII, which led to greater thermal stability. A Glycine residue can provide flexibility and reduce the steric hindrance at the active site.\n2. **Substitution of Glutamic acid with Alanine at position 62**: N62A (Asparagine62Alanine). This mutation is based on the observation that N62D and N62H had reduced activity, whereas N62A did not. Alanine is a smaller and more hydrophobic amino acid than Glutamic acid, which may reduce the steric hindrance and increase the flexibility of the active site.\n3. **Substitution of Histidine with Tyrosine at position 64**: H64Y (Histidine64Tyrosine). This mutation is inspired by the fact that H64A and H64G had reduced activity. Tyrosine is a smaller and more hydrophobic amino acid than Histidine, which may reduce the steric hindrance and increase the flexibility of the active site.\n4. **Substitution of Asparagine with Leucine at position 67**: N67L (Asparagine67Leucine). This mutation is based on the observation that N67H had enhanced proton transfer. Leucine is a larger and more hydrophobic amino acid than Asparagine, which may increase the hydrophobic interactions at the active site.\n5. **Deletion of 3 amino acid residues after Leu-197**: L197\u03943 (Leu197 deletion). This deletion is inspired by the deletion of ~10 amino acid loops in CAII, which led to greater thermal stability. Deleting these amino acids may reduce the steric hindrance and increase the flexibility of the active site.\n\nThese novel mutations aim to balance stability and activity by introducing flexibility and reducing steric hindrance at the active site. However, it is essential to verify the effects of these mutations experimentally to ensure that they do not compromise the activity or function of the enzyme.\n\n</think>"
+    },
+    {
+      "id": 7,
+      "name": "Pro-2 Bacterial mix",
+      "sequence": "MSHHWDYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNLGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKSKGKSADFTNFDPRGLLPESLDYWTYPGSLTSPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [
+        {
+          "position": 5,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "G",
+          "to": "D"
+        },
+        {
+          "position": 61,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "N",
+          "to": "L"
+        },
+        {
+          "position": 167,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "T",
+          "to": "S"
+        },
+        {
+          "position": 198,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "T",
+          "to": "S"
+        }
+      ],
+      "reasoning_trace": "Analysis of Variant 5:\n\n1. Structural Comparison:\n- RMSD: 0.239 \u00c5 (excellent, well below 2.0 \u00c5 threshold)\n- 100% overlap percentage\n- 98.5% sequence identity (very conservative mutations)\n- Structure maintains excellent similarity to wildtype\n\n2. Secondary Structure Analysis:\n- Well-maintained secondary structure (17.3% helix, 26.5% sheet, 56.2% loop)\n- Very compact structure (Rg = 17.21 \u00c5)\n- Good surface properties with balanced hydrophobic ratio (48.2%)\n\n3. Stability Assessment:\n- Rosetta score: -430.48 REU\n- Significantly better than wildtype (-303.16 REU)\n- Best score of all variants tested\n- First variant to show improved stability over wildtype\n\n4. Catalytic Site Integrity:\n- All catalytic residues (Y7, N62, H64, N67, Q92) and zinc-binding residues (H94, H96, H119) maintained\n- Active site geometry preserved\n\nThis is a breakthrough! Variant 5 shows significant improvement in stability while maintaining structural integrity. The key factors in its success appear to be:\n\n1. Use of only well-validated mutations with proven cooperative effects\n2. Conservative approach with fewer mutations\n3. Balance of surface and core modifications\n4. Preservation of key functional residues\n\nThe Rosetta score improvement (-430.48 vs -303.16 REU) suggests this variant should have enhanced stability while maintaining catalytic function. The low RMSD and high sequence identity indicate the overall fold is preserved, while the secondary structure analysis shows maintenance of key structural elements.\n\nDesign Strategy:\n1. Use N67L (proven thermostabilizing mutation)\n2. Combine with G7D (validated stability enhancement from a different bacterial enzyme)\n3. Add R210K (proven cooperative effect with surface mutations)\n4. Include T200S (known to work well with other mutations)"
+    },
+    {
+      "id": 8,
+      "name": "Pro-2 Beta barrel",
+      "sequence": "MSHHWDYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNLGHAFNVEFDDSQDKAVIKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGVFLKVGSAKPGLQKVVDVLDSIKSKGKSADFTNFDPRGLLPESLDYWTYPGSLTSPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [
+        {
+          "position": 5,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "G",
+          "to": "D"
+        },
+        {
+          "position": 61,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "N",
+          "to": "L"
+        },
+        {
+          "position": 78,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "L",
+          "to": "I"
+        },
+        {
+          "position": 144,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "I",
+          "to": "V"
+        },
+        {
+          "position": 167,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "T",
+          "to": "S"
+        },
+        {
+          "position": 198,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "T",
+          "to": "S"
+        }
+      ],
+      "reasoning_trace": "Based on insights from searching carbonic anhydrase beta barrel core packing mutations, I'll design Variant 9 building upon our successful Variant 5 but incorporating additional stabilizing mutations focused on core packing and beta-barrel stability. We'll keep the successful core from Variant 5 (N67L, G7D, R210K, T200S) and add:\n\n1. L78I: Improve hydrophobic packing in beta-barrel core\n2. I208V: Fine-tune core packing without disrupting structure\n3. M239L: Enhance stability while reducing amyloid propensity\n\nThese mutations are chosen to optimize core packing while maintaining the successful elements of Variant 5."
+    },
+    {
+      "id": 9,
+      "name": "Pro-2 Salt bridge",
+      "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKFRKLNFNGEGEPEELMVDNWRPEQPLKNREIKASFK",
+      "modifications": [
+        {
+          "position": 246,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "A",
+          "to": "E"
+        },
+        {
+          "position": 253,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "Q",
+          "to": "E"
+        }
+      ],
+      "reasoning_trace": "Design Strategy:\n- A245E: Introduced a negatively charged glutamate to form salt bridges with nearby positively charged residues\n- Q249R: Introduced a positively charged arginine to form salt bridges with nearby negatively charged residues\n- Q253E: Changed glutamine to glutamate to enhance the salt bridge network\n\nThis variant aims to improve stability through electrostatic interactions in the C-terminal region."
+    },
+    {
+      "id": 10,
+      "name": "Pro-2 Core packing",
+      "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHTAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKVGSAKPGLQKVVDVLDSIKTAGALADFTAFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSAEQVLKFRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKAAFK",
+      "modifications": [
+        {
+          "position": 168,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "K",
+          "to": "A"
+        },
+        {
+          "position": 170,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "K",
+          "to": "A"
+        },
+        {
+          "position": 171,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "S",
+          "to": "L"
+        },
+        {
+          "position": 176,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "N",
+          "to": "A"
+        },
+        {
+          "position": 218,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "S",
+          "to": "A"
+        },
+        {
+          "position": 257,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "S",
+          "to": "A"
+        }
+      ],
+      "reasoning_trace": "CA-StabCore: A Rational Design for Enhanced Carbonic Anhydrase Stability\n\nDesign Strategy Summary:\nBased on comprehensive analysis and iterative testing, created a new carbonic anhydrase variant called \"CA-StabCore\" that successfully meets design objectives.\n\nKey Design Features:\n\nPoint Mutations for Thermal Stability - Implemented selected HCAIIts thermostabilizing mutations:\n- K170A: Reduces side-chain entropy\n- A171L: Improves hydrophobic packing\n- N189S\u2192A: Optimizes local conformational energetics\n- S220\u2192A: Reduces surface flexibility\n- K\u2192A and F\u2192A C-terminal mutations: Further stabilizes the C-terminus\n\nAcid Resistance Modifications:\n- S220A: Reducing potentially acid-sensitive residues\n- S to A substitution at position 259: Eliminates a polar residue for enhanced acid stability\n- E193A: Reduces negative charge that could be problematic in acidic conditions\n\nResults:\nEnergy Score:\n- Original CA: -305.57 REU\n- CA-StabCore: -326.30 REU (6.8% improvement)\n\nStructural Integrity:\n- Excellent catalytic site preservation: 0.098 \u00c5 RMSD (active site)\n- Excellent zinc binding site preservation: 0.028 \u00c5 RMSD (zinc binding)\n- Good overall structural similarity: 1.091 \u00c5 RMSD compared to original\n\nSecondary Structure:\n- 260 residues\n- 17.3% helix, 26.5% sheet, 56.2% loop (maintaining original proportions)\n- Very compact structure (radius of gyration: 17.12 \u00c5)\n- Surface hydrophobicity: 49.5% (slight increase from original)\n\nAdvantages:\n1. Improved Energy Score: Point mutation approach delivered significant improvement in Rosetta energy score\n2. Structural Preservation: Maintained excellent catalytic geometry while improving stability\n3. Rational Design: Targeted mutations based on well-characterized stability mechanisms\n4. Sequence Simplicity: Maintains reasonable sequence length for easier expression\n\nPredicted Improvements:\n1. Thermal Stability: Combination of reduced side-chain entropy, improved packing, and optimized electrostatics should increase melting temperature by 5-10\u00b0C\n2. Acid Resistance: Reduction in acid-sensitive residues should improve function at lower pH values\n3. Catalytic Efficiency: Preserved active site geometry suggests catalytic activity will be maintained"
+    },
+    {
+      "id": 11,
+      "name": "o3-pro",
+      "sequence": "MSHHWGYGKHNGPEHWHKDFPIAKGERQSPVDIDTHIAKYDPSLKPLSVSYDQATSLRILNNGHAFNVEFDDSQDKAVLKGGPLDGTYRLIQFHFHWGSLDGQGSEHTVDKKKYAAELHLVHWNTKYGDFGKAVQQPDGLAVLGIFLKIGSAKPGLQKVVDVLDSIKTKGKSADFTNFDPRGLLPESLDYWTYPGSLTTPPLLECVTWIVLKEPISVSSEQVLKYRKLNFNGEGEPEELMVDNWRPAQPLKNRQIKASFK",
+      "modifications": [
+        {
+          "position": 36,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "T",
+          "to": "I"
+        },
+        {
+          "position": 148,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "V",
+          "to": "I"
+        },
+        {
+          "position": 224,
+          "type": "substitution",
+          "description": "Point mutation",
+          "from": "F",
+          "to": "Y"
+        }
+      ],
+      "reasoning_trace": "No reasoning trace provided in the original data."
+    }
+  ]
+}
