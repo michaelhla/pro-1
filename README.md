@@ -106,6 +106,7 @@ Disclaimer: This is a preview version and as a result the model can be very dumb
 Please cite **Michael Hla (2025), Pro-1** for the project methods and results.
 
 - [Technical report (PDF)](docs/pro1.pdf)
+- [Standalone LaTeX source](docs/pro1.tex)
 - [Readable report](docs/pro1.html)
 - [Canonical project page](https://michaelhla.com/blog/pro1.html)
 - [BibTeX](CITATION.bib) and [CITATION.cff](CITATION.cff)

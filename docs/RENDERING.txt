@@ -1,0 +1,6 @@
+Preferred editable report: pro1.tex
+This is a self-contained LaTeX article with inline references and no external figures or bibliography files. Open it in the built-in LaTeX editor for compilation and PDF preview. A standard pdfLaTeX installation can also compile it; run twice to resolve citations. Common packages: geometry, fontenc, inputenc, lmodern, microtype, amsmath, booktabs, tabularx, array, xurl, hyperref, fancyhdr.
+
+The packaged pro1.pdf is the previously verified ReportLab rendering, not an export from the LaTeX preview. Both use the same scientific content; layout and pagination may differ. Export the LaTeX preview to PDF before depositing the LaTeX edition. The source is suitable for a source upload after author review and any venue-specific requirements.
+
+Legacy regeneration: edit report-source.json and run python render_report.py report-source.json (dependency: reportlab). That renderer does not compile the LaTeX source. Synchronize content deliberately if editing either representation.
