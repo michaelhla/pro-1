@@ -1,0 +1,196 @@
+{
+  "slug": "pro1",
+  "repo": "pro-1",
+  "title": "Pro-1",
+  "subtitle": "A Reasoning Model Trained Using GRPO Toward a Physics-Based Reward Function for Protein Stability",
+  "year": 2025,
+  "url": "https://michaelhla.com/blog/pro1.html",
+  "abstract": "Pro-1 explores natural-language-guided protein sequence optimization using a structure-based computational reward. Given a sequence, biological context, and prior mutagenesis results, a language model proposes modifications and an accompanying rationale. Supervised fine-tuning uses synthetic sequence-repair reasoning traces; the 8B model is subsequently trained with Group Relative Policy Optimization (GRPO), using ESMFold structure predictions and Rosetta REF2015 scores. A creativity and specificity reward variant is reported to improve benchmark performance from 43% to 47%, while a three-iteration critic loop reaches a reported 71% pass rate. Success in the original 40-enzyme evaluation means any improvement in Rosetta score, not experimentally measured stability or retained activity. This report archives the March 2025 computational study, distinguishes the supervised 70B model from the GRPO-trained 8B model, and identifies the limits of proxy-based optimization. No new experiments are reported.",
+  "pages": [
+    [
+      [
+        "h",
+        "1. Motivation and scope"
+      ],
+      [
+        "p",
+        "Protein engineering combines sequence constraints, structural reasoning, prior measurements, and scientific literature. Pro-1 represents these inputs as text so a language model can propose sequence edits and explain its proposal. The intended benefit is a flexible interface for conditioning on heterogeneous evidence. A readable rationale is not evidence that the stated mechanism is correct, and optimization of a structural score is not a substitute for functional measurements. [1, 2]"
+      ],
+      [
+        "h",
+        "2. Model initialization and supervised training"
+      ],
+      [
+        "p",
+        "The released study uses Llama-3.1-8B-Instruct and Llama-3.3-70B-Instruct, with 4-bit QLoRA unless otherwise specified. GRPO was completed only for the 8B model; the account explicitly describes unsuccessful attempts to run the corresponding 70B RL stage within the available compute. The 70B release must therefore not be described as a completed GRPO-trained model. [1]"
+      ],
+      [
+        "p",
+        "Supervised training examples begin with enzyme sequences from BRENDA. BLOSUM-guided perturbations and ESM3 generate candidate substitutions, insertions, and deletions. A language model then generates a rationale for reversing the perturbation to recover the source sequence. This produces synthetic sequence-repair examples, but a naturally occurring sequence is not necessarily the optimum for a user-selected industrial condition, and the perturbation does not itself prove a measured loss of stability. [1]"
+      ]
+    ],
+    [
+      [
+        "h",
+        "3. Computational reward and optimization"
+      ],
+      [
+        "p",
+        "For each protein, the prompt can include its sequence, reaction information, known mutations, active-site residues, and other context. The model proposes edits, the edited sequence is constructed, ESMFold predicts a structure, and Rosetta REF2015 provides a scalar energy score. A binary reward indicates whether the candidate score is more negative than that of the original sequence; a formatting term accompanies this reward. The author found this binary signal more stable than absolute or relative score-change rewards. [1, 2]"
+      ],
+      [
+        "formula",
+        "r_score = 1 if E_REF2015(candidate) < E_REF2015(original), otherwise 0"
+      ],
+      [
+        "p",
+        "This expression summarizes the success criterion, not the full weighted training objective. REF2015 includes physical and statistical terms. Lower values in this pipeline are treated as favorable computational outcomes; they are not direct measurements of folding free energy, melting temperature, solubility, catalytic activity, or manufacturability. Structure-prediction errors and scoring artifacts can propagate into both reward and evaluation."
+      ],
+      [
+        "p",
+        "The project added a language-model sequence applier because direct copying and application of edits were unreliable. The applier also sometimes made mistakes. Consequently, a reproduction must compare the proposed edits with the actual sequence passed to the folding and scoring tools. Fluency of the rationale cannot validate that this sequence is correct. [1, 2]"
+      ],
+      [
+        "h",
+        "3.1 Creativity and specificity rewards"
+      ],
+      [
+        "p",
+        "A further variant adds LLM-judged novelty or complexity and protein-specific reasoning rewards. The judge treats changes such as adding domains or deleting protease-binding sites as more creative than simple substitutions. The article reports more insertions and deletions and a change from 43% to 47% on its benchmark. This is an author-reported comparison, not an independently reproduced effect or a statistically established advantage. [1]"
+      ],
+      [
+        "h",
+        "3.2 Critic-guided inference"
+      ],
+      [
+        "p",
+        "A separate critic receives a PDB representation, secondary-structure information, and the previous outcome, then supplies text feedback for another proposal. The article reports 71% after three iterations versus roughly 65% for resampling. This uses additional attempts and information; it is not comparable to one proposal per protein without accounting for the inference budget. The public description does not provide enough detail to infer uncertainty or reconstruct an exact common-budget comparison from these percentages alone. [1]"
+      ]
+    ],
+    [
+      [
+        "h",
+        "4. Evaluation and reported observations"
+      ],
+      [
+        "p",
+        "The original evaluation is described as pass@1 on 40 enzymes from different functional classes. A proposal passes when its predicted structure receives any lower Rosetta energy score. Training and evaluation therefore share the same proxy. The source reports sensitivity to the chosen split and acknowledges that larger models may have received suboptimal prompts. It does not establish a broad, experimentally validated superiority claim. [1]"
+      ],
+      [
+        "caption",
+        "Table 1. Computational results reported in the March 2025 article."
+      ],
+      [
+        "table",
+        [
+          [
+            "Configuration",
+            "Reported outcome",
+            "Scope"
+          ],
+          [
+            [
+              "8B GRPO, before added judge terms",
+              "43%",
+              "Original computational benchmark"
+            ],
+            [
+              "Creativity / specificity variant",
+              "47%",
+              "Original computational benchmark"
+            ],
+            [
+              "Critic loop, 3 iterations",
+              "71%",
+              "Multiple attempts; not pass@1"
+            ],
+            [
+              "Resampling comparison",
+              "~65%",
+              "Budget details incompletely specified"
+            ]
+          ]
+        ]
+      ],
+      [
+        "p",
+        "The percentages are preserved as reported. A single 40-item binary pass@1 run changes in 2.5-percentage-point increments; the article's rounded values do not identify exact numerators, averaging rules, or every denominator. No raw counts or confidence intervals are reverse-engineered here. [1]"
+      ],
+      [
+        "p",
+        "Biological baselines required task-specific adaptations. ESM2 attention guided mutation-site selection, followed by amino-acid resampling; EvoProtGrad used an ESM2 3B objective. ProteinMPNN initially changed more than half the sequence, so the described comparison constrained it to five mutations at randomly chosen non-active-site positions. These differing edit spaces and objectives limit blanket comparisons. [1]"
+      ],
+      [
+        "h",
+        "4.1 Human carbonic anhydrase II case study"
+      ],
+      [
+        "p",
+        "The model was supplied with a native sequence, prior mutations, mechanistic information, and selected literature. The best of 100 samples from the baseline variant proposed eight point mutations. The creativity variant was given additional literature about cyclization and disordered peptide additions and proposed a terminal peptide modification. These are selected computational examples with different conditioning, not a randomized comparison. [1]"
+      ],
+      [
+        "p",
+        "The article describes relative Rosetta-based improvements as 40% and 9% for selected proposals. These percentages must not be translated into measured stability gains. Contact mapping, normal-mode analysis, and structural RMSD were supplementary computational checks; they did not establish preserved enzyme activity or successful synthesis. The March account explicitly places laboratory validation among the next steps. [1]"
+      ],
+      [
+        "h",
+        "5. Later experimental context"
+      ],
+      [
+        "p",
+        "In June 2025, Adaptyv publicly reported testing 19 Pro-1-designed FGF-1 sequences and finding three with increased melting temperature while retaining binding affinity. This later assay report concerns a specific protein and selected designs. It is separate from the March benchmark and does not validate every prediction or establish general catalytic improvement. It is documented as a laboratory report, not counted as a peer-reviewed scholarly citation. [4]"
+      ]
+    ],
+    [
+      [
+        "h",
+        "6. Limitations and reproducibility"
+      ],
+      [
+        "p",
+        "The dominant limitation is reward validity: the system can improve REF2015 without improving the desired biological property. Length changes, sequence composition, reference-energy terms, and prediction artifacts complicate comparison of edited sequences. The article identifies reward hacking, weak sensitivity of structure prediction to point mutations, unsupported metalloprotein details, unreliable sequence copying, and fabricated literature references as practical risks. [1]"
+      ],
+      [
+        "p",
+        "Training was enzyme-focused; transfer to all proteins was proposed rather than demonstrated. De novo design was not supported. Attempts to use docking-based activity rewards were reported to correlate poorly with catalytic activity. The archive therefore makes no broad claim of activity optimization, general protein-design superiority, or deployment readiness. [1, 2]"
+      ],
+      [
+        "p",
+        "A future reproduction should fix exact adapters, training and evaluation sets, sequence-edit constraints, applied-mutation checks, folding revisions, Rosetta initialization and relaxation settings, treatment of length and cofactors, generation budgets, and random seeds. Independent stability and functional measurements should be prespecified. These are recommended validation steps, not experiments completed for this report."
+      ],
+      [
+        "h",
+        "7. Availability and archival provenance"
+      ],
+      [
+        "p",
+        "The public repository supplies inference and supporting code, and links model artifacts on Hugging Face. It recommends checking the realized mutations and treats model-generated references as unreliable. This archival edition consolidates the March 2025 account with an explicitly labeled June 2025 assay follow-up. No training or assay was rerun in preparing the report. The repository snapshot below records what was inspected in October 2026 rather than asserting that all current files existed at launch. [1, 2, 3]"
+      ],
+      [
+        "h",
+        "References and source locations"
+      ],
+      [
+        "refs",
+        [
+          [
+            "Michael Hla. Pro-1. Public project article, dated March 2025.",
+            "https://michaelhla.com/blog/pro1.html"
+          ],
+          [
+            "Michael Hla. Pro-1 repository. Source snapshot 8f488bdd4fa839ec93a152600204b1052a412c14.",
+            "https://github.com/michaelhla/pro-1/tree/8f488bdd4fa839ec93a152600204b1052a412c14"
+          ],
+          [
+            "Michael Hla. Pro-1 model repository.",
+            "https://huggingface.co/mhla/pro-1"
+          ],
+          [
+            "Adaptyv Bio. Protein Designer Spotlight: Can a language model reason about protein design? 16 June 2025.",
+            "https://adaptyvbio.substack.com/p/protein-designer-spotlight-can-a"
+          ]
+        ]
+      ]
+    ]
+  ]
+}

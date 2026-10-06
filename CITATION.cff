@@ -1,0 +1,28 @@
+{
+  "cff-version": "1.2.0",
+  "message": "For the project methods and results, please cite the archival technical report in preferred-citation. For an exact software revision, also cite the commit used.",
+  "type": "software",
+  "title": "Pro-1",
+  "authors": [
+    {
+      "family-names": "Hla",
+      "given-names": "Michael"
+    }
+  ],
+  "url": "https://michaelhla.com/blog/pro1.html",
+  "repository-code": "https://github.com/michaelhla/pro-1",
+  "preferred-citation": {
+    "type": "report",
+    "title": "Pro-1",
+    "authors": [
+      {
+        "family-names": "Hla",
+        "given-names": "Michael"
+      }
+    ],
+    "year": 2025,
+    "month": 3,
+    "url": "https://michaelhla.com/blog/pro1.html",
+    "notes": "A Reasoning Model Trained Using GRPO Toward a Physics-Based Reward Function for Protein Stability. Original public release: March 2025; archival edition prepared October 2026; deposit pending."
+  }
+}

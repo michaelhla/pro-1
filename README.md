@@ -100,3 +100,15 @@ Disclaimer: This is a preview version and as a result the model can be very dumb
 
 
 
+
+## Citation and archival report
+
+Please cite **Michael Hla (2025), Pro-1** for the project methods and results.
+
+- [Technical report (PDF)](docs/pro1.pdf)
+- [Standalone LaTeX source](docs/pro1.tex)
+- [Readable report](docs/pro1.html)
+- [Canonical project page](https://michaelhla.com/blog/pro1.html)
+- [BibTeX](CITATION.bib) and [CITATION.cff](CITATION.cff)
+
+Originally released March 2025; archival report prepared October 2026. Zenodo deposit and DOI are pending. See [archival provenance](docs/ARCHIVAL-NOTE.md).
